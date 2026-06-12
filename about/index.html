@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>À propos — SAH Cloud</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#F47B28', light: '#FFA05A', dark: '#D4601A' },
+            navy:    { DEFAULT: '#1A3C6E', light: '#224e8a', dark: '#102647' },
+          },
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    .nav-link { position: relative; }
+    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#F47B28; transition:width .3s ease; }
+    .nav-link:hover::after, .nav-link.active::after { width:100%; }
+  </style>
+</head>
+<body class="bg-[#0d1f3c] font-sans text-white antialiased">
+
+  <!-- NAVBAR -->
+  <header class="fixed top-0 left-0 right-0 z-50" style="background:rgba(13,31,60,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="../index.html"><img src="../img/logo.jpg" alt="SAH Cloud" class="h-9 w-auto rounded-md" /></a>
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="../solutions/index.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Solutions Cloud</a>
+          <a href="../managed/index.html"   class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Services Gérés</a>
+          <a href="../services/index.html"  class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Services</a>
+          <a href="../features/index.html"  class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Fonctionnalités</a>
+                 <a href="index.html"    class="nav-link active text-sm font-semibold text-primary transition-colors">À propos</a>
+          <a href="../contact/index.html"   class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Contact</a>
+        </nav>
+        
+        <button id="menu-btn" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/10">
+      <div class="px-4 py-4 space-y-1">
+        <a href="../solutions/index.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Solutions Cloud</a>
+          <a href="../managed/index.html"   class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Services Gérés</a>
+          <a href="../services/index.html"  class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg">Services</a>
+        <a href="../features/index.html"  class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg">Fonctionnalités</a>
+          <a href="index.html"    class="block px-3 py-2 text-sm text-primary font-semibold bg-primary/10 rounded-lg">À propos</a>
+        <a href="../contact/index.html"   class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HEADER -->
+  <section class="relative pt-28 pb-16 overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:60px 60px;"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary text-xs font-semibold px-4 py-1.5 rounded-full mb-5">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+        Notre histoire
+      </div>
+      <h1 class="text-4xl lg:text-5xl font-black mb-4">À propos de SAH Cloud</h1>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">Nous sommes une équipe de passionnés de technologie déterminés à démocratiser l'accès au cloud et à l'intelligence artificielle en Afrique.</p>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="pb-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+        <div>
+          <img src="../img/logo.jpg" alt="SAH Analytics" class="h-16 w-auto rounded-xl mb-8" />
+          <h2 class="text-3xl font-black mb-5">Notre mission</h2>
+          <p class="text-slate-400 leading-relaxed mb-5">SAH Analytics est né d'un constat simple : les entreprises africaines méritent une infrastructure cloud locale, souveraine et à la hauteur des standards mondiaux, sans dépendre des grands opérateurs étrangers.</p>
+          <p class="text-slate-400 leading-relaxed mb-5">Notre plateforme combine la puissance du cloud computing et de l'intelligence artificielle pour permettre à chaque organisation, quelle que soit sa taille, de se digitaliser et d'innover rapidement.</p>
+          <p class="text-slate-400 leading-relaxed">Avec des datacenters sur le continent et une équipe d'ingénieurs certifiés disponibles 24/7, nous garantissons performance, conformité et proximité.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-[#111e35] border border-white/5 rounded-2xl p-6 text-center">
+            <p class="text-4xl font-black text-primary mb-2">500<span class="text-2xl">+</span></p>
+            <p class="text-slate-400 text-sm">Clients actifs</p>
+          </div>
+          <div class="bg-[#111e35] border border-white/5 rounded-2xl p-6 text-center">
+            <p class="text-4xl font-black text-white mb-2">3</p>
+            <p class="text-slate-400 text-sm">Datacenters africains</p>
+          </div>
+          <div class="bg-[#111e35] border border-white/5 rounded-2xl p-6 text-center">
+            <p class="text-4xl font-black text-white mb-2">99.9<span class="text-primary text-xl">%</span></p>
+            <p class="text-slate-400 text-sm">Disponibilité SLA</p>
+          </div>
+          <div class="bg-[#111e35] border border-white/5 rounded-2xl p-6 text-center">
+            <p class="text-4xl font-black text-white mb-2">24<span class="text-primary text-xl">/7</span></p>
+            <p class="text-slate-400 text-sm">Support expert</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Values -->
+      <div class="mb-20">
+        <h2 class="text-2xl font-black mb-8 text-center">Nos valeurs</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="bg-[#111e35] border border-white/5 rounded-2xl p-6">
+            <div class="w-10 h-10 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <h3 class="font-bold text-sm mb-2">Fiabilité</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">Nous nous engageons sur des SLA stricts et des niveaux de performance mesurables et transparents.</p>
+          </div>
+          <div class="bg-[#111e35] border border-white/5 rounded-2xl p-6">
+            <div class="w-10 h-10 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3 class="font-bold text-sm mb-2">Souveraineté</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">Vos données restent sur le continent africain. Notre infrastructure est conçue pour la souveraineté numérique.</p>
+          </div>
+          <div class="bg-[#111e35] border border-white/5 rounded-2xl p-6">
+            <div class="w-10 h-10 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            </div>
+            <h3 class="font-bold text-sm mb-2">Innovation</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">Nous intégrons en continu les dernières avancées en IA, cloud natif et sécurité pour rester à l'avant-garde.</p>
+          </div>
+          <div class="bg-[#111e35] border border-white/5 rounded-2xl p-6">
+            <div class="w-10 h-10 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            </div>
+            <h3 class="font-bold text-sm mb-2">Proximité</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">Une équipe locale qui parle votre langue et comprend vos contraintes métier pour vous accompagner au mieux.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="text-center">
+        <a href="../contact/index.html" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-primary/30">
+          Contacter l'équipe
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-10 border-t border-white/5" style="background:#070f1e;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <a href="../index.html"><img src="../img/logo.jpg" src="img/logo.jpg" alt="SAH Cloud" class="h-20 w-auto rounded-md" " /></a>
+      <p class="text-xs text-slate-600">© 2025 SAH Analytics. Tous droits réservés.</p>
+      <div class="flex items-center gap-2 text-xs text-slate-600">
+        <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+        Tous les systèmes opérationnels
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+  </script>
+</body>
+</html>
