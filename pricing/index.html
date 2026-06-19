@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configurateur de Prix SAH Cloud</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#F47B28', light: '#FFA05A', dark: '#D4601A' },
+            navy:    { DEFAULT: '#1A3C6E', light: '#224e8a', dark: '#102647' },
+          },
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    .nav-link { position: relative; }
+    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#F47B28; transition:width .3s ease; }
+    .nav-link:hover::after, .nav-link.active::after { width:100%; }
+
+    /* Slider */
+    input[type=range] { -webkit-appearance: none; appearance: none; width:100%; height:4px; border-radius:9999px; background:#e2e8f0; outline:none; cursor:pointer; }
+    input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:16px; height:16px; border-radius:50%; background:#F47B28; cursor:pointer; box-shadow:0 0 0 3px rgba(244,123,40,0.2); transition:box-shadow .2s; }
+    input[type=range]::-webkit-slider-thumb:hover { box-shadow:0 0 0 5px rgba(244,123,40,0.3); }
+    input[type=range]::-moz-range-thumb { width:16px; height:16px; border-radius:50%; background:#F47B28; cursor:pointer; border:none; }
+
+    /* Toggle */
+    .toggle-checkbox:checked { right:0; border-color:#F47B28; background:#F47B28; }
+    .toggle-checkbox:checked + .toggle-label { background-color:#F47B28; }
+    .toggle-checkbox { right:auto; left:0; transition:all .3s; }
+
+    /* Custom checkbox */
+    .custom-check { accent-color:#F47B28; width:16px; height:16px; cursor:pointer; }
+
+    /* Tooltip */
+    .tooltip { position:relative; display:inline-flex; align-items:center; }
+    .tooltip .tip { visibility:hidden; opacity:0; width:180px; background:#1e3a5f; color:#fff; text-align:left; border-radius:8px; padding:8px 10px; position:absolute; z-index:10; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%); font-size:11px; line-height:1.4; transition:opacity .2s; pointer-events:none; border:1px solid rgba(255,255,255,0.1); }
+    .tooltip:hover .tip { visibility:visible; opacity:1; }
+
+    /* Summary row */
+    .sum-row { border-bottom:1px dashed #e2e8f0; }
+    .sum-row:last-child { border-bottom:none; }
+
+    /* Number input */
+    input[type=number] { -moz-appearance:textfield; }
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; margin:0; }
+  </style>
+</head>
+<body class="bg-[#0d1f3c] font-sans text-white antialiased">
+
+  <!-- NAVBAR -->
+  <header class="fixed top-0 left-0 right-0 z-50" style="background:rgba(13,31,60,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="../index.html" class="flex items-center gap-3">
+          <img src="../img/logo.png" alt="SAH Cloud" class="h-9 w-auto rounded-md" />
+        </a>
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="../services/index.html"  class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Services</a>
+          <a href="../solutions/index.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Solutions Cloud</a>
+          <a href="../managed/index.html"   class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Services Gérés</a>
+          <a href="../features/index.html"  class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Fonctionnalités</a>
+          <a href="index.html"              class="nav-link active text-sm font-semibold text-primary transition-colors">Tarifs</a>
+          <a href="../about/index.html"     class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">À propos</a>
+          <a href="../contact/index.html"   class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Contact</a>
+        </nav>
+        <button id="menu-btn" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/10">
+      <div class="px-4 py-4 space-y-1">
+        <a href="../services/index.html"  class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg">Services</a>
+        <a href="../solutions/index.html" class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg">Solutions Cloud</a>
+        <a href="../managed/index.html"   class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg">Services Gérés</a>
+        <a href="../features/index.html"  class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg">Fonctionnalités</a>
+        <a href="index.html"              class="block px-3 py-2 text-sm text-primary font-semibold bg-primary/10 rounded-lg">Tarifs</a>
+        <a href="../about/index.html"     class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg">À propos</a>
+        <a href="../contact/index.html"   class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="pt-28 pb-10 text-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:60px 60px;"></div>
+    <div class="absolute top-10 left-1/3 w-72 h-72 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="relative max-w-2xl mx-auto px-4">
+      <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary text-xs font-semibold px-4 py-1.5 rounded-full mb-5">
+        <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+        Configurateur interactif
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mb-4">
+        Configurez votre<br/><span style="background:linear-gradient(90deg,#F47B28,#FFA05A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Machine Virtuelle</span>
+      </h1>
+      <p class="text-slate-400 text-base max-w-lg mx-auto">
+        Sélectionnez vos ressources et obtenez une estimation de prix en temps réel.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONFIGURATOR -->
+  <section class="pb-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid lg:grid-cols-[1fr_360px] gap-6 items-start">
+
+        <!-- LEFT: Configurator -->
+        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+          <div class="bg-[#f8fafc] px-6 py-4 border-b border-slate-100">
+            <h2 class="text-[#1A3C6E] font-bold text-lg">Configurateur d'instances Cloud</h2>
+          </div>
+          <div class="px-6 py-6 space-y-7 text-slate-700">
+
+            <!-- OS Type -->
+            <div>
+              <p class="text-sm font-semibold text-slate-600 mb-3">Type de système d'exploitation</p>
+              <div class="flex flex-wrap gap-4">
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="os" value="linux" class="custom-check" />
+                  <span class="text-sm font-medium">Linux <span class="text-slate-400 font-normal">(gratuit)</span></span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="os" value="windows" class="custom-check" />
+                  <span class="text-sm font-medium">Windows <span class="text-slate-400 font-normal">(+15 $/mois)</span></span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="os" value="noos" class="custom-check" checked />
+                  <span class="text-sm font-medium">Sans OS</span>
+                </label>
+              </div>
+              <p id="os-hint" class="text-xs text-slate-400 mt-2">Sélectionnez un type pour commencer la configuration</p>
+            </div>
+
+            <hr class="border-slate-100" />
+
+            <!-- SSD Disk -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-semibold">Disque SSD</span>
+                <span id="ssd-val" class="text-sm font-bold text-[#1A3C6E]">0 Go</span>
+              </div>
+              <input type="range" id="ssd" min="0" max="1000" step="10" value="0" />
+              <div class="flex justify-between text-xs text-slate-400 mt-1">
+                <span>0</span><span class="text-slate-400">0 Go × 0.08 $</span><span>1 000</span>
+              </div>
+            </div>
+
+            <!-- Hard Disk -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-semibold">Stockage HDD</span>
+                <span id="hdd-val" class="text-sm font-bold text-[#1A3C6E]">0 Go</span>
+              </div>
+              <input type="range" id="hdd" min="0" max="2000" step="50" value="0" />
+              <div class="flex justify-between text-xs text-slate-400 mt-1">
+                <span>0</span><span class="text-slate-400">0 Go × 0.05 $</span><span>2 000</span>
+              </div>
+            </div>
+
+            <!-- VM Snapshot -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-semibold">Snapshots VM</span>
+                <span id="snap-val" class="text-sm font-bold text-[#1A3C6E]">0</span>
+              </div>
+              <input type="range" id="snap" min="0" max="7" step="1" value="0" />
+              <div class="flex justify-between text-xs text-slate-400 mt-1">
+                <span>0</span><span class="text-slate-400">2.00 $ / snapshot</span><span>7</span>
+              </div>
+            </div>
+
+            <!-- Forwarding Rules -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-semibold">Règles de transfert</span>
+                <span id="fwd-val" class="text-sm font-bold text-[#1A3C6E]">0</span>
+              </div>
+              <input type="range" id="fwd" min="0" max="10" step="1" value="0" />
+              <div class="flex justify-between text-xs text-slate-400 mt-1">
+                <span>0</span><span class="text-slate-400">3.00 $ / règle</span><span>10</span>
+              </div>
+            </div>
+
+            <!-- Additional Bandwidth -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-semibold">Bande passante supplémentaire</span>
+                <span id="bw-val" class="text-sm font-bold text-[#1A3C6E]">0 Go</span>
+              </div>
+              <input type="range" id="bw" min="0" max="1000" step="10" value="0" />
+              <div class="flex justify-between text-xs text-slate-400 mt-1">
+                <span>0</span><span class="text-slate-400">0.02 $ / Go</span><span>1 000</span>
+              </div>
+            </div>
+
+            <hr class="border-slate-100" />
+
+            <!-- Automatic Backup -->
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-semibold">Sauvegarde automatique</p>
+                <p class="text-xs text-slate-400 mt-0.5">5.00 $ / mois</p>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="backup" class="sr-only peer" />
+                <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#F47B28]"></div>
+              </label>
+            </div>
+
+            <hr class="border-slate-100" />
+
+            <!-- Endpoint Security -->
+            <div>
+              <p class="text-sm font-semibold mb-3">Sécurité des points de terminaison</p>
+              <div class="space-y-2">
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <input type="checkbox" id="edr" class="custom-check" />
+                  <span class="text-sm">Sangfor EDR <span class="text-slate-400"> 4.00 $ / mois</span></span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <input type="checkbox" id="sophos" class="custom-check" />
+                  <span class="text-sm">Sophos Endpoint <span class="text-slate-400"> 6.00 $ / mois</span></span>
+                </label>
+              </div>
+            </div>
+
+            <hr class="border-slate-100" />
+
+            <!-- Managed Service -->
+            <div>
+              <p class="text-sm font-semibold mb-3">Service managé</p>
+              <div class="space-y-2">
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <input type="checkbox" id="ms-silver" class="custom-check managed-service" data-price="15" />
+                  <span class="text-sm flex items-center gap-1.5">
+                    Silver <span class="text-slate-400"> 15.00 $ / mois</span>
+                    <span class="tooltip">
+                      <svg class="w-4 h-4 text-slate-400 cursor-help" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                      <span class="tip">Surveillance 8h/24, support email, temps de réponse 4h</span>
+                    </span>
+                  </span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <input type="checkbox" id="ms-gold" class="custom-check managed-service" data-price="25" />
+                  <span class="text-sm flex items-center gap-1.5">
+                    Gold <span class="text-slate-400"> 25.00 $ / mois</span>
+                    <span class="tooltip">
+                      <svg class="w-4 h-4 text-slate-400 cursor-help" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                      <span class="tip">Surveillance 24/7, support prioritaire, temps de réponse 1h</span>
+                    </span>
+                  </span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <input type="checkbox" id="ms-platinum" class="custom-check managed-service" data-price="45" />
+                  <span class="text-sm flex items-center gap-1.5">
+                    Platinum <span class="text-slate-400"> 45.00 $ / mois</span>
+                    <span class="tooltip">
+                      <svg class="w-4 h-4 text-slate-400 cursor-help" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                      <span class="tip">Gestionnaire dédié, SLA garanti, intervention sur site incluse</span>
+                    </span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <hr class="border-slate-100" />
+
+            <!-- Managed Firewall -->
+            <div>
+              <p class="text-sm font-semibold mb-3">Pare-feu managé</p>
+              <div class="space-y-2">
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <input type="checkbox" id="fw-shared" class="custom-check managed-fw" />
+                  <span class="text-sm">Partagé <span class="text-slate-400"> 10.00 $ / mois</span></span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <input type="checkbox" id="fw-dedicated" class="custom-check managed-fw" />
+                  <span class="text-sm">Fortinet VM01 Essentials dédié <span class="text-slate-400"> 35.00 $ / mois</span></span>
+                </label>
+              </div>
+            </div>
+
+            <hr class="border-slate-100" />
+
+            <!-- Quantity -->
+            <div>
+              <p class="text-sm font-semibold mb-3">Quantité</p>
+              <div class="flex items-center gap-3">
+                <button id="qty-minus" class="w-9 h-9 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-50 text-slate-600 font-bold text-lg transition-colors">−</button>
+                <input type="number" id="qty" min="1" max="99" value="1" class="w-20 text-center border border-slate-200 rounded-lg py-2 text-sm font-bold text-[#1A3C6E] focus:border-[#F47B28] focus:ring-1 focus:ring-[#F47B28] outline-none" />
+                <button id="qty-plus" class="w-9 h-9 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-50 text-slate-600 font-bold text-lg transition-colors">+</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RIGHT: Summary -->
+        <div class="lg:sticky lg:top-20">
+          <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+            <div class="flex items-center justify-between px-5 py-4 bg-[#f8fafc] border-b border-slate-100">
+              <h2 class="text-[#1A3C6E] font-bold text-base">Récapitulatif</h2>
+              <button id="toggle-summary" class="w-7 h-7 rounded-lg bg-slate-200 hover:bg-slate-300 flex items-center justify-center transition-colors">
+                <svg id="toggle-icon" class="w-4 h-4 text-slate-600 transition-transform" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"/></svg>
+              </button>
+            </div>
+
+            <div id="summary-body">
+              <!-- Header -->
+              <div class="flex justify-between items-center px-5 py-2 bg-slate-50 border-b border-slate-100">
+                <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Élément</span>
+                <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Total</span>
+              </div>
+
+              <!-- Rows -->
+              <div class="px-5 py-3 text-sm text-slate-700 space-y-0" id="summary-rows">
+
+                <div class="sum-row py-2.5" id="row-os">
+                  <div class="flex justify-between items-start">
+                    <span class="font-medium text-slate-700">Système d'exploitation</span>
+                    <span class="font-semibold text-[#1A3C6E] ml-4" id="sum-os">$ 0.00</span>
+                  </div>
+                  <div class="text-xs text-slate-400 mt-0.5" id="sum-os-sub">Sans OS</div>
+                </div>
+
+                <div class="sum-row py-2.5">
+                  <div class="flex justify-between items-start">
+                    <span class="font-medium text-slate-700">Disque SSD</span>
+                    <span class="font-semibold text-[#1A3C6E] ml-4" id="sum-ssd">$ 0.00</span>
+                  </div>
+                  <div class="text-xs text-slate-400 mt-0.5" id="sum-ssd-sub">0 Go × 0.08 $</div>
+                </div>
+
+                <div class="sum-row py-2.5">
+                  <div class="flex justify-between items-start">
+                    <span class="font-medium text-slate-700">Stockage HDD</span>
+                    <span class="font-semibold text-[#1A3C6E] ml-4" id="sum-hdd">$ 0.00</span>
+                  </div>
+                  <div class="text-xs text-slate-400 mt-0.5" id="sum-hdd-sub">0 Go × 0.05 $</div>
+                </div>
+
+                <div class="sum-row py-2.5">
+                  <div class="flex justify-between items-start">
+                    <span class="font-medium text-slate-700">Snapshots VM</span>
+                    <span class="font-semibold text-[#1A3C6E] ml-4" id="sum-snap">$ 0.00</span>
+                  </div>
+                  <div class="text-xs text-slate-400 mt-0.5" id="sum-snap-sub">0 × 2.00 $</div>
+                </div>
+
+                <div class="sum-row py-2.5">
+                  <div class="flex justify-between items-start">
+                    <span class="font-medium text-slate-700">Règles de transfert</span>
+                    <span class="font-semibold text-[#1A3C6E] ml-4" id="sum-fwd">$ 0.00</span>
+                  </div>
+                  <div class="text-xs text-slate-400 mt-0.5" id="sum-fwd-sub">0 × 3.00 $</div>
+                </div>
+
+                <div class="sum-row py-2.5">
+                  <div class="flex justify-between items-start">
+                    <span class="font-medium text-slate-700">Bande passante</span>
+                    <span class="font-semibold text-[#1A3C6E] ml-4" id="sum-bw">$ 0.00</span>
+                  </div>
+                  <div class="text-xs text-slate-400 mt-0.5" id="sum-bw-sub">0 Go × 0.02 $</div>
+                </div>
+
+                <div class="sum-row py-2.5">
+                  <div class="flex justify-between items-center">
+                    <span class="font-medium text-slate-700">Sauvegarde auto.</span>
+                    <span class="font-semibold text-[#1A3C6E] ml-4" id="sum-backup">$ 0.00</span>
+                  </div>
+                </div>
+
+                <div class="sum-row py-2.5">
+                  <div class="flex justify-between items-center">
+                    <span class="font-medium text-slate-700">Sécurité endpoint</span>
+                    <span class="font-semibold text-[#1A3C6E] ml-4" id="sum-ep">$ 0.00</span>
+                  </div>
+                </div>
+
+                <div class="sum-row py-2.5">
+                  <div class="flex justify-between items-center">
+                    <span class="font-medium text-slate-700">Service managé</span>
+                    <span class="font-semibold text-[#1A3C6E] ml-4" id="sum-ms">$ 0.00</span>
+                  </div>
+                </div>
+
+                <div class="sum-row py-2.5">
+                  <div class="flex justify-between items-center">
+                    <span class="font-medium text-slate-700">Pare-feu managé</span>
+                    <span class="font-semibold text-[#1A3C6E] ml-4" id="sum-fw">$ 0.00</span>
+                  </div>
+                </div>
+
+                <div class="sum-row py-2.5">
+                  <div class="flex justify-between items-center">
+                    <span class="font-medium text-slate-700">Quantité</span>
+                    <span class="font-semibold text-[#1A3C6E] ml-4" id="sum-qty">1</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Total -->
+              <div class="px-5 pt-3 pb-5 border-t-2 border-slate-100 mt-1">
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-xs text-slate-400">Sous-total / instance</span>
+                  <span class="text-sm font-semibold text-slate-600" id="sum-subtotal">$ 0.00</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-base font-bold text-[#1A3C6E]">Total / mois</span>
+                  <span class="text-xl font-black text-[#F47B28]" id="sum-total">$ 0.00</span>
+                </div>
+                <a href="../contact/index.html" class="mt-4 w-full inline-flex items-center justify-center gap-2 bg-[#F47B28] hover:bg-[#D4601A] text-white font-semibold px-5 py-3 rounded-xl transition-colors text-sm">
+                  Demander un devis
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Note -->
+          <p class="text-xs text-slate-500 text-center mt-3 px-2">Prix indicatifs en dollars américains (USD), hors taxes. Facturation mensuelle.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-10 border-t border-white/5" style="background:#070f1e;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <a href="../index.html"><img src="../img/logo.png" alt="SAH Cloud" class="h-10 w-auto rounded-md" /></a>
+      <p class="text-xs text-slate-600">© 2025 SAH Analytics. Tous droits réservés.</p>
+      <div class="flex items-center gap-2 text-xs text-slate-600">
+        <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+        Tous les systèmes opérationnels
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // --- Navbar mobile ---
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')));
+
+    // --- Toggle summary ---
+    const toggleBtn = document.getElementById('toggle-summary');
+    const summaryBody = document.getElementById('summary-body');
+    const toggleIcon = document.getElementById('toggle-icon');
+    let summaryOpen = true;
+    toggleBtn.addEventListener('click', () => {
+      summaryOpen = !summaryOpen;
+      summaryBody.style.display = summaryOpen ? '' : 'none';
+      toggleIcon.style.transform = summaryOpen ? '' : 'rotate(180deg)';
+    });
+
+    // --- Pricing constants ---
+    const PRICE = {
+      ssd: 0.08,
+      hdd: 0.05,
+      snap: 2.00,
+      fwd: 3.00,
+      bw: 0.02,
+      backup: 5.00,
+      edr: 4.00,
+      sophos: 6.00,
+      fwShared: 10.00,
+      fwDedicated: 35.00,
+      windows: 15.00,
+    };
+
+    function fmt(n) { return '$ ' + n.toFixed(2); }
+
+    function update() {
+      // OS
+      const os = document.querySelector('input[name="os"]:checked');
+      const osVal = os ? os.value : 'noos';
+      const osPrice = osVal === 'windows' ? PRICE.windows : 0;
+      const osLabel = osVal === 'linux' ? 'Linux' : osVal === 'windows' ? 'Windows (+15 $)' : 'Sans OS';
+      document.getElementById('os-hint').textContent =
+        osVal === 'noos' ? 'Sélectionnez un type pour commencer la configuration' :
+        osVal === 'linux' ? 'Linux inclus gratuitement' : 'Windows licence incluse';
+      document.getElementById('sum-os').textContent = fmt(osPrice);
+      document.getElementById('sum-os-sub').textContent = osLabel;
+
+      // SSD
+      const ssd = +document.getElementById('ssd').value;
+      const ssdPrice = ssd * PRICE.ssd;
+      document.getElementById('ssd-val').textContent = ssd + ' Go';
+      document.getElementById('sum-ssd').textContent = fmt(ssdPrice);
+      document.getElementById('sum-ssd-sub').textContent = ssd + ' Go × 0.08 $';
+
+      // HDD
+      const hdd = +document.getElementById('hdd').value;
+      const hddPrice = hdd * PRICE.hdd;
+      document.getElementById('hdd-val').textContent = hdd + ' Go';
+      document.getElementById('sum-hdd').textContent = fmt(hddPrice);
+      document.getElementById('sum-hdd-sub').textContent = hdd + ' Go × 0.05 $';
+
+      // Snapshots
+      const snap = +document.getElementById('snap').value;
+      const snapPrice = snap * PRICE.snap;
+      document.getElementById('snap-val').textContent = snap;
+      document.getElementById('sum-snap').textContent = fmt(snapPrice);
+      document.getElementById('sum-snap-sub').textContent = snap + ' × 2.00 $';
+
+      // Forwarding Rules
+      const fwd = +document.getElementById('fwd').value;
+      const fwdPrice = fwd * PRICE.fwd;
+      document.getElementById('fwd-val').textContent = fwd;
+      document.getElementById('sum-fwd').textContent = fmt(fwdPrice);
+      document.getElementById('sum-fwd-sub').textContent = fwd + ' × 3.00 $';
+
+      // Bandwidth
+      const bw = +document.getElementById('bw').value;
+      const bwPrice = bw * PRICE.bw;
+      document.getElementById('bw-val').textContent = bw + ' Go';
+      document.getElementById('sum-bw').textContent = fmt(bwPrice);
+      document.getElementById('sum-bw-sub').textContent = bw + ' Go × 0.02 $';
+
+      // Backup
+      const backup = document.getElementById('backup').checked;
+      const backupPrice = backup ? PRICE.backup : 0;
+      document.getElementById('sum-backup').textContent = fmt(backupPrice);
+
+      // Endpoint Security
+      const edr = document.getElementById('edr').checked ? PRICE.edr : 0;
+      const sophos = document.getElementById('sophos').checked ? PRICE.sophos : 0;
+      document.getElementById('sum-ep').textContent = fmt(edr + sophos);
+
+      // Managed Service
+      let msPrice = 0;
+      document.querySelectorAll('.managed-service').forEach(cb => {
+        if (cb.checked) msPrice += parseFloat(cb.dataset.price);
+      });
+      document.getElementById('sum-ms').textContent = fmt(msPrice);
+
+      // Managed Firewall
+      const fwShared = document.getElementById('fw-shared').checked ? PRICE.fwShared : 0;
+      const fwDedicated = document.getElementById('fw-dedicated').checked ? PRICE.fwDedicated : 0;
+      document.getElementById('sum-fw').textContent = fmt(fwShared + fwDedicated);
+
+      // Quantity
+      const qty = Math.max(1, +document.getElementById('qty').value || 1);
+      document.getElementById('sum-qty').textContent = qty;
+
+      // Totals
+      const subtotal = osPrice + ssdPrice + hddPrice + snapPrice + fwdPrice + bwPrice + backupPrice + edr + sophos + msPrice + fwShared + fwDedicated;
+      const total = subtotal * qty;
+      document.getElementById('sum-subtotal').textContent = fmt(subtotal);
+      document.getElementById('sum-total').textContent = fmt(total);
+    }
+
+    // --- Mutual exclusion: Managed Service (only one at a time) ---
+    document.querySelectorAll('.managed-service').forEach(cb => {
+      cb.addEventListener('change', function() {
+        if (this.checked) {
+          document.querySelectorAll('.managed-service').forEach(other => {
+            if (other !== this) other.checked = false;
+          });
+        }
+        update();
+      });
+    });
+
+    // --- Mutual exclusion: Firewall (only one at a time) ---
+    document.querySelectorAll('.managed-fw').forEach(cb => {
+      cb.addEventListener('change', function() {
+        if (this.checked) {
+          document.querySelectorAll('.managed-fw').forEach(other => {
+            if (other !== this) other.checked = false;
+          });
+        }
+        update();
+      });
+    });
+
+    // --- Quantity buttons ---
+    document.getElementById('qty-minus').addEventListener('click', () => {
+      const el = document.getElementById('qty');
+      el.value = Math.max(1, +el.value - 1);
+      update();
+    });
+    document.getElementById('qty-plus').addEventListener('click', () => {
+      const el = document.getElementById('qty');
+      el.value = Math.min(99, +el.value + 1);
+      update();
+    });
+
+    // --- Wire up all other inputs ---
+    ['ssd','hdd','snap','fwd','bw'].forEach(id => {
+      document.getElementById(id).addEventListener('input', update);
+    });
+    document.getElementById('backup').addEventListener('change', update);
+    document.getElementById('edr').addEventListener('change', update);
+    document.getElementById('sophos').addEventListener('change', update);
+    document.getElementById('qty').addEventListener('input', update);
+    document.querySelectorAll('input[name="os"]').forEach(r => r.addEventListener('change', update));
+
+    // Initial render
+    update();
+  </script>
+</body>
+</html>
