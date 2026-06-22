@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services Gérés SAH Cloud</title>
+  <title id="page-title">Services Gérés SAH Cloud</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -92,21 +92,21 @@
         <div>
           <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary text-xs font-bold px-4 py-1.5 rounded-full mb-6 tracking-widest uppercase">
             <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-            Services Gérés
+            <span data-i18n="hero.badge">Services Gérés</span>
           </div>
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6">
-            Votre IT géré par<br/>
-            <span class="gradient-text">des experts 24/7</span>
+            <span data-i18n="hero.title">Votre IT géré par</span><br/>
+            <span class="gradient-text" data-i18n="hero.title2">des experts 24/7</span>
           </h1>
-          <p class="text-slate-400 text-lg leading-relaxed mb-8 max-w-lg">
+          <p class="text-slate-400 text-lg leading-relaxed mb-8 max-w-lg" data-i18n="hero.desc">
             SAH Cloud propose des services gérés complets pour gérer efficacement l'infrastructure technologique de votre entreprise sécurité, performance, sauvegarde et gestion des données inclus.
           </p>
           <div class="flex flex-wrap gap-4 mb-12">
             <a href="#services-list" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-primary/30">
-              Découvrir les services
+              <span data-i18n="hero.cta1">Découvrir les services</span>
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </a>
-            <a href="../contact/index.html" class="inline-flex items-center gap-2 border border-white/20 hover:border-primary/50 text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 hover:bg-white/5">
+            <a href="../contact/index.html" class="inline-flex items-center gap-2 border border-white/20 hover:border-primary/50 text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 hover:bg-white/5" data-i18n="hero.cta2">
               Demander un audit
             </a>
           </div>
@@ -114,15 +114,15 @@
           <div class="grid grid-cols-3 gap-5 pt-8 border-t border-white/10">
             <div>
               <p class="text-3xl font-black text-white">24<span class="text-primary">/7</span></p>
-              <p class="text-xs text-slate-500 mt-0.5">Monitoring actif</p>
+              <p class="text-xs text-slate-500 mt-0.5" data-i18n="stats.monitoring">Monitoring actif</p>
             </div>
             <div>
               <p class="text-3xl font-black text-white">8</p>
-              <p class="text-xs text-slate-500 mt-0.5">Domaines couverts</p>
+              <p class="text-xs text-slate-500 mt-0.5" data-i18n="stats.domains">Domaines couverts</p>
             </div>
             <div>
               <p class="text-3xl font-black text-white">99.9<span class="text-primary">%</span></p>
-              <p class="text-xs text-slate-500 mt-0.5">SLA garanti</p>
+              <p class="text-xs text-slate-500 mt-0.5" data-i18n="stats.sla">SLA garanti</p>
             </div>
           </div>
         </div>
@@ -222,11 +222,11 @@
   <section class="py-10 border-y border-white/5" style="background:rgba(255,255,255,0.02);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-5 text-slate-400 text-sm font-medium">
-        <div class="flex items-center gap-2"><svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Monitoring 24/7/365</div>
-        <div class="flex items-center gap-2"><svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Réponse incidents &lt; 15 min</div>
-        <div class="flex items-center gap-2"><svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>SLA 99.9 % garanti</div>
-        <div class="flex items-center gap-2"><svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Conformité ISO 27001 &amp; RGPD</div>
-        <div class="flex items-center gap-2"><svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Équipe certifiée dédiée</div>
+        <div class="flex items-center gap-2"><svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><span data-i18n="banner.monitoring">Monitoring 24/7/365</span></div>
+        <div class="flex items-center gap-2"><svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><span data-i18n="banner.response">Réponse incidents &lt; 15 min</span></div>
+        <div class="flex items-center gap-2"><svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><span data-i18n="banner.sla">SLA 99.9 % garanti</span></div>
+        <div class="flex items-center gap-2"><svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><span data-i18n="banner.compliance">Conformité ISO 27001 &amp; RGPD</span></div>
+        <div class="flex items-center gap-2"><svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><span data-i18n="banner.team">Équipe certifiée dédiée</span></div>
       </div>
     </div>
   </section>
@@ -236,9 +236,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <div class="text-center mb-16">
-        <span class="text-primary text-xs font-bold tracking-widest uppercase">8 domaines d'expertise</span>
-        <h2 class="text-3xl lg:text-4xl font-black mt-3 mb-4">Nos services gérés</h2>
-        <p class="text-slate-400 max-w-2xl mx-auto">En nous spécialisant dans des domaines critiques, nous veillons à ce que vos processus métier se poursuivent de manière efficace et sécurisée.</p>
+        <span class="text-primary text-xs font-bold tracking-widest uppercase" data-i18n="services.badge">8 domaines d'expertise</span>
+        <h2 class="text-3xl lg:text-4xl font-black mt-3 mb-4" data-i18n="services.title">Nos services gérés</h2>
+        <p class="text-slate-400 max-w-2xl mx-auto" data-i18n="services.subtitle">En nous spécialisant dans des domaines critiques, nous veillons à ce que vos processus métier se poursuivent de manière efficace et sécurisée.</p>
       </div>
 
       <!-- Service 1 & 2 full alternating layout -->
@@ -249,18 +249,18 @@
           <div class="flex items-center gap-3 mb-5">
             <span class="num-badge text-5xl font-black text-white/10 leading-none select-none">01</span>
             <div class="w-px h-10 bg-white/10"></div>
-            <span class="text-primary text-xs font-bold tracking-widest uppercase">Gestion des serveurs</span>
+            <span class="text-primary text-xs font-bold tracking-widest uppercase" data-i18n="s1.badge">Gestion des serveurs</span>
           </div>
-          <h3 class="text-2xl lg:text-3xl font-black mb-4">Services de gestion<br/>des serveurs</h3>
-          <p class="text-slate-400 leading-relaxed mb-6">Avec notre équipe experte, nous proposons des services complets de gestion de serveurs, allant de l'installation de serveurs physiques et virtuels à la surveillance et la gestion de la sécurité 24h/24 et 7j/7.</p>
+          <h3 class="text-2xl lg:text-3xl font-black mb-4" data-i18n="s1.title">Services de gestion des serveurs</h3>
+          <p class="text-slate-400 leading-relaxed mb-6" data-i18n="s1.desc">Avec notre équipe experte, nous proposons des services complets de gestion de serveurs, allant de l'installation de serveurs physiques et virtuels à la surveillance et la gestion de la sécurité 24h/24 et 7j/7.</p>
           <ul class="space-y-3 mb-8">
-            <li class="flex items-start gap-3"><svg class="w-4 h-4 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-slate-300 text-sm">Installation &amp; configuration de serveurs physiques et virtuels</span></li>
-            <li class="flex items-start gap-3"><svg class="w-4 h-4 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-slate-300 text-sm">Surveillance des performances et disponibilité 24/7</span></li>
-            <li class="flex items-start gap-3"><svg class="w-4 h-4 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-slate-300 text-sm">Gestion des mises à jour et des correctifs de sécurité</span></li>
-            <li class="flex items-start gap-3"><svg class="w-4 h-4 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-slate-300 text-sm">Optimisation des ressources et scalabilité automatique</span></li>
+            <li class="flex items-start gap-3"><svg class="w-4 h-4 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-slate-300 text-sm" data-i18n="s1.li1">Installation &amp; configuration de serveurs physiques et virtuels</span></li>
+            <li class="flex items-start gap-3"><svg class="w-4 h-4 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-slate-300 text-sm" data-i18n="s1.li2">Surveillance des performances et disponibilité 24/7</span></li>
+            <li class="flex items-start gap-3"><svg class="w-4 h-4 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-slate-300 text-sm" data-i18n="s1.li3">Gestion des mises à jour et des correctifs de sécurité</span></li>
+            <li class="flex items-start gap-3"><svg class="w-4 h-4 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-slate-300 text-sm" data-i18n="s1.li4">Optimisation des ressources et scalabilité automatique</span></li>
           </ul>
           <a href="../contact/index.html" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-xl transition-all text-sm hover:shadow-lg hover:shadow-primary/30">
-            Demander ce service
+            <span data-i18n="cta.request">Demander ce service</span>
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
         </div>
@@ -344,18 +344,18 @@
           <div class="flex items-center gap-3 mb-5">
             <span class="num-badge text-5xl font-black text-white/10 leading-none select-none">02</span>
             <div class="w-px h-10 bg-white/10"></div>
-            <span class="text-primary text-xs font-bold tracking-widest uppercase">Gestion réseau</span>
+            <span class="text-primary text-xs font-bold tracking-widest uppercase" data-i18n="s2.badge">Gestion réseau</span>
           </div>
-          <h3 class="text-2xl lg:text-3xl font-black mb-4">Services de gestion<br/>réseau</h3>
-          <p class="text-slate-400 leading-relaxed mb-6">Nous proposons des services de gestion réseau personnalisés pour gérer votre infrastructure réseau de manière ininterrompue, sécurisée et haute performance.</p>
+          <h3 class="text-2xl lg:text-3xl font-black mb-4" data-i18n="s2.title">Services de gestion réseau</h3>
+          <p class="text-slate-400 leading-relaxed mb-6" data-i18n="s2.desc">Nous proposons des services de gestion réseau personnalisés pour gérer votre infrastructure réseau de manière ininterrompue, sécurisée et haute performance.</p>
           <ul class="space-y-3 mb-8">
-            <li class="flex items-start gap-3"><svg class="w-4 h-4 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-slate-300 text-sm">Design et architecture réseau sur mesure</span></li>
-            <li class="flex items-start gap-3"><svg class="w-4 h-4 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-slate-300 text-sm">Surveillance et optimisation des performances réseau</span></li>
-            <li class="flex items-start gap-3"><svg class="w-4 h-4 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-slate-300 text-sm">Gestion VPN, VLAN et segmentation réseau</span></li>
-            <li class="flex items-start gap-3"><svg class="w-4 h-4 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-slate-300 text-sm">Haute disponibilité et failover automatique</span></li>
+            <li class="flex items-start gap-3"><svg class="w-4 h-4 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-slate-300 text-sm" data-i18n="s2.li1">Design et architecture réseau sur mesure</span></li>
+            <li class="flex items-start gap-3"><svg class="w-4 h-4 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-slate-300 text-sm" data-i18n="s2.li2">Surveillance et optimisation des performances réseau</span></li>
+            <li class="flex items-start gap-3"><svg class="w-4 h-4 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-slate-300 text-sm" data-i18n="s2.li3">Gestion VPN, VLAN et segmentation réseau</span></li>
+            <li class="flex items-start gap-3"><svg class="w-4 h-4 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-slate-300 text-sm" data-i18n="s2.li4">Haute disponibilité et failover automatique</span></li>
           </ul>
           <a href="../contact/index.html" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-xl transition-all text-sm hover:shadow-lg hover:shadow-primary/30">
-            Demander ce service
+            <span data-i18n="cta.request">Demander ce service</span>
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
         </div>
@@ -363,7 +363,7 @@
 
       <!-- GRID for services 3–8 (compact cards) -->
       <div class="mb-16">
-        <h3 class="text-xl font-black text-center mb-10 text-slate-200">Nos 6 autres domaines gérés</h3>
+        <h3 class="text-xl font-black text-center mb-10 text-slate-200" data-i18n="services.grid.title">Nos 6 autres domaines gérés</h3>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
           <!-- Service 3: Sécurité -->
@@ -374,7 +374,7 @@
               </div>
               <div>
                 <span class="text-xs font-bold text-primary uppercase tracking-wide">03</span>
-                <h4 class="text-base font-bold mt-0.5">Gestion de la sécurité</h4>
+                <h4 class="text-base font-bold mt-0.5" data-i18n="s3.title">Gestion de la sécurité</h4>
               </div>
             </div>
             <!-- Mini illustration -->
@@ -392,7 +392,7 @@
                 <line x1="216" y1="65" x2="185" y2="58" stroke="rgba(244,123,40,0.3)" stroke-width="1" stroke-dasharray="4,3"/>
               </svg>
             </div>
-            <p class="text-slate-400 text-sm leading-relaxed">Protection contre les menaces internes et externes, sécurité des données et conformité réglementaire (ISO 27001, RGPD, SOC 2).</p>
+            <p class="text-slate-400 text-sm leading-relaxed" data-i18n="s3.desc">Protection contre les menaces internes et externes, sécurité des données et conformité réglementaire (ISO 27001, RGPD, SOC 2).</p>
             <div class="mt-5 flex flex-wrap gap-2">
               <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-full">SIEM</span>
               <span class="text-xs bg-white/5 text-slate-400 px-2.5 py-1 rounded-full">SOC 24/7</span>
@@ -408,7 +408,7 @@
               </div>
               <div>
                 <span class="text-xs font-bold text-primary uppercase tracking-wide">04</span>
-                <h4 class="text-base font-bold mt-0.5">Gestion de sauvegarde</h4>
+                <h4 class="text-base font-bold mt-0.5" data-i18n="s4.title">Gestion de sauvegarde</h4>
               </div>
             </div>
             <div class="mb-5 rounded-xl overflow-hidden" style="background:rgba(244,123,40,0.04);border:1px solid rgba(244,123,40,0.1);">
@@ -433,7 +433,7 @@
                 <text x="261" y="54" text-anchor="middle" fill="rgba(244,123,40,0.6)" font-size="7" font-family="Inter,sans-serif" transform="rotate(90,261,50)">ARCHIVE</text>
               </svg>
             </div>
-            <p class="text-slate-400 text-sm leading-relaxed">Prévention de la perte de données, continuité des activités et stockage sécurisé des données critiques avec RPO &lt; 1h et RTO &lt; 4h.</p>
+            <p class="text-slate-400 text-sm leading-relaxed" data-i18n="s4.desc">Prévention de la perte de données, continuité des activités et stockage sécurisé des données critiques avec RPO &lt; 1h et RTO &lt; 4h.</p>
             <div class="mt-5 flex flex-wrap gap-2">
               <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-full">RPO &lt; 1h</span>
               <span class="text-xs bg-white/5 text-slate-400 px-2.5 py-1 rounded-full">Chiffré AES-256</span>
@@ -449,7 +449,7 @@
               </div>
               <div>
                 <span class="text-xs font-bold text-primary uppercase tracking-wide">05</span>
-                <h4 class="text-base font-bold mt-0.5">Reprise après sinistre</h4>
+                <h4 class="text-base font-bold mt-0.5" data-i18n="s5.title">Reprise après sinistre</h4>
               </div>
             </div>
             <div class="mb-5 rounded-xl overflow-hidden" style="background:rgba(244,123,40,0.04);border:1px solid rgba(244,123,40,0.1);">
@@ -471,7 +471,7 @@
                 <text x="140" y="90" text-anchor="middle" fill="rgba(244,123,40,0.6)" font-size="8" font-family="Inter,sans-serif">RTO &lt; 4h</text>
               </svg>
             </div>
-            <p class="text-slate-400 text-sm leading-relaxed">Continuité des activités et minimisation de la perte de données face aux catastrophes naturelles, cyberattaques, pannes matérielles ou erreurs humaines.</p>
+            <p class="text-slate-400 text-sm leading-relaxed" data-i18n="s5.desc">Continuité des activités et minimisation de la perte de données face aux catastrophes naturelles, cyberattaques, pannes matérielles ou erreurs humaines.</p>
             <div class="mt-5 flex flex-wrap gap-2">
               <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-full">RTO &lt; 4h</span>
               <span class="text-xs bg-white/5 text-slate-400 px-2.5 py-1 rounded-full">Multi-sites</span>
@@ -487,7 +487,7 @@
               </div>
               <div>
                 <span class="text-xs font-bold text-primary uppercase tracking-wide">06</span>
-                <h4 class="text-base font-bold mt-0.5">Gestion de bases de données</h4>
+                <h4 class="text-base font-bold mt-0.5" data-i18n="s6.title">Gestion de bases de données</h4>
               </div>
             </div>
             <div class="mb-5 rounded-xl overflow-hidden" style="background:rgba(244,123,40,0.04);border:1px solid rgba(244,123,40,0.1);">
@@ -513,7 +513,7 @@
                 </g>
               </svg>
             </div>
-            <p class="text-slate-400 text-sm leading-relaxed">Services complets pour garantir que les données critiques sont stockées et gérées de manière sécurisée, accessible et performante PostgreSQL, MySQL, MongoDB, Redis.</p>
+            <p class="text-slate-400 text-sm leading-relaxed" data-i18n="s6.desc">Services complets pour garantir que les données critiques sont stockées et gérées de manière sécurisée, accessible et performante PostgreSQL, MySQL, MongoDB, Redis.</p>
             <div class="mt-5 flex flex-wrap gap-2">
               <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-full">Failover auto</span>
               <span class="text-xs bg-white/5 text-slate-400 px-2.5 py-1 rounded-full">Read replicas</span>
@@ -532,7 +532,7 @@
                   <span>07</span>
                   <span class="bg-primary text-white px-1.5 py-0.5 rounded text-[10px] ml-1">Populaire</span>
                 </div>
-                <h4 class="text-base font-bold">Gestion DevOps</h4>
+                <h4 class="text-base font-bold" data-i18n="s7.title">Gestion DevOps</h4>
               </div>
             </div>
             <div class="mb-5 rounded-xl overflow-hidden" style="background:rgba(244,123,40,0.04);border:1px solid rgba(244,123,40,0.12);">
@@ -554,7 +554,7 @@
                 <text x="239" y="54" text-anchor="middle" fill="rgba(34,197,94,0.8)" font-size="8" font-weight="700" font-family="Inter,sans-serif">DEPLOY ✓</text>
               </svg>
             </div>
-            <p class="text-slate-400 text-sm leading-relaxed">Rassembler développement et opérations pour des déploiements rapides, fiables et évolutifs. Automatisation, CI/CD et transformation numérique accélérée.</p>
+            <p class="text-slate-400 text-sm leading-relaxed" data-i18n="s7.desc">Rassembler développement et opérations pour des déploiements rapides, fiables et évolutifs. Automatisation, CI/CD et transformation numérique accélérée.</p>
             <div class="mt-5 flex flex-wrap gap-2">
               <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-full">CI/CD</span>
               <span class="text-xs bg-white/5 text-slate-400 px-2.5 py-1 rounded-full">Kubernetes</span>
@@ -571,7 +571,7 @@
               </div>
               <div>
                 <span class="text-xs font-bold text-primary uppercase tracking-wide">08</span>
-                <h4 class="text-base font-bold mt-0.5">Gestion des centres de données</h4>
+                <h4 class="text-base font-bold mt-0.5" data-i18n="s8.title">Gestion des centres de données</h4>
               </div>
             </div>
             <div class="mb-5 rounded-xl overflow-hidden" style="background:rgba(244,123,40,0.04);border:1px solid rgba(244,123,40,0.1);">
@@ -604,7 +604,7 @@
                 </g>
               </svg>
             </div>
-            <p class="text-slate-400 text-sm leading-relaxed">Gestion globale des processus opérationnels des centres de données pour une infrastructure informatique ininterrompue, sécurisée et efficace.</p>
+            <p class="text-slate-400 text-sm leading-relaxed" data-i18n="s8.desc">Gestion globale des processus opérationnels des centres de données pour une infrastructure informatique ininterrompue, sécurisée et efficace.</p>
             <div class="mt-5 flex flex-wrap gap-2">
               <span class="text-xs bg-white/5 text-slate-400 px-2.5 py-1 rounded-full">Colocation</span>
               <span class="text-xs bg-white/5 text-slate-400 px-2.5 py-1 rounded-full">Alimentation N+1</span>
@@ -621,13 +621,13 @@
         <div class="relative">
           <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary text-xs font-bold px-4 py-1.5 rounded-full mb-5">
             <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-            Audit gratuit offert
+            <span data-i18n="cta.badge">Audit gratuit offert</span>
           </div>
-          <h2 class="text-2xl lg:text-3xl font-black mb-3">Confiez votre IT à des experts</h2>
-          <p class="text-slate-400 mb-8 max-w-xl mx-auto">Nous réalisons un audit complet de votre infrastructure et proposons un plan de gestion sur mesure adapté à votre budget et vos objectifs.</p>
+          <h2 class="text-2xl lg:text-3xl font-black mb-3" data-i18n="cta.title">Confiez votre IT à des experts</h2>
+          <p class="text-slate-400 mb-8 max-w-xl mx-auto" data-i18n="cta.desc">Nous réalisons un audit complet de votre infrastructure et proposons un plan de gestion sur mesure adapté à votre budget et vos objectifs.</p>
           <div class="flex flex-wrap justify-center gap-4">
             <a href="../contact/index.html" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-bold px-8 py-4 rounded-xl transition-all hover:shadow-xl hover:shadow-primary/30 text-base">
-              Demander un audit gratuit
+              <span data-i18n="cta.btn">Demander un audit gratuit</span>
               <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
          
@@ -658,11 +658,151 @@
   </script>
 <script>
 (function(){
-  var T={fr:{'nav.services':'Services','nav.solutions':'Solutions Cloud','nav.managed':'Services Gérés','nav.features':'Fonctionnalités','nav.pricing':'Tarifs','nav.about':'À propos','nav.contact':'Contact','footer.copy':'© 2025 SAH Analytics. Tous droits réservés.','footer.status':'Tous les systèmes opérationnels'},en:{'nav.services':'Services','nav.solutions':'Cloud Solutions','nav.managed':'Managed Services','nav.features':'Features','nav.pricing':'Pricing','nav.about':'About','nav.contact':'Contact','footer.copy':'© 2025 SAH Analytics. All rights reserved.','footer.status':'All systems operational'}};
-  var lang=localStorage.getItem('sah-lang')||'fr';
-  function apply(){document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(T[lang][k])el.textContent=T[lang][k];});document.querySelectorAll('.lang-btn').forEach(function(b){b.textContent=lang==='fr'?'EN':'FR';});}
-  document.addEventListener('DOMContentLoaded',function(){
-    document.querySelectorAll('.lang-btn').forEach(function(b){b.addEventListener('click',function(){lang=lang==='fr'?'en':'fr';localStorage.setItem('sah-lang',lang);apply();});});
+  var T = {
+    fr: {
+      'nav.services': 'Services',
+      'nav.solutions': 'Solutions Cloud',
+      'nav.managed': 'Services Gérés',
+      'nav.features': 'Fonctionnalités',
+      'nav.pricing': 'Tarifs',
+      'nav.about': 'À propos',
+      'nav.contact': 'Contact',
+      'footer.copy': '© 2025 SAH Analytics. Tous droits réservés.',
+      'footer.status': 'Tous les systèmes opérationnels',
+      'page.title': 'Services Gérés — SAH Cloud',
+      'hero.badge': 'Services Gérés',
+      'hero.title': 'Votre IT géré par',
+      'hero.title2': 'des experts 24/7',
+      'hero.desc': 'SAH Cloud propose des services gérés complets pour gérer efficacement l\'infrastructure technologique de votre entreprise sécurité, performance, sauvegarde et gestion des données inclus.',
+      'hero.cta1': 'Découvrir les services',
+      'hero.cta2': 'Demander un audit',
+      'stats.monitoring': 'Monitoring actif',
+      'stats.domains': 'Domaines couverts',
+      'stats.sla': 'SLA garanti',
+      'banner.monitoring': 'Monitoring 24/7/365',
+      'banner.response': 'Réponse incidents < 15 min',
+      'banner.sla': 'SLA 99.9 % garanti',
+      'banner.compliance': 'Conformité ISO 27001 & RGPD',
+      'banner.team': 'Équipe certifiée dédiée',
+      'services.badge': '8 domaines d\'expertise',
+      'services.title': 'Nos services gérés',
+      'services.subtitle': 'En nous spécialisant dans des domaines critiques, nous veillons à ce que vos processus métier se poursuivent de manière efficace et sécurisée.',
+      's1.badge': 'Gestion des serveurs',
+      's1.title': 'Services de gestion des serveurs',
+      's1.desc': 'Avec notre équipe experte, nous proposons des services complets de gestion de serveurs, allant de l\'installation de serveurs physiques et virtuels à la surveillance et la gestion de la sécurité 24h/24 et 7j/7.',
+      's1.li1': 'Installation & configuration de serveurs physiques et virtuels',
+      's1.li2': 'Surveillance des performances et disponibilité 24/7',
+      's1.li3': 'Gestion des mises à jour et des correctifs de sécurité',
+      's1.li4': 'Optimisation des ressources et scalabilité automatique',
+      's2.badge': 'Gestion réseau',
+      's2.title': 'Services de gestion réseau',
+      's2.desc': 'Nous proposons des services de gestion réseau personnalisés pour gérer votre infrastructure réseau de manière ininterrompue, sécurisée et haute performance.',
+      's2.li1': 'Design et architecture réseau sur mesure',
+      's2.li2': 'Surveillance et optimisation des performances réseau',
+      's2.li3': 'Gestion VPN, VLAN et segmentation réseau',
+      's2.li4': 'Haute disponibilité et failover automatique',
+      'services.grid.title': 'Nos 6 autres domaines gérés',
+      's3.title': 'Gestion de la sécurité',
+      's3.desc': 'Protection contre les menaces internes et externes, sécurité des données et conformité réglementaire (ISO 27001, RGPD, SOC 2).',
+      's4.title': 'Gestion de sauvegarde',
+      's4.desc': 'Prévention de la perte de données, continuité des activités et stockage sécurisé des données critiques avec RPO < 1h et RTO < 4h.',
+      's5.title': 'Reprise après sinistre',
+      's5.desc': 'Continuité des activités et minimisation de la perte de données face aux catastrophes naturelles, cyberattaques, pannes matérielles ou erreurs humaines.',
+      's6.title': 'Gestion de bases de données',
+      's6.desc': 'Services complets pour garantir que les données critiques sont stockées et gérées de manière sécurisée, accessible et performante PostgreSQL, MySQL, MongoDB, Redis.',
+      's7.title': 'Gestion DevOps',
+      's7.desc': 'Rassembler développement et opérations pour des déploiements rapides, fiables et évolutifs. Automatisation, CI/CD et transformation numérique accélérée.',
+      's8.title': 'Gestion des centres de données',
+      's8.desc': 'Gestion globale des processus opérationnels des centres de données pour une infrastructure informatique ininterrompue, sécurisée et efficace.',
+      'cta.request': 'Demander ce service',
+      'cta.badge': 'Audit gratuit offert',
+      'cta.title': 'Confiez votre IT à des experts',
+      'cta.desc': 'Nous réalisons un audit complet de votre infrastructure et proposons un plan de gestion sur mesure adapté à votre budget et vos objectifs.',
+      'cta.btn': 'Demander un audit gratuit'
+    },
+    en: {
+      'nav.services': 'Services',
+      'nav.solutions': 'Cloud Solutions',
+      'nav.managed': 'Managed Services',
+      'nav.features': 'Features',
+      'nav.pricing': 'Pricing',
+      'nav.about': 'About',
+      'nav.contact': 'Contact',
+      'footer.copy': '© 2025 SAH Analytics. All rights reserved.',
+      'footer.status': 'All systems operational',
+      'page.title': 'Managed Services — SAH Cloud',
+      'hero.badge': 'Managed Services',
+      'hero.title': 'Your IT managed by',
+      'hero.title2': 'experts 24/7',
+      'hero.desc': 'SAH Cloud offers comprehensive managed services to efficiently run your company\'s technology infrastructure — security, performance, backup and data management included.',
+      'hero.cta1': 'Explore services',
+      'hero.cta2': 'Request an audit',
+      'stats.monitoring': 'Active monitoring',
+      'stats.domains': 'Domains covered',
+      'stats.sla': 'Guaranteed SLA',
+      'banner.monitoring': 'Monitoring 24/7/365',
+      'banner.response': 'Incident response < 15 min',
+      'banner.sla': '99.9% SLA guaranteed',
+      'banner.compliance': 'ISO 27001 & GDPR compliant',
+      'banner.team': 'Dedicated certified team',
+      'services.badge': '8 areas of expertise',
+      'services.title': 'Our managed services',
+      'services.subtitle': 'By specializing in critical domains, we ensure your business processes continue to run efficiently and securely.',
+      's1.badge': 'Server management',
+      's1.title': 'Server management services',
+      's1.desc': 'With our expert team, we offer comprehensive server management services, from the installation of physical and virtual servers to 24/7 security monitoring and management.',
+      's1.li1': 'Installation & configuration of physical and virtual servers',
+      's1.li2': 'Performance monitoring and 24/7 availability',
+      's1.li3': 'Update and security patch management',
+      's1.li4': 'Resource optimization and automatic scalability',
+      's2.badge': 'Network management',
+      's2.title': 'Network management services',
+      's2.desc': 'We provide tailored network management services to manage your network infrastructure continuously, securely and with high performance.',
+      's2.li1': 'Custom network design and architecture',
+      's2.li2': 'Network performance monitoring and optimization',
+      's2.li3': 'VPN, VLAN and network segmentation management',
+      's2.li4': 'High availability and automatic failover',
+      'services.grid.title': 'Our 6 other managed domains',
+      's3.title': 'Security management',
+      's3.desc': 'Protection against internal and external threats, data security and regulatory compliance (ISO 27001, GDPR, SOC 2).',
+      's4.title': 'Backup management',
+      's4.desc': 'Preventing data loss, ensuring business continuity and secure storage of critical data with RPO < 1h and RTO < 4h.',
+      's5.title': 'Disaster recovery',
+      's5.desc': 'Business continuity and minimizing data loss in the face of natural disasters, cyberattacks, hardware failures or human errors.',
+      's6.title': 'Database management',
+      's6.desc': 'Comprehensive services to ensure critical data is stored and managed securely, accessibly and with high performance — PostgreSQL, MySQL, MongoDB, Redis.',
+      's7.title': 'DevOps management',
+      's7.desc': 'Bringing development and operations together for fast, reliable and scalable deployments. Automation, CI/CD and accelerated digital transformation.',
+      's8.title': 'Data center management',
+      's8.desc': 'Global management of data center operational processes for uninterrupted, secure and efficient IT infrastructure.',
+      'cta.request': 'Request this service',
+      'cta.badge': 'Free audit included',
+      'cta.title': 'Entrust your IT to experts',
+      'cta.desc': 'We perform a comprehensive audit of your infrastructure and propose a custom management plan tailored to your budget and objectives.',
+      'cta.btn': 'Request a free audit'
+    }
+  };
+  var lang = localStorage.getItem('sah-lang') || 'fr';
+  function apply() {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var k = el.getAttribute('data-i18n');
+      if (T[lang] && T[lang][k] !== undefined) el.textContent = T[lang][k];
+    });
+    document.querySelectorAll('.lang-btn').forEach(function(b) {
+      b.textContent = lang === 'fr' ? 'EN' : 'FR';
+    });
+    var t = document.getElementById('page-title');
+    if (t) t.textContent = T[lang]['page.title'] || t.textContent;
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.lang-btn').forEach(function(b) {
+      b.addEventListener('click', function() {
+        lang = lang === 'fr' ? 'en' : 'fr';
+        localStorage.setItem('sah-lang', lang);
+        apply();
+      });
+    });
     apply();
   });
 })();

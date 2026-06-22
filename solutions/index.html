@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cloud Solutions SAH Cloud</title>
+  <title id="page-title">Cloud Solutions SAH Cloud</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -102,21 +102,21 @@
         <div>
           <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary text-xs font-bold px-4 py-1.5 rounded-full mb-6 tracking-widest uppercase">
             <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-            Cloud Solutions
+            <span data-i18n="hero.badge">Cloud Solutions</span>
           </div>
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6">
-            Des solutions cloud<br/>
-            <span class="gradient-text">pour votre avenir</span>
+            <span data-i18n="hero.title">Des solutions cloud</span><br/>
+            <span class="gradient-text" data-i18n="hero.title2">pour votre avenir</span>
           </h1>
-          <p class="text-slate-400 text-lg leading-relaxed mb-8 max-w-lg">
-            Avec une équipe spécialisée dans les solutions de cloud computing, nous concevons et livrons des solutions qui répondent le mieux aux besoins de votre entreprise. Nous sécurisons votre avenir avec des solutions cloud <strong class="text-white font-semibold">sécurisées, flexibles et évolutives</strong>.
+          <p class="text-slate-400 text-lg leading-relaxed mb-8 max-w-lg" data-i18n="hero.desc">
+            Avec une équipe spécialisée dans les solutions de cloud computing, nous concevons et livrons des solutions qui répondent le mieux aux besoins de votre entreprise. Nous sécurisons votre avenir avec des solutions cloud sécurisées, flexibles et évolutives.
           </p>
           <div class="flex flex-wrap gap-4">
             <a href="#server" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-primary/30">
-              Explorer les solutions
+              <span data-i18n="hero.cta1">Explorer les solutions</span>
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </a>
-            <a href="../contact/index.html" class="inline-flex items-center gap-2 border border-white/20 hover:border-primary/50 text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 hover:bg-white/5">
+            <a href="../contact/index.html" class="inline-flex items-center gap-2 border border-white/20 hover:border-primary/50 text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 hover:bg-white/5" data-i18n="hero.cta2">
               Demander un devis
             </a>
           </div>
@@ -198,19 +198,19 @@
       <div class="flex overflow-x-auto scrollbar-hide gap-1 py-3">
         <button onclick="switchTab('server')"   id="tab-server"   class="tab-btn active flex-shrink-0 flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-xl transition-all">
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"/></svg>
-          Serveur Cloud
+          <span data-i18n="tab.server">Serveur Cloud</span>
         </button>
         <button onclick="switchTab('storage')"  id="tab-storage"  class="tab-btn flex-shrink-0 flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-xl text-slate-400 hover:text-white transition-all">
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg>
-          Stockage Cloud
+          <span data-i18n="tab.storage">Stockage Cloud</span>
         </button>
         <button onclick="switchTab('security')" id="tab-security" class="tab-btn flex-shrink-0 flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-xl text-slate-400 hover:text-white transition-all">
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-          Sécurité Cloud
+          <span data-i18n="tab.security">Sécurité Cloud</span>
         </button>
         <button onclick="switchTab('why')"      id="tab-why"      class="tab-btn flex-shrink-0 flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-xl text-slate-400 hover:text-white transition-all">
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
-          Pourquoi nous
+          <span data-i18n="tab.why">Pourquoi nous</span>
         </button>
       </div>
     </div>
@@ -226,9 +226,9 @@
         <!-- Section header -->
         <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <div>
-            <span class="text-primary text-xs font-bold tracking-widest uppercase">Services de serveur cloud</span>
-            <h2 class="text-3xl lg:text-4xl font-black mt-3 mb-5">Infrastructure virtuelle<br/>haute performance</h2>
-            <p class="text-slate-400 leading-relaxed mb-6">Dans le monde des affaires actuel, la flexibilité, l'efficacité et la rapidité d'évolutivité rendent indispensables les services de serveurs cloud. SAH Cloud soutient les processus de transformation numérique des entreprises grâce à des solutions d'infrastructure virtuelle de pointe.</p>
+            <span class="text-primary text-xs font-bold tracking-widest uppercase" data-i18n="server.badge">Services de serveur cloud</span>
+            <h2 class="text-3xl lg:text-4xl font-black mt-3 mb-5" data-i18n="server.title">Infrastructure virtuelle haute performance</h2>
+            <p class="text-slate-400 leading-relaxed mb-6" data-i18n="server.desc">Dans le monde des affaires actuel, la flexibilité, l'efficacité et la rapidité d'évolutivité rendent indispensables les services de serveurs cloud. SAH Cloud soutient les processus de transformation numérique des entreprises grâce à des solutions d'infrastructure virtuelle de pointe.</p>
             <div class="flex flex-wrap gap-3">
               <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-3 py-1.5 rounded-full font-semibold">CPU Virtuel</span>
               <span class="text-xs bg-white/5 text-slate-300 px-3 py-1.5 rounded-full">Mémoire Virtuelle</span>
@@ -308,23 +308,23 @@
                 </div>
                 <div>
                   <div class="inline-block text-xs font-bold text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-full mb-1">vCPU</div>
-                  <h3 class="text-lg font-bold">Processeur virtuel</h3>
+                  <h3 class="text-lg font-bold" data-i18n="vcpu.title">Processeur virtuel</h3>
                 </div>
               </div>
-              <p class="text-slate-400 text-sm leading-relaxed">Les processeurs virtuels offrent de hautes performances en optimisant les ressources des processeurs physiques. Ces ressources peuvent être ajustées selon vos besoins, garantissant que vos applications s'exécutent rapidement et sans interruption.</p>
+              <p class="text-slate-400 text-sm leading-relaxed" data-i18n="vcpu.desc">Les processeurs virtuels offrent de hautes performances en optimisant les ressources des processeurs physiques. Ces ressources peuvent être ajustées selon vos besoins, garantissant que vos applications s'exécutent rapidement et sans interruption.</p>
               <!-- Mini spec bar -->
               <div class="mt-5 pt-5 border-t border-white/5 grid grid-cols-3 gap-3">
                 <div class="text-center">
                   <p class="text-xl font-black text-white">128<span class="text-primary text-sm">+</span></p>
-                  <p class="text-xs text-slate-500 mt-0.5">vCPU max</p>
+                  <p class="text-xs text-slate-500 mt-0.5" data-i18n="vcpu.spec1">vCPU max</p>
                 </div>
                 <div class="text-center">
                   <p class="text-xl font-black text-white">3.8<span class="text-primary text-sm">GHz</span></p>
-                  <p class="text-xs text-slate-500 mt-0.5">Fréquence</p>
+                  <p class="text-xs text-slate-500 mt-0.5" data-i18n="vcpu.spec2">Fréquence</p>
                 </div>
                 <div class="text-center">
                   <p class="text-xl font-black text-white">∞</p>
-                  <p class="text-xs text-slate-500 mt-0.5">Scalabilité</p>
+                  <p class="text-xs text-slate-500 mt-0.5" data-i18n="vcpu.spec3">Scalabilité</p>
                 </div>
               </div>
             </div>
@@ -339,22 +339,22 @@
                 </div>
                 <div>
                   <div class="inline-block text-xs font-bold text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-full mb-1">vRAM</div>
-                  <h3 class="text-lg font-bold">Mémoire virtuelle</h3>
+                  <h3 class="text-lg font-bold" data-i18n="vram.title">Mémoire virtuelle</h3>
                 </div>
               </div>
-              <p class="text-slate-400 text-sm leading-relaxed">La mémoire virtuelle propose une solution optimisée pour améliorer les performances de vos applications. Avec une grande scalabilité et des fonctionnalités d'accès rapide, vous pouvez gérer vos données sans problème et augmenter ou diminuer la capacité selon vos besoins.</p>
+              <p class="text-slate-400 text-sm leading-relaxed" data-i18n="vram.desc">La mémoire virtuelle propose une solution optimisée pour améliorer les performances de vos applications. Avec une grande scalabilité et des fonctionnalités d'accès rapide, vous pouvez gérer vos données sans problème et augmenter ou diminuer la capacité selon vos besoins.</p>
               <div class="mt-5 pt-5 border-t border-white/5 grid grid-cols-3 gap-3">
                 <div class="text-center">
                   <p class="text-xl font-black text-white">512<span class="text-primary text-sm">Go</span></p>
-                  <p class="text-xs text-slate-500 mt-0.5">RAM max</p>
+                  <p class="text-xs text-slate-500 mt-0.5" data-i18n="vram.spec1">RAM max</p>
                 </div>
                 <div class="text-center">
                   <p class="text-xl font-black text-white">DDR5</p>
-                  <p class="text-xs text-slate-500 mt-0.5">Génération</p>
+                  <p class="text-xs text-slate-500 mt-0.5" data-i18n="vram.spec2">Génération</p>
                 </div>
                 <div class="text-center">
                   <p class="text-xl font-black text-white">ECC</p>
-                  <p class="text-xs text-slate-500 mt-0.5">Correction</p>
+                  <p class="text-xs text-slate-500 mt-0.5" data-i18n="vram.spec3">Correction</p>
                 </div>
               </div>
             </div>
@@ -369,22 +369,22 @@
                 </div>
                 <div>
                   <div class="inline-block text-xs font-bold text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-full mb-1">vDisk</div>
-                  <h3 class="text-lg font-bold">Disque virtuel NVMe</h3>
+                  <h3 class="text-lg font-bold" data-i18n="vdisk.title">Disque virtuel NVMe</h3>
                 </div>
               </div>
-              <p class="text-slate-400 text-sm leading-relaxed">Les solutions de disque virtuel vous permettent de stocker vos données de manière sécurisée, rapide et facilement accessible. Avec sauvegarde, réplication et haute disponibilité, vos données critiques sont toujours en sécurité. Agrandissez votre espace selon vos charges de travail.</p>
+              <p class="text-slate-400 text-sm leading-relaxed" data-i18n="vdisk.desc">Les solutions de disque virtuel vous permettent de stocker vos données de manière sécurisée, rapide et facilement accessible. Avec sauvegarde, réplication et haute disponibilité, vos données critiques sont toujours en sécurité. Agrandissez votre espace selon vos charges de travail.</p>
               <div class="mt-5 pt-5 border-t border-white/5 grid grid-cols-3 gap-3">
                 <div class="text-center">
                   <p class="text-xl font-black text-white">50<span class="text-primary text-sm">To</span></p>
-                  <p class="text-xs text-slate-500 mt-0.5">Stockage max</p>
+                  <p class="text-xs text-slate-500 mt-0.5" data-i18n="vdisk.spec1">Stockage max</p>
                 </div>
                 <div class="text-center">
                   <p class="text-xl font-black text-white">NVMe</p>
-                  <p class="text-xs text-slate-500 mt-0.5">Technologie</p>
+                  <p class="text-xs text-slate-500 mt-0.5" data-i18n="vdisk.spec2">Technologie</p>
                 </div>
                 <div class="text-center">
                   <p class="text-xl font-black text-white">3×</p>
-                  <p class="text-xs text-slate-500 mt-0.5">Réplication</p>
+                  <p class="text-xs text-slate-500 mt-0.5" data-i18n="vdisk.spec3">Réplication</p>
                 </div>
               </div>
             </div>
@@ -402,10 +402,10 @@
                     <span class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span>
                     Conteneurs
                   </div>
-                  <h3 class="text-lg font-bold">Plateforme conteneur</h3>
+                  <h3 class="text-lg font-bold" data-i18n="container.title">Plateforme conteneur</h3>
                 </div>
               </div>
-              <p class="text-slate-400 text-sm leading-relaxed">Les plateformes conteneurs vous permettent d'exécuter vos applications dans un environnement portable, léger et isolé. Avec Docker et Kubernetes, vous construisez une architecture de microservices et gérez facilement vos applications. Accélérez vos processus de développement et de déploiement.</p>
+              <p class="text-slate-400 text-sm leading-relaxed" data-i18n="container.desc">Les plateformes conteneurs vous permettent d'exécuter vos applications dans un environnement portable, léger et isolé. Avec Docker et Kubernetes, vous construisez une architecture de microservices et gérez facilement vos applications. Accélérez vos processus de développement et de déploiement.</p>
               <div class="mt-5 pt-5 border-t border-white/5 flex flex-wrap gap-2">
                 <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-full">Docker</span>
                 <span class="text-xs bg-white/5 text-slate-300 px-2.5 py-1 rounded-full">Kubernetes</span>
@@ -428,9 +428,9 @@
         <!-- Header + illustration -->
         <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <div>
-            <span class="text-primary text-xs font-bold tracking-widest uppercase">Services de stockage cloud</span>
-            <h2 class="text-3xl lg:text-4xl font-black mt-3 mb-5">Stockez, accédez,<br/>protégez vos données</h2>
-            <p class="text-slate-400 leading-relaxed mb-6">À l'ère numérique, les solutions de gestion et de stockage des données sont essentielles au succès des entreprises. SAH Cloud propose des services de stockage cloud flexibles et fiables, adaptés aux besoins de votre entreprise.</p>
+            <span class="text-primary text-xs font-bold tracking-widest uppercase" data-i18n="stgtab.badge">Services de stockage cloud</span>
+            <h2 class="text-3xl lg:text-4xl font-black mt-3 mb-5" data-i18n="stgtab.title">Stockez, accédez, protégez vos données</h2>
+            <p class="text-slate-400 leading-relaxed mb-6" data-i18n="stgtab.desc">À l'ère numérique, les solutions de gestion et de stockage des données sont essentielles au succès des entreprises. SAH Cloud propose des services de stockage cloud flexibles et fiables, adaptés aux besoins de votre entreprise.</p>
             <div class="flex flex-wrap gap-3">
               <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-3 py-1.5 rounded-full font-semibold">S3 Compatible</span>
               <span class="text-xs bg-white/5 text-slate-300 px-3 py-1.5 rounded-full">CIFS / NFS</span>
@@ -496,10 +496,10 @@
               </div>
               <div>
                 <div class="inline-block text-xs font-bold text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-full mb-1">Objet</div>
-                <h3 class="text-lg font-bold">Service de stockage S3</h3>
+                <h3 class="text-lg font-bold" data-i18n="stg.s3.title">Service de stockage S3</h3>
               </div>
             </div>
-            <p class="text-slate-400 text-sm leading-relaxed mb-4">Solution de stockage basée sur des objets, idéale pour le big data, le contenu média et la sauvegarde. Grande scalabilité, accès facile et forte durabilité des données. Avec différents niveaux d'accès et des fonctionnalités de sauvegarde automatique, vos données sont protégées en permanence.</p>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4" data-i18n="stg.s3.desc">Solution de stockage basée sur des objets, idéale pour le big data, le contenu média et la sauvegarde. Grande scalabilité, accès facile et forte durabilité des données. Avec différents niveaux d'accès et des fonctionnalités de sauvegarde automatique, vos données sont protégées en permanence.</p>
             <div class="flex flex-wrap gap-2">
               <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-full">Compatible AWS S3</span>
               <span class="text-xs bg-white/5 text-slate-300 px-2.5 py-1 rounded-full">Big Data</span>
@@ -514,10 +514,10 @@
               </div>
               <div>
                 <div class="inline-block text-xs font-bold text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-full mb-1">Fichiers</div>
-                <h3 class="text-lg font-bold">Service de stockage CIFS / NFS</h3>
+                <h3 class="text-lg font-bold" data-i18n="stg.cifs.title">Service de stockage CIFS / NFS</h3>
               </div>
             </div>
-            <p class="text-slate-400 text-sm leading-relaxed mb-4"><strong class="text-slate-300">CIFS</strong> Protocole de partage de fichiers compatible Windows. Accès sécurisé et facile aux fichiers et dossiers sur le réseau.<br/><br/><strong class="text-slate-300">NFS</strong> Protocole optimisé pour les systèmes Linux et Unix. Accès rapide et efficace aux données du réseau pour un fonctionnement ininterrompu de vos processus métier.</p>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4" data-i18n="stg.cifs.desc">Protocoles de partage de fichiers pour tous vos systèmes. CIFS pour Windows, NFS pour Linux et Unix. Accès rapide et sécurisé aux données réseau pour un fonctionnement ininterrompu de vos processus métier.</p>
             <div class="flex flex-wrap gap-2">
               <span class="text-xs bg-white/5 text-slate-300 px-2.5 py-1 rounded-full">Windows</span>
               <span class="text-xs bg-white/5 text-slate-300 px-2.5 py-1 rounded-full">Linux</span>
@@ -532,10 +532,10 @@
               </div>
               <div>
                 <div class="inline-block text-xs font-bold text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-full mb-1">Dédié</div>
-                <h3 class="text-lg font-bold">Service de stockage dédié</h3>
+                <h3 class="text-lg font-bold" data-i18n="stg.ded.title">Service de stockage dédié</h3>
               </div>
             </div>
-            <p class="text-slate-400 text-sm leading-relaxed mb-4">Infrastructure dédiée exclusivement à votre usage. Idéal pour les charges de travail nécessitant des performances et une sécurité élevées. Performances, flexibilité et sécurité maximales pour les applications critiques et les données sensibles.</p>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4" data-i18n="stg.ded.desc">Infrastructure dédiée exclusivement à votre usage. Idéal pour les charges de travail nécessitant des performances et une sécurité élevées. Performances, flexibilité et sécurité maximales pour les applications critiques et les données sensibles.</p>
             <div class="flex flex-wrap gap-2">
               <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-full">Dédié exclusif</span>
               <span class="text-xs bg-white/5 text-slate-300 px-2.5 py-1 rounded-full">Haute perf.</span>
@@ -550,10 +550,10 @@
               </div>
               <div>
                 <div class="inline-block text-xs font-bold text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-full mb-1">Backup</div>
-                <h3 class="text-lg font-bold">Service de stockage de sauvegarde</h3>
+                <h3 class="text-lg font-bold" data-i18n="stg.bak.title">Service de stockage de sauvegarde</h3>
               </div>
             </div>
-            <p class="text-slate-400 text-sm leading-relaxed mb-4">Solutions complètes de sauvegarde pour éviter la perte de données. Nos services sauvegardent régulièrement et facilitent les processus de restauration. Chiffrement, réplication des données vos données critiques sont toujours accessibles et sécurisées.</p>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4" data-i18n="stg.bak.desc">Solutions complètes de sauvegarde pour éviter la perte de données. Nos services sauvegardent régulièrement et facilitent les processus de restauration. Chiffrement, réplication des données — vos données critiques sont toujours accessibles et sécurisées.</p>
             <div class="flex flex-wrap gap-2">
               <span class="text-xs bg-white/5 text-slate-300 px-2.5 py-1 rounded-full">RPO < 1h</span>
               <span class="text-xs bg-white/5 text-slate-300 px-2.5 py-1 rounded-full">RTO < 4h</span>
@@ -574,9 +574,9 @@
         <!-- Header -->
         <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <div>
-            <span class="text-primary text-xs font-bold tracking-widest uppercase">Services de sécurité cloud</span>
-            <h2 class="text-3xl lg:text-4xl font-black mt-3 mb-5">Sécurité à chaque<br/>couche de votre infrastructure</h2>
-            <p class="text-slate-400 leading-relaxed mb-6">Dans un monde où la transformation numérique s'accélère, les besoins en sécurité deviennent de plus en plus critiques. SAH Cloud propose des solutions complètes pour garantir des opérations commerciales ininterrompues et sécurisées.</p>
+            <span class="text-primary text-xs font-bold tracking-widest uppercase" data-i18n="sectab.badge">Services de sécurité cloud</span>
+            <h2 class="text-3xl lg:text-4xl font-black mt-3 mb-5" data-i18n="sectab.title">Sécurité à chaque couche de votre infrastructure</h2>
+            <p class="text-slate-400 leading-relaxed mb-6" data-i18n="sectab.desc">Dans un monde où la transformation numérique s'accélère, les besoins en sécurité deviennent de plus en plus critiques. SAH Cloud propose des solutions complètes pour garantir des opérations commerciales ininterrompues et sécurisées.</p>
             <div class="flex flex-wrap gap-3">
               <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-3 py-1.5 rounded-full font-semibold">Cloud Firewall</span>
               <span class="text-xs bg-white/5 text-slate-300 px-3 py-1.5 rounded-full">WAF</span>
@@ -661,10 +661,10 @@
               </div>
               <div>
                 <div class="inline-block text-xs font-bold text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-full mb-1">Firewall</div>
-                <h3 class="text-lg font-bold">Service Cloud Firewall</h3>
+                <h3 class="text-lg font-bold" data-i18n="sec.fw.title">Service Cloud Firewall</h3>
               </div>
             </div>
-            <p class="text-slate-400 text-sm leading-relaxed mb-4">Première ligne de défense contre les menaces internes et externes. Grâce à des mécanismes avancés de détection et de prévention des menaces, il empêche les accès non autorisés et protège votre réseau. Options de configuration flexibles et solutions personnalisées selon vos besoins.</p>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4" data-i18n="sec.fw.desc">Première ligne de défense contre les menaces internes et externes. Grâce à des mécanismes avancés de détection et de prévention des menaces, il empêche les accès non autorisés et protège votre réseau. Options de configuration flexibles et solutions personnalisées selon vos besoins.</p>
             <div class="flex flex-wrap gap-2">
               <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-full">Stateful</span>
               <span class="text-xs bg-white/5 text-slate-300 px-2.5 py-1 rounded-full">Règles dynamiques</span>
@@ -679,10 +679,10 @@
               </div>
               <div>
                 <div class="inline-block text-xs font-bold text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-full mb-1">WAF / LB</div>
-                <h3 class="text-lg font-bold">Équilibrage de charge & WAF</h3>
+                <h3 class="text-lg font-bold" data-i18n="sec.waf.title">Équilibrage de charge & WAF</h3>
               </div>
             </div>
-            <p class="text-slate-400 text-sm leading-relaxed mb-4"><strong class="text-slate-300">Load Balancer</strong> Optimise le trafic réseau en équilibrant la charge entre les serveurs, assurant un fonctionnement haute performance et une expérience utilisateur ininterrompue.<br/><br/><strong class="text-slate-300">WAF</strong> Détecte et bloque les menaces web (injections SQL, attaques XSS). Couche de sécurité applicative supplémentaire pour protéger vos données critiques.</p>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4" data-i18n="sec.waf.desc">Le Load Balancer optimise le trafic réseau entre les serveurs pour une haute performance et une expérience utilisateur ininterrompue. Le WAF détecte et bloque les menaces web (injections SQL, attaques XSS) pour protéger vos données critiques.</p>
             <div class="flex flex-wrap gap-2">
               <span class="text-xs bg-white/5 text-slate-300 px-2.5 py-1 rounded-full">L4 / L7</span>
               <span class="text-xs bg-white/5 text-slate-300 px-2.5 py-1 rounded-full">Anti-SQLi</span>
@@ -697,10 +697,10 @@
               </div>
               <div>
                 <div class="inline-block text-xs font-bold text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-full mb-1">Logs / SIEM</div>
-                <h3 class="text-lg font-bold">Service de journal & SIEM</h3>
+                <h3 class="text-lg font-bold" data-i18n="sec.siem.title">Service de journal & SIEM</h3>
               </div>
             </div>
-            <p class="text-slate-400 text-sm leading-relaxed mb-4"><strong class="text-slate-300">Journalisation</strong> Enregistre toutes les activités du système, de l'application et des utilisateurs pour une transparence totale. Ces enregistrements sont cruciaux pour analyser les failles de sécurité.<br/><br/><strong class="text-slate-300">SIEM</strong> Surveille et analyse les incidents de sécurité en temps réel. Détecte rapidement les menaces et soutient les processus de conformité.</p>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4" data-i18n="sec.siem.desc">La journalisation enregistre toutes les activités du système, de l'application et des utilisateurs pour une transparence totale. Le SIEM surveille et analyse les incidents de sécurité en temps réel, détecte rapidement les menaces et soutient les processus de conformité.</p>
             <div class="flex flex-wrap gap-2">
               <span class="text-xs bg-white/5 text-slate-300 px-2.5 py-1 rounded-full">Temps réel</span>
               <span class="text-xs bg-white/5 text-slate-300 px-2.5 py-1 rounded-full">RGPD</span>
@@ -715,10 +715,10 @@
               </div>
               <div>
                 <div class="inline-block text-xs font-bold text-primary bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-full mb-1">IPS / IDS / DDoS</div>
-                <h3 class="text-lg font-bold">Protection IPS / IDS & DDoS</h3>
+                <h3 class="text-lg font-bold" data-i18n="sec.ddos.title">Protection IPS / IDS & DDoS</h3>
               </div>
             </div>
-            <p class="text-slate-400 text-sm leading-relaxed mb-4"><strong class="text-slate-300">IDS/IPS</strong> Analysent le trafic réseau pour détecter (IDS) et bloquer (IPS) l'activité suspecte avant qu'elle ne cause des dommages.<br/><br/><strong class="text-slate-300">Protection DDoS</strong> Protection complète contre les attaques par déni de service distribué jusqu'à 10 Tbps. Filtre le trafic, garantissant que seuls les utilisateurs légitimes y accèdent.</p>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4" data-i18n="sec.ddos.desc">IDS/IPS analysent le trafic réseau pour détecter et bloquer l'activité suspecte avant qu'elle ne cause des dommages. La protection DDoS filtre le trafic jusqu'à 10 Tbps, garantissant que seuls les utilisateurs légitimes y accèdent.</p>
             <div class="flex flex-wrap gap-2">
               <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-full">10 Tbps</span>
               <span class="text-xs bg-white/5 text-slate-300 px-2.5 py-1 rounded-full">Mitigation auto</span>
@@ -737,9 +737,9 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="text-center mb-16">
-          <span class="text-primary text-xs font-bold tracking-widest uppercase">Nos atouts</span>
-          <h2 class="text-3xl lg:text-4xl font-black mt-3 mb-4">Pourquoi sommes-nous préférés</h2>
-          <p class="text-slate-400 max-w-2xl mx-auto">SAH Cloud réunit les avantages que les entreprises modernes recherchent dans un partenaire cloud de confiance.</p>
+          <span class="text-primary text-xs font-bold tracking-widest uppercase" data-i18n="why.badge">Nos atouts</span>
+          <h2 class="text-3xl lg:text-4xl font-black mt-3 mb-4" data-i18n="why.title">Pourquoi sommes-nous préférés</h2>
+          <p class="text-slate-400 max-w-2xl mx-auto" data-i18n="why.subtitle">SAH Cloud réunit les avantages que les entreprises modernes recherchent dans un partenaire cloud de confiance.</p>
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
@@ -762,8 +762,8 @@
                 <text x="110" y="115" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="8" font-family="Inter,sans-serif">SCALABILITÉ DYNAMIQUE</text>
               </svg>
             </div>
-            <h3 class="text-lg font-bold mb-3 text-white">Flexibilité & Évolutivité</h3>
-            <p class="text-slate-400 text-sm leading-relaxed">Augmentez ou diminuez les ressources selon vos besoins. L'infrastructure cloud offre une structure flexible qui grandit ou diminue selon vos charges de travail.</p>
+            <h3 class="text-lg font-bold mb-3 text-white" data-i18n="why.flex.title">Flexibilité & Évolutivité</h3>
+            <p class="text-slate-400 text-sm leading-relaxed" data-i18n="why.flex.desc">Augmentez ou diminuez les ressources selon vos besoins. L'infrastructure cloud offre une structure flexible qui grandit ou diminue selon vos charges de travail.</p>
           </div>
 
           <!-- Coût -->
@@ -782,8 +782,8 @@
                 <text x="110" y="115" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="8" font-family="Inter,sans-serif">OPTIMISATION DES COÛTS</text>
               </svg>
             </div>
-            <h3 class="text-lg font-bold mb-3 text-white">Efficacité des coûts</h3>
-            <p class="text-slate-400 text-sm leading-relaxed">En éliminant les investissements matériels et les coûts de maintenance, vous ne payez que pour ce que vous utilisez. Optimisez votre budget informatique.</p>
+            <h3 class="text-lg font-bold mb-3 text-white" data-i18n="why.cost.title">Efficacité des coûts</h3>
+            <p class="text-slate-400 text-sm leading-relaxed" data-i18n="why.cost.desc">En éliminant les investissements matériels et les coûts de maintenance, vous ne payez que pour ce que vous utilisez. Optimisez votre budget informatique.</p>
           </div>
 
           <!-- Sécurité -->
@@ -801,8 +801,8 @@
                 <path d="M176 35 L180 39 L186 31" stroke="#F47B28" stroke-width="1.5" stroke-linecap="round"/>
               </svg>
             </div>
-            <h3 class="text-lg font-bold mb-3 text-white">Sécurité</h3>
-            <p class="text-slate-400 text-sm leading-relaxed">Grâce aux normes mondiales de chiffrement des données, de surveillance continue et de solutions de sécurité avancées, vos données restent sécurisées à tout moment.</p>
+            <h3 class="text-lg font-bold mb-3 text-white" data-i18n="why.sec.title">Sécurité</h3>
+            <p class="text-slate-400 text-sm leading-relaxed" data-i18n="why.sec.desc">Grâce aux normes mondiales de chiffrement des données, de surveillance continue et de solutions de sécurité avancées, vos données restent sécurisées à tout moment.</p>
           </div>
 
           <!-- Accès -->
@@ -822,8 +822,8 @@
                 <line x1="80" y1="52" x2="140" y2="68" stroke="rgba(244,123,40,0.6)" stroke-width="1.5" stroke-dasharray="4,3"/>
               </svg>
             </div>
-            <h3 class="text-lg font-bold mb-3 text-white">Accès ininterrompu</h3>
-            <p class="text-slate-400 text-sm leading-relaxed">Accédez aux données et aux applications de n'importe où dans le monde, sur n'importe quel appareil. Solution idéale pour le télétravail et la continuité de l'activité.</p>
+            <h3 class="text-lg font-bold mb-3 text-white" data-i18n="why.access.title">Accès ininterrompu</h3>
+            <p class="text-slate-400 text-sm leading-relaxed" data-i18n="why.access.desc">Accédez aux données et aux applications de n'importe où dans le monde, sur n'importe quel appareil. Solution idéale pour le télétravail et la continuité de l'activité.</p>
           </div>
 
           <!-- Durabilité -->
@@ -845,8 +845,8 @@
                 <path d="M175 45 L165 30 M175 45 L188 35 M175 45 L162 52" stroke="rgba(34,197,94,0.5)" stroke-width="1.5" stroke-linecap="round"/>
               </svg>
             </div>
-            <h3 class="text-lg font-bold mb-3 text-white">Durabilité</h3>
-            <p class="text-slate-400 text-sm leading-relaxed">Solution technologique respectueuse de l'environnement avec des infrastructures économes en énergie. Réduisez votre empreinte carbone tout en restant performant.</p>
+            <h3 class="text-lg font-bold mb-3 text-white" data-i18n="why.green.title">Durabilité</h3>
+            <p class="text-slate-400 text-sm leading-relaxed" data-i18n="why.green.desc">Solution technologique respectueuse de l'environnement avec des infrastructures économes en énergie. Réduisez votre empreinte carbone tout en restant performant.</p>
           </div>
 
           <!-- Backup & Recovery -->
@@ -865,8 +865,8 @@
                 <text x="110" y="115" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="8" font-family="Inter,sans-serif">RPO &lt; 1H · RTO &lt; 4H</text>
               </svg>
             </div>
-            <h3 class="text-lg font-bold mb-3 text-white">Sauvegarde & Récupération</h3>
-            <p class="text-slate-400 text-sm leading-relaxed">Continuité de l'activité grâce à des sauvegardes régulières et des solutions rapides de récupération des données contre les pertes potentielles.</p>
+            <h3 class="text-lg font-bold mb-3 text-white" data-i18n="why.backup.title">Sauvegarde & Récupération</h3>
+            <p class="text-slate-400 text-sm leading-relaxed" data-i18n="why.backup.desc">Continuité de l'activité grâce à des sauvegardes régulières et des solutions rapides de récupération des données contre les pertes potentielles.</p>
           </div>
 
         </div>
@@ -875,11 +875,11 @@
         <div class="bg-navy border border-primary/20 rounded-3xl p-10 lg:p-14 text-center relative overflow-hidden">
           <div class="absolute inset-0 opacity-10 pointer-events-none"></div>
           <div class="relative">
-            <h2 class="text-2xl lg:text-3xl font-black mb-3">Prêt à migrer vers SAH Cloud ?</h2>
-            <p class="text-slate-400 mb-8 max-w-xl mx-auto">Nos experts vous accompagnent dans votre transition cloud, de l'audit initial au déploiement en production.</p>
+            <h2 class="text-2xl lg:text-3xl font-black mb-3" data-i18n="why.cta.title">Prêt à migrer vers SAH Cloud ?</h2>
+            <p class="text-slate-400 mb-8 max-w-xl mx-auto" data-i18n="why.cta.desc">Nos experts vous accompagnent dans votre transition cloud, de l'audit initial au déploiement en production.</p>
             <div class="flex flex-wrap justify-center gap-4">
               <a href="../contact/index.html" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-bold px-8 py-4 rounded-xl transition-all hover:shadow-xl hover:shadow-primary/30">
-                Parler à un expert
+                <span data-i18n="why.cta.btn">Parler à un expert</span>
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
               </a>
            
@@ -931,11 +931,193 @@
   </script>
 <script>
 (function(){
-  var T={fr:{'nav.services':'Services','nav.solutions':'Solutions Cloud','nav.managed':'Services Gérés','nav.features':'Fonctionnalités','nav.pricing':'Tarifs','nav.about':'À propos','nav.contact':'Contact','footer.copy':'© 2025 SAH Analytics. Tous droits réservés.','footer.status':'Tous les systèmes opérationnels'},en:{'nav.services':'Services','nav.solutions':'Cloud Solutions','nav.managed':'Managed Services','nav.features':'Features','nav.pricing':'Pricing','nav.about':'About','nav.contact':'Contact','footer.copy':'© 2025 SAH Analytics. All rights reserved.','footer.status':'All systems operational'}};
-  var lang=localStorage.getItem('sah-lang')||'fr';
-  function apply(){document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(T[lang][k])el.textContent=T[lang][k];});document.querySelectorAll('.lang-btn').forEach(function(b){b.textContent=lang==='fr'?'EN':'FR';});}
-  document.addEventListener('DOMContentLoaded',function(){
-    document.querySelectorAll('.lang-btn').forEach(function(b){b.addEventListener('click',function(){lang=lang==='fr'?'en':'fr';localStorage.setItem('sah-lang',lang);apply();});});
+  var T = {
+    fr: {
+      'nav.services': 'Services',
+      'nav.solutions': 'Solutions Cloud',
+      'nav.managed': 'Services Gérés',
+      'nav.features': 'Fonctionnalités',
+      'nav.pricing': 'Tarifs',
+      'nav.about': 'À propos',
+      'nav.contact': 'Contact',
+      'footer.copy': '© 2025 SAH Analytics. Tous droits réservés.',
+      'footer.status': 'Tous les systèmes opérationnels',
+      'page.title': 'Solutions Cloud — SAH Cloud',
+      'hero.badge': 'Cloud Solutions',
+      'hero.title': 'Des solutions cloud',
+      'hero.title2': 'pour votre avenir',
+      'hero.desc': 'Avec une équipe spécialisée dans les solutions de cloud computing, nous concevons et livrons des solutions qui répondent le mieux aux besoins de votre entreprise. Nous sécurisons votre avenir avec des solutions cloud sécurisées, flexibles et évolutives.',
+      'hero.cta1': 'Explorer les solutions',
+      'hero.cta2': 'Demander un devis',
+      'tab.server': 'Serveur Cloud',
+      'tab.storage': 'Stockage Cloud',
+      'tab.security': 'Sécurité Cloud',
+      'tab.why': 'Pourquoi nous',
+      'server.badge': 'Services de serveur cloud',
+      'server.title': 'Infrastructure virtuelle haute performance',
+      'server.desc': 'Dans le monde des affaires actuel, la flexibilité, l\'efficacité et la rapidité d\'évolutivité rendent indispensables les services de serveurs cloud. SAH Cloud soutient les processus de transformation numérique des entreprises grâce à des solutions d\'infrastructure virtuelle de pointe.',
+      'vcpu.title': 'Processeur virtuel',
+      'vcpu.desc': 'Les processeurs virtuels offrent de hautes performances en optimisant les ressources des processeurs physiques. Ces ressources peuvent être ajustées selon vos besoins, garantissant que vos applications s\'exécutent rapidement et sans interruption.',
+      'vcpu.spec1': 'vCPU max',
+      'vcpu.spec2': 'Fréquence',
+      'vcpu.spec3': 'Scalabilité',
+      'vram.title': 'Mémoire virtuelle',
+      'vram.desc': 'La mémoire virtuelle propose une solution optimisée pour améliorer les performances de vos applications. Avec une grande scalabilité et des fonctionnalités d\'accès rapide, vous pouvez gérer vos données sans problème et augmenter ou diminuer la capacité selon vos besoins.',
+      'vram.spec1': 'RAM max',
+      'vram.spec2': 'Génération',
+      'vram.spec3': 'Correction',
+      'vdisk.title': 'Disque virtuel NVMe',
+      'vdisk.desc': 'Les solutions de disque virtuel vous permettent de stocker vos données de manière sécurisée, rapide et facilement accessible. Avec sauvegarde, réplication et haute disponibilité, vos données critiques sont toujours en sécurité. Agrandissez votre espace selon vos charges de travail.',
+      'vdisk.spec1': 'Stockage max',
+      'vdisk.spec2': 'Technologie',
+      'vdisk.spec3': 'Réplication',
+      'container.title': 'Plateforme conteneur',
+      'container.desc': 'Les plateformes conteneurs vous permettent d\'exécuter vos applications dans un environnement portable, léger et isolé. Avec Docker et Kubernetes, vous construisez une architecture de microservices et gérez facilement vos applications. Accélérez vos processus de développement et de déploiement.',
+      'stgtab.badge': 'Services de stockage cloud',
+      'stgtab.title': 'Stockez, accédez, protégez vos données',
+      'stgtab.desc': 'À l\'ère numérique, les solutions de gestion et de stockage des données sont essentielles au succès des entreprises. SAH Cloud propose des services de stockage cloud flexibles et fiables, adaptés aux besoins de votre entreprise.',
+      'stg.s3.title': 'Service de stockage S3',
+      'stg.s3.desc': 'Solution de stockage basée sur des objets, idéale pour le big data, le contenu média et la sauvegarde. Grande scalabilité, accès facile et forte durabilité des données. Avec différents niveaux d\'accès et des fonctionnalités de sauvegarde automatique, vos données sont protégées en permanence.',
+      'stg.cifs.title': 'Service de stockage CIFS / NFS',
+      'stg.cifs.desc': 'Protocoles de partage de fichiers pour tous vos systèmes. CIFS pour Windows, NFS pour Linux et Unix. Accès rapide et sécurisé aux données réseau pour un fonctionnement ininterrompu de vos processus métier.',
+      'stg.ded.title': 'Service de stockage dédié',
+      'stg.ded.desc': 'Infrastructure dédiée exclusivement à votre usage. Idéal pour les charges de travail nécessitant des performances et une sécurité élevées. Performances, flexibilité et sécurité maximales pour les applications critiques et les données sensibles.',
+      'stg.bak.title': 'Service de stockage de sauvegarde',
+      'stg.bak.desc': 'Solutions complètes de sauvegarde pour éviter la perte de données. Nos services sauvegardent régulièrement et facilitent les processus de restauration. Chiffrement, réplication des données — vos données critiques sont toujours accessibles et sécurisées.',
+      'sectab.badge': 'Services de sécurité cloud',
+      'sectab.title': 'Sécurité à chaque couche de votre infrastructure',
+      'sectab.desc': 'Dans un monde où la transformation numérique s\'accélère, les besoins en sécurité deviennent de plus en plus critiques. SAH Cloud propose des solutions complètes pour garantir des opérations commerciales ininterrompues et sécurisées.',
+      'sec.fw.title': 'Service Cloud Firewall',
+      'sec.fw.desc': 'Première ligne de défense contre les menaces internes et externes. Grâce à des mécanismes avancés de détection et de prévention des menaces, il empêche les accès non autorisés et protège votre réseau. Options de configuration flexibles et solutions personnalisées selon vos besoins.',
+      'sec.waf.title': 'Équilibrage de charge & WAF',
+      'sec.waf.desc': 'Le Load Balancer optimise le trafic réseau entre les serveurs pour une haute performance et une expérience utilisateur ininterrompue. Le WAF détecte et bloque les menaces web (injections SQL, attaques XSS) pour protéger vos données critiques.',
+      'sec.siem.title': 'Service de journal & SIEM',
+      'sec.siem.desc': 'La journalisation enregistre toutes les activités du système, de l\'application et des utilisateurs pour une transparence totale. Le SIEM surveille et analyse les incidents de sécurité en temps réel, détecte rapidement les menaces et soutient les processus de conformité.',
+      'sec.ddos.title': 'Protection IPS / IDS & DDoS',
+      'sec.ddos.desc': 'IDS/IPS analysent le trafic réseau pour détecter et bloquer l\'activité suspecte avant qu\'elle ne cause des dommages. La protection DDoS filtre le trafic jusqu\'à 10 Tbps, garantissant que seuls les utilisateurs légitimes y accèdent.',
+      'why.badge': 'Nos atouts',
+      'why.title': 'Pourquoi sommes-nous préférés',
+      'why.subtitle': 'SAH Cloud réunit les avantages que les entreprises modernes recherchent dans un partenaire cloud de confiance.',
+      'why.flex.title': 'Flexibilité & Évolutivité',
+      'why.flex.desc': 'Augmentez ou diminuez les ressources selon vos besoins. L\'infrastructure cloud offre une structure flexible qui grandit ou diminue selon vos charges de travail.',
+      'why.cost.title': 'Efficacité des coûts',
+      'why.cost.desc': 'En éliminant les investissements matériels et les coûts de maintenance, vous ne payez que pour ce que vous utilisez. Optimisez votre budget informatique.',
+      'why.sec.title': 'Sécurité',
+      'why.sec.desc': 'Grâce aux normes mondiales de chiffrement des données, de surveillance continue et de solutions de sécurité avancées, vos données restent sécurisées à tout moment.',
+      'why.access.title': 'Accès ininterrompu',
+      'why.access.desc': 'Accédez aux données et aux applications de n\'importe où dans le monde, sur n\'importe quel appareil. Solution idéale pour le télétravail et la continuité de l\'activité.',
+      'why.green.title': 'Durabilité',
+      'why.green.desc': 'Solution technologique respectueuse de l\'environnement avec des infrastructures économes en énergie. Réduisez votre empreinte carbone tout en restant performant.',
+      'why.backup.title': 'Sauvegarde & Récupération',
+      'why.backup.desc': 'Continuité de l\'activité grâce à des sauvegardes régulières et des solutions rapides de récupération des données contre les pertes potentielles.',
+      'why.cta.title': 'Prêt à migrer vers SAH Cloud ?',
+      'why.cta.desc': 'Nos experts vous accompagnent dans votre transition cloud, de l\'audit initial au déploiement en production.',
+      'why.cta.btn': 'Parler à un expert'
+    },
+    en: {
+      'nav.services': 'Services',
+      'nav.solutions': 'Cloud Solutions',
+      'nav.managed': 'Managed Services',
+      'nav.features': 'Features',
+      'nav.pricing': 'Pricing',
+      'nav.about': 'About',
+      'nav.contact': 'Contact',
+      'footer.copy': '© 2025 SAH Analytics. All rights reserved.',
+      'footer.status': 'All systems operational',
+      'page.title': 'Cloud Solutions — SAH Cloud',
+      'hero.badge': 'Cloud Solutions',
+      'hero.title': 'Cloud solutions',
+      'hero.title2': 'for your future',
+      'hero.desc': 'With a team specialized in cloud computing solutions, we design and deliver solutions that best meet your business needs. We secure your future with cloud solutions that are secure, flexible and scalable.',
+      'hero.cta1': 'Explore solutions',
+      'hero.cta2': 'Request a quote',
+      'tab.server': 'Cloud Server',
+      'tab.storage': 'Cloud Storage',
+      'tab.security': 'Cloud Security',
+      'tab.why': 'Why us',
+      'server.badge': 'Cloud server services',
+      'server.title': 'High-performance virtual infrastructure',
+      'server.desc': 'In today\'s business world, flexibility, efficiency and scalability speed make cloud server services essential. SAH Cloud supports companies\' digital transformation processes with cutting-edge virtual infrastructure solutions.',
+      'vcpu.title': 'Virtual processor',
+      'vcpu.desc': 'Virtual processors deliver high performance by optimizing physical processor resources. These resources can be adjusted to your needs, ensuring your applications run fast and without interruption.',
+      'vcpu.spec1': 'vCPU max',
+      'vcpu.spec2': 'Frequency',
+      'vcpu.spec3': 'Scalability',
+      'vram.title': 'Virtual memory',
+      'vram.desc': 'Virtual memory offers an optimized solution to improve your application performance. With high scalability and fast-access features, you can manage your data effortlessly and scale capacity up or down as needed.',
+      'vram.spec1': 'RAM max',
+      'vram.spec2': 'Generation',
+      'vram.spec3': 'Error correction',
+      'vdisk.title': 'NVMe virtual disk',
+      'vdisk.desc': 'Virtual disk solutions let you store data securely, quickly and with easy access. With backup, replication and high availability, your critical data is always safe. Expand storage to match your workloads.',
+      'vdisk.spec1': 'Max storage',
+      'vdisk.spec2': 'Technology',
+      'vdisk.spec3': 'Replication',
+      'container.title': 'Container platform',
+      'container.desc': 'Container platforms let you run your applications in a portable, lightweight and isolated environment. With Docker and Kubernetes, you build a microservices architecture and manage your applications easily. Accelerate your development and deployment processes.',
+      'stgtab.badge': 'Cloud storage services',
+      'stgtab.title': 'Store, access, protect your data',
+      'stgtab.desc': 'In the digital age, data management and storage solutions are essential to business success. SAH Cloud offers flexible and reliable cloud storage services tailored to your business needs.',
+      'stg.s3.title': 'S3 Storage service',
+      'stg.s3.desc': 'Object-based storage solution, ideal for big data, media content and backup. High scalability, easy access and strong data durability. With different access tiers and automatic backup features, your data is always protected.',
+      'stg.cifs.title': 'CIFS / NFS Storage service',
+      'stg.cifs.desc': 'File-sharing protocols for all your systems. CIFS for Windows, NFS for Linux and Unix. Fast, secure access to network data for uninterrupted business process operation.',
+      'stg.ded.title': 'Dedicated storage service',
+      'stg.ded.desc': 'Infrastructure dedicated exclusively to your use. Ideal for workloads requiring high performance and security. Maximum performance, flexibility and security for critical applications and sensitive data.',
+      'stg.bak.title': 'Backup storage service',
+      'stg.bak.desc': 'Comprehensive backup solutions to prevent data loss. Our services back up regularly and facilitate restoration processes. Encryption, data replication — your critical data is always accessible and secure.',
+      'sectab.badge': 'Cloud security services',
+      'sectab.title': 'Security at every layer of your infrastructure',
+      'sectab.desc': 'In a world where digital transformation is accelerating, security needs are becoming increasingly critical. SAH Cloud offers comprehensive solutions to ensure uninterrupted and secure business operations.',
+      'sec.fw.title': 'Cloud Firewall service',
+      'sec.fw.desc': 'First line of defense against internal and external threats. Through advanced threat detection and prevention mechanisms, it blocks unauthorized access and protects your network. Flexible configuration options and customized solutions for your needs.',
+      'sec.waf.title': 'Load balancing & WAF',
+      'sec.waf.desc': 'The Load Balancer optimizes network traffic between servers for high performance and an uninterrupted user experience. The WAF detects and blocks web threats (SQL injections, XSS attacks) to protect your critical data.',
+      'sec.siem.title': 'Logging & SIEM service',
+      'sec.siem.desc': 'Logging records all system, application and user activity for full transparency. SIEM monitors and analyzes security incidents in real time, quickly detects threats, and supports compliance processes.',
+      'sec.ddos.title': 'IPS / IDS & DDoS protection',
+      'sec.ddos.desc': 'IDS/IPS analyze network traffic to detect and block suspicious activity before it causes damage. DDoS protection filters traffic up to 10 Tbps, ensuring only legitimate users gain access.',
+      'why.badge': 'Our strengths',
+      'why.title': 'Why businesses choose us',
+      'why.subtitle': 'SAH Cloud brings together the advantages modern businesses look for in a trusted cloud partner.',
+      'why.flex.title': 'Flexibility & Scalability',
+      'why.flex.desc': 'Scale resources up or down as needed. Cloud infrastructure offers a flexible structure that grows or shrinks to match your workloads.',
+      'why.cost.title': 'Cost efficiency',
+      'why.cost.desc': 'By eliminating hardware investment and maintenance costs, you only pay for what you use. Optimize your IT budget.',
+      'why.sec.title': 'Security',
+      'why.sec.desc': 'Thanks to global data encryption standards, continuous monitoring and advanced security solutions, your data stays secure at all times.',
+      'why.access.title': 'Uninterrupted access',
+      'why.access.desc': 'Access data and applications from anywhere in the world, on any device. Ideal solution for remote work and business continuity.',
+      'why.green.title': 'Sustainability',
+      'why.green.desc': 'Environmentally responsible technology solution with energy-efficient infrastructure. Reduce your carbon footprint while staying high performance.',
+      'why.backup.title': 'Backup & Recovery',
+      'why.backup.desc': 'Business continuity through regular backups and fast data recovery solutions against potential loss.',
+      'why.cta.title': 'Ready to migrate to SAH Cloud?',
+      'why.cta.desc': 'Our experts guide you through your cloud transition, from the initial audit to production deployment.',
+      'why.cta.btn': 'Talk to an expert'
+    }
+  };
+  var lang = localStorage.getItem('sah-lang') || 'fr';
+  function apply() {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var k = el.getAttribute('data-i18n');
+      if (T[lang] && T[lang][k] !== undefined) el.textContent = T[lang][k];
+    });
+    document.querySelectorAll('.lang-btn').forEach(function(b) {
+      b.textContent = lang === 'fr' ? 'EN' : 'FR';
+    });
+    var t = document.getElementById('page-title');
+    if (t) t.textContent = T[lang]['page.title'] || t.textContent;
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.lang-btn').forEach(function(b) {
+      b.addEventListener('click', function() {
+        lang = lang === 'fr' ? 'en' : 'fr';
+        localStorage.setItem('sah-lang', lang);
+        apply();
+      });
+    });
     apply();
   });
 })();
