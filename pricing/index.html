@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" id="html-root">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Configurateur de Prix SAH Cloud</title>
+  <title>Configurateur de Prix — SAH Cloud</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -31,28 +31,24 @@
     input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:16px; height:16px; border-radius:50%; background:#F47B28; cursor:pointer; box-shadow:0 0 0 3px rgba(244,123,40,0.2); transition:box-shadow .2s; }
     input[type=range]::-webkit-slider-thumb:hover { box-shadow:0 0 0 5px rgba(244,123,40,0.3); }
     input[type=range]::-moz-range-thumb { width:16px; height:16px; border-radius:50%; background:#F47B28; cursor:pointer; border:none; }
-
     .custom-check { accent-color:#F47B28; width:15px; height:15px; cursor:pointer; }
-
     select { accent-color:#F47B28; }
-
     .sum-row { border-bottom:1px dashed #e2e8f0; }
     .sum-row:last-child { border-bottom:none; }
-
     .section-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#F47B28; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
     .section-title::after { content:''; flex:1; height:1px; background:#f1f5f9; }
-
     .storage-card { border:2px solid #e2e8f0; border-radius:10px; padding:10px 12px; cursor:pointer; transition:all .2s; }
-    .storage-card:hover { border-color:#F47B28; background:#fff7f0; }
-    .storage-card.selected { border-color:#F47B28; background:#fff7f0; }
-    .storage-card input { accent-color:#F47B28; }
-
+    .storage-card:hover, .storage-card.selected { border-color:#F47B28; background:#fff7f0; }
+    .net-card { border:2px solid #e2e8f0; border-radius:10px; padding:10px 14px; cursor:pointer; transition:all .2s; text-align:center; }
+    .net-card:hover, .net-card.selected { border-color:#F47B28; background:#fff7f0; }
+    .nfv-select { width:100%; border:1px solid #e2e8f0; border-radius:8px; padding:8px 10px; font-size:13px; color:#374151; background:#fff; outline:none; cursor:pointer; transition:border-color .2s; }
+    .nfv-select:focus { border-color:#F47B28; }
     input[type=number] { -moz-appearance:textfield; }
     input[type=number]::-webkit-outer-spin-button,
     input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; margin:0; }
-
-    .nfv-select { width:100%; border:1px solid #e2e8f0; border-radius:8px; padding:8px 10px; font-size:13px; color:#374151; background:#fff; outline:none; cursor:pointer; transition:border-color .2s; }
-    .nfv-select:focus { border-color:#F47B28; }
+    .lang-btn { font-size:12px; font-weight:700; border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:4px 10px; cursor:pointer; transition:all .2s; letter-spacing:.05em; }
+    .lang-btn:hover { background:rgba(255,255,255,0.1); }
+    .tag-badge { display:inline-block; font-size:10px; font-weight:700; background:#fef3e8; color:#F47B28; border:1px solid #fcd4a5; border-radius:99px; padding:1px 7px; margin-left:6px; vertical-align:middle; }
   </style>
 </head>
 <body class="bg-[#0d1f3c] font-sans text-white antialiased">
@@ -64,29 +60,33 @@
         <a href="../index.html" class="flex items-center gap-3">
           <img src="../img/logo.png" alt="SAH Cloud" class="h-9 w-auto rounded-md" />
         </a>
-        <nav class="hidden md:flex items-center gap-8">
-          <a href="../services/index.html"  class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Services</a>
-          <a href="../solutions/index.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Solutions Cloud</a>
-          <a href="../managed/index.html"   class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Services Gérés</a>
-          <a href="../features/index.html"  class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Fonctionnalités</a>
-          <a href="index.html"              class="nav-link active text-sm font-semibold text-primary transition-colors">Tarifs</a>
-          <a href="../about/index.html"     class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">À propos</a>
-          <a href="../contact/index.html"   class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Contact</a>
+        <nav class="hidden md:flex items-center gap-6">
+          <a href="../services/index.html"  class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors" data-i18n="nav.services">Services</a>
+          <a href="../solutions/index.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors" data-i18n="nav.solutions">Solutions Cloud</a>
+          <a href="../managed/index.html"   class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors" data-i18n="nav.managed">Services Gérés</a>
+          <a href="../features/index.html"  class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors" data-i18n="nav.features">Fonctionnalités</a>
+          <a href="index.html"              class="nav-link active text-sm font-semibold text-primary transition-colors" data-i18n="nav.pricing">Tarifs</a>
+          <a href="../about/index.html"     class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors" data-i18n="nav.about">À propos</a>
+          <a href="../contact/index.html"   class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors" data-i18n="nav.contact">Contact</a>
+          <button id="lang-btn" class="lang-btn text-white">FR</button>
         </nav>
-        <button id="menu-btn" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors">
-          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
+        <div class="md:hidden flex items-center gap-3">
+          <button id="lang-btn-m" class="lang-btn text-white">FR</button>
+          <button id="menu-btn" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
       </div>
     </div>
     <div id="mobile-menu" class="hidden md:hidden border-t border-white/10">
       <div class="px-4 py-4 space-y-1">
-        <a href="../services/index.html"  class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg">Services</a>
-        <a href="../solutions/index.html" class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg">Solutions Cloud</a>
-        <a href="../managed/index.html"   class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg">Services Gérés</a>
-        <a href="../features/index.html"  class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg">Fonctionnalités</a>
-        <a href="index.html"              class="block px-3 py-2 text-sm text-primary font-semibold bg-primary/10 rounded-lg">Tarifs</a>
-        <a href="../about/index.html"     class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg">À propos</a>
-        <a href="../contact/index.html"   class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg">Contact</a>
+        <a href="../services/index.html"  class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg" data-i18n="nav.services">Services</a>
+        <a href="../solutions/index.html" class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg" data-i18n="nav.solutions">Solutions Cloud</a>
+        <a href="../managed/index.html"   class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg" data-i18n="nav.managed">Services Gérés</a>
+        <a href="../features/index.html"  class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg" data-i18n="nav.features">Fonctionnalités</a>
+        <a href="index.html"              class="block px-3 py-2 text-sm text-primary font-semibold bg-primary/10 rounded-lg" data-i18n="nav.pricing">Tarifs</a>
+        <a href="../about/index.html"     class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg" data-i18n="nav.about">À propos</a>
+        <a href="../contact/index.html"   class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg" data-i18n="nav.contact">Contact</a>
       </div>
     </div>
   </header>
@@ -98,12 +98,13 @@
     <div class="relative max-w-2xl mx-auto px-4">
       <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary text-xs font-semibold px-4 py-1.5 rounded-full mb-5">
         <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-        Configurateur interactif
+        <span data-i18n="hero.badge">Configurateur interactif</span>
       </div>
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mb-4">
-        Configurez votre<br/><span style="background:linear-gradient(90deg,#F47B28,#FFA05A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Infrastructure Cloud</span>
+        <span data-i18n="hero.title1">Configurez votre</span><br/>
+        <span style="background:linear-gradient(90deg,#F47B28,#FFA05A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" data-i18n="hero.title2">Infrastructure Cloud</span>
       </h1>
-      <p class="text-slate-400 text-base max-w-lg mx-auto">
+      <p class="text-slate-400 text-base max-w-lg mx-auto" data-i18n="hero.subtitle">
         Composez votre environnement et obtenez une estimation mensuelle en temps réel.
       </p>
     </div>
@@ -112,28 +113,27 @@
   <!-- CONFIGURATOR -->
   <section class="pb-24 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto">
-      <div class="grid lg:grid-cols-[1fr_380px] gap-6 items-start">
+      <div class="grid lg:grid-cols-[1fr_390px] gap-6 items-start">
 
-        <!-- LEFT: Configurator -->
+        <!-- LEFT -->
         <div class="bg-white rounded-2xl shadow-2xl overflow-hidden text-slate-700">
           <div class="bg-[#f8fafc] px-6 py-4 border-b border-slate-100">
-            <h2 class="text-[#1A3C6E] font-bold text-lg">Configurateur d'instances Cloud</h2>
+            <h2 class="text-[#1A3C6E] font-bold text-lg" data-i18n="conf.title">Configurateur d'instances Cloud</h2>
+            <p class="text-xs text-slate-400 mt-0.5" data-i18n="conf.subtitle">Ressources privées et réseau</p>
           </div>
 
           <div class="px-6 py-6 space-y-8">
 
-            <!-- ===== MACHINE VIRTUELLE ===== -->
+            <!-- ===== 1. MACHINE VIRTUELLE ===== -->
             <div>
-              <p class="section-title">Machine Virtuelle</p>
-
-              <!-- État VM -->
+              <p class="section-title" data-i18n="s.vm">Machine Virtuelle</p>
               <div class="flex items-center justify-between mb-5 p-3 bg-slate-50 rounded-xl">
                 <div>
-                  <p class="text-sm font-semibold">État de la VM</p>
-                  <p class="text-xs text-slate-400 mt-0.5">Éteinte = 0 USD/mois</p>
+                  <p class="text-sm font-semibold" data-i18n="vm.state">État de la VM</p>
+                  <p class="text-xs text-slate-400 mt-0.5" data-i18n="vm.state.hint">Éteinte = 0 USD/mois</p>
                 </div>
                 <div class="flex items-center gap-3">
-                  <span id="vm-state-label" class="text-sm font-semibold text-[#F47B28]">Allumée</span>
+                  <span id="vm-state-label" class="text-sm font-semibold text-[#F47B28]" data-i18n="vm.on">Allumée</span>
                   <label class="relative inline-flex items-center cursor-pointer">
                     <input type="checkbox" id="vm-on" class="sr-only peer" checked />
                     <div class="w-11 h-6 bg-slate-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#F47B28]"></div>
@@ -141,7 +141,6 @@
                 </div>
               </div>
 
-              <!-- CPU -->
               <div class="mb-5">
                 <div class="flex justify-between items-center mb-2">
                   <span class="text-sm font-semibold">vCPU</span>
@@ -149,211 +148,275 @@
                 </div>
                 <input type="range" id="cpu" min="1" max="64" step="1" value="1" />
                 <div class="flex justify-between text-xs text-slate-400 mt-1">
-                  <span>1</span>
-                  <span id="cpu-price-label">40.82 USD / core / mois</span>
-                  <span>64</span>
+                  <span>1</span><span id="cpu-rate-lbl">40.8240 USD/core/mois</span><span>64</span>
                 </div>
               </div>
 
-              <!-- Memory -->
               <div>
                 <div class="flex justify-between items-center mb-2">
-                  <span class="text-sm font-semibold">Mémoire RAM</span>
+                  <span class="text-sm font-semibold" data-i18n="vm.mem">Mémoire RAM</span>
                   <span class="text-sm font-bold text-[#1A3C6E]"><span id="mem-val">1</span> GB</span>
                 </div>
                 <input type="range" id="mem" min="1" max="256" step="1" value="1" />
                 <div class="flex justify-between text-xs text-slate-400 mt-1">
-                  <span>1 GB</span>
-                  <span id="mem-price-label">23.98 USD / GB / mois</span>
-                  <span>256 GB</span>
+                  <span>1 GB</span><span id="mem-rate-lbl">23.9760 USD/GB/mois</span><span>256 GB</span>
                 </div>
               </div>
             </div>
 
             <hr class="border-slate-100" />
 
-            <!-- ===== STOCKAGE ===== -->
+            <!-- ===== 2. STOCKAGE ===== -->
             <div>
-              <p class="section-title">Stockage</p>
-
+              <p class="section-title" data-i18n="s.storage">Stockage</p>
               <div class="grid sm:grid-cols-2 gap-2 mb-5" id="storage-cards">
-                <label class="storage-card selected" data-price="0.9360">
-                  <div class="flex items-start gap-2">
-                    <input type="radio" name="storage-type" value="0.9360" checked class="mt-0.5 custom-check" />
-                    <div>
-                      <p class="text-xs font-semibold text-slate-700">High Performance (Default)</p>
-                      <p class="text-xs text-[#F47B28] font-bold mt-0.5">0.9360 USD/GB/mois</p>
-                    </div>
-                  </div>
-                </label>
-                <label class="storage-card" data-price="1.4400">
-                  <div class="flex items-start gap-2">
-                    <input type="radio" name="storage-type" value="1.4400" class="mt-0.5 custom-check" />
-                    <div>
-                      <p class="text-xs font-semibold text-slate-700">High Performance (HA)</p>
-                      <p class="text-xs text-[#F47B28] font-bold mt-0.5">1.4400 USD/GB/mois</p>
-                    </div>
-                  </div>
-                </label>
-                <label class="storage-card" data-price="0.3600">
-                  <div class="flex items-start gap-2">
-                    <input type="radio" name="storage-type" value="0.3600" class="mt-0.5 custom-check" />
-                    <div>
-                      <p class="text-xs font-semibold text-slate-700">Performance Sensitive (Default)</p>
-                      <p class="text-xs text-[#F47B28] font-bold mt-0.5">0.3600 USD/GB/mois</p>
-                    </div>
-                  </div>
-                </label>
-                <label class="storage-card" data-price="0.5760">
-                  <div class="flex items-start gap-2">
-                    <input type="radio" name="storage-type" value="0.5760" class="mt-0.5 custom-check" />
-                    <div>
-                      <p class="text-xs font-semibold text-slate-700">Performance Sensitive (HA)</p>
-                      <p class="text-xs text-[#F47B28] font-bold mt-0.5">0.5760 USD/GB/mois</p>
-                    </div>
-                  </div>
-                </label>
-                <label class="storage-card" data-price="0.2160">
-                  <div class="flex items-start gap-2">
-                    <input type="radio" name="storage-type" value="0.2160" class="mt-0.5 custom-check" />
-                    <div>
-                      <p class="text-xs font-semibold text-slate-700">Capacity Sensitive (Default)</p>
-                      <p class="text-xs text-[#F47B28] font-bold mt-0.5">0.2160 USD/GB/mois</p>
-                    </div>
-                  </div>
-                </label>
-                <label class="storage-card" data-price="0.3600">
-                  <div class="flex items-start gap-2">
-                    <input type="radio" name="storage-type" value="0.3600_ha" class="mt-0.5 custom-check" />
-                    <div>
-                      <p class="text-xs font-semibold text-slate-700">Capacity Sensitive (HA)</p>
-                      <p class="text-xs text-[#F47B28] font-bold mt-0.5">0.3600 USD/GB/mois</p>
-                    </div>
-                  </div>
-                </label>
+                <label class="storage-card selected" data-price="0.9360"><div class="flex items-start gap-2"><input type="radio" name="storage-type" value="0.9360" checked class="mt-0.5 custom-check" /><div><p class="text-xs font-semibold">High Performance (Default)</p><p class="text-xs text-[#F47B28] font-bold mt-0.5">0.9360 USD/GB/mois</p></div></div></label>
+                <label class="storage-card" data-price="1.4400"><div class="flex items-start gap-2"><input type="radio" name="storage-type" value="1.4400" class="mt-0.5 custom-check" /><div><p class="text-xs font-semibold">High Performance (HA)</p><p class="text-xs text-[#F47B28] font-bold mt-0.5">1.4400 USD/GB/mois</p></div></div></label>
+                <label class="storage-card" data-price="0.3600"><div class="flex items-start gap-2"><input type="radio" name="storage-type" value="0.3600" class="mt-0.5 custom-check" /><div><p class="text-xs font-semibold">Performance Sensitive (Default)</p><p class="text-xs text-[#F47B28] font-bold mt-0.5">0.3600 USD/GB/mois</p></div></div></label>
+                <label class="storage-card" data-price="0.5760"><div class="flex items-start gap-2"><input type="radio" name="storage-type" value="0.5760" class="mt-0.5 custom-check" /><div><p class="text-xs font-semibold">Performance Sensitive (HA)</p><p class="text-xs text-[#F47B28] font-bold mt-0.5">0.5760 USD/GB/mois</p></div></div></label>
+                <label class="storage-card" data-price="0.2160"><div class="flex items-start gap-2"><input type="radio" name="storage-type" value="0.2160" class="mt-0.5 custom-check" /><div><p class="text-xs font-semibold">Capacity Sensitive (Default)</p><p class="text-xs text-[#F47B28] font-bold mt-0.5">0.2160 USD/GB/mois</p></div></div></label>
+                <label class="storage-card" data-price="0.3600"><div class="flex items-start gap-2"><input type="radio" name="storage-type" value="0.3600_ha" class="mt-0.5 custom-check" /><div><p class="text-xs font-semibold">Capacity Sensitive (HA)</p><p class="text-xs text-[#F47B28] font-bold mt-0.5">0.3600 USD/GB/mois</p></div></div></label>
               </div>
-
               <div>
                 <div class="flex justify-between items-center mb-2">
-                  <span class="text-sm font-semibold">Capacité</span>
+                  <span class="text-sm font-semibold" data-i18n="stor.cap">Capacité</span>
                   <span class="text-sm font-bold text-[#1A3C6E]"><span id="stor-val">0</span> GB</span>
                 </div>
                 <input type="range" id="stor" min="0" max="10000" step="50" value="0" />
                 <div class="flex justify-between text-xs text-slate-400 mt-1">
-                  <span>0</span>
-                  <span id="stor-unit-label">0.9360 USD / GB</span>
-                  <span>10 000 GB</span>
+                  <span>0</span><span id="stor-unit-label">0.9360 USD/GB</span><span>10 000 GB</span>
                 </div>
               </div>
             </div>
 
             <hr class="border-slate-100" />
 
-            <!-- ===== BACKUP REPOSITORY ===== -->
+            <!-- ===== 3. SAUVEGARDE ===== -->
             <div>
-              <p class="section-title">Sauvegarde (Backup Repository)</p>
-
-              <!-- Object Storage -->
+              <p class="section-title" data-i18n="s.backup">Sauvegarde (Backup Repository)</p>
               <div class="mb-5">
                 <div class="flex justify-between items-center mb-2">
-                  <span class="text-sm font-semibold">Object Storage</span>
+                  <span class="text-sm font-semibold" data-i18n="bk.obj">Object Storage</span>
                   <span class="text-sm font-bold text-[#1A3C6E]"><span id="obj-val">0</span> GB</span>
                 </div>
                 <input type="range" id="obj" min="0" max="10000" step="50" value="0" />
-                <div class="flex justify-between text-xs text-slate-400 mt-1">
-                  <span>0</span>
-                  <span>0.3600 USD / GB / mois</span>
-                  <span>10 000 GB</span>
-                </div>
+                <div class="flex justify-between text-xs text-slate-400 mt-1"><span>0</span><span>0.3600 USD/GB/mois</span><span>10 000 GB</span></div>
               </div>
-
-              <!-- File Storage -->
               <div>
                 <div class="flex justify-between items-center mb-2">
-                  <span class="text-sm font-semibold">File Storage</span>
+                  <span class="text-sm font-semibold" data-i18n="bk.file">File Storage</span>
                   <span class="text-sm font-bold text-[#1A3C6E]"><span id="file-val">0</span> GB</span>
                 </div>
                 <input type="range" id="file" min="0" max="10000" step="50" value="0" />
+                <div class="flex justify-between text-xs text-slate-400 mt-1"><span>0</span><span>0.3600 USD/GB/mois</span><span>10 000 GB</span></div>
+              </div>
+            </div>
+
+            <hr class="border-slate-100" />
+
+            <!-- ===== 4. RÉSEAU ===== -->
+            <div>
+              <p class="section-title" data-i18n="s.network">Réseau Public</p>
+
+              <!-- Type réseau -->
+              <p class="text-sm font-semibold mb-3" data-i18n="net.type">Type de connexion réseau</p>
+              <div class="grid grid-cols-3 gap-2 mb-5" id="net-cards">
+                <label class="net-card selected cursor-pointer" data-net="bgp">
+                  <input type="radio" name="net-type" value="bgp" checked class="sr-only" />
+                  <p class="text-xs font-bold text-[#1A3C6E]">BGP</p>
+                  <p class="text-xs text-slate-400 mt-0.5">Multi-opérateur</p>
+                </label>
+                <label class="net-card cursor-pointer" data-net="line">
+                  <input type="radio" name="net-type" value="line" class="sr-only" />
+                  <p class="text-xs font-bold text-[#1A3C6E]">Line</p>
+                  <p class="text-xs text-slate-400 mt-0.5">Fibre dédiée</p>
+                </label>
+                <label class="net-card cursor-pointer" data-net="tenants_line">
+                  <input type="radio" name="net-type" value="tenants_line" class="sr-only" />
+                  <p class="text-xs font-bold text-[#1A3C6E]">Tenants Line</p>
+                  <p class="text-xs text-slate-400 mt-0.5">Multi-tenant</p>
+                </label>
+              </div>
+
+              <!-- EIP IPv4 -->
+              <div class="mb-5">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-sm font-semibold">EIP IPv4</span>
+                  <span class="text-sm font-bold text-[#1A3C6E]"><span id="eip-val">0</span> IP(s)</span>
+                </div>
+                <input type="range" id="eip" min="0" max="20" step="1" value="0" />
                 <div class="flex justify-between text-xs text-slate-400 mt-1">
-                  <span>0</span>
-                  <span>0.3600 USD / GB / mois</span>
-                  <span>10 000 GB</span>
+                  <span>0</span><span id="eip-rate-lbl">3.0660 USD/IP/mois</span><span>20</span>
+                </div>
+              </div>
+
+              <!-- IPv6 -->
+              <div class="mb-5">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-sm font-semibold">IPv6 (64-bit segment)</span>
+                  <span class="text-sm font-bold text-[#1A3C6E]"><span id="ipv6-val">0</span> segment(s)</span>
+                </div>
+                <input type="range" id="ipv6" min="0" max="10" step="1" value="0" />
+                <div class="flex justify-between text-xs text-slate-400 mt-1">
+                  <span>0</span><span id="ipv6-rate-lbl">0.7300 USD/segment/mois</span><span>10</span>
+                </div>
+              </div>
+
+              <!-- Bandwidth type -->
+              <p class="text-sm font-semibold mb-2" data-i18n="net.bwtype">Type de bande passante</p>
+              <div class="flex gap-4 mb-4">
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="bw-type" value="dedicated" checked class="custom-check" />
+                  <span class="text-sm" data-i18n="net.dedicated">Dédiée</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="bw-type" value="shared" class="custom-check" />
+                  <span class="text-sm" data-i18n="net.shared">Partagée</span>
+                </label>
+              </div>
+
+              <!-- Bandwidth Mbps -->
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-sm font-semibold" data-i18n="net.bw">Bande passante</span>
+                  <span class="text-sm font-bold text-[#1A3C6E]"><span id="bw-val">0</span> Mbps</span>
+                </div>
+                <input type="range" id="bw" min="0" max="1000" step="10" value="0" />
+                <div class="flex justify-between text-xs text-slate-400 mt-1">
+                  <span>0</span><span id="bw-rate-lbl">5.8400 USD/Mbps/mois</span><span>1 000 Mbps</span>
                 </div>
               </div>
             </div>
 
             <hr class="border-slate-100" />
 
-            <!-- ===== NFV RESOURCES ===== -->
+            <!-- ===== 5. IMAGES VM & DR ===== -->
             <div>
-              <p class="section-title">Ressources NFV <span class="text-slate-400 font-normal normal-case text-xs tracking-normal">(optionnel)</span></p>
+              <p class="section-title" data-i18n="s.imgdr">Images VM &amp; Reprise après sinistre</p>
 
+              <!-- Private VM Images -->
+              <div class="mb-5">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-sm font-semibold" data-i18n="img.title">Images VM privées</span>
+                  <span class="text-sm font-bold text-[#1A3C6E]"><span id="img-val">0</span> <span data-i18n="img.unit">image(s)</span></span>
+                </div>
+                <input type="range" id="img" min="0" max="50" step="1" value="0" />
+                <div class="flex justify-between text-xs text-slate-400 mt-1">
+                  <span>0</span><span>0.0277 USD/<span data-i18n="img.unit2">image</span>/mois</span><span>50</span>
+                </div>
+              </div>
+
+              <!-- Disaster Recovery -->
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-sm font-semibold" data-i18n="dr.title">Reprise après sinistre (DR)</span>
+                  <span class="text-sm font-bold text-[#1A3C6E]"><span id="dr-val">0</span> VM(s)</span>
+                </div>
+                <input type="range" id="dr" min="0" max="50" step="1" value="0" />
+                <div class="flex justify-between text-xs text-slate-400 mt-1">
+                  <span>0</span><span>27.7400 USD/VM/mois</span><span>50</span>
+                </div>
+              </div>
+            </div>
+
+            <hr class="border-slate-100" />
+
+            <!-- ===== 6. NFV ===== -->
+            <div>
+              <p class="section-title" data-i18n="s.nfv">Ressources NFV <span class="text-slate-400 font-normal normal-case text-xs tracking-normal">(optionnel)</span></p>
               <div class="space-y-4">
-
-                <!-- ADC -->
                 <div>
-                  <p class="text-sm font-semibold mb-1.5">ADC <span class="text-xs text-slate-400 font-normal">(Application Delivery Controller)</span></p>
+                  <p class="text-sm font-semibold mb-1.5">ADC <span class="text-xs text-slate-400 font-normal" data-i18n="nfv.adc.desc">(Application Delivery Controller)</span></p>
                   <select id="adc" class="nfv-select">
-                    <option value="0">Aucun</option>
-                    <option value="983.3040">2 core(s) 4GB 500Mbps &mdash; 983.30 USD/mois</option>
-                    <option value="1650.0240">2 core(s) 4GB 1Gbps &mdash; 1 650.02 USD/mois</option>
-                    <option value="2650.0320">4 core(s) 8GB 3Gbps &mdash; 2 650.03 USD/mois</option>
-                    <option value="3233.3040">8 core(s) 16GB 5Gbps &mdash; 3 233.30 USD/mois</option>
+                    <option value="0" data-i18n-opt="none">Aucun</option>
+                    <option value="983.3040">2 core(s) 4GB 500Mbps — 983.30 USD/mois</option>
+                    <option value="1650.0240">2 core(s) 4GB 1Gbps — 1 650.02 USD/mois</option>
+                    <option value="2650.0320">4 core(s) 8GB 3Gbps — 2 650.03 USD/mois</option>
+                    <option value="3233.3040">8 core(s) 16GB 5Gbps — 3 233.30 USD/mois</option>
                   </select>
                 </div>
-
-                <!-- NGAF -->
                 <div>
-                  <p class="text-sm font-semibold mb-1.5">NGAF <span class="text-xs text-slate-400 font-normal">(Next Generation Application Firewall)</span></p>
+                  <p class="text-sm font-semibold mb-1.5">NGAF <span class="text-xs text-slate-400 font-normal" data-i18n="nfv.ngaf.desc">(Next Generation Application Firewall)</span></p>
                   <select id="ngaf" class="nfv-select">
-                    <option value="0">Aucun</option>
-                    <option value="566.6400">2 core(s) 4GB 50Mbps &mdash; 566.64 USD/mois</option>
-                    <option value="816.6960">2 core(s) 4GB 100Mbps &mdash; 816.70 USD/mois</option>
-                    <option value="1483.3440">2 core(s) 4GB 200Mbps &mdash; 1 483.34 USD/mois</option>
-                    <option value="2149.9920">4 core(s) 8GB 400Mbps &mdash; 2 150.00 USD/mois</option>
-                    <option value="2900.0160">8 core(s) 16GB 800Mbps &mdash; 2 900.02 USD/mois</option>
-                    <option value="4233.3120">8 core(s) 16GB 1.6Gbps &mdash; 4 233.31 USD/mois</option>
+                    <option value="0" data-i18n-opt="none">Aucun</option>
+                    <option value="566.6400">2 core(s) 4GB 50Mbps — 566.64 USD/mois</option>
+                    <option value="816.6960">2 core(s) 4GB 100Mbps — 816.70 USD/mois</option>
+                    <option value="1483.3440">2 core(s) 4GB 200Mbps — 1 483.34 USD/mois</option>
+                    <option value="2149.9920">4 core(s) 8GB 400Mbps — 2 150.00 USD/mois</option>
+                    <option value="2900.0160">8 core(s) 16GB 800Mbps — 2 900.02 USD/mois</option>
+                    <option value="4233.3120">8 core(s) 16GB 1.6Gbps — 4 233.31 USD/mois</option>
                   </select>
                 </div>
-
-                <!-- SSL VPN -->
                 <div>
                   <p class="text-sm font-semibold mb-1.5">SSL VPN</p>
                   <select id="sslvpn" class="nfv-select">
-                    <option value="0">Aucun</option>
-                    <option value="300.0240">2 core(s) 2GB 100Mbps &mdash; 300.02 USD/mois</option>
-                    <option value="533.3040">2 core(s) 4GB 200Mbps &mdash; 533.30 USD/mois</option>
-                    <option value="1000.0080">4 core(s) 4GB 300Mbps &mdash; 1 000.01 USD/mois</option>
-                    <option value="1866.6720">4 core(s) 8GB 400Mbps &mdash; 1 866.67 USD/mois</option>
-                    <option value="3600.0000">8 core(s) 8GB 600Mbps &mdash; 3 600.00 USD/mois</option>
-                    <option value="7033.3200">8 core(s) 16GB 900Mbps &mdash; 7 033.32 USD/mois</option>
+                    <option value="0" data-i18n-opt="none">Aucun</option>
+                    <option value="300.0240">2 core(s) 2GB 100Mbps — 300.02 USD/mois</option>
+                    <option value="533.3040">2 core(s) 4GB 200Mbps — 533.30 USD/mois</option>
+                    <option value="1000.0080">4 core(s) 4GB 300Mbps — 1 000.01 USD/mois</option>
+                    <option value="1866.6720">4 core(s) 8GB 400Mbps — 1 866.67 USD/mois</option>
+                    <option value="3600.0000">8 core(s) 8GB 600Mbps — 3 600.00 USD/mois</option>
+                    <option value="7033.3200">8 core(s) 16GB 900Mbps — 7 033.32 USD/mois</option>
                   </select>
                 </div>
-
-                <!-- IAG -->
                 <div>
-                  <p class="text-sm font-semibold mb-1.5">IAG <span class="text-xs text-slate-400 font-normal">(Internet Access Gateway)</span></p>
+                  <p class="text-sm font-semibold mb-1.5">IAG <span class="text-xs text-slate-400 font-normal" data-i18n="nfv.iag.desc">(Internet Access Gateway)</span></p>
                   <select id="iag" class="nfv-select">
-                    <option value="0">Aucun</option>
-                    <option value="332.7840">2 core(s) 4GB 50Mbps &mdash; 332.78 USD/mois</option>
-                    <option value="462.3840">2 core(s) 4GB 100Mbps &mdash; 462.38 USD/mois</option>
-                    <option value="1052.0640">2 core(s) 4GB 200Mbps &mdash; 1 052.06 USD/mois</option>
-                    <option value="1472.8320">4 core(s) 8GB 300Mbps &mdash; 1 472.83 USD/mois</option>
-                    <option value="3118.3200">4 core(s) 8GB 500Mbps &mdash; 3 118.32 USD/mois</option>
-                    <option value="5442.6960">8 core(s) 16GB 700Mbps &mdash; 5 442.70 USD/mois</option>
-                    <option value="8031.7440">8 core(s) 16GB 1Gbps &mdash; 8 031.74 USD/mois</option>
-                    <option value="8031.7440_2">16 core(s) 32GB 1Gbps &mdash; 8 031.74 USD/mois</option>
+                    <option value="0" data-i18n-opt="none">Aucun</option>
+                    <option value="332.7840">2 core(s) 4GB 50Mbps — 332.78 USD/mois</option>
+                    <option value="462.3840">2 core(s) 4GB 100Mbps — 462.38 USD/mois</option>
+                    <option value="1052.0640">2 core(s) 4GB 200Mbps — 1 052.06 USD/mois</option>
+                    <option value="1472.8320">4 core(s) 8GB 300Mbps — 1 472.83 USD/mois</option>
+                    <option value="3118.3200">4 core(s) 8GB 500Mbps — 3 118.32 USD/mois</option>
+                    <option value="5442.6960">8 core(s) 16GB 700Mbps — 5 442.70 USD/mois</option>
+                    <option value="8031.7440">8 core(s) 16GB 1Gbps — 8 031.74 USD/mois</option>
+                    <option value="8031.7440_2">16 core(s) 32GB 1Gbps — 8 031.74 USD/mois</option>
                   </select>
                 </div>
+              </div>
+            </div>
+
+            <hr class="border-slate-100" />
+
+            <!-- ===== 7. SÉCURITÉ MANAGÉE ===== -->
+            <div>
+              <p class="section-title" data-i18n="s.sec">Sécurité Managée</p>
+              <div class="space-y-3">
+
+                <!-- CDP -->
+                <label class="flex items-start gap-3 p-3 border-2 border-slate-100 rounded-xl cursor-pointer hover:border-[#F47B28] hover:bg-orange-50 transition-all" id="cdp-card">
+                  <input type="checkbox" id="cdp" class="custom-check mt-0.5" />
+                  <div class="flex-1">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span class="text-sm font-semibold">CDP</span>
+                      <span class="text-xs text-slate-500 font-normal" data-i18n="cdp.desc">Continuous Data Protection</span>
+                      <span class="tag-badge" data-i18n="tag.quote">Sur devis</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-1" data-i18n="cdp.hint">Protection continue des données en temps réel avec RPO quasi nul.</p>
+                  </div>
+                </label>
+
+                <!-- SOC Managé -->
+                <label class="flex items-start gap-3 p-3 border-2 border-slate-100 rounded-xl cursor-pointer hover:border-[#F47B28] hover:bg-orange-50 transition-all" id="soc-card">
+                  <input type="checkbox" id="soc" class="custom-check mt-0.5" />
+                  <div class="flex-1">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span class="text-sm font-semibold" data-i18n="soc.title">SOC Managé</span>
+                      <span class="text-xs text-slate-500 font-normal" data-i18n="soc.desc">Security Operations Center</span>
+                      <span class="tag-badge" data-i18n="tag.quote">Sur devis</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-1" data-i18n="soc.hint">Surveillance 24/7, détection des menaces et réponse aux incidents.</p>
+                  </div>
+                </label>
 
               </div>
             </div>
 
             <hr class="border-slate-100" />
 
-            <!-- ===== QUANTITÉ ===== -->
+            <!-- ===== 8. QUANTITÉ ===== -->
             <div>
-              <p class="text-sm font-semibold mb-3">Quantité de VM</p>
+              <p class="text-sm font-semibold mb-3" data-i18n="qty.label">Quantité de VM</p>
               <div class="flex items-center gap-3">
                 <button id="qty-minus" class="w-9 h-9 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-50 text-slate-600 font-bold text-lg transition-colors">−</button>
                 <input type="number" id="qty" min="1" max="99" value="1" class="w-20 text-center border border-slate-200 rounded-lg py-2 text-sm font-bold text-[#1A3C6E] focus:border-[#F47B28] outline-none" />
@@ -368,125 +431,54 @@
         <div class="lg:sticky lg:top-20">
           <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
             <div class="flex items-center justify-between px-5 py-4 bg-[#f8fafc] border-b border-slate-100">
-              <h2 class="text-[#1A3C6E] font-bold text-base">Récapitulatif</h2>
+              <h2 class="text-[#1A3C6E] font-bold text-base" data-i18n="sum.title">Récapitulatif</h2>
               <button id="toggle-summary" class="w-7 h-7 rounded-lg bg-slate-200 hover:bg-slate-300 flex items-center justify-center transition-colors">
                 <svg id="toggle-icon" class="w-4 h-4 text-slate-600 transition-transform" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"/></svg>
               </button>
             </div>
-
             <div id="summary-body">
               <div class="flex justify-between items-center px-5 py-2 bg-slate-50 border-b border-slate-100">
-                <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Ressource</span>
-                <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">USD/mois</span>
+                <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide" data-i18n="sum.col.res">Ressource</span>
+                <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide" data-i18n="sum.col.price">USD/mois</span>
               </div>
-
               <div class="px-5 py-2 text-sm text-slate-700">
 
-                <!-- VM CPU -->
-                <div class="sum-row py-2.5">
-                  <div class="flex justify-between items-start">
-                    <span class="font-medium">vCPU</span>
-                    <span class="font-semibold text-[#1A3C6E] ml-4 tabular-nums" id="sum-cpu">0.00</span>
-                  </div>
-                  <div class="text-xs text-slate-400 mt-0.5" id="sum-cpu-sub">1 core × 40.82</div>
-                </div>
-
-                <!-- VM Memory -->
-                <div class="sum-row py-2.5">
-                  <div class="flex justify-between items-start">
-                    <span class="font-medium">Mémoire RAM</span>
-                    <span class="font-semibold text-[#1A3C6E] ml-4 tabular-nums" id="sum-mem">0.00</span>
-                  </div>
-                  <div class="text-xs text-slate-400 mt-0.5" id="sum-mem-sub">1 GB × 23.98</div>
-                </div>
-
-                <!-- Storage -->
-                <div class="sum-row py-2.5">
-                  <div class="flex justify-between items-start">
-                    <span class="font-medium">Stockage</span>
-                    <span class="font-semibold text-[#1A3C6E] ml-4 tabular-nums" id="sum-stor">0.00</span>
-                  </div>
-                  <div class="text-xs text-slate-400 mt-0.5" id="sum-stor-sub">0 GB × 0.9360</div>
-                </div>
-
-                <!-- Object Storage -->
-                <div class="sum-row py-2.5">
-                  <div class="flex justify-between items-start">
-                    <span class="font-medium">Object Storage</span>
-                    <span class="font-semibold text-[#1A3C6E] ml-4 tabular-nums" id="sum-obj">0.00</span>
-                  </div>
-                  <div class="text-xs text-slate-400 mt-0.5" id="sum-obj-sub">0 GB × 0.3600</div>
-                </div>
-
-                <!-- File Storage -->
-                <div class="sum-row py-2.5">
-                  <div class="flex justify-between items-start">
-                    <span class="font-medium">File Storage</span>
-                    <span class="font-semibold text-[#1A3C6E] ml-4 tabular-nums" id="sum-file">0.00</span>
-                  </div>
-                  <div class="text-xs text-slate-400 mt-0.5" id="sum-file-sub">0 GB × 0.3600</div>
-                </div>
-
-                <!-- ADC -->
-                <div class="sum-row py-2.5" id="row-adc">
-                  <div class="flex justify-between items-center">
-                    <span class="font-medium">ADC</span>
-                    <span class="font-semibold text-[#1A3C6E] ml-4 tabular-nums" id="sum-adc">0.00</span>
-                  </div>
-                </div>
-
-                <!-- NGAF -->
-                <div class="sum-row py-2.5" id="row-ngaf">
-                  <div class="flex justify-between items-center">
-                    <span class="font-medium">NGAF</span>
-                    <span class="font-semibold text-[#1A3C6E] ml-4 tabular-nums" id="sum-ngaf">0.00</span>
-                  </div>
-                </div>
-
-                <!-- SSL VPN -->
-                <div class="sum-row py-2.5" id="row-sslvpn">
-                  <div class="flex justify-between items-center">
-                    <span class="font-medium">SSL VPN</span>
-                    <span class="font-semibold text-[#1A3C6E] ml-4 tabular-nums" id="sum-sslvpn">0.00</span>
-                  </div>
-                </div>
-
-                <!-- IAG -->
-                <div class="sum-row py-2.5" id="row-iag">
-                  <div class="flex justify-between items-center">
-                    <span class="font-medium">IAG</span>
-                    <span class="font-semibold text-[#1A3C6E] ml-4 tabular-nums" id="sum-iag">0.00</span>
-                  </div>
-                </div>
-
-                <!-- Quantity -->
-                <div class="sum-row py-2.5">
-                  <div class="flex justify-between items-center">
-                    <span class="font-medium">Quantité VM</span>
-                    <span class="font-semibold text-[#1A3C6E] ml-4" id="sum-qty">1</span>
-                  </div>
-                </div>
+                <div class="sum-row py-2"><div class="flex justify-between"><span class="font-medium">vCPU</span><span class="font-semibold text-[#1A3C6E] tabular-nums" id="sum-cpu">0.00</span></div><div class="text-xs text-slate-400" id="sum-cpu-sub">1 core × 40.8240</div></div>
+                <div class="sum-row py-2"><div class="flex justify-between"><span class="font-medium" data-i18n="vm.mem">Mémoire RAM</span><span class="font-semibold text-[#1A3C6E] tabular-nums" id="sum-mem">0.00</span></div><div class="text-xs text-slate-400" id="sum-mem-sub">1 GB × 23.9760</div></div>
+                <div class="sum-row py-2"><div class="flex justify-between"><span class="font-medium" data-i18n="stor.cap">Stockage</span><span class="font-semibold text-[#1A3C6E] tabular-nums" id="sum-stor">0.00</span></div><div class="text-xs text-slate-400" id="sum-stor-sub">0 GB × 0.9360</div></div>
+                <div class="sum-row py-2"><div class="flex justify-between"><span class="font-medium" data-i18n="bk.obj">Object Storage</span><span class="font-semibold text-[#1A3C6E] tabular-nums" id="sum-obj">0.00</span></div><div class="text-xs text-slate-400" id="sum-obj-sub">0 GB × 0.3600</div></div>
+                <div class="sum-row py-2"><div class="flex justify-between"><span class="font-medium" data-i18n="bk.file">File Storage</span><span class="font-semibold text-[#1A3C6E] tabular-nums" id="sum-file">0.00</span></div><div class="text-xs text-slate-400" id="sum-file-sub">0 GB × 0.3600</div></div>
+                <div class="sum-row py-2"><div class="flex justify-between"><span class="font-medium">EIP IPv4</span><span class="font-semibold text-[#1A3C6E] tabular-nums" id="sum-eip">0.00</span></div><div class="text-xs text-slate-400" id="sum-eip-sub">0 IP × 3.0660</div></div>
+                <div class="sum-row py-2"><div class="flex justify-between"><span class="font-medium">IPv6</span><span class="font-semibold text-[#1A3C6E] tabular-nums" id="sum-ipv6">0.00</span></div><div class="text-xs text-slate-400" id="sum-ipv6-sub">0 seg × 0.7300</div></div>
+                <div class="sum-row py-2"><div class="flex justify-between"><span class="font-medium" data-i18n="net.bw">Bande passante</span><span class="font-semibold text-[#1A3C6E] tabular-nums" id="sum-bw">0.00</span></div><div class="text-xs text-slate-400" id="sum-bw-sub">0 Mbps × 5.8400</div></div>
+                <div class="sum-row py-2"><div class="flex justify-between"><span class="font-medium" data-i18n="img.title">Images VM</span><span class="font-semibold text-[#1A3C6E] tabular-nums" id="sum-img">0.00</span></div><div class="text-xs text-slate-400" id="sum-img-sub">0 × 0.0277</div></div>
+                <div class="sum-row py-2"><div class="flex justify-between"><span class="font-medium" data-i18n="dr.title">Reprise sinistre</span><span class="font-semibold text-[#1A3C6E] tabular-nums" id="sum-dr">0.00</span></div><div class="text-xs text-slate-400" id="sum-dr-sub">0 VM × 27.7400</div></div>
+                <div class="sum-row py-2"><div class="flex justify-between"><span class="font-medium">ADC</span><span class="font-semibold text-[#1A3C6E] tabular-nums" id="sum-adc">0.00</span></div></div>
+                <div class="sum-row py-2"><div class="flex justify-between"><span class="font-medium">NGAF</span><span class="font-semibold text-[#1A3C6E] tabular-nums" id="sum-ngaf">0.00</span></div></div>
+                <div class="sum-row py-2"><div class="flex justify-between"><span class="font-medium">SSL VPN</span><span class="font-semibold text-[#1A3C6E] tabular-nums" id="sum-sslvpn">0.00</span></div></div>
+                <div class="sum-row py-2"><div class="flex justify-between"><span class="font-medium">IAG</span><span class="font-semibold text-[#1A3C6E] tabular-nums" id="sum-iag">0.00</span></div></div>
+                <div class="sum-row py-2"><div class="flex justify-between items-center"><span class="font-medium">CDP</span><span id="sum-cdp" class="text-xs text-slate-400 italic" data-i18n="tag.notsel">Non sélectionné</span></div></div>
+                <div class="sum-row py-2"><div class="flex justify-between items-center"><span class="font-medium" data-i18n="soc.title">SOC Managé</span><span id="sum-soc" class="text-xs text-slate-400 italic" data-i18n="tag.notsel">Non sélectionné</span></div></div>
+                <div class="sum-row py-2"><div class="flex justify-between items-center"><span class="font-medium" data-i18n="qty.label">Quantité VM</span><span class="font-semibold text-[#1A3C6E]" id="sum-qty">1</span></div></div>
 
               </div>
-
-              <!-- Totals -->
               <div class="px-5 pt-3 pb-5 border-t-2 border-slate-100">
                 <div class="flex justify-between items-center mb-1">
-                  <span class="text-xs text-slate-400">Sous-total / VM</span>
+                  <span class="text-xs text-slate-400" data-i18n="sum.sub">Sous-total / VM</span>
                   <span class="text-sm font-semibold text-slate-600 tabular-nums" id="sum-subtotal">0.00 USD</span>
                 </div>
                 <div class="flex justify-between items-center mt-2">
-                  <span class="text-base font-bold text-[#1A3C6E]">Total / mois</span>
+                  <span class="text-base font-bold text-[#1A3C6E]" data-i18n="sum.total">Total / mois</span>
                   <span class="text-xl font-black text-[#F47B28] tabular-nums" id="sum-total">0.00 USD</span>
                 </div>
-                <a href="../contact/index.html" class="mt-4 w-full inline-flex items-center justify-center gap-2 bg-[#F47B28] hover:bg-[#D4601A] text-white font-semibold px-5 py-3 rounded-xl transition-colors text-sm">
+                <a href="../contact/index.html" class="mt-4 w-full inline-flex items-center justify-center gap-2 bg-[#F47B28] hover:bg-[#D4601A] text-white font-semibold px-5 py-3 rounded-xl transition-colors text-sm" data-i18n="sum.cta">
                   Demander un devis
                   <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                 </a>
               </div>
             </div>
           </div>
-          <p class="text-xs text-slate-500 text-center mt-3 px-2">Prix indicatifs en USD hors taxes. Facturation mensuelle.</p>
+          <p class="text-xs text-slate-500 text-center mt-3 px-2" data-i18n="sum.note">Prix indicatifs en USD hors taxes. Facturation mensuelle.</p>
         </div>
 
       </div>
@@ -497,128 +489,299 @@
   <footer class="py-10 border-t border-white/5" style="background:#070f1e;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
       <a href="../index.html"><img src="../img/logo.png" alt="SAH Cloud" class="h-10 w-auto rounded-md" /></a>
-      <p class="text-xs text-slate-600">© 2025 SAH Analytics. Tous droits réservés.</p>
+      <p class="text-xs text-slate-600" data-i18n="footer.copy">© 2025 SAH Analytics. Tous droits réservés.</p>
       <div class="flex items-center gap-2 text-xs text-slate-600">
         <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-        Tous les systèmes opérationnels
+        <span data-i18n="footer.status">Tous les systèmes opérationnels</span>
       </div>
     </div>
   </footer>
 
   <script>
-    // Navbar mobile
-    const btn = document.getElementById('menu-btn');
-    const menu = document.getElementById('mobile-menu');
-    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')));
-
-    // Toggle summary
-    let summaryOpen = true;
-    document.getElementById('toggle-summary').addEventListener('click', () => {
-      summaryOpen = !summaryOpen;
-      document.getElementById('summary-body').style.display = summaryOpen ? '' : 'none';
-      document.getElementById('toggle-icon').style.transform = summaryOpen ? '' : 'rotate(180deg)';
-    });
-
-    // Storage card selection styling
-    document.querySelectorAll('#storage-cards label').forEach(card => {
-      card.addEventListener('click', () => {
-        document.querySelectorAll('#storage-cards label').forEach(c => c.classList.remove('selected'));
-        card.classList.add('selected');
-        document.getElementById('stor-unit-label').textContent = parseFloat(card.dataset.price).toFixed(4) + ' USD / GB';
-        update();
-      });
-    });
-
-    function getStoragePrice() {
-      const checked = document.querySelector('input[name="storage-type"]:checked');
-      const val = checked ? checked.value : '0.9360';
-      return parseFloat(val) || 0.9360;
+  // ===================== TRANSLATIONS =====================
+  const T = {
+    fr: {
+      'nav.services':'Services','nav.solutions':'Solutions Cloud','nav.managed':'Services Gérés',
+      'nav.features':'Fonctionnalités','nav.pricing':'Tarifs','nav.about':'À propos','nav.contact':'Contact',
+      'hero.badge':'Configurateur interactif','hero.title1':'Configurez votre',
+      'hero.title2':'Infrastructure Cloud',
+      'hero.subtitle':'Composez votre environnement et obtenez une estimation mensuelle en temps réel.',
+      'conf.title':"Configurateur d'instances Cloud",'conf.subtitle':'Ressources privées et réseau',
+      's.vm':'Machine Virtuelle','vm.state':'État de la VM','vm.state.hint':'Éteinte = 0 USD/mois',
+      'vm.on':'Allumée','vm.off':'Éteinte','vm.mem':'Mémoire RAM',
+      's.storage':'Stockage','stor.cap':'Capacité',
+      's.backup':'Sauvegarde (Backup Repository)','bk.obj':'Object Storage','bk.file':'File Storage',
+      's.network':'Réseau Public','net.type':'Type de connexion réseau',
+      'net.bwtype':'Type de bande passante','net.dedicated':'Dédiée','net.shared':'Partagée','net.bw':'Bande passante',
+      's.imgdr':'Images VM & Reprise après sinistre',
+      'img.title':'Images VM privées','img.unit':'image(s)','img.unit2':'image',
+      'dr.title':'Reprise après sinistre (DR)',
+      's.nfv':'Ressources NFV','nfv.adc.desc':'(Application Delivery Controller)',
+      'nfv.ngaf.desc':'(Next Generation Application Firewall)','nfv.iag.desc':'(Internet Access Gateway)',
+      's.sec':'Sécurité Managée',
+      'cdp.desc':'Continuous Data Protection',
+      'cdp.hint':'Protection continue des données en temps réel avec RPO quasi nul.',
+      'soc.title':'SOC Managé','soc.desc':'Security Operations Center',
+      'soc.hint':'Surveillance 24/7, détection des menaces et réponse aux incidents.',
+      'tag.quote':'Sur devis','tag.notsel':'Non sélectionné','tag.sel':'Inclus (devis)',
+      'qty.label':'Quantité de VM',
+      'sum.title':'Récapitulatif','sum.col.res':'Ressource','sum.col.price':'USD/mois',
+      'sum.sub':'Sous-total / VM','sum.total':'Total / mois',
+      'sum.cta':'Demander un devis','sum.note':'Prix indicatifs en USD hors taxes. Facturation mensuelle.',
+      'footer.copy':'© 2025 SAH Analytics. Tous droits réservés.',
+      'footer.status':'Tous les systèmes opérationnels','none':'Aucun',
+      'cpu.rate':'USD/core/mois','mem.rate':'USD/GB/mois','off':'(éteinte)',
+    },
+    en: {
+      'nav.services':'Services','nav.solutions':'Cloud Solutions','nav.managed':'Managed Services',
+      'nav.features':'Features','nav.pricing':'Pricing','nav.about':'About','nav.contact':'Contact',
+      'hero.badge':'Interactive configurator','hero.title1':'Configure your',
+      'hero.title2':'Cloud Infrastructure',
+      'hero.subtitle':'Compose your environment and get a real-time monthly estimate.',
+      'conf.title':'Cloud Instance Configurator','conf.subtitle':'Private and network resources',
+      's.vm':'Virtual Machine','vm.state':'VM State','vm.state.hint':'Powered off = 0 USD/month',
+      'vm.on':'Powered On','vm.off':'Powered Off','vm.mem':'RAM Memory',
+      's.storage':'Storage','stor.cap':'Capacity',
+      's.backup':'Backup Repository','bk.obj':'Object Storage','bk.file':'File Storage',
+      's.network':'Public Network','net.type':'Network connection type',
+      'net.bwtype':'Bandwidth type','net.dedicated':'Dedicated','net.shared':'Shared','net.bw':'Bandwidth',
+      's.imgdr':'VM Images & Disaster Recovery',
+      'img.title':'Private VM Images','img.unit':'image(s)','img.unit2':'image',
+      'dr.title':'Disaster Recovery (DR)',
+      's.nfv':'NFV Resources','nfv.adc.desc':'(Application Delivery Controller)',
+      'nfv.ngaf.desc':'(Next Generation Application Firewall)','nfv.iag.desc':'(Internet Access Gateway)',
+      's.sec':'Managed Security',
+      'cdp.desc':'Continuous Data Protection',
+      'cdp.hint':'Real-time continuous data protection with near-zero RPO.',
+      'soc.title':'Managed SOC','soc.desc':'Security Operations Center',
+      'soc.hint':'24/7 monitoring, threat detection and incident response.',
+      'tag.quote':'Quote required','tag.notsel':'Not selected','tag.sel':'Included (quote)',
+      'qty.label':'Number of VMs',
+      'sum.title':'Summary','sum.col.res':'Resource','sum.col.price':'USD/month',
+      'sum.sub':'Subtotal / VM','sum.total':'Total / month',
+      'sum.cta':'Request a quote','sum.note':'Indicative prices in USD excl. taxes. Monthly billing.',
+      'footer.copy':'© 2025 SAH Analytics. All rights reserved.',
+      'footer.status':'All systems operational','none':'None',
+      'cpu.rate':'USD/core/month','mem.rate':'USD/GB/month','off':'(powered off)',
     }
+  };
 
-    function getNFVPrice(id) {
-      const val = document.getElementById(id).value;
-      return parseFloat(val) || 0;
-    }
+  let lang = localStorage.getItem('sah-lang') || 'fr';
 
-    function fmt(n) {
-      return n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    }
-
-    function update() {
-      const vmOn = document.getElementById('vm-on').checked;
-      document.getElementById('vm-state-label').textContent = vmOn ? 'Allumée' : 'Éteinte';
-      document.getElementById('cpu-price-label').textContent = vmOn ? '40.82 USD / core / mois' : '0.00 USD (éteinte)';
-      document.getElementById('mem-price-label').textContent = vmOn ? '23.98 USD / GB / mois' : '0.00 USD (éteinte)';
-
-      const cpu    = +document.getElementById('cpu').value;
-      const mem    = +document.getElementById('mem').value;
-      const stor   = +document.getElementById('stor').value;
-      const obj    = +document.getElementById('obj').value;
-      const file   = +document.getElementById('file').value;
-      const qty    = Math.max(1, +document.getElementById('qty').value || 1);
-
-      const cpuRate  = vmOn ? 40.8240 : 0;
-      const memRate  = vmOn ? 23.9760 : 0;
-      const storRate = getStoragePrice();
-
-      const cpuCost  = cpu  * cpuRate;
-      const memCost  = mem  * memRate;
-      const storCost = stor * storRate;
-      const objCost  = obj  * 0.3600;
-      const fileCost = file * 0.3600;
-      const adcCost  = getNFVPrice('adc');
-      const ngafCost = getNFVPrice('ngaf');
-      const vpnCost  = getNFVPrice('sslvpn');
-      const iagCost  = getNFVPrice('iag');
-
-      // Update labels
-      document.getElementById('cpu-val').textContent  = cpu;
-      document.getElementById('mem-val').textContent  = mem;
-      document.getElementById('stor-val').textContent = stor;
-      document.getElementById('obj-val').textContent  = obj;
-      document.getElementById('file-val').textContent = file;
-
-      document.getElementById('sum-cpu').textContent      = fmt(cpuCost);
-      document.getElementById('sum-cpu-sub').textContent  = cpu + ' core(s) × ' + cpuRate.toFixed(4);
-      document.getElementById('sum-mem').textContent      = fmt(memCost);
-      document.getElementById('sum-mem-sub').textContent  = mem + ' GB × ' + memRate.toFixed(4);
-      document.getElementById('sum-stor').textContent     = fmt(storCost);
-      document.getElementById('sum-stor-sub').textContent = stor + ' GB × ' + storRate.toFixed(4);
-      document.getElementById('sum-obj').textContent      = fmt(objCost);
-      document.getElementById('sum-obj-sub').textContent  = obj + ' GB × 0.3600';
-      document.getElementById('sum-file').textContent     = fmt(fileCost);
-      document.getElementById('sum-file-sub').textContent = file + ' GB × 0.3600';
-      document.getElementById('sum-adc').textContent      = fmt(adcCost);
-      document.getElementById('sum-ngaf').textContent     = fmt(ngafCost);
-      document.getElementById('sum-sslvpn').textContent   = fmt(vpnCost);
-      document.getElementById('sum-iag').textContent      = fmt(iagCost);
-      document.getElementById('sum-qty').textContent      = qty;
-
-      const subtotal = cpuCost + memCost + storCost + objCost + fileCost + adcCost + ngafCost + vpnCost + iagCost;
-      const total    = subtotal * qty;
-
-      document.getElementById('sum-subtotal').textContent = fmt(subtotal) + ' USD';
-      document.getElementById('sum-total').textContent    = fmt(total)    + ' USD';
-    }
-
-    // Wire up
-    ['cpu','mem','stor','obj','file'].forEach(id => document.getElementById(id).addEventListener('input', update));
-    ['adc','ngaf','sslvpn','iag'].forEach(id => document.getElementById(id).addEventListener('change', update));
-    document.getElementById('vm-on').addEventListener('change', update);
-    document.getElementById('qty').addEventListener('input', update);
-    document.getElementById('qty-minus').addEventListener('click', () => {
-      const el = document.getElementById('qty');
-      el.value = Math.max(1, +el.value - 1);
-      update();
+  function applyLang() {
+    const t = T[lang];
+    document.getElementById('html-root').lang = lang;
+    // Update all data-i18n elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.textContent = t[key];
     });
-    document.getElementById('qty-plus').addEventListener('click', () => {
-      const el = document.getElementById('qty');
-      el.value = Math.min(99, +el.value + 1);
-      update();
-    });
-
+    // Update lang buttons
+    const label = lang === 'fr' ? 'EN' : 'FR';
+    document.querySelectorAll('#lang-btn, #lang-btn-m').forEach(b => b.textContent = label);
+    // Update select "Aucun" options
+    document.querySelectorAll('[data-i18n-opt="none"]').forEach(opt => opt.textContent = t['none']);
+    // Update VM state label
+    const vmOn = document.getElementById('vm-on').checked;
+    document.getElementById('vm-state-label').textContent = vmOn ? t['vm.on'] : t['vm.off'];
+    // Refresh dynamic rate labels
     update();
+    // Update CDP/SOC status in summary
+    updateSecStatus();
+  }
+
+  function toggleLang() {
+    lang = lang === 'fr' ? 'en' : 'fr';
+    localStorage.setItem('sah-lang', lang);
+    applyLang();
+  }
+
+  document.querySelectorAll('#lang-btn, #lang-btn-m').forEach(b => b.addEventListener('click', toggleLang));
+
+  // ===================== NAVBAR MOBILE =====================
+  document.getElementById('menu-btn').addEventListener('click', () =>
+    document.getElementById('mobile-menu').classList.toggle('hidden'));
+  document.getElementById('mobile-menu').querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => document.getElementById('mobile-menu').classList.add('hidden')));
+
+  // ===================== SUMMARY TOGGLE =====================
+  let summaryOpen = true;
+  document.getElementById('toggle-summary').addEventListener('click', () => {
+    summaryOpen = !summaryOpen;
+    document.getElementById('summary-body').style.display = summaryOpen ? '' : 'none';
+    document.getElementById('toggle-icon').style.transform = summaryOpen ? '' : 'rotate(180deg)';
+  });
+
+  // ===================== STORAGE CARDS =====================
+  document.querySelectorAll('#storage-cards label').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('#storage-cards label').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      document.getElementById('stor-unit-label').textContent = parseFloat(card.dataset.price).toFixed(4) + ' USD/GB';
+      update();
+    });
+  });
+
+  // ===================== NETWORK CARDS =====================
+  document.querySelectorAll('#net-cards label').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('#net-cards label').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      update();
+    });
+  });
+
+  // ===================== NET PRICES =====================
+  const NET = {
+    bgp:          { eip:3.0660, ipv6:0.7300, dedicated:5.8400, shared:3.2850 },
+    line:         { eip:2.7740, ipv6:0.6570, dedicated:5.2560, shared:2.9200 },
+    tenants_line: { eip:2.5550, ipv6:0.5840, dedicated:4.7450, shared:2.7740 }
+  };
+
+  function getNetType() {
+    const r = document.querySelector('input[name="net-type"]:checked');
+    return r ? r.value : 'bgp';
+  }
+  function getBwType() {
+    const r = document.querySelector('input[name="bw-type"]:checked');
+    return r ? r.value : 'dedicated';
+  }
+  function getStoragePrice() {
+    const r = document.querySelector('input[name="storage-type"]:checked');
+    return r ? (parseFloat(r.value) || 0.9360) : 0.9360;
+  }
+  function getNFV(id) { return parseFloat(document.getElementById(id).value) || 0; }
+
+  function fmt(n) { return n.toLocaleString('fr-FR', { minimumFractionDigits:2, maximumFractionDigits:2 }); }
+
+  // ===================== MAIN UPDATE =====================
+  function update() {
+    const t = T[lang];
+    const vmOn   = document.getElementById('vm-on').checked;
+    const cpu    = +document.getElementById('cpu').value;
+    const mem    = +document.getElementById('mem').value;
+    const stor   = +document.getElementById('stor').value;
+    const obj    = +document.getElementById('obj').value;
+    const file   = +document.getElementById('file').value;
+    const eip    = +document.getElementById('eip').value;
+    const ipv6   = +document.getElementById('ipv6').value;
+    const bw     = +document.getElementById('bw').value;
+    const img    = +document.getElementById('img').value;
+    const dr     = +document.getElementById('dr').value;
+    const qty    = Math.max(1, +document.getElementById('qty').value || 1);
+
+    const cpuRate  = vmOn ? 40.8240 : 0;
+    const memRate  = vmOn ? 23.9760 : 0;
+    const storRate = getStoragePrice();
+    const netT     = NET[getNetType()];
+    const bwRate   = getBwType() === 'dedicated' ? netT.dedicated : netT.shared;
+
+    // Costs
+    const cpuCost  = cpu  * cpuRate;
+    const memCost  = mem  * memRate;
+    const storCost = stor * storRate;
+    const objCost  = obj  * 0.3600;
+    const fileCost = file * 0.3600;
+    const eipCost  = eip  * netT.eip;
+    const ipv6Cost = ipv6 * netT.ipv6;
+    const bwCost   = bw   * bwRate;
+    const imgCost  = img  * 0.0277;
+    const drCost   = dr   * 27.7400;
+    const adcCost  = getNFV('adc');
+    const ngafCost = getNFV('ngaf');
+    const vpnCost  = getNFV('sslvpn');
+    const iagCost  = getNFV('iag');
+
+    // Display values
+    document.getElementById('cpu-val').textContent  = cpu;
+    document.getElementById('mem-val').textContent  = mem;
+    document.getElementById('stor-val').textContent = stor;
+    document.getElementById('obj-val').textContent  = obj;
+    document.getElementById('file-val').textContent = file;
+    document.getElementById('eip-val').textContent  = eip;
+    document.getElementById('ipv6-val').textContent = ipv6;
+    document.getElementById('bw-val').textContent   = bw;
+    document.getElementById('img-val').textContent  = img;
+    document.getElementById('dr-val').textContent   = dr;
+
+    // Rate labels
+    const offTxt = t['off'] || '(éteinte)';
+    document.getElementById('cpu-rate-lbl').textContent  = vmOn ? `40.8240 USD/core/${t['cpu.rate']||'mois'}` : `0.0000 ${offTxt}`;
+    document.getElementById('mem-rate-lbl').textContent  = vmOn ? `23.9760 USD/GB/${t['mem.rate']||'mois'}`  : `0.0000 ${offTxt}`;
+    document.getElementById('vm-state-label').textContent = vmOn ? t['vm.on'] : t['vm.off'];
+    document.getElementById('eip-rate-lbl').textContent  = `${netT.eip.toFixed(4)} USD/IP/${lang==='en'?'month':'mois'}`;
+    document.getElementById('ipv6-rate-lbl').textContent = `${netT.ipv6.toFixed(4)} USD/seg/${lang==='en'?'month':'mois'}`;
+    document.getElementById('bw-rate-lbl').textContent   = `${bwRate.toFixed(4)} USD/Mbps/${lang==='en'?'month':'mois'}`;
+
+    // Summary rows
+    document.getElementById('sum-cpu').textContent      = fmt(cpuCost);
+    document.getElementById('sum-cpu-sub').textContent  = `${cpu} core(s) × ${cpuRate.toFixed(4)}`;
+    document.getElementById('sum-mem').textContent      = fmt(memCost);
+    document.getElementById('sum-mem-sub').textContent  = `${mem} GB × ${memRate.toFixed(4)}`;
+    document.getElementById('sum-stor').textContent     = fmt(storCost);
+    document.getElementById('sum-stor-sub').textContent = `${stor} GB × ${storRate.toFixed(4)}`;
+    document.getElementById('sum-obj').textContent      = fmt(objCost);
+    document.getElementById('sum-obj-sub').textContent  = `${obj} GB × 0.3600`;
+    document.getElementById('sum-file').textContent     = fmt(fileCost);
+    document.getElementById('sum-file-sub').textContent = `${file} GB × 0.3600`;
+    document.getElementById('sum-eip').textContent      = fmt(eipCost);
+    document.getElementById('sum-eip-sub').textContent  = `${eip} IP × ${netT.eip.toFixed(4)}`;
+    document.getElementById('sum-ipv6').textContent     = fmt(ipv6Cost);
+    document.getElementById('sum-ipv6-sub').textContent = `${ipv6} seg × ${netT.ipv6.toFixed(4)}`;
+    document.getElementById('sum-bw').textContent       = fmt(bwCost);
+    document.getElementById('sum-bw-sub').textContent   = `${bw} Mbps × ${bwRate.toFixed(4)}`;
+    document.getElementById('sum-img').textContent      = fmt(imgCost);
+    document.getElementById('sum-img-sub').textContent  = `${img} × 0.0277`;
+    document.getElementById('sum-dr').textContent       = fmt(drCost);
+    document.getElementById('sum-dr-sub').textContent   = `${dr} VM × 27.7400`;
+    document.getElementById('sum-adc').textContent      = fmt(adcCost);
+    document.getElementById('sum-ngaf').textContent     = fmt(ngafCost);
+    document.getElementById('sum-sslvpn').textContent   = fmt(vpnCost);
+    document.getElementById('sum-iag').textContent      = fmt(iagCost);
+    document.getElementById('sum-qty').textContent      = qty;
+
+    const subtotal = cpuCost+memCost+storCost+objCost+fileCost+eipCost+ipv6Cost+bwCost+imgCost+drCost+adcCost+ngafCost+vpnCost+iagCost;
+    document.getElementById('sum-subtotal').textContent = fmt(subtotal) + ' USD';
+    document.getElementById('sum-total').textContent    = fmt(subtotal * qty) + ' USD';
+
+    updateSecStatus();
+  }
+
+  function updateSecStatus() {
+    const t = T[lang];
+    const cdpEl = document.getElementById('sum-cdp');
+    const socEl = document.getElementById('sum-soc');
+    cdpEl.textContent = document.getElementById('cdp').checked ? (t['tag.sel']||'Inclus (devis)') : (t['tag.notsel']||'Non sélectionné');
+    cdpEl.className   = document.getElementById('cdp').checked ? 'text-xs text-[#F47B28] font-semibold' : 'text-xs text-slate-400 italic';
+    socEl.textContent = document.getElementById('soc').checked ? (t['tag.sel']||'Inclus (devis)') : (t['tag.notsel']||'Non sélectionné');
+    socEl.className   = document.getElementById('soc').checked ? 'text-xs text-[#F47B28] font-semibold' : 'text-xs text-slate-400 italic';
+    // Card highlight
+    document.getElementById('cdp-card').classList.toggle('border-[#F47B28]', document.getElementById('cdp').checked);
+    document.getElementById('soc-card').classList.toggle('border-[#F47B28]', document.getElementById('soc').checked);
+  }
+
+  // ===================== EVENT LISTENERS =====================
+  ['cpu','mem','stor','obj','file','eip','ipv6','bw','img','dr'].forEach(id =>
+    document.getElementById(id).addEventListener('input', update));
+  ['adc','ngaf','sslvpn','iag'].forEach(id =>
+    document.getElementById(id).addEventListener('change', update));
+  document.getElementById('vm-on').addEventListener('change', update);
+  document.getElementById('qty').addEventListener('input', update);
+  document.querySelectorAll('input[name="net-type"], input[name="bw-type"]').forEach(r =>
+    r.addEventListener('change', update));
+  document.getElementById('cdp').addEventListener('change', updateSecStatus);
+  document.getElementById('soc').addEventListener('change', updateSecStatus);
+  document.getElementById('qty-minus').addEventListener('click', () => {
+    const el = document.getElementById('qty');
+    el.value = Math.max(1, +el.value - 1); update();
+  });
+  document.getElementById('qty-plus').addEventListener('click', () => {
+    const el = document.getElementById('qty');
+    el.value = Math.min(99, +el.value + 1); update();
+  });
+
+  // Init
+  applyLang();
   </script>
 </body>
 </html>
