@@ -473,10 +473,10 @@
                   <span class="text-base font-bold text-[#1A3C6E]" data-i18n="sum.total">Total / mois</span>
                   <span class="text-xl font-black text-[#F47B28] tabular-nums" id="sum-total">0.00 USD</span>
                 </div>
-                <a href="../contact/index.html" class="mt-4 w-full inline-flex items-center justify-center gap-2 bg-[#F47B28] hover:bg-[#D4601A] text-white font-semibold px-5 py-3 rounded-xl transition-colors text-sm" data-i18n="sum.cta">
+                <button onclick="goToQuote()" class="mt-4 w-full inline-flex items-center justify-center gap-2 bg-[#F47B28] hover:bg-[#D4601A] text-white font-semibold px-5 py-3 rounded-xl transition-colors text-sm" data-i18n="sum.cta">
                   Demander un devis
                   <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -781,6 +781,112 @@
     const el = document.getElementById('qty');
     el.value = Math.min(99, +el.value + 1); update();
   });
+
+  // ===================== QUOTE BUILDER =====================
+  function buildQuoteSummary() {
+    const vmOn = document.getElementById('vm-on').checked;
+    const cpu  = +document.getElementById('cpu').value;
+    const mem  = +document.getElementById('mem').value;
+    const stor = +document.getElementById('stor').value;
+    const obj  = +document.getElementById('obj').value;
+    const file = +document.getElementById('file').value;
+    const eip  = +document.getElementById('eip').value;
+    const ipv6 = +document.getElementById('ipv6').value;
+    const bw   = +document.getElementById('bw').value;
+    const img  = +document.getElementById('img').value;
+    const dr   = +document.getElementById('dr').value;
+    const qty  = Math.max(1, +document.getElementById('qty').value || 1);
+    const cdp  = document.getElementById('cdp').checked;
+    const soc  = document.getElementById('soc').checked;
+
+    const netType  = getNetType();
+    const netT     = NET[netType];
+    const bwType   = getBwType();
+    const bwRate   = bwType === 'dedicated' ? netT.dedicated : netT.shared;
+    const storRate = getStoragePrice();
+
+    const selCard  = document.querySelector('#storage-cards label.selected');
+    const storName = selCard ? (selCard.querySelector('p.font-semibold')?.textContent?.trim() || '') : '';
+    const netLabel = { bgp:'BGP (Multi-opérateur)', line:'Line (Fibre dédiée)', tenants_line:'Tenants Line (Multi-tenant)' }[netType] || netType;
+    const bwLabel  = bwType === 'dedicated' ? 'Dédié' : 'Partagé';
+
+    function selText(id) {
+      const el = document.getElementById(id);
+      return el.options[el.selectedIndex].text;
+    }
+    const adc = getNFV('adc'), ngaf = getNFV('ngaf'), vpn = getNFV('sslvpn'), iag = getNFV('iag');
+
+    const cpuCost  = cpu  * (vmOn ? 40.8240 : 0);
+    const memCost  = mem  * (vmOn ? 23.9760 : 0);
+    const storCost = stor * storRate;
+    const objCost  = obj  * 0.3600;
+    const fileCost = file * 0.3600;
+    const eipCost  = eip  * netT.eip;
+    const ipv6Cost = ipv6 * netT.ipv6;
+    const bwCost   = bw   * bwRate;
+    const imgCost  = img  * 0.0277;
+    const drCost   = dr   * 27.7400;
+    const subtotal = cpuCost+memCost+storCost+objCost+fileCost+eipCost+ipv6Cost+bwCost+imgCost+drCost+adc+ngaf+vpn+iag;
+    const total    = subtotal * qty;
+
+    const sep = '─────────────────────────────────────────';
+    const lines = [
+      sep,
+      '   CONFIGURATION SAH CLOUD — DEMANDE DE DEVIS',
+      sep, '',
+      `Machine Virtuelle (${vmOn ? 'Allumée' : 'Éteinte'}) :`,
+      `  vCPU             : ${cpu} core(s)       → ${cpuCost.toFixed(2)} USD/mois`,
+      `  RAM              : ${mem} GB             → ${memCost.toFixed(2)} USD/mois`,
+      '',
+      `Stockage (${storName}) :`,
+      `  Volume           : ${stor} GB            → ${storCost.toFixed(2)} USD/mois`,
+      '',
+      'Sauvegarde :',
+      `  Object Storage   : ${obj} GB             → ${objCost.toFixed(2)} USD/mois`,
+      `  File Storage     : ${file} GB            → ${fileCost.toFixed(2)} USD/mois`,
+      '',
+      `Réseau (${netLabel}) :`,
+      `  EIP IPv4         : ${eip} IP(s)          → ${eipCost.toFixed(2)} USD/mois`,
+      `  IPv6             : ${ipv6} segment(s)    → ${ipv6Cost.toFixed(2)} USD/mois`,
+      `  Bande passante (${bwLabel}) : ${bw} Mbps → ${bwCost.toFixed(2)} USD/mois`,
+      '',
+      `Images VM privées  : ${img} image(s)       → ${imgCost.toFixed(2)} USD/mois`,
+      `Reprise sinistre   : ${dr} VM(s)           → ${drCost.toFixed(2)} USD/mois`,
+    ];
+
+    if (adc > 0 || ngaf > 0 || vpn > 0 || iag > 0) {
+      lines.push('', 'NFV / Sécurité réseau :');
+      if (adc  > 0) lines.push(`  ADC      : ${selText('adc')}  → ${adc.toFixed(2)} USD/mois`);
+      if (ngaf > 0) lines.push(`  NGAF     : ${selText('ngaf')} → ${ngaf.toFixed(2)} USD/mois`);
+      if (vpn  > 0) lines.push(`  SSL VPN  : ${selText('sslvpn')} → ${vpn.toFixed(2)} USD/mois`);
+      if (iag  > 0) lines.push(`  IAG      : ${selText('iag')} → ${iag.toFixed(2)} USD/mois`);
+    }
+
+    if (cdp || soc) {
+      lines.push('', 'Options sur devis (tarification à confirmer) :');
+      if (cdp) lines.push('  ✓ CDP — Continuous Data Protection');
+      if (soc) lines.push('  ✓ SOC Managé — Security Operations Center');
+    }
+
+    lines.push('', sep,
+      `Sous-total / VM  : ${subtotal.toFixed(2)} USD/mois`,
+      `Quantité de VMs  : ${qty}`,
+      `TOTAL ESTIMÉ     : ${total.toFixed(2)} USD/mois`,
+      sep
+    );
+
+    return {
+      subject: `[Devis SAH Cloud] Infrastructure Cloud – ${total.toFixed(2)} USD/mois (×${qty} VM)`,
+      message: lines.join('\n'),
+      total: total.toFixed(2),
+      qty
+    };
+  }
+
+  function goToQuote() {
+    localStorage.setItem('sah-quote', JSON.stringify(buildQuoteSummary()));
+    window.location.href = '../contact/index.html';
+  }
 
   // Init
   applyLang();

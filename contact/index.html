@@ -144,6 +144,15 @@
 
         <!-- Form -->
         <div class="lg:col-span-2 bg-[#111e35] border border-white/5 rounded-2xl p-8">
+          <!-- Banner: pre-filled from configurator (hidden by default) -->
+          <div id="quote-prefill-banner" class="hidden mb-6 flex items-start gap-3 bg-primary/10 border border-primary/30 rounded-xl px-4 py-3">
+            <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+            <div>
+              <p class="text-primary font-semibold text-sm">Configuration importée depuis le configurateur</p>
+              <p class="text-slate-300 text-xs mt-0.5">Estimation : <strong id="quote-banner-total" class="text-primary"></strong> — Le détail est pré-rempli dans le message ci-dessous. Complétez vos coordonnées et envoyez.</p>
+            </div>
+          </div>
+
           <h2 class="text-xl font-bold mb-2" data-i18n="form.title">Envoyez-nous un message</h2>
           <p class="text-slate-400 text-sm mb-8" data-i18n="form.subtitle">Nous vous répondons dans les meilleurs délais. Pour les demandes urgentes, appelez directement notre support.</p>
 
@@ -238,6 +247,40 @@
       this.style.display = 'none';
       document.getElementById('success-msg').classList.remove('hidden');
     });
+
+    // Pre-fill form from pricing configurator
+    (function() {
+      const raw = localStorage.getItem('sah-quote');
+      if (!raw) return;
+      try {
+        const q = JSON.parse(raw);
+        localStorage.removeItem('sah-quote');
+
+        // Show the prefill banner
+        const banner = document.getElementById('quote-prefill-banner');
+        if (banner) {
+          banner.classList.remove('hidden');
+          banner.querySelector('#quote-banner-total').textContent = q.total + ' USD/mois';
+        }
+
+        // Fill subject and message fields
+        const subjectEl = document.querySelector('[name="subject"]');
+        const messageEl = document.querySelector('[name="message"]');
+        const serviceEl = document.querySelector('[name="service"]');
+        if (subjectEl) subjectEl.value = q.subject || '';
+        if (messageEl) messageEl.value = (q.message || '') + '\n\n[Complétez vos coordonnées ci-dessus pour finaliser votre demande]';
+        // Auto-select "Offre Entreprise sur mesure"
+        if (serviceEl) {
+          for (let i = 0; i < serviceEl.options.length; i++) {
+            if (serviceEl.options[i].text.toLowerCase().includes('entreprise')) {
+              serviceEl.selectedIndex = i; break;
+            }
+          }
+        }
+        // Scroll to form
+        document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } catch(e) {}
+    })();
   </script>
 <script>
 (function(){
