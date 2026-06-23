@@ -580,7 +580,7 @@
     });
     // Update lang buttons
     const label = lang === 'fr' ? 'EN' : 'FR';
-    document.querySelectorAll('#lang-btn, #lang-btn-m').forEach(b => b.textContent = label);
+    document.querySelectorAll('.lang-btn').forEach(b => b.textContent = label);
     // Update select "Aucun" options
     document.querySelectorAll('[data-i18n-opt="none"]').forEach(opt => opt.textContent = t['none']);
     // Update VM state label
@@ -598,7 +598,7 @@
     applyLang();
   }
 
-  document.querySelectorAll('#lang-btn, #lang-btn-m').forEach(b => b.addEventListener('click', toggleLang));
+  document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', toggleLang));
 
   // ===================== NAVBAR MOBILE =====================
   document.getElementById('menu-btn').addEventListener('click', () =>
