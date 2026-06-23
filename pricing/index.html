@@ -53,25 +53,27 @@
 </head>
 <body class="bg-[#0d1f3c] font-sans text-white antialiased">
 
-  <!-- NAVBAR -->
+    <!-- NAVBAR -->
   <header class="fixed top-0 left-0 right-0 z-50" style="background:rgba(13,31,60,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
-        <a href="../index.html" class="flex items-center gap-3">
+        <a href="../index.html" class="flex-shrink-0">
           <img src="../img/logo.png" alt="SAH Cloud" class="h-9 w-auto rounded-md" />
         </a>
         <nav class="hidden md:flex items-center gap-6">
-          <a href="../services/index.html"  class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors" data-i18n="nav.services">Services</a>
+          <a href="../services/index.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors" data-i18n="nav.services">Services</a>
           <a href="../solutions/index.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors" data-i18n="nav.solutions">Solutions Cloud</a>
-          <a href="../managed/index.html"   class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors" data-i18n="nav.managed">Services Gérés</a>
-          <a href="../features/index.html"  class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors" data-i18n="nav.features">Fonctionnalités</a>
-          <a href="index.html"              class="nav-link active text-sm font-semibold text-primary transition-colors" data-i18n="nav.pricing">Tarifs</a>
-          <a href="../about/index.html"     class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors" data-i18n="nav.about">À propos</a>
-          <a href="../contact/index.html"   class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors" data-i18n="nav.contact">Contact</a>
-          <button id="lang-btn" class="lang-btn text-white">FR</button>
+          <a href="../managed/index.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors" data-i18n="nav.managed">Services Gérés</a>
+          <a href="../features/index.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors" data-i18n="nav.features">Fonctionnalités</a>
+          <a href="../about/index.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors" data-i18n="nav.about">À propos</a>
+          <a href="../contact/index.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors" data-i18n="nav.contact">Contact</a>
         </nav>
-        <div class="md:hidden flex items-center gap-3">
-          <button id="lang-btn-m" class="lang-btn text-white">FR</button>
+        <div class="hidden md:flex items-center gap-3">
+          <a href="index.html" class="text-sm font-semibold text-white bg-primary border border-primary px-4 py-1.5 rounded-lg hover:bg-primary/80 transition-all" data-i18n="nav.pricing">Tarifs</a>
+          <button class="lang-btn text-white text-xs font-bold border border-white/20 rounded-lg px-3 py-1.5 hover:bg-white/10 transition-all">FR</button>
+        </div>
+        <div class="flex md:hidden items-center gap-2">
+          <button class="lang-btn text-white text-xs font-bold border border-white/20 rounded-lg px-2.5 py-1 hover:bg-white/10 transition-all">FR</button>
           <button id="menu-btn" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
           </button>
@@ -79,14 +81,14 @@
       </div>
     </div>
     <div id="mobile-menu" class="hidden md:hidden border-t border-white/10">
-      <div class="px-4 py-4 space-y-1">
-        <a href="../services/index.html"  class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg" data-i18n="nav.services">Services</a>
-        <a href="../solutions/index.html" class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg" data-i18n="nav.solutions">Solutions Cloud</a>
-        <a href="../managed/index.html"   class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg" data-i18n="nav.managed">Services Gérés</a>
-        <a href="../features/index.html"  class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg" data-i18n="nav.features">Fonctionnalités</a>
-        <a href="index.html"              class="block px-3 py-2 text-sm text-primary font-semibold bg-primary/10 rounded-lg" data-i18n="nav.pricing">Tarifs</a>
-        <a href="../about/index.html"     class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg" data-i18n="nav.about">À propos</a>
-        <a href="../contact/index.html"   class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg" data-i18n="nav.contact">Contact</a>
+      <div class="px-4 py-3 space-y-1">
+        <a href="../services/index.html" class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors" data-i18n="nav.services">Services</a>
+        <a href="../solutions/index.html" class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors" data-i18n="nav.solutions">Solutions Cloud</a>
+        <a href="../managed/index.html" class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors" data-i18n="nav.managed">Services Gérés</a>
+        <a href="../features/index.html" class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors" data-i18n="nav.features">Fonctionnalités</a>
+        <a href="../about/index.html" class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors" data-i18n="nav.about">À propos</a>
+        <a href="../contact/index.html" class="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors" data-i18n="nav.contact">Contact</a>
+        <a href="index.html" class="block px-3 py-2 text-sm font-semibold text-white bg-primary rounded-lg" data-i18n="nav.pricing">Tarifs</a>
       </div>
     </div>
   </header>
