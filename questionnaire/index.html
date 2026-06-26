@@ -218,32 +218,15 @@
 
       /* ── FOOTER ── */
       .page-footer {
-        margin-top: 40px;
+        margin-top: 40px; padding: 20px 24px;
         border-top: 1px solid #1A2E4A;
-        padding: 24px 0 0;
-      }
-      .footer-top {
-        display: flex; align-items: center; justify-content: space-between;
-        gap: 12px; flex-wrap: wrap; padding-bottom: 20px;
+        display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        flex-wrap: wrap;
       }
       .page-footer img { height: 28px; width: auto; border-radius: 4px; }
-      .footer-nav {
-        display: flex; flex-wrap: wrap; gap: 6px 18px;
-        list-style: none;
-      }
-      .footer-nav a {
-        font-size: 12px; color: #475569; text-decoration: none;
-        transition: color .15s;
-      }
-      .footer-nav a:hover { color: #94A3B8; }
-      .footer-nav a.active { color: #F47B28; }
-      .footer-bottom {
-        border-top: 1px solid #0E1E33; padding: 14px 0;
-        display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
-      }
-      .footer-copy { font-size: 11px; color: #334155; }
-      .footer-status { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #334155; }
-      .dot-green { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; flex-shrink: 0; }
+      .page-footer span { font-size: 12px; color: #334155; }
+      .footer-status { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #334155; }
+      .dot-green { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; flex-shrink: 0; }
       @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
     </style>
   </head>
@@ -477,26 +460,11 @@
 
       <!-- FOOTER -->
       <div class="page-footer">
-        <div class="footer-top">
-          <a href="../index.html"><img src="../img/logo.png" alt="SAH Cloud" /></a>
-          <ul class="footer-nav">
-            <li><a href="../index.html"              data-i18n="nav.home">Accueil</a></li>
-            <li><a href="../services/index.html"     data-i18n="nav.services">Services</a></li>
-            <li><a href="../solutions/index.html"    data-i18n="nav.solutions">Solutions Cloud</a></li>
-            <li><a href="../managed/index.html"      data-i18n="nav.managed">Services Gérés</a></li>
-            <li><a href="../features/index.html"     data-i18n="nav.features">Fonctionnalités</a></li>
-            <li><a href="../pricing/index.html"      data-i18n="nav.pricing">Tarifs</a></li>
-            <li><a href="../about/index.html"        data-i18n="nav.about">À propos</a></li>
-            <li><a href="../contact/index.html"      data-i18n="nav.contact">Contact</a></li>
-            <li><a href="index.html" class="active"  data-i18n="nav.questionnaire">Questionnaire</a></li>
-          </ul>
-        </div>
-        <div class="footer-bottom">
-          <span class="footer-copy" data-i18n="footer.copy">© 2025 SAH Analytics. Tous droits réservés.</span>
-          <div class="footer-status">
-            <div class="dot-green"></div>
-            <span data-i18n="footer.status">Tous les systèmes opérationnels</span>
-          </div>
+        <a href="../index.html"><img src="../img/logo.png" alt="SAH Cloud" /></a>
+        <span data-i18n="footer.copy">© 2025 SAH Analytics. Tous droits réservés.</span>
+        <div class="footer-status">
+          <div class="dot-green"></div>
+          <span data-i18n="footer.status">Tous les systèmes opérationnels</span>
         </div>
       </div>
 
