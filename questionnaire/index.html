@@ -394,7 +394,7 @@
             <span class="sec-label" data-i18n="s04.label">Services d'Intérêt SAH Cloud</span>
           </div>
           <div class="sec-body">
-            <p class="hint" data-i18n="s04.hint">Sélectionnez tous les services SAH Cloud pour lesquels le prospect a exprimé un intérêt.</p>
+            <p class="hint" data-i18n="s04.hint">Sélectionnez tous les produits pour lesquels vous portez un intérêt.</p>
             <div class="prod-grid" id="prod-grid"></div>
           </div>
         </div>
@@ -473,18 +473,18 @@
     <script>
     // ===================== DATA =====================
     const SERVICES = [
-      { id:'ngaf',   emoji:'🛡️',  name:'Next-Gen Firewall',       sub:'NGAF' },
-      { id:'hci',    emoji:'🖥️',  name:'HCI / VDI',               sub:'Hyper-Converged' },
-      { id:'edr',    emoji:'💻',  name:'Endpoint Secure',         sub:'EDR' },
-      { id:'backup', emoji:'💾',  name:'Backup & Recovery',       sub:'Data Protection' },
-      { id:'xdr',    emoji:'📡',  name:'Cyber Command',           sub:'XDR / NDR' },
-      { id:'vpn',    emoji:'🔐',  name:'SSL VPN',                 sub:'Remote Access' },
-      { id:'sdwan',  emoji:'🌐',  name:'SD-WAN / SASE',           sub:'Network Edge' },
-      { id:'iag',    emoji:'🔗',  name:'Internet Access Gateway', sub:'IAG' },
-      { id:'waf',    emoji:'☁️',  name:'Cloud Security / WAF',    sub:'Web App Firewall' },
-      { id:'soc',    emoji:'🎯',  name:'Security Operations',     sub:'SOC' },
-      { id:'ztna',   emoji:'🔒',  name:'Zero Trust',              sub:'ZTNA' },
-      { id:'ske',    emoji:'🐳',  name:'Kubernetes Engine',       sub:'SKE' },
+      { id:'hci',      emoji:'🖥️',  name:'SaH Cloud HCI',        sub:'Infrastructure Hyper-Convergée' },
+      { id:'scp',      emoji:'☁️',  name:'SaH Cloud Platform',   sub:'Gestion Cloud Fullstack (SCP)' },
+      { id:'ske',      emoji:'🐳',  name:'Kubernetes Engine',     sub:'SKE' },
+      { id:'dmp',      emoji:'🗄️',  name:'Cloud DMP',             sub:'Gestion de Bases de Données' },
+      { id:'astor',    emoji:'💾',  name:'Cloud aStor',           sub:'Stockage Distribué d\'Entreprise' },
+      { id:'adesk',    emoji:'🖱️',  name:'Cloud aDesk',           sub:'Postes de Travail Virtuels (VDI)' },
+      { id:'backup',   emoji:'🔄',  name:'Backup & Reprise',      sub:'Sauvegarde & Reprise après Sinistre' },
+      { id:'securite', emoji:'🛡️',  name:'Sécurité Cloud',        sub:'aSEC / Pare-feu Distribué' },
+      { id:'iaas',     emoji:'⚙️',  name:'Hébergement Cloud',     sub:'IaaS x86 / ARM' },
+      { id:'paas',     emoji:'🔧',  name:'Services PaaS',         sub:'Conteneurs / DevOps / Microservices' },
+      { id:'reseau',   emoji:'🌐',  name:'Réseau & Connectivité', sub:'IP Résiliente / Ligne Privée' },
+      { id:'hybride',  emoji:'🔗',  name:'Cloud Hybride',         sub:'Cloud Privé & Public Unifié' },
     ];
 
     // ── Industry select helpers ──
@@ -735,7 +735,7 @@
         's01.label':'Informations Entreprise','s02.label':'Interlocuteur Principal',
         's03.label':'Environnement Actuel','s04.label':'Zones d\'Intérêt Potentielles',
         's05.label':'Budget Mensuel Estimé','s06.label':'Délai de Déploiement Souhaité','s07.label':'Notes Complémentaires',
-        's04.hint':'Sélectionnez tous les produits Sangfor pour lesquels le prospect a exprimé un intérêt.',
+        's04.hint':'Sélectionnez tous les produits pour lesquels vous portez un intérêt.',
         'f.company':'Nom de l\'entreprise','f.company.ph':'ex : BNI Côte d\'Ivoire',
         'f.industry':'Secteur d\'activité','f.industry.custom':'Précisez votre secteur','f.industry.custom.ph':'Votre secteur…',
         'f.country':'Pays / Région','f.country.ph':'ex : Côte d\'Ivoire — Abidjan',
@@ -761,7 +761,7 @@
         's01.label':'Company Information','s02.label':'Main Point of Contact',
         's03.label':'Current Environment','s04.label':'Potential Interest Areas',
         's05.label':'Estimated Monthly Budget','s06.label':'Expected Deployment Timeline','s07.label':'Additional Notes',
-        's04.hint':'Select all Sangfor products the client has expressed interest in.',
+        's04.hint':'Select all products you are interested in.',
         'f.company':'Company Name','f.company.ph':'e.g. BNI Côte d\'Ivoire',
         'f.industry':'Industry / Sector','f.industry.custom':'Specify industry','f.industry.custom.ph':'Your industry…',
         'f.country':'Country / Region','f.country.ph':'e.g. Côte d\'Ivoire — Abidjan',
