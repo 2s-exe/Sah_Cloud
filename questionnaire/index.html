@@ -144,21 +144,6 @@
       select option { background: #0C1628; color: #E2E8F0; }
       select option[value=""] { color: #64748B; }
 
-      /* ── SIZE CARDS ── */
-      .size-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-      @media(max-width:520px){ .size-grid { grid-template-columns: 1fr; } }
-      .size-card {
-        display: flex; align-items: center; gap: 10px; padding: 11px 13px;
-        background: #070D1C; border: 1px solid #1A2E4A;
-        border-radius: 7px; cursor: pointer; user-select: none; transition: all .15s;
-      }
-      .size-card:hover  { border-color: #2D4E7A; }
-      .size-card.active { background: #0D1F40; border-color: #F47B28; }
-      .sz-dot { font-size: 8px; color: #1A2E4A; transition: color .15s; }
-      .size-card.active .sz-dot { color: #F47B28; }
-      .sz-icon { font-size: 18px; }
-      .sz-name { font-size: 12px; font-weight: 600; color: #E2E8F0; }
-      .sz-sub  { font-size: 10px; color: #64748B; font-family: monospace; margin-top: 1px; }
 
       /* ── SERVICE CARDS ── */
       .prod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px,1fr)); gap: 8px; }
@@ -326,7 +311,13 @@
               </div>
               <div class="fld">
                 <label data-i18n="f.size">Taille de l'entreprise</label>
-                <div id="size-grid" class="size-grid"></div>
+                <select id="companySize">
+                  <option value="" data-fr="Sélectionner…" data-en="Select…">Sélectionner…</option>
+                  <option value="s1" data-fr="Startup / TPE — 1–10 employés"       data-en="Startup / Micro — 1–10 employees"></option>
+                  <option value="s2" data-fr="PME — 11–200 employés"               data-en="SME — 11–200 employees"></option>
+                  <option value="s3" data-fr="ETI — 201–1 000 employés"            data-en="Mid-market — 201–1,000 employees"></option>
+                  <option value="s4" data-fr="Grande entreprise — 1 000+ employés" data-en="Enterprise — 1,000+ employees"></option>
+                </select>
               </div>
             </div>
           </div>
@@ -514,23 +505,30 @@
       return lang === 'en' ? opt.dataset.en : opt.dataset.fr;
     }
 
-    const SIZES = [
-      { id:'s1', icon:'🚀', fr:'Startup / TPE',    sub_fr:'1–10 employés',      en:'Startup / Micro', sub_en:'1–10 employees' },
-      { id:'s2', icon:'🏢', fr:'PME',              sub_fr:'11–200 employés',     en:'SME',             sub_en:'11–200 employees' },
-      { id:'s3', icon:'🏗️', fr:'ETI',              sub_fr:'201–1 000 employés',  en:'Mid-market',      sub_en:'201–1,000 employees' },
-      { id:'s4', icon:'🌐', fr:'Grande entreprise', sub_fr:'1 000+ employés',    en:'Enterprise',      sub_en:'1,000+ employees' },
-    ];
+    function updateSizeOptions(lang) {
+      const sel = document.getElementById('companySize');
+      sel.querySelectorAll('option[data-fr]').forEach(opt => {
+        opt.textContent = lang === 'en' ? opt.dataset.en : opt.dataset.fr;
+      });
+      const ph = sel.querySelector('option[value=""]');
+      if (ph) ph.textContent = lang === 'en' ? 'Select…' : 'Sélectionner…';
+    }
+
+    function getSizeLabel(lang) {
+      const sel = document.getElementById('companySize');
+      if (!sel.value) return '—';
+      const opt = sel.options[sel.selectedIndex];
+      return lang === 'en' ? opt.dataset.en : opt.dataset.fr;
+    }
 
     const BUDGETS_FR = ['Moins de 500 USD/mois','500 – 2 000 USD/mois','2 000 – 5 000 USD/mois','5 000 – 15 000 USD/mois','Plus de 15 000 USD/mois','Non défini / À estimer'];
     const BUDGETS_EN = ['Less than $500/month','$500 – $2,000/month','$2,000 – $5,000/month','$5,000 – $15,000/month','More than $15,000/month','Undefined / To be estimated'];
     const TIMELINES_FR = ['Immédiat (0 – 1 mois)','Court terme (1 – 3 mois)','Moyen terme (3 – 6 mois)','Long terme (6 – 12 mois)','Exploratoire / Sans échéance'];
     const TIMELINES_EN = ['Immediate (0 – 1 month)','Short-term (1 – 3 months)','Mid-term (3 – 6 months)','Long-term (6 – 12 months)','Exploratory / No Timeline'];
 
-    let selectedServices  = new Set();
-    let selectedBudget    = '';
-    let selectedTimeline  = '';
-    let selectedIndustry  = '';
-    let selectedSize      = '';
+    let selectedServices = new Set();
+    let selectedBudget   = '';
+    let selectedTimeline = '';
 
     // ── Build service cards ──
     const prodGrid = document.getElementById('prod-grid');
@@ -546,23 +544,6 @@
       prodGrid.appendChild(c);
     });
 
-
-    // ── Build size grid ──
-    function buildSizeGrid(lang) {
-      const g = document.getElementById('size-grid');
-      g.innerHTML = '';
-      SIZES.forEach(sz => {
-        const c = document.createElement('div');
-        c.className = 'size-card' + (selectedSize === sz.id ? ' active' : '');
-        c.innerHTML = `<span class="sz-dot">●</span><span class="sz-icon">${sz.icon}</span><div><div class="sz-name">${lang==='en' ? sz.en : sz.fr}</div><div class="sz-sub">${lang==='en' ? sz.sub_en : sz.sub_fr}</div></div>`;
-        c.onclick = () => {
-          document.querySelectorAll('.size-card').forEach(x => x.classList.remove('active'));
-          c.classList.add('active');
-          selectedSize = sz.id;
-        };
-        g.appendChild(c);
-      });
-    }
 
     // ── Build budget grid ──
     function buildBudgetGrid(items) {
@@ -630,8 +611,7 @@
       const get = id => (document.getElementById(id)?.value || '').trim();
       const isEN = lang === 'en';
       const industry = getIndustryLabel(lang);
-      const szObj = SIZES.find(s => s.id === selectedSize);
-      const companySize = szObj ? (isEN ? `${szObj.en} (${szObj.sub_en})` : `${szObj.fr} (${szObj.sub_fr})`) : '—';
+      const companySize = getSizeLabel(lang);
       const today = new Date().toLocaleDateString(isEN ? 'en-GB' : 'fr-FR', {day:'2-digit',month:'long',year:'numeric'});
       const interests = SERVICES.filter(s => selectedServices.has(s.id)).map(s => s.name).join(', ') || '—';
 
@@ -719,15 +699,16 @@
     function resetForm() {
       document.querySelectorAll('input, textarea').forEach(el => el.value = '');
       document.getElementById('other-fld').style.display = 'none';
-      selectedServices.clear(); selectedBudget=''; selectedTimeline=''; selectedSize='';
-      document.getElementById('industry').value = '';
-      document.querySelectorAll('.prod-card,.list-card,.size-card').forEach(c => c.classList.remove('active'));
+      selectedServices.clear(); selectedBudget=''; selectedTimeline='';
+      document.getElementById('industry').value    = '';
+      document.getElementById('companySize').value = '';
+      document.querySelectorAll('.prod-card,.list-card').forEach(c => c.classList.remove('active'));
       document.querySelectorAll('.invalid').forEach(c => c.classList.remove('invalid'));
       document.querySelectorAll('.err-msg').forEach(e => e.style.display='none');
       document.getElementById('err-banner').style.display='none';
       document.getElementById('form-view').style.display='block';
       document.getElementById('success').style.display='none';
-      buildSizeGrid(currentLang);
+      updateSizeOptions(currentLang);
     }
 
     // ── Mobile menu ──
@@ -807,7 +788,7 @@
       buildBudgetGrid(currentLang === 'en' ? BUDGETS_EN : BUDGETS_FR);
       buildTimelineGrid(currentLang === 'en' ? TIMELINES_EN : TIMELINES_FR);
       updateIndustryOptions(currentLang);
-      buildSizeGrid(currentLang);
+      updateSizeOptions(currentLang);
     }
 
     document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => {
