@@ -129,25 +129,20 @@
       /* ── HINT ── */
       .hint { font-size: 13px; color: #64748B; margin-bottom: 12px; line-height: 1.5; }
 
-      /* ── INDUSTRY CARDS ── */
-      .ind-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(138px,1fr));
-        gap: 8px;
+      /* ── INDUSTRY SELECT ── */
+      select {
+        width: 100%; background: #070D1C; border: 1px solid #1A2E4A;
+        border-radius: 6px; color: #E2E8F0; font-size: 13px;
+        padding: 10px 36px 10px 12px; outline: none; font-family: inherit;
+        appearance: none; -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat; background-position: right 12px center;
+        cursor: pointer; transition: border-color .15s;
       }
-      .ind-grid.invalid-grid { outline: 1px solid #F87171; border-radius: 6px; }
-      .ind-card {
-        position: relative; display: flex; align-items: center; gap: 8px;
-        padding: 10px 11px;
-        background: #070D1C; border: 1px solid #1A2E4A;
-        border-radius: 7px; cursor: pointer; user-select: none; transition: all .15s;
-      }
-      .ind-card:hover  { border-color: #2D4E7A; }
-      .ind-card.active { background: #0D1F40; border-color: #F47B28; }
-      .ind-card .i-tick { position: absolute; top: 7px; right: 8px; font-size: 10px; color: #F47B28; font-weight: 700; display: none; }
-      .ind-card.active .i-tick { display: block; }
-      .ind-card .i-icon { font-size: 15px; flex-shrink: 0; }
-      .ind-card .i-name { font-size: 11px; font-weight: 600; color: #E2E8F0; line-height: 1.3; }
+      select:focus { border-color: #F47B28; }
+      select.invalid { border-color: #F87171; }
+      select option { background: #0C1628; color: #E2E8F0; }
+      select option[value=""] { color: #64748B; }
 
       /* ── SIZE CARDS ── */
       .size-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -303,7 +298,20 @@
             </div>
             <div class="fld">
               <label><span data-i18n="f.industry">Secteur d'activité</span> <span class="req">*</span></label>
-              <div id="industry-grid" class="ind-grid"></div>
+              <select id="industry" onchange="onIndustryChange()">
+                <option value="" data-i18n="f.industry.ph">Sélectionner…</option>
+                <option value="bank"      data-fr="Banque & Finance"              data-en="Banking &amp; Finance"></option>
+                <option value="edu"       data-fr="Éducation"                     data-en="Education"></option>
+                <option value="gov"       data-fr="Administration / Gouvernement" data-en="Government / Public Sector"></option>
+                <option value="health"    data-fr="Santé"                         data-en="Healthcare"></option>
+                <option value="mfg"       data-fr="Industrie / Manufacturing"     data-en="Manufacturing"></option>
+                <option value="energy"    data-fr="Pétrole & Gaz / Énergie"       data-en="Oil &amp; Gas / Energy"></option>
+                <option value="retail"    data-fr="Commerce & E-commerce"         data-en="Retail &amp; E-commerce"></option>
+                <option value="telco"     data-fr="Télécommunications"            data-en="Telecommunications"></option>
+                <option value="transport" data-fr="Transport & Logistique"        data-en="Transportation &amp; Logistics"></option>
+                <option value="agri"      data-fr="Agriculture & Agroalimentaire" data-en="Agriculture &amp; Agri-food"></option>
+                <option value="other"     data-fr="Autre"                         data-en="Other"></option>
+              </select>
               <div class="err-msg" id="err-industry" data-i18n="err.select">Veuillez choisir un secteur.</div>
             </div>
             <div class="fld" id="other-fld" style="display:none">
@@ -481,19 +489,30 @@
       { id:'enterprise',icon:'🏢',  name:'Offre Entreprise',       sub:'Solution sur mesure' },
     ];
 
-    const INDUSTRIES = [
-      { id:'bank',      icon:'🏦', fr:'Banque & Finance',              en:'Banking & Finance' },
-      { id:'edu',       icon:'🎓', fr:'Éducation',                     en:'Education' },
-      { id:'gov',       icon:'🏛️', fr:'Administration / Gouvernement',  en:'Government / Public Sector' },
-      { id:'health',    icon:'🏥', fr:'Santé',                         en:'Healthcare' },
-      { id:'mfg',       icon:'🏭', fr:'Industrie / Manufacturing',     en:'Manufacturing' },
-      { id:'energy',    icon:'⛽', fr:'Pétrole & Gaz / Énergie',       en:'Oil & Gas / Energy' },
-      { id:'retail',    icon:'🛒', fr:'Commerce & E-commerce',         en:'Retail & E-commerce' },
-      { id:'telco',     icon:'📡', fr:'Télécommunications',            en:'Telecommunications' },
-      { id:'transport', icon:'🚚', fr:'Transport & Logistique',        en:'Transportation & Logistics' },
-      { id:'agri',      icon:'🌾', fr:'Agriculture & Agroalimentaire', en:'Agriculture & Agri-food' },
-      { id:'other',     icon:'✏️', fr:'Autre',                         en:'Other' },
-    ];
+    // ── Industry select helpers ──
+    function onIndustryChange() {
+      const sel = document.getElementById('industry');
+      document.getElementById('other-fld').style.display = sel.value === 'other' ? 'block' : 'none';
+      sel.classList.remove('invalid');
+      document.getElementById('err-industry').style.display = 'none';
+    }
+
+    function updateIndustryOptions(lang) {
+      const sel = document.getElementById('industry');
+      sel.querySelectorAll('option[data-fr]').forEach(opt => {
+        opt.textContent = lang === 'en' ? opt.dataset.en : opt.dataset.fr;
+      });
+      const ph = sel.querySelector('option[value=""]');
+      if (ph) ph.textContent = lang === 'en' ? 'Select…' : 'Sélectionner…';
+    }
+
+    function getIndustryLabel(lang) {
+      const sel = document.getElementById('industry');
+      const opt = sel.options[sel.selectedIndex];
+      if (!sel.value) return '—';
+      if (sel.value === 'other') return (document.getElementById('customIndustry')?.value || '').trim() || (lang === 'en' ? 'Other' : 'Autre');
+      return lang === 'en' ? opt.dataset.en : opt.dataset.fr;
+    }
 
     const SIZES = [
       { id:'s1', icon:'🚀', fr:'Startup / TPE',    sub_fr:'1–10 employés',      en:'Startup / Micro', sub_en:'1–10 employees' },
@@ -527,25 +546,6 @@
       prodGrid.appendChild(c);
     });
 
-    // ── Build industry grid ──
-    function buildIndustryGrid(lang) {
-      const g = document.getElementById('industry-grid');
-      g.innerHTML = '';
-      INDUSTRIES.forEach(ind => {
-        const c = document.createElement('div');
-        c.className = 'ind-card' + (selectedIndustry === ind.id ? ' active' : '');
-        c.innerHTML = `<span class="i-tick">✓</span><span class="i-icon">${ind.icon}</span><span class="i-name">${lang==='en' ? ind.en : ind.fr}</span>`;
-        c.onclick = () => {
-          document.querySelectorAll('.ind-card').forEach(x => x.classList.remove('active'));
-          c.classList.add('active');
-          selectedIndustry = ind.id;
-          document.getElementById('err-industry').style.display = 'none';
-          document.getElementById('industry-grid').classList.remove('invalid-grid');
-          document.getElementById('other-fld').style.display = ind.id === 'other' ? 'block' : 'none';
-        };
-        g.appendChild(c);
-      });
-    }
 
     // ── Build size grid ──
     function buildSizeGrid(lang) {
@@ -613,12 +613,13 @@
           if (err) err.style.display = 'none';
         }
       });
-      if (!selectedIndustry) {
-        document.getElementById('industry-grid').classList.add('invalid-grid');
+      const indSel = document.getElementById('industry');
+      if (!indSel.value) {
+        indSel.classList.add('invalid');
         document.getElementById('err-industry').style.display = 'block';
         ok = false;
       } else {
-        document.getElementById('industry-grid').classList.remove('invalid-grid');
+        indSel.classList.remove('invalid');
         document.getElementById('err-industry').style.display = 'none';
       }
       return ok;
@@ -628,10 +629,7 @@
     function buildWorkbook(lang) {
       const get = id => (document.getElementById(id)?.value || '').trim();
       const isEN = lang === 'en';
-      const indObj = INDUSTRIES.find(i => i.id === selectedIndustry);
-      const industry = selectedIndustry === 'other'
-        ? (get('customIndustry') || (isEN ? 'Other' : 'Autre'))
-        : (indObj ? (isEN ? indObj.en : indObj.fr) : '—');
+      const industry = getIndustryLabel(lang);
       const szObj = SIZES.find(s => s.id === selectedSize);
       const companySize = szObj ? (isEN ? `${szObj.en} (${szObj.sub_en})` : `${szObj.fr} (${szObj.sub_fr})`) : '—';
       const today = new Date().toLocaleDateString(isEN ? 'en-GB' : 'fr-FR', {day:'2-digit',month:'long',year:'numeric'});
@@ -695,8 +693,7 @@
       link.href     = 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,' + b64;
       link.download = fname;
 
-      const indObj   = INDUSTRIES.find(i => i.id === selectedIndustry);
-      const industry = selectedIndustry === 'other' ? get('customIndustry') : (indObj ? (currentLang==='en' ? indObj.en : indObj.fr) : '—');
+      const industry = getIndustryLabel(currentLang);
       const interests = SERVICES.filter(s => selectedServices.has(s.id)).map(s => s.name).join(', ') || '—';
 
       const rows = [
@@ -722,14 +719,14 @@
     function resetForm() {
       document.querySelectorAll('input, textarea').forEach(el => el.value = '');
       document.getElementById('other-fld').style.display = 'none';
-      selectedServices.clear(); selectedBudget=''; selectedTimeline=''; selectedIndustry=''; selectedSize='';
-      document.querySelectorAll('.prod-card,.list-card,.ind-card,.size-card').forEach(c => c.classList.remove('active'));
+      selectedServices.clear(); selectedBudget=''; selectedTimeline=''; selectedSize='';
+      document.getElementById('industry').value = '';
+      document.querySelectorAll('.prod-card,.list-card,.size-card').forEach(c => c.classList.remove('active'));
       document.querySelectorAll('.invalid').forEach(c => c.classList.remove('invalid'));
       document.querySelectorAll('.err-msg').forEach(e => e.style.display='none');
       document.getElementById('err-banner').style.display='none';
       document.getElementById('form-view').style.display='block';
       document.getElementById('success').style.display='none';
-      buildIndustryGrid(currentLang);
       buildSizeGrid(currentLang);
     }
 
@@ -809,7 +806,7 @@
       document.querySelectorAll('.lang-btn').forEach(b => b.textContent = currentLang === 'fr' ? 'EN' : 'FR');
       buildBudgetGrid(currentLang === 'en' ? BUDGETS_EN : BUDGETS_FR);
       buildTimelineGrid(currentLang === 'en' ? TIMELINES_EN : TIMELINES_FR);
-      buildIndustryGrid(currentLang);
+      updateIndustryOptions(currentLang);
       buildSizeGrid(currentLang);
     }
 
