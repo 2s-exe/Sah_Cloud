@@ -284,6 +284,92 @@
         color: #e2e8f0;
       }
 
+      /* Industry cards */
+      .ind-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+        gap: 8px;
+      }
+      .ind-grid.invalid-grid {
+        outline: 1px solid #f87171;
+        border-radius: 8px;
+      }
+      .ind-card {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 10px 12px;
+        background: #0a1628;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.2s;
+      }
+      .ind-card:hover {
+        border-color: rgba(244, 123, 40, 0.4);
+      }
+      .ind-card.active {
+        background: #1a2e4a;
+        border-color: #f47b28;
+      }
+      .ind-card .ind-icon {
+        font-size: 16px;
+        flex-shrink: 0;
+      }
+      .ind-card .ind-name {
+        font-size: 12px;
+        font-weight: 600;
+        color: #e2e8f0;
+        line-height: 1.3;
+      }
+
+      /* Size cards */
+      .size-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      @media (max-width: 540px) {
+        .size-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .size-card {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 14px;
+        background: #0a1628;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.2s;
+      }
+      .size-card:hover {
+        border-color: rgba(244, 123, 40, 0.4);
+      }
+      .size-card.active {
+        background: #1a2e4a;
+        border-color: #f47b28;
+      }
+      .size-card .size-icon {
+        font-size: 20px;
+        flex-shrink: 0;
+      }
+      .size-card .size-name {
+        font-size: 12px;
+        font-weight: 700;
+        color: #e2e8f0;
+      }
+      .size-card .size-sub {
+        font-size: 10px;
+        color: #64748b;
+        font-family: monospace;
+        margin-top: 2px;
+      }
+
       /* Success */
       .strip {
         background: #0a1628;
@@ -504,58 +590,23 @@
                 <input id="companyName" type="text" data-i18n-ph="f.company.ph" placeholder="ex : BNI Côte d'Ivoire" />
                 <div class="err-msg" id="err-companyName" data-i18n="err.required">Ce champ est obligatoire.</div>
               </div>
-              <div class="row2">
-                <div class="fld">
-                  <label for="industry"
-                    ><span data-i18n="f.industry">Secteur d'activité</span> <span class="req">*</span></label
-                  >
-                  <select id="industry" onchange="toggleOther()">
-                    <option value="" data-i18n="f.industry.select">Sélectionner…</option>
-                    <option data-i18n="ind.bank">Banque &amp; Finance</option>
-                    <option data-i18n="ind.edu">Éducation</option>
-                    <option data-i18n="ind.gov">Administration / Gouvernement</option>
-                    <option data-i18n="ind.health">Santé</option>
-                    <option data-i18n="ind.mfg">Industrie / Manufacturing</option>
-                    <option data-i18n="ind.energy">Pétrole &amp; Gaz / Énergie</option>
-                    <option data-i18n="ind.retail">Commerce &amp; E-commerce</option>
-                    <option data-i18n="ind.telco">Télécommunications</option>
-                    <option data-i18n="ind.transport">Transport &amp; Logistique</option>
-                    <option data-i18n="ind.agri">Agriculture &amp; Agroalimentaire</option>
-                    <option data-i18n="ind.other">Autre</option>
-                  </select>
-                  <div class="err-msg" id="err-industry" data-i18n="err.select">Veuillez choisir un secteur.</div>
-                </div>
-                <div class="fld">
-                  <label for="country"
-                    ><span data-i18n="f.country">Pays / Région</span> <span class="req">*</span></label
-                  >
-                  <input
-                    id="country"
-                    type="text"
-                    data-i18n-ph="f.country.ph"
-                    placeholder="ex : Côte d'Ivoire — Abidjan"
-                  />
-                  <div class="err-msg" id="err-country" data-i18n="err.required">Ce champ est obligatoire.</div>
-                </div>
+              <div class="fld">
+                <label><span data-i18n="f.industry">Secteur d'activité</span> <span class="req">*</span></label>
+                <div id="industry-grid" class="ind-grid"></div>
+                <div class="err-msg" id="err-industry" data-i18n="err.select">Veuillez choisir un secteur.</div>
               </div>
               <div class="fld" id="other-fld" style="display: none">
                 <label for="customIndustry" data-i18n="f.industry.custom">Précisez votre secteur</label>
-                <input
-                  id="customIndustry"
-                  type="text"
-                  data-i18n-ph="f.industry.custom.ph"
-                  placeholder="Votre secteur…"
-                />
+                <input id="customIndustry" type="text" data-i18n-ph="f.industry.custom.ph" placeholder="Votre secteur…" />
               </div>
               <div class="fld">
-                <label for="companySize" data-i18n="f.size">Taille de l'entreprise</label>
-                <select id="companySize">
-                  <option value="" data-i18n="f.industry.select">Sélectionner…</option>
-                  <option data-i18n="size.s1">Startup / TPE (1–10 employés)</option>
-                  <option data-i18n="size.s2">PME (11–200 employés)</option>
-                  <option data-i18n="size.s3">ETI (201–1 000 employés)</option>
-                  <option data-i18n="size.s4">Grande entreprise (1 000+ employés)</option>
-                </select>
+                <label for="country"><span data-i18n="f.country">Pays / Région</span> <span class="req">*</span></label>
+                <input id="country" type="text" data-i18n-ph="f.country.ph" placeholder="ex : Côte d'Ivoire — Abidjan" />
+                <div class="err-msg" id="err-country" data-i18n="err.required">Ce champ est obligatoire.</div>
+              </div>
+              <div class="fld">
+                <label data-i18n="f.size">Taille de l'entreprise</label>
+                <div id="size-grid" class="size-grid"></div>
               </div>
             </div>
           </div>
@@ -871,9 +922,69 @@
         "Exploratory / No Timeline",
       ];
 
+      const INDUSTRIES = [
+        { id: "bank",      icon: "🏦", fr: "Banque & Finance",              en: "Banking & Finance" },
+        { id: "edu",       icon: "🎓", fr: "Éducation",                     en: "Education" },
+        { id: "gov",       icon: "🏛️", fr: "Administration / Gouvernement",  en: "Government / Public Sector" },
+        { id: "health",    icon: "🏥", fr: "Santé",                         en: "Healthcare" },
+        { id: "mfg",       icon: "🏭", fr: "Industrie / Manufacturing",     en: "Manufacturing" },
+        { id: "energy",    icon: "⛽", fr: "Pétrole & Gaz / Énergie",       en: "Oil & Gas / Energy" },
+        { id: "retail",    icon: "🛒", fr: "Commerce & E-commerce",         en: "Retail & E-commerce" },
+        { id: "telco",     icon: "📡", fr: "Télécommunications",            en: "Telecommunications" },
+        { id: "transport", icon: "🚚", fr: "Transport & Logistique",        en: "Transportation & Logistics" },
+        { id: "agri",      icon: "🌾", fr: "Agriculture & Agroalimentaire", en: "Agriculture & Agri-food" },
+        { id: "other",     icon: "✏️", fr: "Autre",                         en: "Other" },
+      ];
+
+      const SIZES = [
+        { id: "s1", icon: "🚀", fr: "Startup / TPE",    sub_fr: "1–10 employés",      en: "Startup / Micro", sub_en: "1–10 employees" },
+        { id: "s2", icon: "🏢", fr: "PME",              sub_fr: "11–200 employés",     en: "SME",             sub_en: "11–200 employees" },
+        { id: "s3", icon: "🏗️", fr: "ETI",              sub_fr: "201–1 000 employés",  en: "Mid-market",      sub_en: "201–1,000 employees" },
+        { id: "s4", icon: "🌐", fr: "Grande entreprise", sub_fr: "1 000+ employés",    en: "Enterprise",      sub_en: "1,000+ employees" },
+      ];
+
       let selectedServices = new Set();
-      let selectedBudget = "";
+      let selectedBudget   = "";
       let selectedTimeline = "";
+      let selectedIndustry = "";
+      let selectedSize     = "";
+
+      // ===================== BUILD INDUSTRY GRID =====================
+      function buildIndustryGrid(lang) {
+        const g = document.getElementById("industry-grid");
+        g.innerHTML = "";
+        INDUSTRIES.forEach((ind) => {
+          const card = document.createElement("div");
+          card.className = "ind-card" + (selectedIndustry === ind.id ? " active" : "");
+          card.innerHTML = `<span class="ind-icon">${ind.icon}</span><span class="ind-name">${lang === "en" ? ind.en : ind.fr}</span>`;
+          card.onclick = () => {
+            document.querySelectorAll(".ind-card").forEach((c) => c.classList.remove("active"));
+            card.classList.add("active");
+            selectedIndustry = ind.id;
+            document.getElementById("err-industry").style.display = "none";
+            document.getElementById("industry-grid").classList.remove("invalid-grid");
+            document.getElementById("other-fld").style.display = ind.id === "other" ? "block" : "none";
+          };
+          g.appendChild(card);
+        });
+      }
+
+      // ===================== BUILD SIZE GRID =====================
+      function buildSizeGrid(lang) {
+        const g = document.getElementById("size-grid");
+        g.innerHTML = "";
+        SIZES.forEach((sz) => {
+          const card = document.createElement("div");
+          card.className = "size-card" + (selectedSize === sz.id ? " active" : "");
+          card.innerHTML = `<span class="size-icon">${sz.icon}</span><div><div class="size-name">${lang === "en" ? sz.en : sz.fr}</div><div class="size-sub">${lang === "en" ? sz.sub_en : sz.sub_fr}</div></div>`;
+          card.onclick = () => {
+            document.querySelectorAll(".size-card").forEach((c) => c.classList.remove("active"));
+            card.classList.add("active");
+            selectedSize = sz.id;
+          };
+          g.appendChild(card);
+        });
+      }
 
       // ===================== BUILD PRODUCT GRID =====================
       const grid = document.getElementById("prod-grid");
@@ -928,17 +1039,11 @@
         });
       }
 
-      // ===================== TOGGLE OTHER INDUSTRY =====================
-      function toggleOther() {
-        const v = document.getElementById("industry").value;
-        document.getElementById("other-fld").style.display = v === "Autre" || v === "Other" ? "block" : "none";
-      }
-
       // ===================== VALIDATION =====================
       function validate() {
         let ok = true;
-        ["companyName", "industry", "country", "contactName", "email"].forEach((id) => {
-          const el = document.getElementById(id);
+        ["companyName", "country", "contactName", "email"].forEach((id) => {
+          const el  = document.getElementById(id);
           const err = document.getElementById("err-" + id);
           if (!el || !el.value.trim()) {
             if (el) el.classList.add("invalid");
@@ -949,6 +1054,14 @@
             if (err) err.style.display = "none";
           }
         });
+        if (!selectedIndustry) {
+          document.getElementById("industry-grid").classList.add("invalid-grid");
+          document.getElementById("err-industry").style.display = "block";
+          ok = false;
+        } else {
+          document.getElementById("industry-grid").classList.remove("invalid-grid");
+          document.getElementById("err-industry").style.display = "none";
+        }
         return ok;
       }
 
@@ -956,10 +1069,15 @@
       function buildWorkbook(lang) {
         const get = (id) => (document.getElementById(id)?.value || "").trim();
         const isEN = lang === "en";
+        const indObj = INDUSTRIES.find((i) => i.id === selectedIndustry);
         const industry =
-          get("industry") === "Autre" || get("industry") === "Other"
-            ? get("customIndustry") || get("industry")
-            : get("industry");
+          selectedIndustry === "other"
+            ? get("customIndustry") || (isEN ? "Other" : "Autre")
+            : indObj ? (isEN ? indObj.en : indObj.fr) : "—";
+        const szObj = SIZES.find((s) => s.id === selectedSize);
+        const companySize = szObj
+          ? (isEN ? `${szObj.en} (${szObj.sub_en})` : `${szObj.fr} (${szObj.sub_fr})`)
+          : "—";
         const today = new Date().toLocaleDateString(isEN ? "en-GB" : "fr-FR", {
           day: "2-digit",
           month: "long",
@@ -1032,7 +1150,7 @@
           [H.companyName, get("companyName") || "—"],
           [H.industry, industry || "—"],
           [H.country, get("country") || "—"],
-          [H.size, get("companySize") || "—"],
+          [H.size, companySize],
           ["", ""],
           [H.contact, ""],
           [H.name, get("contactName") || "—"],
@@ -1089,10 +1207,11 @@
         link.href = "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64," + b64;
         link.download = fname;
 
+        const _indObj = INDUSTRIES.find((i) => i.id === selectedIndustry);
         const industry =
-          get("industry") === "Autre" || get("industry") === "Other"
-            ? get("customIndustry") || get("industry")
-            : get("industry");
+          selectedIndustry === "other"
+            ? get("customIndustry") || (currentLang === "en" ? "Other" : "Autre")
+            : _indObj ? (currentLang === "en" ? _indObj.en : _indObj.fr) : "—";
         const interests =
           SERVICES.filter((s) => selectedServices.has(s.id))
             .map((s) => s.name)
@@ -1126,14 +1245,16 @@
       // ===================== RESET =====================
       function resetForm() {
         document.querySelectorAll("input, textarea").forEach((el) => (el.value = ""));
-        document.getElementById("industry").value = "";
-        document.getElementById("companySize").value = "";
         document.getElementById("other-fld").style.display = "none";
         selectedServices.clear();
-        selectedBudget = "";
+        selectedBudget   = "";
         selectedTimeline = "";
+        selectedIndustry = "";
+        selectedSize     = "";
         document.querySelectorAll(".prod-card").forEach((c) => c.classList.remove("active"));
         document.querySelectorAll(".budget-card, .tl-card").forEach((c) => c.classList.remove("active"));
+        buildIndustryGrid(currentLang);
+        buildSizeGrid(currentLang);
         document.querySelectorAll(".invalid").forEach((c) => c.classList.remove("invalid"));
         document.querySelectorAll(".err-msg").forEach((e) => (e.style.display = "none"));
         document.getElementById("err-banner").classList.add("hidden");
@@ -1306,22 +1427,12 @@
         document.querySelectorAll(".lang-btn").forEach((b) => (b.textContent = currentLang === "fr" ? "EN" : "FR"));
 
         // Rebuild dynamic lists in current language
-        const budgets = currentLang === "en" ? BUDGETS_EN : BUDGETS_FR;
+        const budgets   = currentLang === "en" ? BUDGETS_EN   : BUDGETS_FR;
         const timelines = currentLang === "en" ? TIMELINES_EN : TIMELINES_FR;
         buildBudgetGrid(budgets);
         buildTimelineGrid(timelines);
-
-        // Re-apply select option texts
-        const industrySelect = document.getElementById("industry");
-        const sizeSelect = document.getElementById("companySize");
-        industrySelect.querySelectorAll("option[data-i18n]").forEach((opt) => {
-          const k = opt.getAttribute("data-i18n");
-          if (t[k]) opt.textContent = t[k];
-        });
-        sizeSelect.querySelectorAll("option[data-i18n]").forEach((opt) => {
-          const k = opt.getAttribute("data-i18n");
-          if (t[k]) opt.textContent = t[k];
-        });
+        buildIndustryGrid(currentLang);
+        buildSizeGrid(currentLang);
       }
 
       document.querySelectorAll(".lang-btn").forEach((b) =>
