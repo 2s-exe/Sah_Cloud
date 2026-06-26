@@ -473,17 +473,17 @@
     <script>
     // ===================== DATA =====================
     const SERVICES = [
-      { id:'ngaf',   bi:'bi-shield-fill',    color:'#4B96FF', name:'Next-Gen Firewall',       sub:'NGAF' },
-      { id:'hci',    bi:'bi-display',        color:'#4BC4FF', name:'HCI / VDI',               sub:'Hyper-Converged' },
-      { id:'edr',    bi:'bi-laptop',         color:'#9B7AFF', name:'Endpoint Secure',         sub:'EDR' },
-      { id:'backup', bi:'bi-save2',          color:'#B47AFF', name:'Backup & Recovery',       sub:'Data Protection' },
-      { id:'xdr',    bi:'bi-broadcast',      color:'#FF6B6B', name:'Cyber Command',           sub:'XDR / NDR' },
-      { id:'vpn',    bi:'bi-lock-fill',      color:'#F47B28', name:'SSL VPN',                 sub:'Remote Access' },
-      { id:'sdwan',  bi:'bi-globe',          color:'#4CAF9B', name:'SD-WAN / SASE',           sub:'Network Edge' },
-      { id:'iag',    bi:'bi-link-45deg',     color:'#7AB4FF', name:'Internet Access Gateway', sub:'IAG' },
-      { id:'waf',    bi:'bi-cloud-check',    color:'#4B96FF', name:'Cloud Security / WAF',    sub:'Web App Firewall' },
-      { id:'soc',    bi:'bi-bullseye',       color:'#FF6B6B', name:'Security Operations',     sub:'SOC' },
-      { id:'ztna',   bi:'bi-person-lock',    color:'#F47B28', name:'Zero Trust',              sub:'ZTNA' },
+      { id:'ngaf',   emoji:'🛡️',  name:'Next-Gen Firewall',       sub:'NGAF' },
+      { id:'hci',    emoji:'🖥️',  name:'HCI / VDI',               sub:'Hyper-Converged' },
+      { id:'edr',    emoji:'💻',  name:'Endpoint Secure',         sub:'EDR' },
+      { id:'backup', emoji:'💾',  name:'Backup & Recovery',       sub:'Data Protection' },
+      { id:'xdr',    emoji:'📡',  name:'Cyber Command',           sub:'XDR / NDR' },
+      { id:'vpn',    emoji:'🔐',  name:'SSL VPN',                 sub:'Remote Access' },
+      { id:'sdwan',  emoji:'🌐',  name:'SD-WAN / SASE',           sub:'Network Edge' },
+      { id:'iag',    emoji:'🔗',  name:'Internet Access Gateway', sub:'IAG' },
+      { id:'waf',    emoji:'☁️',  name:'Cloud Security / WAF',    sub:'Web App Firewall' },
+      { id:'soc',    emoji:'🎯',  name:'Security Operations',     sub:'SOC' },
+      { id:'ztna',   emoji:'🔒',  name:'Zero Trust',              sub:'ZTNA' },
     ];
 
     // ── Industry select helpers ──
@@ -542,7 +542,7 @@
       const c = document.createElement('div');
       c.className = 'prod-card';
       c.id = 'svc-' + s.id;
-      c.innerHTML = `<span class="prod-tick">✓</span><i class="bi ${s.bi} prod-icon" style="color:${s.color}"></i><span class="prod-name">${s.name}</span><span class="prod-sub">${s.sub}</span>`;
+      c.innerHTML = `<span class="prod-tick">✓</span><span class="prod-icon">${s.emoji}</span><span class="prod-name">${s.name}</span><span class="prod-sub">${s.sub}</span>`;
       c.onclick = () => {
         if (selectedServices.has(s.id)) { selectedServices.delete(s.id); c.classList.remove('active'); }
         else { selectedServices.add(s.id); c.classList.add('active'); }
