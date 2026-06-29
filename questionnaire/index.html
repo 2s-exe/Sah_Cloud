@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr" id="html-root">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Questionnaire Prospect SAH Cloud — Outil interne pour renseigner les informations d'un prospect et générer un devis Excel en un clic." />
     <title>Questionnaire Prospect — SAH Cloud</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -22,6 +23,26 @@
         color: #E2E8F0;
         padding: 0 0 70px;
       }
+
+      /* ── MEGA MENU (questionnaire) ── */
+      .q-mega-wrap { position:relative; }
+      .q-mega-btn { background:none; border:none; cursor:pointer; font-size:13px; font-weight:500; color:#94A3B8; font-family:inherit; display:flex; align-items:center; gap:5px; transition:color .2s; padding:0; }
+      .q-mega-btn:hover { color:#E2E8F0; }
+      .q-mega-panel { position:absolute; top:calc(100% + 14px); left:0; width:680px; background:#090F1E; border:1px solid #1A2E4A; border-radius:12px; padding:20px; z-index:100; box-shadow:0 20px 60px rgba(0,0,0,.6); display:none; }
+      .q-mega-panel.open { display:block; }
+      .q-mega-cols { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+      .q-col-title { font-size:9px; font-weight:700; color:#475569; text-transform:uppercase; letter-spacing:.1em; font-family:monospace; margin-bottom:10px; }
+      .q-mega-item { display:flex; align-items:flex-start; gap:9px; padding:7px 8px; border-radius:7px; text-decoration:none; transition:background .15s; }
+      .q-mega-item:hover { background:rgba(255,255,255,.04); }
+      .q-m-icon { font-size:15px; flex-shrink:0; margin-top:2px; }
+      .q-m-name { display:block; font-size:12px; font-weight:600; color:#CBD5E1; line-height:1.3; transition:color .15s; }
+      .q-mega-item:hover .q-m-name { color:#fff; }
+      .q-m-sub  { display:block; font-size:10px; color:#475569; margin-top:1px; }
+      .q-mob-mega-btn { display:flex; align-items:center; justify-content:space-between; width:100%; background:none; border:none; cursor:pointer; font-size:13px; color:#94A3B8; font-family:inherit; padding:10px 12px; border-radius:6px; transition:all .2s; }
+      .q-mob-mega-btn:hover { background:#0C1628; color:#E2E8F0; }
+      .q-mob-mega-panel { display:none; border-left:2px solid rgba(244,123,40,.3); margin:4px 0 4px 14px; padding-left:8px; }
+      .q-mob-mega-panel.open { display:block; }
+      .q-mob-sec { font-size:9px; font-weight:700; color:#475569; text-transform:uppercase; letter-spacing:.08em; font-family:monospace; padding:10px 8px 4px; display:block; }
 
       /* ── NAVBAR ── */
       .navbar {
@@ -234,14 +255,41 @@
 
     <!-- NAVBAR -->
     <nav class="navbar">
-      <a class="nav-logo" href="../index.html"><img src="../img/logo.png" alt="SAH Cloud" /></a>
+      <a class="nav-logo" href="../index.html"><img src="../img/logo.png" alt="SAH Cloud" loading="lazy" /></a>
       <div class="nav-links">
-        <a href="../services/index.html"  data-i18n="nav.services">Services</a>
-        <a href="../solutions/index.html" data-i18n="nav.solutions">Solutions Cloud</a>
-        <a href="../managed/index.html"   data-i18n="nav.managed">Services Gérés</a>
-        <a href="../features/index.html"  data-i18n="nav.features">Fonctionnalités</a>
-        <a href="../about/index.html"     data-i18n="nav.about">À propos</a>
-        <a href="../contact/index.html"   data-i18n="nav.contact">Contact</a>
+        <!-- ─ MEGA MENU ─ -->
+        <div class="q-mega-wrap">
+          <button id="mega-btn" class="q-mega-btn" data-i18n="nav.mega">Cloud &amp; Infrastructure <svg id="mega-chevron" style="width:13px;height:13px;transition:transform .2s;flex-shrink:0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></button>
+          <div id="mega-panel" class="q-mega-panel">
+            <div class="q-mega-cols">
+              <div style="border-right:1px solid #1A2E4A;padding-right:14px">
+                <p class="q-col-title" data-i18n="mega.col1">Produits</p>
+                <a href="../services/index.html"  class="q-mega-item"><span class="q-m-icon">🖥️</span><span><span class="q-m-name" data-i18n="mega.hci">SaH Cloud HCI</span><span class="q-m-sub" data-i18n="mega.hci.sub">Infrastructure Hyper-Convergée</span></span></a>
+                <a href="../solutions/index.html" class="q-mega-item"><span class="q-m-icon">☁️</span><span><span class="q-m-name" data-i18n="mega.scp">SaH Cloud Platform</span><span class="q-m-sub" data-i18n="mega.scp.sub">Gestion Cloud Fullstack (SCP)</span></span></a>
+                <a href="../solutions/index.html" class="q-mega-item"><span class="q-m-icon">🐳</span><span><span class="q-m-name" data-i18n="mega.ske">Kubernetes Engine SKE</span><span class="q-m-sub" data-i18n="mega.ske.sub">Conteneurs &amp; VM Unifiés</span></span></a>
+                <a href="../solutions/index.html" class="q-mega-item"><span class="q-m-icon">🗄️</span><span><span class="q-m-name" data-i18n="mega.dmp">Cloud DMP</span><span class="q-m-sub" data-i18n="mega.dmp.sub">Gestion de Bases de Données</span></span></a>
+                <a href="../solutions/index.html" class="q-mega-item"><span class="q-m-icon">💾</span><span><span class="q-m-name" data-i18n="mega.astor">Cloud aStor</span><span class="q-m-sub" data-i18n="mega.astor.sub">Stockage Distribué d'Entreprise</span></span></a>
+                <a href="../solutions/index.html" class="q-mega-item"><span class="q-m-icon">🖱️</span><span><span class="q-m-name" data-i18n="mega.adesk">Cloud aDesk VDI</span><span class="q-m-sub" data-i18n="mega.adesk.sub">Postes de Travail Virtuels</span></span></a>
+              </div>
+              <div style="border-right:1px solid #1A2E4A;padding-right:14px">
+                <p class="q-col-title" data-i18n="mega.col2">Solutions</p>
+                <a href="../solutions/index.html" class="q-mega-item"><span class="q-m-icon">🔄</span><span><span class="q-m-name" data-i18n="mega.vmware">Remplacement VMware</span><span class="q-m-sub" data-i18n="mega.vmware.sub">Migration simple et sécurisée</span></span></a>
+                <a href="../solutions/index.html" class="q-mega-item"><span class="q-m-icon">🔗</span><span><span class="q-m-name" data-i18n="mega.hybride">Cloud Hybride</span><span class="q-m-sub" data-i18n="mega.hybride.sub">Cloud Privé &amp; Public Unifié</span></span></a>
+                <a href="../managed/index.html"   class="q-mega-item"><span class="q-m-icon">🛡️</span><span><span class="q-m-name" data-i18n="mega.dr">Reprise après Sinistre</span><span class="q-m-sub" data-i18n="mega.dr.sub">DRM — Continuité d'activité</span></span></a>
+                <a href="../features/index.html"  class="q-mega-item"><span class="q-m-icon">⚡</span><span><span class="q-m-name" data-i18n="mega.apps">Applications Critiques</span><span class="q-m-sub" data-i18n="mega.apps.sub">Haute performance &amp; disponibilité</span></span></a>
+                <a href="../solutions/index.html" class="q-mega-item"><span class="q-m-icon">🏗️</span><span><span class="q-m-name" data-i18n="mega.transfo">Transformation Cloud</span><span class="q-m-sub" data-i18n="mega.transfo.sub">Modernisation des Data Centers</span></span></a>
+              </div>
+              <div>
+                <p class="q-col-title" data-i18n="mega.col3">Services</p>
+                <a href="../managed/index.html"       class="q-mega-item"><span class="q-m-icon">⚙️</span><span><span class="q-m-name" data-i18n="mega.managed">Services Gérés</span><span class="q-m-sub" data-i18n="mega.managed.sub">Infogérance Cloud complète</span></span></a>
+                <a href="../contact/index.html"       class="q-mega-item"><span class="q-m-icon">🛟</span><span><span class="q-m-name" data-i18n="mega.support">Support Cloud</span><span class="q-m-sub" data-i18n="mega.support.sub">Assistance technique dédiée</span></span></a>
+                <a href="index.html"                  class="q-mega-item"><span class="q-m-icon">📋</span><span><span class="q-m-name" data-i18n="mega.questionnaire">Questionnaire Prospect</span><span class="q-m-sub" data-i18n="mega.questionnaire.sub">Outil commercial interne</span></span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="../about/index.html"   data-i18n="nav.about">À propos</a>
+        <a href="../contact/index.html" data-i18n="nav.contact">Contact</a>
       </div>
       <div class="nav-right">
         <a href="../pricing/index.html" class="nav-pricing" data-i18n="nav.pricing">Tarifs</a>
@@ -254,10 +302,26 @@
 
     <!-- MOBILE MENU -->
     <div class="mobile-menu" id="mobile-menu">
-      <a href="../services/index.html"  data-i18n="nav.services">Services</a>
-      <a href="../solutions/index.html" data-i18n="nav.solutions">Solutions Cloud</a>
-      <a href="../managed/index.html"   data-i18n="nav.managed">Services Gérés</a>
-      <a href="../features/index.html"  data-i18n="nav.features">Fonctionnalités</a>
+      <button id="mob-mega-btn" class="q-mob-mega-btn" data-i18n="nav.mega">Cloud &amp; Infrastructure <svg id="mob-mega-chevron" style="width:14px;height:14px;transition:transform .2s;flex-shrink:0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></button>
+      <div id="mob-mega-panel" class="q-mob-mega-panel">
+        <span class="q-mob-sec" data-i18n="mega.col1">Produits</span>
+        <a href="../services/index.html"    data-i18n="mega.hci">SaH Cloud HCI</a>
+        <a href="../solutions/index.html"   data-i18n="mega.scp">SaH Cloud Platform</a>
+        <a href="../solutions/index.html"   data-i18n="mega.ske">Kubernetes Engine SKE</a>
+        <a href="../solutions/index.html"   data-i18n="mega.dmp">Cloud DMP</a>
+        <a href="../solutions/index.html"   data-i18n="mega.astor">Cloud aStor</a>
+        <a href="../solutions/index.html"   data-i18n="mega.adesk">Cloud aDesk VDI</a>
+        <span class="q-mob-sec" data-i18n="mega.col2">Solutions</span>
+        <a href="../solutions/index.html"   data-i18n="mega.vmware">Remplacement VMware</a>
+        <a href="../solutions/index.html"   data-i18n="mega.hybride">Cloud Hybride</a>
+        <a href="../managed/index.html"     data-i18n="mega.dr">Reprise après Sinistre</a>
+        <a href="../features/index.html"    data-i18n="mega.apps">Applications Critiques</a>
+        <a href="../solutions/index.html"   data-i18n="mega.transfo">Transformation Cloud</a>
+        <span class="q-mob-sec" data-i18n="mega.col3">Services</span>
+        <a href="../managed/index.html"     data-i18n="mega.managed">Services Gérés</a>
+        <a href="../contact/index.html"     data-i18n="mega.support">Support Cloud</a>
+        <a href="index.html"               data-i18n="mega.questionnaire">Questionnaire Prospect</a>
+      </div>
       <a href="../about/index.html"     data-i18n="nav.about">À propos</a>
       <a href="../contact/index.html"   data-i18n="nav.contact">Contact</a>
       <a href="../pricing/index.html"   data-i18n="nav.pricing" class="mob-pricing">Tarifs</a>
@@ -460,7 +524,7 @@
 
       <!-- FOOTER -->
       <div class="page-footer">
-        <a href="../index.html"><img src="../img/logo.png" alt="SAH Cloud" /></a>
+        <a href="../index.html"><img src="../img/logo.png" alt="SAH Cloud" loading="lazy" /></a>
         <span data-i18n="footer.copy">© 2025 SAH Analytics. Tous droits réservés.</span>
         <div class="footer-status">
           <div class="dot-green"></div>
@@ -722,6 +786,18 @@
     document.getElementById('menu-btn').addEventListener('click', () =>
       document.getElementById('mobile-menu').classList.toggle('open'));
 
+    // ── Mega Menu ──
+    (function(){
+      var btn=document.getElementById('mega-btn'),panel=document.getElementById('mega-panel'),chev=document.getElementById('mega-chevron');
+      var mBtn=document.getElementById('mob-mega-btn'),mPanel=document.getElementById('mob-mega-panel'),mChev=document.getElementById('mob-mega-chevron');
+      if(btn&&panel){
+        btn.addEventListener('click',function(e){e.stopPropagation();var o=panel.classList.contains('open');panel.classList.toggle('open');chev.style.transform=o?'':'rotate(180deg)';});
+        document.addEventListener('click',function(){panel.classList.remove('open');chev.style.transform='';});
+        panel.addEventListener('click',function(e){e.stopPropagation();});
+      }
+      if(mBtn&&mPanel){mBtn.addEventListener('click',function(){var o=mPanel.classList.contains('open');mPanel.classList.toggle('open');mChev.style.transform=o?'':'rotate(180deg)';});}
+    })();
+
     // ===================== I18N =====================
     let currentLang = localStorage.getItem('sah-lang') || 'fr';
 
@@ -729,6 +805,22 @@
       fr: {
         'nav.home':'Accueil','nav.services':'Services','nav.solutions':'Solutions Cloud','nav.managed':'Services Gérés',
         'nav.features':'Fonctionnalités','nav.pricing':'Tarifs','nav.about':'À propos','nav.contact':'Contact','nav.questionnaire':'Questionnaire',
+        'nav.mega':'Cloud & Infrastructure',
+        'mega.col1':'Produits','mega.col2':'Solutions','mega.col3':'Services',
+        'mega.hci':'SaH Cloud HCI','mega.hci.sub':'Infrastructure Hyper-Convergée',
+        'mega.scp':'SaH Cloud Platform','mega.scp.sub':'Gestion Cloud Fullstack (SCP)',
+        'mega.ske':'Kubernetes Engine SKE','mega.ske.sub':'Conteneurs & VM Unifiés',
+        'mega.dmp':'Cloud DMP','mega.dmp.sub':'Gestion de Bases de Données',
+        'mega.astor':'Cloud aStor','mega.astor.sub':"Stockage Distribué d'Entreprise",
+        'mega.adesk':'Cloud aDesk VDI','mega.adesk.sub':'Postes de Travail Virtuels',
+        'mega.vmware':'Remplacement VMware','mega.vmware.sub':'Migration simple et sécurisée',
+        'mega.hybride':'Cloud Hybride','mega.hybride.sub':'Cloud Privé & Public Unifié',
+        'mega.dr':'Reprise après Sinistre','mega.dr.sub':"DRM — Continuité d'activité",
+        'mega.apps':'Applications Critiques','mega.apps.sub':'Haute performance & disponibilité',
+        'mega.transfo':'Transformation Cloud','mega.transfo.sub':'Modernisation des Data Centers',
+        'mega.managed':'Services Gérés','mega.managed.sub':'Infogérance Cloud complète',
+        'mega.support':'Support Cloud','mega.support.sub':'Assistance technique dédiée',
+        'mega.questionnaire':'Questionnaire Prospect','mega.questionnaire.sub':'Outil commercial interne',
         'footer.copy':'© 2025 SAH Analytics. Tous droits réservés.','footer.status':'Tous les systèmes opérationnels',
         'hero.badge':'SAH Cloud Partner Tool','hero.title':'Questionnaire Prospect Client',
         'hero.subtitle':'Renseignez les informations de votre prospect. Cliquez sur <strong>Générer Excel</strong> pour télécharger un fichier <strong>.xlsx</strong> prêt à transmettre à votre chargé de compte SAH Cloud.',
@@ -755,6 +847,22 @@
       en: {
         'nav.home':'Home','nav.services':'Services','nav.solutions':'Cloud Solutions','nav.managed':'Managed Services',
         'nav.features':'Features','nav.pricing':'Pricing','nav.about':'About','nav.contact':'Contact','nav.questionnaire':'Questionnaire',
+        'nav.mega':'Cloud & Infrastructure',
+        'mega.col1':'Products','mega.col2':'Solutions','mega.col3':'Services',
+        'mega.hci':'SaH Cloud HCI','mega.hci.sub':'Hyper-Converged Infrastructure',
+        'mega.scp':'SaH Cloud Platform','mega.scp.sub':'Fullstack Cloud Management (SCP)',
+        'mega.ske':'Kubernetes Engine SKE','mega.ske.sub':'Unified Containers & VMs',
+        'mega.dmp':'Cloud DMP','mega.dmp.sub':'Database Management',
+        'mega.astor':'Cloud aStor','mega.astor.sub':'Enterprise Distributed Storage',
+        'mega.adesk':'Cloud aDesk VDI','mega.adesk.sub':'Virtual Desktop Infrastructure',
+        'mega.vmware':'VMware Replacement','mega.vmware.sub':'Simple and secure migration',
+        'mega.hybride':'Hybrid Cloud','mega.hybride.sub':'Unified Private & Public Cloud',
+        'mega.dr':'Disaster Recovery','mega.dr.sub':'DRM — Business continuity',
+        'mega.apps':'Critical Applications','mega.apps.sub':'High performance & availability',
+        'mega.transfo':'Cloud Transformation','mega.transfo.sub':'Data Center modernization',
+        'mega.managed':'Managed Services','mega.managed.sub':'Complete Cloud management',
+        'mega.support':'Cloud Support','mega.support.sub':'Dedicated technical assistance',
+        'mega.questionnaire':'Prospect Questionnaire','mega.questionnaire.sub':'Internal sales tool',
         'footer.copy':'© 2025 SAH Analytics. All rights reserved.','footer.status':'All systems operational',
         'hero.badge':'SAH Cloud Partner Tool','hero.title':'Client Prospect Intake',
         'hero.subtitle':'Fill in your prospect\'s details. Click <strong>Generate Excel</strong> to download a ready-to-send <strong>.xlsx</strong> file for your SAH Cloud account manager.',
