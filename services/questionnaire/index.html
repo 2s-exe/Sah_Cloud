@@ -1,0 +1,911 @@
+﻿<!DOCTYPE html>
+<html lang="fr" id="html-root">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Questionnaire Prospect SAH Cloud : Outil interne pour renseigner les informations d'un prospect et générer un devis Excel en un clic." />
+    <title>Questionnaire Prospect : SAH Cloud</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        corePlugins: { preflight: false },
+        theme: { extend: { colors: {
+          primary: { DEFAULT: '#F47B28', light: '#FFA05A', dark: '#D4601A' },
+          navy: { DEFAULT: '#0c1530', light: '#1a2545', dark: '#070e20' },
+        }, fontFamily: { sans: ['Montserrat', 'ui-sans-serif', 'system-ui', 'sans-serif'] } } }
+      }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        min-height: 100vh;
+        background: #030b18;
+        background-image:
+          radial-gradient(ellipse 60% 40% at 15% 0%,   rgba(244,123,40,0.07) 0%, transparent 60%),
+          radial-gradient(ellipse 50% 40% at 85% 100%,  rgba(244,123,40,0.05) 0%, transparent 60%);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        color: #E2E8F0;
+        padding: 0 0 70px;
+      }
+
+      /* ── NAVBAR MEGA MENU STYLES ── */
+      .nav-link-light { color: #0c1530; text-transform: uppercase; font-size: 13px; letter-spacing: 0.08em; font-weight: 600; text-decoration: none; transition: color 0.2s; }
+      .nav-link-light:hover { color: #F47B28; }
+      .mega-item { display:flex; align-items:flex-start; gap:10px; padding:7px 8px; border-radius:8px; text-decoration:none; transition:background .15s; }
+      .mega-item:hover { background:rgba(244,123,40,0.06); }
+      .mega-icon { font-size:16px; flex-shrink:0; margin-top:2px; }
+      .mega-name { display:block; font-size:12.5px; font-weight:600; color:#0c1530; line-height:1.3; transition:color .15s; }
+      .mega-item:hover .mega-name { color:#F47B28; }
+      .mega-sub { display:block; font-size:10.5px; color:#94a3b8; margin-top:1px; line-height:1.3; }
+      .lang-btn { font-size:12px; font-weight:700; border-radius:8px; padding:4px 10px; cursor:pointer; transition:all .2s; letter-spacing:.05em; }
+      /* reset browser default button styles for navbar buttons */
+      #mega-btn, #mob-mega-btn, #menu-btn { background: none; border: none; padding: 0; outline: none; box-shadow: none; cursor: pointer; font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
+      #mega-btn:focus, #mob-mega-btn:focus, #menu-btn:focus { outline: none; box-shadow: none; }
+      /* no underline / highlight on navbar links */
+      header a { text-decoration: none; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
+      header a:focus { outline: none; }
+
+      /* ── WRAP ── */
+      .wrap { max-width: 780px; margin: 0 auto; padding: 104px 20px 0; }
+
+      /* ── HEADER ── */
+      .page-header { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid #1A2E4A; }
+      .badge {
+        display: inline-block; font-size: 10px; font-weight: 700;
+        letter-spacing: .14em; color: #F47B28;
+        border: 1px solid rgba(244,123,40,.5); border-radius: 3px;
+        padding: 4px 10px; margin-bottom: 14px;
+        text-transform: uppercase; font-family: monospace;
+      }
+      .page-header h1 { font-size: 28px; font-weight: 700; letter-spacing: -.02em; color: #F1F5F9; margin-bottom: 10px; }
+      .page-header p  { font-size: 14px; color: #64748B; line-height: 1.65; max-width: 520px; }
+
+      /* ── SECTION ── */
+      .sec { margin-bottom: 20px; background: #0C1628; border: 1px solid #1A2E4A; border-radius: 10px; overflow: hidden; }
+      .sec-head {
+        display: flex; align-items: center; gap: 8px;
+        padding: 12px 18px; border-bottom: 1px solid #1A2E4A; background: #090F1E;
+      }
+      .sec-num   { font-size: 10px; font-weight: 700; color: #F47B28; font-family: monospace; letter-spacing: .12em; }
+      .sec-label { font-size: 11px; font-weight: 700; color: #94A3B8; text-transform: uppercase; letter-spacing: .07em; font-family: monospace; }
+      .sec-body  { padding: 18px 18px 8px; }
+
+      /* ── GRID ROW ── */
+      .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+      @media(max-width:520px) { .row2 { grid-template-columns: 1fr; } }
+
+      /* ── FIELD ── */
+      .fld { margin-bottom: 16px; }
+      label {
+        display: block; font-size: 10px; font-weight: 700; color: #94A3B8;
+        letter-spacing: .07em; text-transform: uppercase; font-family: monospace;
+        margin-bottom: 7px;
+      }
+      label .req { color: #F47B28; }
+      .err-msg { font-size: 11px; color: #F87171; margin-top: 5px; display: none; }
+
+      input[type="text"], input[type="email"], input[type="tel"], textarea {
+        width: 100%; background: #070D1C; border: 1px solid #1A2E4A;
+        border-radius: 6px; color: #E2E8F0; font-size: 13px;
+        padding: 10px 12px; outline: none; font-family: inherit;
+        transition: border-color .15s;
+      }
+      input:focus, textarea:focus { border-color: #F47B28; }
+      textarea { resize: vertical; line-height: 1.6; }
+      input.invalid, textarea.invalid { border-color: #F87171; }
+
+      /* ── HINT ── */
+      .hint { font-size: 13px; color: #64748B; margin-bottom: 12px; line-height: 1.5; }
+
+      /* ── INDUSTRY SELECT ── */
+      select {
+        width: 100%; background: #070D1C; border: 1px solid #1A2E4A;
+        border-radius: 6px; color: #E2E8F0; font-size: 13px;
+        padding: 10px 36px 10px 12px; outline: none; font-family: inherit;
+        appearance: none; -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat; background-position: right 12px center;
+        cursor: pointer; transition: border-color .15s;
+      }
+      select:focus { border-color: #F47B28; }
+      select.invalid { border-color: #F87171; }
+      select option { background: #0C1628; color: #E2E8F0; }
+      select option[value=""] { color: #64748B; }
+
+
+      /* ── SERVICE CARDS ── */
+      .prod-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
+      @media(max-width:600px) { .prod-grid { grid-template-columns: repeat(2, 1fr); } }
+      .prod-card {
+        position: relative; display: flex; flex-direction: column;
+        align-items: flex-start; padding: 16px 14px 14px;
+        background: #070D1C; border: 1px solid #1A2E4A;
+        border-radius: 8px; cursor: pointer; user-select: none; transition: all .15s;
+        min-height: 96px;
+      }
+      .prod-card:hover  { border-color: #2A4060; background: #090F1C; }
+      .prod-card.active { background: #0A1830; border-color: #F47B28; }
+      .prod-tick { position: absolute; top: 10px; right: 10px; font-size: 10px; color: #F47B28; font-weight: 700; display: none; }
+      .prod-card.active .prod-tick { display: block; }
+      .prod-icon { font-size: 30px; margin-bottom: 10px; line-height: 1; display: block; }
+      .prod-name { font-size: 13px; font-weight: 700; color: #E2E8F0; line-height: 1.3; margin-bottom: 5px; }
+      .prod-sub  { font-size: 10px; color: #4A7BAA; font-family: monospace; letter-spacing: .02em; }
+
+      /* ── BUDGET & TIMELINE ── */
+      .list-grid { display: flex; flex-direction: column; gap: 7px; }
+      .list-card {
+        display: flex; align-items: center; gap: 10px; padding: 11px 14px;
+        background: #070D1C; border: 1px solid #1A2E4A; border-radius: 6px;
+        cursor: pointer; font-size: 13px; color: #94A3B8; user-select: none; transition: all .15s;
+      }
+      .list-card:hover  { border-color: #2D4E7A; }
+      .list-card.active { background: #0D1F40; border-color: #F47B28; color: #E2E8F0; }
+      .l-dot { font-size: 8px; color: #1A2E4A; transition: color .15s; flex-shrink: 0; }
+      .list-card.active .l-dot { color: #F47B28; }
+
+      /* ── SUBMIT ── */
+      .err-banner { font-size: 12px; color: #F87171; text-align: right; margin-bottom: 10px; display: none; }
+      .submit-row { display: flex; justify-content: flex-end; margin-top: 14px; }
+      .btn-primary {
+        background: #F47B28; color: #fff; border: none; border-radius: 7px;
+        padding: 12px 30px; font-size: 14px; font-weight: 600;
+        cursor: pointer; font-family: inherit; transition: background .2s;
+      }
+      .btn-primary:hover { background: #D4601A; }
+      .btn-ghost {
+        background: transparent; color: #64748B; border: 1px solid #1A2E4A;
+        border-radius: 7px; padding: 12px 22px; font-size: 14px; font-weight: 600;
+        cursor: pointer; font-family: inherit; transition: all .2s;
+      }
+      .btn-ghost:hover { border-color: #2D4E7A; color: #94A3B8; }
+
+      /* ── SUCCESS ── */
+      #success { display: none; }
+      .success-card {
+        background: #0C1628; border: 1px solid #1A2E4A; border-radius: 12px;
+        padding: 40px 32px; text-align: center;
+      }
+      .tick {
+        width: 56px; height: 56px; border-radius: 50%; background: #0D1F40;
+        border: 2px solid #F47B28; color: #F47B28; font-size: 22px; font-weight: 700;
+        display: flex; align-items: center; justify-content: center; margin: 0 auto 18px;
+      }
+      .success-title { font-size: 22px; font-weight: 700; color: #F1F5F9; margin-bottom: 10px; }
+      .success-sub   { font-size: 13px; color: #64748B; line-height: 1.65; margin: 0 auto 24px; max-width: 460px; }
+      .strip { background: #090F1E; border: 1px solid #1A2E4A; border-radius: 8px; padding: 4px 0; margin-bottom: 26px; text-align: left; }
+      .s-row { display: flex; gap: 12px; padding: 9px 18px; border-bottom: 1px solid #0E1E33; }
+      .s-row:last-child { border-bottom: none; }
+      .s-lbl { font-size: 10px; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: .06em; font-family: monospace; min-width: 90px; }
+      .s-val { font-size: 13px; color: #CBD5E1; flex: 1; line-height: 1.4; }
+      .action-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+      /* ── FOOTER ── */
+      .page-footer {
+        margin-top: 40px; padding: 20px 24px;
+        border-top: 1px solid #1A2E4A;
+        display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        flex-wrap: wrap;
+      }
+      .page-footer img { height: 28px; width: auto; border-radius: 4px; }
+      .page-footer span { font-size: 12px; color: #334155; }
+      .footer-status { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #334155; }
+      .dot-green { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; flex-shrink: 0; }
+      @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+    </style>
+  </head>
+  <body>
+
+    <!-- NAVBAR -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white" style="box-shadow:0 2px 20px rgba(0,0,0,0.08);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="../../index.html" class="flex-shrink-0">
+          <img src="../../img/logo.png" alt="SAH Cloud" class="h-9 w-auto rounded-md" />
+        </a>
+        <nav class="hidden md:flex items-center gap-6">
+          <div class="static" id="mega-wrap">
+            <button id="mega-btn" class="nav-link-light inline-flex items-center gap-2 focus:outline-none">
+              <span>Cloud &amp; Infrastructure</span>
+              <svg id="mega-chevron" class="w-4 h-4 transition-transform duration-200 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+            <div id="mega-panel" class="hidden absolute top-full mt-2 rounded-2xl shadow-2xl z-[9999] bg-white" style="width:800px;border:1px solid rgba(0,0,0,0.08);left:50%;transform:translateX(-50%);">
+              <div class="grid grid-cols-3 gap-0 p-5">
+                <div class="pr-5 border-r border-slate-100">
+                  <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest mb-3 border-b-2 border-[#F47B28] pb-1">Produits</p>
+                  <a href="../../produits/hci/index.html" class="mega-item"><span class="mega-icon">&#x1F5A5;&#xFE0F;</span><span><span class="mega-name">HCI</span><span class="mega-sub">Infrastructure Hyper-Converg&eacute;e</span></span></a>
+                  <a href="../../produits/scp/index.html" class="mega-item"><span class="mega-icon">&#x2601;&#xFE0F;</span><span><span class="mega-name">SaH Cloud Platform</span><span class="mega-sub">Gestion Cloud Fullstack (SCP)</span></span></a>
+                  <a href="../../produits/ske/index.html" class="mega-item"><span class="mega-icon">&#x1F433;</span><span><span class="mega-name">Kubernetes Engine SKE</span><span class="mega-sub">Conteneurs &amp; VM Unifi&eacute;s</span></span></a>
+                  <a href="../../produits/dmp/index.html" class="mega-item"><span class="mega-icon">&#x1F5C4;&#xFE0F;</span><span><span class="mega-name">DMP</span><span class="mega-sub">Gestion de Bases de Donn&eacute;es</span></span></a>
+                  <a href="../../produits/astor/index.html" class="mega-item"><span class="mega-icon">&#x1F4BE;</span><span><span class="mega-name">aStor</span><span class="mega-sub">Stockage Distribu&eacute; d&rsquo;Entreprise</span></span></a>
+                  <a href="../../produits/adesk/index.html" class="mega-item"><span class="mega-icon">&#x1F5B1;&#xFE0F;</span><span><span class="mega-name">aDesk VDI</span><span class="mega-sub">Postes de Travail Virtuels</span></span></a>
+                </div>
+                <div class="px-5 border-r border-slate-100">
+                  <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest mb-3 border-b-2 border-[#F47B28] pb-1">Solutions</p>
+                  <a href="../../solutions/vmware/index.html" class="mega-item"><span class="mega-icon">&#x1F504;</span><span><span class="mega-name">Remplacement VMware</span><span class="mega-sub">Migration simple et s&eacute;curis&eacute;e</span></span></a>
+                  <a href="../../solutions/hybride/index.html" class="mega-item"><span class="mega-icon">&#x1F517;</span><span><span class="mega-name">Cloud Hybride</span><span class="mega-sub">Cloud Priv&eacute; &amp; Public Unifi&eacute;</span></span></a>
+                  <a href="../../solutions/sinistre/index.html" class="mega-item"><span class="mega-icon">&#x1F6E1;&#xFE0F;</span><span><span class="mega-name">Reprise apr&egrave;s Sinistre</span><span class="mega-sub">DRM &mdash; Continuit&eacute; d&rsquo;activit&eacute;</span></span></a>
+                  <a href="../../solutions/critique/index.html" class="mega-item"><span class="mega-icon">&#x26A1;</span><span><span class="mega-name">Applications Critiques</span><span class="mega-sub">Haute performance &amp; disponibilit&eacute;</span></span></a>
+                  <a href="../../solutions/transfo/index.html" class="mega-item"><span class="mega-icon">&#x1F3D7;&#xFE0F;</span><span><span class="mega-name">Transformation Cloud</span><span class="mega-sub">Modernisation des Data Centers</span></span></a>
+                </div>
+                <div class="pl-5">
+                  <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest mb-3 border-b-2 border-[#F47B28] pb-1">Services</p>
+                  <a href="../managed/index.html" class="mega-item"><span class="mega-icon">&#x2699;&#xFE0F;</span><span><span class="mega-name">Services G&eacute;r&eacute;s</span><span class="mega-sub">Infog&eacute;rance Cloud compl&egrave;te</span></span></a>
+                  <a href="../contact/index.html" class="mega-item"><span class="mega-icon">&#x1F6DF;</span><span><span class="mega-name">Support Cloud</span><span class="mega-sub">Assistance technique d&eacute;di&eacute;e</span></span></a>
+                  <a href="index.html" class="mega-item"><span class="mega-icon">&#x1F4CB;</span><span><span class="mega-name">Questionnaire Prospect</span><span class="mega-sub">Outil commercial interne</span></span></a>
+                  <a href="../about/index.html" class="mega-item"><span class="mega-icon">&#x1F4D6;</span><span><span class="mega-name">&Agrave; propos</span><span class="mega-sub">Notre mission &amp; &eacute;quipe</span></span></a>
+                  <a href="../contact/index.html" class="mega-item"><span class="mega-icon">&#x2709;&#xFE0F;</span><span><span class="mega-name">Contact</span><span class="mega-sub">Parlons de votre projet</span></span></a>
+                  <a href="../pricing/index.html" class="mega-item"><span class="mega-icon">&#x1F4B0;</span><span><span class="mega-name">Tarifs</span><span class="mega-sub">Configurateur de prix</span></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <div class="hidden md:flex items-center gap-3">
+          <button class="lang-btn text-[#0c1530] border border-slate-200 hover:bg-slate-50">FR</button>
+          <a href="../contact/index.html" class="bg-[#F47B28] text-white font-bold text-xs px-5 py-2 rounded-full hover:bg-[#D4601A] transition-colors uppercase tracking-wide">Nous Contacter</a>
+        </div>
+        <div class="flex md:hidden items-center gap-2">
+          <button class="lang-btn text-[#0c1530] border border-slate-200 hover:bg-slate-50 text-xs px-2.5 py-1">FR</button>
+          <button id="menu-btn" class="p-2 rounded-lg text-[#0c1530] hover:bg-slate-100 transition-colors">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white">
+      <div class="px-4 py-3 space-y-1">
+        <button id="mob-mega-btn" class="w-full flex items-center justify-between px-3 py-2 text-sm text-[#0c1530] font-semibold hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">
+          Cloud &amp; Infrastructure
+          <svg id="mob-mega-chevron" class="w-4 h-4 transition-transform duration-200 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+        </button>
+        <div id="mob-mega-panel" class="hidden px-2 pb-2 border-l-2 border-[#F47B28]/30 ml-2 mt-1">
+          <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest px-2 pt-3 pb-1.5">Produits</p>
+          <a href="../../produits/hci/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">HCI</a>
+          <a href="../../produits/scp/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">SaH Cloud Platform</a>
+          <a href="../../produits/ske/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Kubernetes Engine SKE</a>
+          <a href="../../produits/dmp/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">DMP</a>
+          <a href="../../produits/astor/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">aStor</a>
+          <a href="../../produits/adesk/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">aDesk VDI</a>
+          <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest px-2 pt-3 pb-1.5">Solutions</p>
+          <a href="../../solutions/vmware/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Remplacement VMware</a>
+          <a href="../../solutions/hybride/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Cloud Hybride</a>
+          <a href="../../solutions/sinistre/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Reprise après Sinistre</a>
+          <a href="../../solutions/critique/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Applications Critiques</a>
+          <a href="../../solutions/transfo/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Transformation Cloud</a>
+          <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest px-2 pt-3 pb-1.5">Services</p>
+          <a href="../managed/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Services G&eacute;r&eacute;s</a>
+          <a href="../contact/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Support Cloud</a>
+          <a href="index.html" class="block px-2 py-1.5 text-sm text-[#F47B28] font-semibold hover:bg-slate-50 rounded-lg">Questionnaire Prospect</a>
+          <a href="../about/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">&Agrave; propos</a>
+          <a href="../contact/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Contact</a>
+          <a href="../pricing/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Tarifs</a>
+        </div>
+        <a href="../contact/index.html" class="block mt-3 text-center bg-[#F47B28] text-white font-bold text-sm py-2.5 rounded-full hover:bg-[#D4601A] transition-colors">Nous Contacter</a>
+      </div>
+    </div>
+  </header>
+
+    <div class="wrap">
+
+      <!-- HEADER -->
+      <div class="page-header">
+        <div class="badge" data-i18n="hero.badge">SAH Cloud Partner Tool</div>
+        <h1 data-i18n="hero.title">Questionnaire Prospect Client</h1>
+        <p data-i18n="hero.subtitle">Renseignez les informations de votre prospect. Cliquez sur <strong>Générer Excel</strong> pour télécharger un fichier <strong>.xlsx</strong> prêt à transmettre à votre chargé de compte SAH Cloud.</p>
+      </div>
+
+      <!-- ═══ FORM ═══ -->
+      <div id="form-view">
+
+        <!-- 01 Entreprise -->
+        <div class="sec">
+          <div class="sec-head">
+            <span class="sec-num">01</span>
+            <span>🏢</span>
+            <span class="sec-label" data-i18n="s01.label">Informations Entreprise</span>
+          </div>
+          <div class="sec-body">
+            <div class="fld">
+              <label><span data-i18n="f.company">Nom de l'entreprise</span> <span class="req">*</span></label>
+              <input id="companyName" type="text" data-i18n-ph="f.company.ph" placeholder="ex : BNI Côte d'Ivoire" />
+              <div class="err-msg" id="err-companyName" data-i18n="err.required">Ce champ est obligatoire.</div>
+            </div>
+            <div class="fld">
+              <label><span data-i18n="f.industry">Secteur d'activité</span> <span class="req">*</span></label>
+              <select id="industry" onchange="onIndustryChange()">
+                <option value="" data-i18n="f.industry.ph">Sélectionner…</option>
+                <option value="bank"      data-fr="Banque & Finance"              data-en="Banking &amp; Finance"></option>
+                <option value="edu"       data-fr="Éducation"                     data-en="Education"></option>
+                <option value="gov"       data-fr="Administration / Gouvernement" data-en="Government / Public Sector"></option>
+                <option value="health"    data-fr="Santé"                         data-en="Healthcare"></option>
+                <option value="mfg"       data-fr="Industrie / Manufacturing"     data-en="Manufacturing"></option>
+                <option value="energy"    data-fr="Pétrole & Gaz / Énergie"       data-en="Oil &amp; Gas / Energy"></option>
+                <option value="retail"    data-fr="Commerce & E-commerce"         data-en="Retail &amp; E-commerce"></option>
+                <option value="telco"     data-fr="Télécommunications"            data-en="Telecommunications"></option>
+                <option value="transport" data-fr="Transport & Logistique"        data-en="Transportation &amp; Logistics"></option>
+                <option value="agri"      data-fr="Agriculture & Agroalimentaire" data-en="Agriculture &amp; Agri-food"></option>
+                <option value="other"     data-fr="Autre"                         data-en="Other"></option>
+              </select>
+              <div class="err-msg" id="err-industry" data-i18n="err.select">Veuillez choisir un secteur.</div>
+            </div>
+            <div class="fld" id="other-fld" style="display:none">
+              <label for="customIndustry" data-i18n="f.industry.custom">Précisez votre secteur</label>
+              <input id="customIndustry" type="text" data-i18n-ph="f.industry.custom.ph" placeholder="Votre secteur…" />
+            </div>
+            <div class="row2">
+              <div class="fld">
+                <label><span data-i18n="f.country">Pays / Région</span> <span class="req">*</span></label>
+                <input id="country" type="text" data-i18n-ph="f.country.ph" placeholder="ex : Côte d'Ivoire : Abidjan" />
+                <div class="err-msg" id="err-country" data-i18n="err.required">Ce champ est obligatoire.</div>
+              </div>
+              <div class="fld">
+                <label data-i18n="f.size">Taille de l'entreprise</label>
+                <select id="companySize">
+                  <option value="" data-fr="Sélectionner…" data-en="Select…">Sélectionner…</option>
+                  <option value="s1" data-fr="Startup / TPE : 1–10 employés"       data-en="Startup / Micro : 1–10 employees"></option>
+                  <option value="s2" data-fr="PME : 11–200 employés"               data-en="SME : 11–200 employees"></option>
+                  <option value="s3" data-fr="ETI : 201–1 000 employés"            data-en="Mid-market : 201–1,000 employees"></option>
+                  <option value="s4" data-fr="Grande entreprise : 1 000+ employés" data-en="Enterprise : 1,000+ employees"></option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02 Contact -->
+        <div class="sec">
+          <div class="sec-head">
+            <span class="sec-num">02</span>
+            <span>👤</span>
+            <span class="sec-label" data-i18n="s02.label">Interlocuteur Principal</span>
+          </div>
+          <div class="sec-body">
+            <div class="row2">
+              <div class="fld">
+                <label><span data-i18n="f.name">Nom complet</span> <span class="req">*</span></label>
+                <input id="contactName" type="text" data-i18n-ph="f.name.ph" placeholder="Jean Koné" />
+                <div class="err-msg" id="err-contactName" data-i18n="err.required">Ce champ est obligatoire.</div>
+              </div>
+              <div class="fld">
+                <label data-i18n="f.jobtitle">Poste / Fonction</label>
+                <input id="jobTitle" type="text" data-i18n-ph="f.jobtitle.ph" placeholder="DSI, Directeur IT…" />
+              </div>
+            </div>
+            <div class="row2">
+              <div class="fld">
+                <label><span data-i18n="f.email">Email professionnel</span> <span class="req">*</span></label>
+                <input id="email" type="email" data-i18n-ph="f.email.ph" placeholder="j.kone@entreprise.ci" />
+                <div class="err-msg" id="err-email" data-i18n="err.required">Ce champ est obligatoire.</div>
+              </div>
+              <div class="fld">
+                <label data-i18n="f.phone">Téléphone</label>
+                <input id="phone" type="tel" placeholder="+225 07 XX XX XX XX" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03 Environnement actuel -->
+        <div class="sec">
+          <div class="sec-head">
+            <span class="sec-num">03</span>
+            <span>🖥️</span>
+            <span class="sec-label" data-i18n="s03.label">Environnement Actuel</span>
+          </div>
+          <div class="sec-body">
+            <div class="fld">
+              <label data-i18n="f.vendors">Fournisseurs / Solutions actuels</label>
+              <textarea id="vendors" rows="2" data-i18n-ph="f.vendors.ph" placeholder="ex : AWS, Cisco, VMware, solutions on-premise…"></textarea>
+            </div>
+            <div class="fld">
+              <label data-i18n="f.infra">Infrastructure existante</label>
+              <textarea id="infra" rows="3" data-i18n-ph="f.infra.ph" placeholder="Serveurs physiques, VMs, connectivité, datacenter interne…"></textarea>
+            </div>
+            <div class="fld">
+              <label data-i18n="f.pain">Problématiques / Points de douleur</label>
+              <textarea id="pain" rows="3" data-i18n-ph="f.pain.ph" placeholder="Coûts élevés, manque de scalabilité, sécurité, conformité, performance…"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- 04 Services d'intérêt -->
+        <div class="sec">
+          <div class="sec-head">
+            <span class="sec-num">04</span>
+            <span>🎯</span>
+            <span class="sec-label" data-i18n="s04.label">Services d'Intérêt SAH Cloud</span>
+          </div>
+          <div class="sec-body">
+            <p class="hint" data-i18n="s04.hint">Sélectionnez tous les produits pour lesquels vous portez un intérêt.</p>
+            <div class="prod-grid" id="prod-grid"></div>
+          </div>
+        </div>
+
+        <!-- 05 Budget -->
+        <div class="sec">
+          <div class="sec-head">
+            <span class="sec-num">05</span>
+            <span>💰</span>
+            <span class="sec-label" data-i18n="s05.label">Budget Mensuel Estimé</span>
+          </div>
+          <div class="sec-body">
+            <div class="list-grid" id="budget-grid"></div>
+          </div>
+        </div>
+
+        <!-- 06 Timeline -->
+        <div class="sec">
+          <div class="sec-head">
+            <span class="sec-num">06</span>
+            <span>📅</span>
+            <span class="sec-label" data-i18n="s06.label">Délai de Déploiement Souhaité</span>
+          </div>
+          <div class="sec-body">
+            <div class="list-grid" id="tl-grid"></div>
+          </div>
+        </div>
+
+        <!-- 07 Notes -->
+        <div class="sec">
+          <div class="sec-head">
+            <span class="sec-num">07</span>
+            <span>📝</span>
+            <span class="sec-label" data-i18n="s07.label">Notes Complémentaires</span>
+          </div>
+          <div class="sec-body">
+            <div class="fld">
+              <label data-i18n="f.notes">Remarques, décideurs, appels d'offres, exigences spécifiques…</label>
+              <textarea id="notes" rows="3" data-i18n-ph="f.notes.ph" placeholder="Budget validé, décision prévue en Q3, appel d'offres en cours…"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="err-banner" id="err-banner" data-i18n="err.banner">⚠ Veuillez remplir tous les champs obligatoires.</div>
+        <div class="submit-row">
+          <button class="btn-primary" onclick="handleSubmit()" data-i18n="btn.generate">Générer le fichier Excel →</button>
+        </div>
+      </div>
+
+      <!-- ═══ SUCCESS ═══ -->
+      <div id="success">
+        <div class="success-card">
+          <div class="tick">✓</div>
+          <h2 class="success-title" data-i18n="success.title">Fichier Excel Prêt</h2>
+          <p class="success-sub" data-i18n="success.subtitle">Cliquez sur <strong>Télécharger</strong> ci-dessous, puis transmettez le fichier à votre chargé de compte SAH Cloud.</p>
+          <div class="strip" id="summary-strip"></div>
+          <div class="action-row">
+            <a id="dl-link" class="btn-primary" download="" data-i18n="btn.download">⬇ Télécharger le fichier Excel</a>
+            <button class="btn-ghost" onclick="resetForm()" data-i18n="btn.new">Nouveau formulaire</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="page-footer">
+        <a href="../../index.html"><img src="../../img/logo.png" alt="SAH Cloud" loading="lazy" /></a>
+        <span data-i18n="footer.copy">© 2025 SAH Analytics. Tous droits réservés.</span>
+        <div class="footer-status">
+          <div class="dot-green"></div>
+          <span data-i18n="footer.status">Tous les systèmes opérationnels</span>
+        </div>
+      </div>
+
+    </div><!-- /wrap -->
+
+    <script>
+    // ===================== DATA =====================
+    const SERVICES = [
+      { id:'hci',      emoji:'🖥️',  name:'SaH Cloud HCI',        sub:'Infrastructure Hyper-Convergée' },
+      { id:'scp',      emoji:'☁️',  name:'SaH Cloud Platform',   sub:'Gestion Cloud Fullstack (SCP)' },
+      { id:'ske',      emoji:'🐳',  name:'Kubernetes Engine',     sub:'SKE' },
+      { id:'dmp',      emoji:'🗄️',  name:'Cloud DMP',             sub:'Gestion de Bases de Données' },
+      { id:'astor',    emoji:'💾',  name:'Cloud aStor',           sub:'Stockage Distribué d\'Entreprise' },
+      { id:'adesk',    emoji:'🖱️',  name:'Cloud aDesk',           sub:'Postes de Travail Virtuels (VDI)' },
+      { id:'backup',   emoji:'🔄',  name:'Backup & Reprise',      sub:'Sauvegarde & Reprise après Sinistre' },
+      { id:'securite', emoji:'🛡️',  name:'Sécurité Cloud',        sub:'aSEC / Pare-feu Distribué' },
+      { id:'iaas',     emoji:'⚙️',  name:'Hébergement Cloud',     sub:'IaaS x86 / ARM' },
+      { id:'paas',     emoji:'🔧',  name:'Services PaaS',         sub:'Conteneurs / DevOps / Microservices' },
+      { id:'reseau',   emoji:'🌐',  name:'Réseau & Connectivité', sub:'IP Résiliente / Ligne Privée' },
+      { id:'hybride',  emoji:'🔗',  name:'Cloud Hybride',         sub:'Cloud Privé & Public Unifié' },
+    ];
+
+    // ── Industry select helpers ──
+    function onIndustryChange() {
+      const sel = document.getElementById('industry');
+      document.getElementById('other-fld').style.display = sel.value === 'other' ? 'block' : 'none';
+      sel.classList.remove('invalid');
+      document.getElementById('err-industry').style.display = 'none';
+    }
+
+    function updateIndustryOptions(lang) {
+      const sel = document.getElementById('industry');
+      sel.querySelectorAll('option[data-fr]').forEach(opt => {
+        opt.textContent = lang === 'en' ? opt.dataset.en : opt.dataset.fr;
+      });
+      const ph = sel.querySelector('option[value=""]');
+      if (ph) ph.textContent = lang === 'en' ? 'Select…' : 'Sélectionner…';
+    }
+
+    function getIndustryLabel(lang) {
+      const sel = document.getElementById('industry');
+      const opt = sel.options[sel.selectedIndex];
+      if (!sel.value) return '-';
+      if (sel.value === 'other') return (document.getElementById('customIndustry')?.value || '').trim() || (lang === 'en' ? 'Other' : 'Autre');
+      return lang === 'en' ? opt.dataset.en : opt.dataset.fr;
+    }
+
+    function updateSizeOptions(lang) {
+      const sel = document.getElementById('companySize');
+      sel.querySelectorAll('option[data-fr]').forEach(opt => {
+        opt.textContent = lang === 'en' ? opt.dataset.en : opt.dataset.fr;
+      });
+      const ph = sel.querySelector('option[value=""]');
+      if (ph) ph.textContent = lang === 'en' ? 'Select…' : 'Sélectionner…';
+    }
+
+    function getSizeLabel(lang) {
+      const sel = document.getElementById('companySize');
+      if (!sel.value) return '-';
+      const opt = sel.options[sel.selectedIndex];
+      return lang === 'en' ? opt.dataset.en : opt.dataset.fr;
+    }
+
+    const BUDGETS_FR = ['Moins de 500 USD/mois','500 – 2 000 USD/mois','2 000 – 5 000 USD/mois','5 000 – 15 000 USD/mois','Plus de 15 000 USD/mois','Non défini / À estimer'];
+    const BUDGETS_EN = ['Less than $500/month','$500 – $2,000/month','$2,000 – $5,000/month','$5,000 – $15,000/month','More than $15,000/month','Undefined / To be estimated'];
+    const TIMELINES_FR = ['Immédiat (0 – 1 mois)','Court terme (1 – 3 mois)','Moyen terme (3 – 6 mois)','Long terme (6 – 12 mois)','Exploratoire / Sans échéance'];
+    const TIMELINES_EN = ['Immediate (0 – 1 month)','Short-term (1 – 3 months)','Mid-term (3 – 6 months)','Long-term (6 – 12 months)','Exploratory / No Timeline'];
+
+    let selectedServices = new Set();
+    let selectedBudget   = '';
+    let selectedTimeline = '';
+
+    // ── Build service cards ──
+    const prodGrid = document.getElementById('prod-grid');
+    SERVICES.forEach(s => {
+      const c = document.createElement('div');
+      c.className = 'prod-card';
+      c.id = 'svc-' + s.id;
+      c.innerHTML = `<span class="prod-tick">✓</span><span class="prod-icon">${s.emoji}</span><span class="prod-name">${s.name}</span><span class="prod-sub">${s.sub}</span>`;
+      c.onclick = () => {
+        if (selectedServices.has(s.id)) { selectedServices.delete(s.id); c.classList.remove('active'); }
+        else { selectedServices.add(s.id); c.classList.add('active'); }
+      };
+      prodGrid.appendChild(c);
+    });
+
+
+    // ── Build budget grid ──
+    function buildBudgetGrid(items) {
+      const g = document.getElementById('budget-grid');
+      g.innerHTML = '';
+      items.forEach(b => {
+        const c = document.createElement('div');
+        c.className = 'list-card' + (selectedBudget === b ? ' active' : '');
+        c.innerHTML = `<span class="l-dot">●</span>${b}`;
+        c.onclick = () => {
+          document.querySelectorAll('#budget-grid .list-card').forEach(x => x.classList.remove('active'));
+          c.classList.add('active');
+          selectedBudget = b;
+        };
+        g.appendChild(c);
+      });
+    }
+
+    // ── Build timeline grid ──
+    function buildTimelineGrid(items) {
+      const g = document.getElementById('tl-grid');
+      g.innerHTML = '';
+      items.forEach(t => {
+        const c = document.createElement('div');
+        c.className = 'list-card' + (selectedTimeline === t ? ' active' : '');
+        c.innerHTML = `<span class="l-dot">●</span>${t}`;
+        c.onclick = () => {
+          document.querySelectorAll('#tl-grid .list-card').forEach(x => x.classList.remove('active'));
+          c.classList.add('active');
+          selectedTimeline = t;
+        };
+        g.appendChild(c);
+      });
+    }
+
+    // ── Validation ──
+    function validate() {
+      let ok = true;
+      ['companyName','country','contactName','email'].forEach(id => {
+        const el = document.getElementById(id);
+        const err = document.getElementById('err-' + id);
+        if (!el.value.trim()) {
+          el.classList.add('invalid');
+          if (err) err.style.display = 'block';
+          ok = false;
+        } else {
+          el.classList.remove('invalid');
+          if (err) err.style.display = 'none';
+        }
+      });
+      const indSel = document.getElementById('industry');
+      if (!indSel.value) {
+        indSel.classList.add('invalid');
+        document.getElementById('err-industry').style.display = 'block';
+        ok = false;
+      } else {
+        indSel.classList.remove('invalid');
+        document.getElementById('err-industry').style.display = 'none';
+      }
+      return ok;
+    }
+
+    // ── Build workbook ──
+    function buildWorkbook(lang) {
+      const get = id => (document.getElementById(id)?.value || '').trim();
+      const isEN = lang === 'en';
+      const industry = getIndustryLabel(lang);
+      const companySize = getSizeLabel(lang);
+      const today = new Date().toLocaleDateString(isEN ? 'en-GB' : 'fr-FR', {day:'2-digit',month:'long',year:'numeric'});
+      const interests = SERVICES.filter(s => selectedServices.has(s.id)).map(s => s.name).join(', ') || '-';
+
+      const H = isEN ? {
+        title:'SAH CLOUD : CLIENT PROSPECT INTAKE FORM', submitted:'Submitted',
+        company:'COMPANY INFORMATION', companyName:'Company Name', industry:'Industry / Sector', country:'Country / Region', size:'Company Size',
+        contact:'POINT OF CONTACT', name:'Full Name', jobtitle:'Job Title', email:'Email', phone:'Phone',
+        env:'CURRENT ENVIRONMENT', vendors:'Current Vendors / Solutions', infra:'Existing Infrastructure', pain:'Pain Points / Challenges',
+        services:'SANGFOR PRODUCTS OF INTEREST', interested:'INTERESTED?',
+        budget:'ESTIMATED MONTHLY BUDGET', budgetVal:'Budget',
+        timeline:'DEPLOYMENT TIMELINE', timelineVal:'Timeline',
+        notes:'ADDITIONAL NOTES', notesVal:'Notes',
+      } : {
+        title:'SAH CLOUD : FICHE PROSPECT CLIENT', submitted:'Soumis le',
+        company:'INFORMATIONS ENTREPRISE', companyName:'Nom de l\'entreprise', industry:'Secteur d\'activité', country:'Pays / Région', size:'Taille',
+        contact:'INTERLOCUTEUR PRINCIPAL', name:'Nom complet', jobtitle:'Poste / Fonction', email:'Email', phone:'Téléphone',
+        env:'ENVIRONNEMENT ACTUEL', vendors:'Fournisseurs actuels', infra:'Infrastructure existante', pain:'Points de douleur',
+        services:'PRODUITS SANGFOR D\'INTÉRÊT', interested:'INTÉRESSÉ ?',
+        budget:'BUDGET MENSUEL ESTIMÉ', budgetVal:'Budget',
+        timeline:'DÉLAI DE DÉPLOIEMENT', timelineVal:'Délai',
+        notes:'NOTES COMPLÉMENTAIRES', notesVal:'Notes',
+      };
+
+      const rows = [
+        [H.title,''], [H.submitted, today], ['',''],
+        [H.company,''], [H.companyName, get('companyName')||'-'], [H.industry, industry], [H.country, get('country')||'-'], [H.size, companySize], ['',''],
+        [H.contact,''], [H.name, get('contactName')||'-'], [H.jobtitle, get('jobTitle')||'-'], [H.email, get('email')||'-'], [H.phone, get('phone')||'-'], ['',''],
+        [H.env,''], [H.vendors, get('vendors')||'-'], [H.infra, get('infra')||'-'], [H.pain, get('pain')||'-'], ['',''],
+        [H.services, H.interested],
+        ...SERVICES.map(s => [`${s.name} (${s.sub})`, selectedServices.has(s.id) ? (isEN?'Yes ✓':'Oui ✓') : (isEN?'No':'Non')]),
+        ['',''],
+        [H.budget,''], [H.budgetVal, selectedBudget||'-'], ['',''],
+        [H.timeline,''], [H.timelineVal, selectedTimeline||'-'], ['',''],
+        [H.notes,''], [H.notesVal, get('notes')||'-'],
+      ];
+
+      const ws = XLSX.utils.aoa_to_sheet(rows);
+      ws['!cols'] = [{wch:40},{wch:55}];
+      ws['!merges'] = [{s:{r:0,c:0},e:{r:0,c:1}}];
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, isEN ? 'Prospect Intake' : 'Fiche Prospect');
+      return wb;
+    }
+
+    // ── Submit ──
+    function handleSubmit() {
+      if (!validate()) {
+        document.getElementById('err-banner').style.display = 'block';
+        return;
+      }
+      document.getElementById('err-banner').style.display = 'none';
+      const get = id => (document.getElementById(id)?.value || '').trim();
+      const company = get('companyName');
+      const fname = `SAH_Cloud_Prospect_${company.replace(/[^a-zA-Z0-9]/g,'_')}_${new Date().toISOString().slice(0,10)}.xlsx`;
+
+      const wb  = buildWorkbook(currentLang);
+      const b64 = XLSX.write(wb, {bookType:'xlsx', type:'base64'});
+      const link = document.getElementById('dl-link');
+      link.href     = 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,' + b64;
+      link.download = fname;
+
+      const industry = getIndustryLabel(currentLang);
+      const interests = SERVICES.filter(s => selectedServices.has(s.id)).map(s => s.name).join(', ') || '-';
+
+      const rows = [
+        [currentLang==='en'?'Company':'Entreprise', company],
+        [currentLang==='en'?'Contact':'Contact', get('contactName') + (get('jobTitle') ? ' – '+get('jobTitle') : '')],
+        [currentLang==='en'?'Email':'Email', get('email')],
+        [currentLang==='en'?'Industry':'Secteur', industry],
+        [currentLang==='en'?'Country':'Pays', get('country')],
+        [currentLang==='en'?'Budget':'Budget', selectedBudget||'-'],
+        [currentLang==='en'?'Timeline':'Délai', selectedTimeline||'-'],
+        [currentLang==='en'?'Interests':'Intérêts', interests],
+      ];
+      document.getElementById('summary-strip').innerHTML = rows
+        .map(([l,v]) => `<div class="s-row"><span class="s-lbl">${l}</span><span class="s-val">${v||'-'}</span></div>`)
+        .join('');
+
+      document.getElementById('form-view').style.display = 'none';
+      document.getElementById('success').style.display   = 'block';
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    // ── Reset ──
+    function resetForm() {
+      document.querySelectorAll('input, textarea').forEach(el => el.value = '');
+      document.getElementById('other-fld').style.display = 'none';
+      selectedServices.clear(); selectedBudget=''; selectedTimeline='';
+      document.getElementById('industry').value    = '';
+      document.getElementById('companySize').value = '';
+      document.querySelectorAll('.prod-card,.list-card').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.invalid').forEach(c => c.classList.remove('invalid'));
+      document.querySelectorAll('.err-msg').forEach(e => e.style.display='none');
+      document.getElementById('err-banner').style.display='none';
+      document.getElementById('form-view').style.display='block';
+      document.getElementById('success').style.display='none';
+      updateSizeOptions(currentLang);
+    }
+
+    // ── Mobile menu ──
+    (function() {
+      var btn = document.getElementById('menu-btn');
+      var menu = document.getElementById('mobile-menu');
+      if (btn && menu) btn.addEventListener('click', function() { menu.classList.toggle('hidden'); });
+    })();
+
+    // ── Mega Menu ──
+    (function(){
+      var btn    = document.getElementById('mega-btn');
+      var panel  = document.getElementById('mega-panel');
+      var chev   = document.getElementById('mega-chevron');
+      var mBtn   = document.getElementById('mob-mega-btn');
+      var mPanel = document.getElementById('mob-mega-panel');
+      var mChev  = document.getElementById('mob-mega-chevron');
+      function closePanel() {
+        if (!panel) return;
+        panel.classList.add('hidden');
+        if (chev) chev.style.transform = '';
+      }
+      if (btn && panel) {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var isOpen = !panel.classList.contains('hidden');
+          if (isOpen) { closePanel(); }
+          else { panel.classList.remove('hidden'); if (chev) chev.style.transform = 'rotate(180deg)'; }
+        });
+        panel.addEventListener('click', function(e) { e.stopPropagation(); });
+        document.addEventListener('click', closePanel);
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closePanel(); });
+      }
+      if (mBtn && mPanel) {
+        mBtn.addEventListener('click', function() {
+          var isOpen = !mPanel.classList.contains('hidden');
+          mPanel.classList.toggle('hidden');
+          if (mChev) mChev.style.transform = isOpen ? '' : 'rotate(180deg)';
+        });
+      }
+    })();
+
+    // ===================== I18N =====================
+    let currentLang = localStorage.getItem('sah-lang') || 'fr';
+
+    const T = {
+      fr: {
+        'nav.home':'Accueil','nav.services':'Services','nav.solutions':'Solutions Cloud','nav.managed':'Services Gérés',
+        'nav.features':'Fonctionnalités','nav.pricing':'Tarifs','nav.about':'À propos','nav.contact':'Contact','nav.questionnaire':'Questionnaire',
+        'nav.mega':'Cloud & Infrastructure',
+        'mega.col1':'Produits','mega.col2':'Solutions','mega.col3':'Services',
+        'mega.hci': 'HCI','mega.hci.sub':'Infrastructure Hyper-Convergée',
+        'mega.scp':'SaH Cloud Platform','mega.scp.sub':'Gestion Cloud Fullstack (SCP)',
+        'mega.ske':'Kubernetes Engine SKE','mega.ske.sub':'Conteneurs & VM Unifiés',
+        'mega.dmp': 'DMP','mega.dmp.sub':'Gestion de Bases de Données',
+        'mega.astor': 'aStor','mega.astor.sub':"Stockage Distribué d'Entreprise",
+        'mega.adesk': 'aDesk VDI','mega.adesk.sub':'Postes de Travail Virtuels',
+        'mega.vmware':'Remplacement VMware','mega.vmware.sub':'Migration simple et sécurisée',
+        'mega.hybride':'Cloud Hybride','mega.hybride.sub':'Cloud Privé & Public Unifié',
+        'mega.dr':'Reprise après Sinistre','mega.dr.sub':"DRM : Continuité d'activité",
+        'mega.apps':'Applications Critiques','mega.apps.sub':'Haute performance & disponibilité',
+        'mega.transfo':'Transformation Cloud','mega.transfo.sub':'Modernisation des Data Centers',
+        'mega.managed':'Services Gérés','mega.managed.sub':'Infogérance Cloud complète',
+        'mega.support':'Support Cloud','mega.support.sub':'Assistance technique dédiée',
+        'mega.questionnaire':'Questionnaire Prospect','mega.questionnaire.sub':'Outil commercial interne',
+        'footer.copy':'© 2025 SAH Analytics. Tous droits réservés.','footer.status':'Tous les systèmes opérationnels',
+        'hero.badge':'SAH Cloud Partner Tool','hero.title':'Questionnaire Prospect Client',
+        'hero.subtitle':'Renseignez les informations de votre prospect. Cliquez sur <strong>Générer Excel</strong> pour télécharger un fichier <strong>.xlsx</strong> prêt à transmettre à votre chargé de compte SAH Cloud.',
+        's01.label':'Informations Entreprise','s02.label':'Interlocuteur Principal',
+        's03.label':'Environnement Actuel','s04.label':'Zones d\'Intérêt Potentielles',
+        's05.label':'Budget Mensuel Estimé','s06.label':'Délai de Déploiement Souhaité','s07.label':'Notes Complémentaires',
+        's04.hint':'Sélectionnez tous les produits pour lesquels vous portez un intérêt.',
+        'f.company':'Nom de l\'entreprise','f.company.ph':'ex : BNI Côte d\'Ivoire',
+        'f.industry':'Secteur d\'activité','f.industry.custom':'Précisez votre secteur','f.industry.custom.ph':'Votre secteur…',
+        'f.country':'Pays / Région','f.country.ph':'ex : Côte d\'Ivoire : Abidjan',
+        'f.size':'Taille de l\'entreprise',
+        'f.name':'Nom complet','f.name.ph':'Jean Koné','f.jobtitle':'Poste / Fonction','f.jobtitle.ph':'DSI, Directeur IT…',
+        'f.email':'Email professionnel','f.email.ph':'j.kone@entreprise.ci','f.phone':'Téléphone',
+        'f.vendors':'Fournisseurs / Solutions actuels','f.vendors.ph':'ex : AWS, Cisco, VMware…',
+        'f.infra':'Infrastructure existante','f.infra.ph':'Serveurs physiques, VMs, connectivité…',
+        'f.pain':'Problématiques / Points de douleur','f.pain.ph':'Coûts, scalabilité, sécurité, conformité…',
+        'f.notes':'Remarques, décideurs, appels d\'offres, exigences spécifiques…','f.notes.ph':'Budget validé, décision en Q3…',
+        'err.required':'Ce champ est obligatoire.','err.select':'Veuillez choisir un secteur.',
+        'err.banner':'⚠ Veuillez remplir tous les champs obligatoires.',
+        'btn.generate':'Générer le fichier Excel →','btn.download':'⬇ Télécharger le fichier Excel','btn.new':'Nouveau formulaire',
+        'success.title':'Fichier Excel Prêt',
+        'success.subtitle':'Cliquez sur <strong>Télécharger</strong> ci-dessous, puis transmettez le fichier à votre chargé de compte SAH Cloud.',
+      },
+      en: {
+        'nav.home':'Home','nav.services':'Services','nav.solutions':'Cloud Solutions','nav.managed':'Managed Services',
+        'nav.features':'Features','nav.pricing':'Pricing','nav.about':'About','nav.contact':'Contact','nav.questionnaire':'Questionnaire',
+        'nav.mega':'Cloud & Infrastructure',
+        'mega.col1':'Products','mega.col2':'Solutions','mega.col3':'Services',
+        'mega.hci': 'HCI','mega.hci.sub':'Hyper-Converged Infrastructure',
+        'mega.scp':'SaH Cloud Platform','mega.scp.sub':'Fullstack Cloud Management (SCP)',
+        'mega.ske':'Kubernetes Engine SKE','mega.ske.sub':'Unified Containers & VMs',
+        'mega.dmp': 'DMP','mega.dmp.sub':'Database Management',
+        'mega.astor': 'aStor','mega.astor.sub':'Enterprise Distributed Storage',
+        'mega.adesk': 'aDesk VDI','mega.adesk.sub':'Virtual Desktop Infrastructure',
+        'mega.vmware':'VMware Replacement','mega.vmware.sub':'Simple and secure migration',
+        'mega.hybride':'Hybrid Cloud','mega.hybride.sub':'Unified Private & Public Cloud',
+        'mega.dr':'Disaster Recovery','mega.dr.sub':'DRM : Business continuity',
+        'mega.apps':'Critical Applications','mega.apps.sub':'High performance & availability',
+        'mega.transfo':'Cloud Transformation','mega.transfo.sub':'Data Center modernization',
+        'mega.managed':'Managed Services','mega.managed.sub':'Complete Cloud management',
+        'mega.support':'Cloud Support','mega.support.sub':'Dedicated technical assistance',
+        'mega.questionnaire':'Prospect Questionnaire','mega.questionnaire.sub':'Internal sales tool',
+        'footer.copy':'© 2025 SAH Analytics. All rights reserved.','footer.status':'All systems operational',
+        'hero.badge':'SAH Cloud Partner Tool','hero.title':'Client Prospect Intake',
+        'hero.subtitle':'Fill in your prospect\'s details. Click <strong>Generate Excel</strong> to download a ready-to-send <strong>.xlsx</strong> file for your SAH Cloud account manager.',
+        's01.label':'Company Information','s02.label':'Main Point of Contact',
+        's03.label':'Current Environment','s04.label':'Potential Interest Areas',
+        's05.label':'Estimated Monthly Budget','s06.label':'Expected Deployment Timeline','s07.label':'Additional Notes',
+        's04.hint':'Select all products you are interested in.',
+        'f.company':'Company Name','f.company.ph':'e.g. BNI Côte d\'Ivoire',
+        'f.industry':'Industry / Sector','f.industry.custom':'Specify industry','f.industry.custom.ph':'Your industry…',
+        'f.country':'Country / Region','f.country.ph':'e.g. Côte d\'Ivoire : Abidjan',
+        'f.size':'Company Size',
+        'f.name':'Full Name','f.name.ph':'Jean Koné','f.jobtitle':'Job Title','f.jobtitle.ph':'CIO, IT Director…',
+        'f.email':'Professional Email','f.email.ph':'j.kone@company.com','f.phone':'Phone Number',
+        'f.vendors':'Current Vendors / Solutions','f.vendors.ph':'e.g. AWS, Cisco, VMware…',
+        'f.infra':'Existing Infrastructure','f.infra.ph':'Physical servers, VMs, connectivity…',
+        'f.pain':'Pain Points / Challenges','f.pain.ph':'Costs, scalability, security, compliance…',
+        'f.notes':'Remarks, decision-makers, tenders, specific requirements…','f.notes.ph':'Budget approved, decision in Q3…',
+        'err.required':'This field is required.','err.select':'Please select a sector.',
+        'err.banner':'⚠ Please fill in all required fields.',
+        'btn.generate':'Generate Excel File →','btn.download':'⬇ Download Excel File','btn.new':'New form',
+        'success.title':'Excel File Ready',
+        'success.subtitle':'Click <strong>Download</strong> below, then send the file to your SAH Cloud account manager.',
+      }
+    };
+
+    function applyLang() {
+      document.getElementById('html-root').lang = currentLang;
+      const t = T[currentLang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (t[k] !== undefined) el.innerHTML = t[k];
+      });
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const k = el.getAttribute('data-i18n-ph');
+        if (t[k] !== undefined) el.placeholder = t[k];
+      });
+      document.querySelectorAll('.lang-btn').forEach(b => b.textContent = currentLang === 'fr' ? 'EN' : 'FR');
+      buildBudgetGrid(currentLang === 'en' ? BUDGETS_EN : BUDGETS_FR);
+      buildTimelineGrid(currentLang === 'en' ? TIMELINES_EN : TIMELINES_FR);
+      updateIndustryOptions(currentLang);
+      updateSizeOptions(currentLang);
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => {
+      currentLang = currentLang === 'fr' ? 'en' : 'fr';
+      localStorage.setItem('sah-lang', currentLang);
+      applyLang();
+    }));
+
+    applyLang();
+    </script>
+  </body>
+</html>
