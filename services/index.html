@@ -8,77 +8,75 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: { DEFAULT: '#F47B28', light: '#FFA05A', dark: '#D4601A' },
-            navy:    { DEFAULT: '#1A3C6E', light: '#224e8a', dark: '#102647' },
-          },
-          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
-        }
-      }
+      theme: { extend: { colors: {
+        primary: { DEFAULT: '#F47B28', light: '#FFA05A', dark: '#D4601A' },
+        navy: { DEFAULT: '#0c1530', light: '#1a2545', dark: '#070e20' },
+        violet: { DEFAULT: '#6c35de' },
+      }, fontFamily: { sans: ['Montserrat', 'ui-sans-serif', 'system-ui', 'sans-serif'] } } }
     }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     html { scroll-behavior: smooth; }
-    .nav-link { position: relative; }
-    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#F47B28; transition:width .3s ease; }
-    .nav-link:hover::after, .nav-link.active::after { width:100%; }
-    .service-card { transition: transform .3s ease, box-shadow .3s ease; }
-    .service-card:hover { transform:translateY(-6px); box-shadow:0 20px 40px rgba(244,123,40,0.15); }
-  
-    /* ── MEGA MENU ── */
+    body { font-size: 15px; line-height: 1.7; }
+    .section-title { color: #0c1530; text-transform: uppercase; font-weight: 800; letter-spacing: 0.02em; position: relative; display: inline-block; padding-bottom: 12px; }
+    .section-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 48px; height: 3px; background: #F47B28; }
+    .section-title-center::after { left: 50%; transform: translateX(-50%); }
+    .card-light { background: #ffffff; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.3s ease; border-left: 3px solid transparent; }
+    .card-light:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.12); border-left-color: #F47B28; }
+    .nav-link-light { color: #0c1530; text-transform: uppercase; font-size: 13px; letter-spacing: 0.08em; font-weight: 600; text-decoration: none; transition: color 0.2s; }
+    .nav-link-light:hover { color: #F47B28; }
     .mega-item { display:flex; align-items:flex-start; gap:10px; padding:7px 8px; border-radius:8px; text-decoration:none; transition:background .15s; }
-    .mega-item:hover { background:rgba(255,255,255,0.06); }
+    .mega-item:hover { background:rgba(244,123,40,0.06); }
     .mega-icon { font-size:16px; flex-shrink:0; margin-top:2px; }
-    .mega-name { display:block; font-size:12.5px; font-weight:600; color:#E2E8F0; line-height:1.3; transition:color .15s; }
-    .mega-item:hover .mega-name { color:#fff; }
-    .mega-sub  { display:block; font-size:10.5px; color:#64748B; margin-top:1px; line-height:1.3; }
+    .mega-name { display:block; font-size:12.5px; font-weight:600; color:#0c1530; line-height:1.3; transition:color .15s; }
+    .mega-item:hover .mega-name { color:#F47B28; }
+    .mega-sub { display:block; font-size:10.5px; color:#94a3b8; margin-top:1px; line-height:1.3; }
+    .lang-btn { font-size:12px; font-weight:700; border-radius:8px; padding:4px 10px; cursor:pointer; transition:all .2s; letter-spacing:.05em; }
+    .img-blob-wrapper { position: relative; }
+    .img-blob-wrapper::before { content: ''; position: absolute; width: 200px; height: 200px; background: rgba(244,123,40,0.12); border-radius: 50% 30% 50% 30%; top: -20px; right: -20px; z-index: 0; }
+    .img-blob-wrapper::after { content: ''; position: absolute; width: 150px; height: 150px; background: rgba(108,53,222,0.08); border-radius: 30% 50% 30% 50%; bottom: -20px; left: -20px; z-index: 0; }
+    .img-blob-wrapper img { position: relative; z-index: 1; }
   </style>
 </head>
-<body class="bg-[#0d1f3c] font-sans text-white antialiased">
+<body class="bg-white font-sans text-[#5a6a85] antialiased">
 
-    <!-- NAVBAR -->
-  <header class="fixed top-0 left-0 right-0 z-50" style="background:rgba(13,31,60,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);">
+  <!-- NAVBAR -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white" style="box-shadow:0 2px 20px rgba(0,0,0,0.08);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <a href="../index.html" class="flex-shrink-0">
           <img src="../img/logo.png" alt="SAH Cloud" class="h-9 w-auto rounded-md" />
         </a>
-                        <nav class="hidden md:flex items-center gap-6">
-          <div class="relative" id="mega-wrap">
-            <button id="mega-btn" class="inline-flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-white transition-colors focus:outline-none">
+        <nav class="hidden md:flex items-center gap-6">
+          <div class="static" id="mega-wrap">
+            <button id="mega-btn" class="nav-link-light inline-flex items-center gap-2 focus:outline-none">
               <span>Cloud &amp; Infrastructure</span>
               <svg id="mega-chevron" class="w-4 h-4 transition-transform duration-200 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
             </button>
-            <!-- MEGA PANEL -->
-            <div id="mega-panel" class="hidden absolute top-full left-0 mt-2 rounded-2xl shadow-2xl z-[9999]" style="width:800px;background:rgba(8,18,46,0.99);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.09);">
+            <div id="mega-panel" class="hidden absolute top-full mt-2 rounded-2xl shadow-2xl z-[9999] bg-white" style="width:800px;border:1px solid rgba(0,0,0,0.08);left:50%;transform:translateX(-50%);">
               <div class="grid grid-cols-3 gap-0 p-5">
-                <!-- Col 1 — Produits -->
-                <div class="pr-5 border-r border-white/5">
-                  <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">Produits</p>
+                <div class="pr-5 border-r border-slate-100">
+                  <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest mb-3 border-b-2 border-[#F47B28] pb-1">Produits</p>
                   <a href="../services/index.html" class="mega-item"><span class="mega-icon">&#x1F5A5;&#xFE0F;</span><span><span class="mega-name">SaH Cloud HCI</span><span class="mega-sub">Infrastructure Hyper-Converg&eacute;e</span></span></a>
                   <a href="../solutions/index.html" class="mega-item"><span class="mega-icon">&#x2601;&#xFE0F;</span><span><span class="mega-name">SaH Cloud Platform</span><span class="mega-sub">Gestion Cloud Fullstack (SCP)</span></span></a>
-                  <a href="../solutions/index.html" class="mega-item"><span class="mega-icon">&#x1F433;</span><span><span class="mega-name">Kubernetes Engine SKE</span><span class="mega-sub">Conteneurs &amp; VM Unifi&eacute;s</span></span></a>
-                  <a href="../solutions/index.html" class="mega-item"><span class="mega-icon">&#x1F5C4;&#xFE0F;</span><span><span class="mega-name">Cloud DMP</span><span class="mega-sub">Gestion de Bases de Donn&eacute;es</span></span></a>
-                  <a href="../solutions/index.html" class="mega-item"><span class="mega-icon">&#x1F4BE;</span><span><span class="mega-name">Cloud aStor</span><span class="mega-sub">Stockage Distribu&eacute; d&rsquo;Entreprise</span></span></a>
-                  <a href="../solutions/index.html" class="mega-item"><span class="mega-icon">&#x1F5B1;&#xFE0F;</span><span><span class="mega-name">Cloud aDesk VDI</span><span class="mega-sub">Postes de Travail Virtuels</span></span></a>
+                  <a href="../ske/index.html" class="mega-item"><span class="mega-icon">&#x1F433;</span><span><span class="mega-name">Kubernetes Engine SKE</span><span class="mega-sub">Conteneurs &amp; VM Unifi&eacute;s</span></span></a>
+                  <a href="../features/index.html" class="mega-item"><span class="mega-icon">&#x1F5C4;&#xFE0F;</span><span><span class="mega-name">Cloud DMP</span><span class="mega-sub">Gestion de Bases de Donn&eacute;es</span></span></a>
+                  <a href="../astor/index.html" class="mega-item"><span class="mega-icon">&#x1F4BE;</span><span><span class="mega-name">Cloud aStor</span><span class="mega-sub">Stockage Distribu&eacute; d&rsquo;Entreprise</span></span></a>
+                  <a href="../managed/index.html" class="mega-item"><span class="mega-icon">&#x1F5B1;&#xFE0F;</span><span><span class="mega-name">Cloud aDesk VDI</span><span class="mega-sub">Postes de Travail Virtuels</span></span></a>
                 </div>
-                <!-- Col 2 — Solutions -->
-                <div class="px-5 border-r border-white/5">
-                  <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">Solutions</p>
+                <div class="px-5 border-r border-slate-100">
+                  <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest mb-3 border-b-2 border-[#F47B28] pb-1">Solutions</p>
                   <a href="../solutions/index.html" class="mega-item"><span class="mega-icon">&#x1F504;</span><span><span class="mega-name">Remplacement VMware</span><span class="mega-sub">Migration simple et s&eacute;curis&eacute;e</span></span></a>
                   <a href="../solutions/index.html" class="mega-item"><span class="mega-icon">&#x1F517;</span><span><span class="mega-name">Cloud Hybride</span><span class="mega-sub">Cloud Priv&eacute; &amp; Public Unifi&eacute;</span></span></a>
                   <a href="../managed/index.html" class="mega-item"><span class="mega-icon">&#x1F6E1;&#xFE0F;</span><span><span class="mega-name">Reprise apr&egrave;s Sinistre</span><span class="mega-sub">DRM &mdash; Continuit&eacute; d&rsquo;activit&eacute;</span></span></a>
                   <a href="../features/index.html" class="mega-item"><span class="mega-icon">&#x26A1;</span><span><span class="mega-name">Applications Critiques</span><span class="mega-sub">Haute performance &amp; disponibilit&eacute;</span></span></a>
                   <a href="../solutions/index.html" class="mega-item"><span class="mega-icon">&#x1F3D7;&#xFE0F;</span><span><span class="mega-name">Transformation Cloud</span><span class="mega-sub">Modernisation des Data Centers</span></span></a>
                 </div>
-                <!-- Col 3 — Services & Navigation -->
                 <div class="pl-5">
-                  <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">Services</p>
+                  <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest mb-3 border-b-2 border-[#F47B28] pb-1">Services</p>
                   <a href="../managed/index.html" class="mega-item"><span class="mega-icon">&#x2699;&#xFE0F;</span><span><span class="mega-name">Services G&eacute;r&eacute;s</span><span class="mega-sub">Infog&eacute;rance Cloud compl&egrave;te</span></span></a>
                   <a href="../contact/index.html" class="mega-item"><span class="mega-icon">&#x1F6DF;</span><span><span class="mega-name">Support Cloud</span><span class="mega-sub">Assistance technique d&eacute;di&eacute;e</span></span></a>
                   <a href="../questionnaire/index.html" class="mega-item"><span class="mega-icon">&#x1F4CB;</span><span><span class="mega-name">Questionnaire Prospect</span><span class="mega-sub">Outil commercial interne</span></span></a>
@@ -91,203 +89,252 @@
           </div>
         </nav>
         <div class="hidden md:flex items-center gap-3">
-          <button class="lang-btn text-white text-xs font-bold border border-white/20 rounded-lg px-3 py-1.5 hover:bg-white/10 transition-all">FR</button>
+          <button class="lang-btn text-[#0c1530] border border-slate-200 hover:bg-slate-50">FR</button>
+          <a href="../contact/index.html" class="bg-[#F47B28] text-white font-bold text-xs px-5 py-2 rounded-full hover:bg-[#D4601A] transition-colors uppercase tracking-wide">Nous Contacter</a>
         </div>
         <div class="flex md:hidden items-center gap-2">
-          <button class="lang-btn text-white text-xs font-bold border border-white/20 rounded-lg px-2.5 py-1 hover:bg-white/10 transition-all">FR</button>
-          <button id="menu-btn" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors">
+          <button class="lang-btn text-[#0c1530] border border-slate-200 hover:bg-slate-50 text-xs px-2.5 py-1">FR</button>
+          <button id="menu-btn" class="p-2 rounded-lg text-[#0c1530] hover:bg-slate-100 transition-colors">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
           </button>
         </div>
       </div>
     </div>
-            <div id="mobile-menu" class="hidden md:hidden border-t border-white/10">
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white">
       <div class="px-4 py-3 space-y-1">
-        <button id="mob-mega-btn" class="w-full flex items-center justify-between px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+        <button id="mob-mega-btn" class="w-full flex items-center justify-between px-3 py-2 text-sm text-[#0c1530] font-semibold hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">
           Cloud &amp; Infrastructure
           <svg id="mob-mega-chevron" class="w-4 h-4 transition-transform duration-200 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
         </button>
-        <div id="mob-mega-panel" class="hidden px-2 pb-2 border-l-2 border-primary/30 ml-2 mt-1">
-          <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-2 pt-3 pb-1.5">Produits</p>
-          <a href="../services/index.html"    class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">SaH Cloud HCI</a>
-          <a href="../solutions/index.html"   class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">SaH Cloud Platform</a>
-          <a href="../solutions/index.html"   class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Kubernetes Engine SKE</a>
-          <a href="../solutions/index.html"   class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Cloud DMP</a>
-          <a href="../solutions/index.html"   class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Cloud aStor</a>
-          <a href="../solutions/index.html"   class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Cloud aDesk VDI</a>
-          <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-2 pt-3 pb-1.5">Solutions</p>
-          <a href="../solutions/index.html"   class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Remplacement VMware</a>
-          <a href="../solutions/index.html"   class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Cloud Hybride</a>
-          <a href="../managed/index.html"     class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Reprise apr&egrave;s Sinistre</a>
-          <a href="../features/index.html"    class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Applications Critiques</a>
-          <a href="../solutions/index.html"   class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Transformation Cloud</a>
-          <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-2 pt-3 pb-1.5">Services</p>
-          <a href="../managed/index.html"       class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Services G&eacute;r&eacute;s</a>
-          <a href="../contact/index.html"       class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Support Cloud</a>
-          <a href="../questionnaire/index.html" class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Questionnaire Prospect</a>
-          <a href="../about/index.html"  class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">&Agrave; propos</a>
-          <a href="../contact/index.html"  class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Contact</a>
-          <a href="../pricing/index.html" class="block px-2 py-1.5 text-sm font-semibold text-primary hover:bg-white/5 rounded-lg transition-colors">Tarifs</a>
+        <div id="mob-mega-panel" class="hidden px-2 pb-2 border-l-2 border-[#F47B28]/30 ml-2 mt-1">
+          <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest px-2 pt-3 pb-1.5">Produits</p>
+          <a href="../services/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">SaH Cloud HCI</a>
+          <a href="../solutions/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">SaH Cloud Platform</a>
+          <a href="../ske/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Kubernetes Engine SKE</a>
+          <a href="../features/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Cloud DMP</a>
+          <a href="../astor/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Cloud aStor</a>
+          <a href="../managed/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Cloud aDesk VDI</a>
+          <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest px-2 pt-3 pb-1.5">Solutions</p>
+          <a href="../solutions/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Remplacement VMware</a>
+          <a href="../solutions/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Cloud Hybride</a>
+          <a href="../managed/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Reprise apr&egrave;s Sinistre</a>
+          <a href="../features/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Applications Critiques</a>
+          <a href="../solutions/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Transformation Cloud</a>
+          <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest px-2 pt-3 pb-1.5">Services</p>
+          <a href="../managed/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Services G&eacute;r&eacute;s</a>
+          <a href="../contact/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Support Cloud</a>
+          <a href="../questionnaire/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Questionnaire Prospect</a>
+          <a href="../about/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">&Agrave; propos</a>
+          <a href="../contact/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Contact</a>
+          <a href="../pricing/index.html" class="block px-2 py-1.5 text-sm font-semibold text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Tarifs</a>
         </div>
+        <a href="../contact/index.html" class="block mt-3 text-center bg-[#F47B28] text-white font-bold text-sm py-2.5 rounded-full hover:bg-[#D4601A] transition-colors">Nous Contacter</a>
       </div>
     </div>
   </header>
 
-  <!-- PAGE HEADER -->
-  <section class="relative pt-28 pb-16 overflow-hidden">
-    <div class="absolute inset-0 opacity-10" style="background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:60px 60px;"></div>
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+  <!-- HERO -->
+  <section class="relative pt-28 pb-20 overflow-hidden" style="background:#0c1530;">
+    <div class="absolute inset-0 opacity-25" style="background:url('https://images.unsplash.com/photo-1597733336794-12d05021d510?w=1400&q=80&auto=format&fit=crop') center/cover no-repeat;"></div>
+    <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(12,21,48,0.92) 0%,rgba(12,21,48,0.75) 100%);"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary text-xs font-semibold px-4 py-1.5 rounded-full mb-5">
-        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
-        <span data-i18n="header.badge">Nos offres cloud</span>
+      <p class="text-[#F47B28] font-semibold text-sm uppercase tracking-widest mb-4">Nos Produits</p>
+      <h1 class="text-4xl lg:text-5xl font-black text-white leading-tight mb-5" data-i18n="header.title">Services SAH Cloud</h1>
+      <p class="text-slate-300 text-lg max-w-2xl mx-auto mb-8" data-i18n="header.subtitle">Des solutions cloud complètes et sécurisées pour votre infrastructure d'entreprise.</p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="../contact/index.html" class="bg-[#F47B28] text-white font-bold px-8 py-3 rounded hover:bg-[#D4601A] transition-colors uppercase tracking-wide text-sm">Nous Contacter</a>
+        <a href="../pricing/index.html" class="border-2 border-white text-white font-bold px-8 py-3 rounded hover:bg-white/10 transition-colors uppercase tracking-wide text-sm">Voir les Tarifs</a>
       </div>
-      <h1 class="text-4xl lg:text-5xl font-black mb-4" data-i18n="header.title">Solutions cloud complètes</h1>
-      <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-i18n="header.subtitle">De l'infrastructure bare-metal à l'IA managée, SAH Cloud couvre tous vos besoins numériques avec une fiabilité de niveau entreprise.</p>
     </div>
   </section>
 
   <!-- SERVICES GRID -->
-  <section class="pb-24 lg:pb-32">
+  <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="section-title section-title-center text-3xl mb-2">Infrastructure & Conteneurisation</h2>
+        <p class="text-[#F47B28] italic font-semibold text-sm mt-4 mb-8">Infrastructure Hyper-Convergée de 3ème génération et moteur Kubernetes natif pour vos workloads critiques.</p>
+      </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
         <!-- VPS -->
-        <div class="service-card bg-[#111e35] border border-white/5 rounded-2xl p-8 group cursor-default">
-          <div class="w-12 h-12 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
-            <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
+        <div class="card-light p-6 group cursor-default">
+          <div class="w-12 h-12 bg-[#F47B28]/10 rounded-xl flex items-center justify-center mb-4 text-2xl">
+            <svg class="w-6 h-6 text-[#F47B28]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
           </div>
-          <h3 class="text-xl font-bold mb-3" data-i18n="vps.title">Serveurs Cloud VPS</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6" data-i18n="vps.desc">Serveurs virtuels haute performance avec stockage NVMe SSD, réseau 10 Gbps et déploiement en moins d'une minute. Configurez librement vos ressources à la demande.</p>
+          <h3 class="text-xl font-bold mb-3 text-[#0c1530]" data-i18n="vps.title">Serveurs Cloud VPS</h3>
+          <p class="text-[#5a6a85] text-sm leading-relaxed mb-6" data-i18n="vps.desc">Serveurs virtuels haute performance avec stockage NVMe SSD, réseau 10 Gbps et déploiement en moins d'une minute. Configurez librement vos ressources à la demande.</p>
           <ul class="space-y-2 mb-6">
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="vps.li1">Disques NVMe SSD haute vélocité</span></li>
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="vps.li2">Réseau 10 Gbps dédié</span></li>
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="vps.li3">Linux & Windows disponibles</span></li>
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="vps.li4">Snapshots & sauvegardes auto</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="vps.li1">Disques NVMe SSD haute vélocité</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="vps.li2">Réseau 10 Gbps dédié</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="vps.li3">Linux & Windows disponibles</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="vps.li4">Snapshots & sauvegardes auto</span></li>
           </ul>
           <div class="flex flex-wrap gap-2">
-            <span class="text-xs bg-white/5 text-slate-400 px-3 py-1 rounded-full">NVMe SSD</span>
-            <span class="text-xs bg-white/5 text-slate-400 px-3 py-1 rounded-full">10 Gbps</span>
-            <span class="text-xs bg-white/5 text-slate-400 px-3 py-1 rounded-full">Linux/Windows</span>
+            <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">NVMe SSD</span>
+            <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">10 Gbps</span>
+            <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">Linux/Windows</span>
           </div>
         </div>
 
-        <!-- IA -->
-        <div class="service-card bg-[#111e35] border border-primary/20 rounded-2xl p-8 group cursor-default relative overflow-hidden">
-          <div class="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-2.5 py-0.5 rounded-full" data-i18n="ia.badge">Phare</div>
-          <div class="w-12 h-12 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
-            <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        <!-- IA (featured) -->
+        <div class="card-light p-8 border-l-4 border-[#F47B28] group cursor-default relative overflow-hidden">
+          <div class="absolute top-4 right-4 bg-[#F47B28] text-white text-xs font-bold px-2.5 py-0.5 rounded-full" data-i18n="ia.badge">Phare</div>
+          <div class="w-12 h-12 bg-[#F47B28]/10 rounded-xl flex items-center justify-center mb-4 text-2xl">
+            <svg class="w-6 h-6 text-[#F47B28]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
           </div>
-          <h3 class="text-xl font-bold mb-3" data-i18n="ia.title">Intelligence Artificielle</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6" data-i18n="ia.desc">Déployez vos modèles IA et ML sur notre infrastructure GPU optimisée. APIs prêtes à l'emploi pour l'analyse prédictive, le traitement du langage naturel et la vision par ordinateur.</p>
+          <h3 class="text-xl font-bold mb-3 text-[#0c1530]" data-i18n="ia.title">Intelligence Artificielle</h3>
+          <p class="text-[#5a6a85] text-sm leading-relaxed mb-6" data-i18n="ia.desc">Déployez vos modèles IA et ML sur notre infrastructure GPU optimisée. APIs prêtes à l'emploi pour l'analyse prédictive, le traitement du langage naturel et la vision par ordinateur.</p>
           <ul class="space-y-2 mb-6">
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="ia.li1">GPU NVIDIA A100 / H100</span></li>
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="ia.li2">Pipeline MLOps intégré</span></li>
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="ia.li3">APIs REST & gRPC prêtes</span></li>
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="ia.li4">Monitoring des modèles inclus</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="ia.li1">GPU NVIDIA A100 / H100</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="ia.li2">Pipeline MLOps intégré</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="ia.li3">APIs REST & gRPC prêtes</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="ia.li4">Monitoring des modèles inclus</span></li>
           </ul>
           <div class="flex flex-wrap gap-2">
-            <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-3 py-1 rounded-full">GPU Cloud</span>
-            <span class="text-xs bg-white/5 text-slate-400 px-3 py-1 rounded-full">MLOps</span>
-            <span class="text-xs bg-white/5 text-slate-400 px-3 py-1 rounded-full">APIs IA</span>
+            <span class="text-xs bg-[#F47B28]/10 text-[#F47B28] border border-[#F47B28]/20 px-3 py-1 rounded-full">GPU Cloud</span>
+            <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">MLOps</span>
+            <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">APIs IA</span>
           </div>
         </div>
 
         <!-- Analytics -->
-        <div class="service-card bg-[#111e35] border border-white/5 rounded-2xl p-8 group cursor-default">
-          <div class="w-12 h-12 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
-            <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        <div class="card-light p-6 group cursor-default">
+          <div class="w-12 h-12 bg-[#F47B28]/10 rounded-xl flex items-center justify-center mb-4 text-2xl">
+            <svg class="w-6 h-6 text-[#F47B28]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
           </div>
-          <h3 class="text-xl font-bold mb-3" data-i18n="analytics.title">Analyse de Données</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6" data-i18n="analytics.desc">Tableaux de bord en temps réel, entrepôts de données Big Data et pipelines analytiques managés pour transformer vos données brutes en décisions stratégiques.</p>
+          <h3 class="text-xl font-bold mb-3 text-[#0c1530]" data-i18n="analytics.title">Analyse de Données</h3>
+          <p class="text-[#5a6a85] text-sm leading-relaxed mb-6" data-i18n="analytics.desc">Tableaux de bord en temps réel, entrepôts de données Big Data et pipelines analytiques managés pour transformer vos données brutes en décisions stratégiques.</p>
           <ul class="space-y-2 mb-6">
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="analytics.li1">Dashboards interactifs temps réel</span></li>
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="analytics.li2">Entrepôt de données Big Data</span></li>
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="analytics.li3">ETL pipelines no-code</span></li>
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="analytics.li4">Alertes et rapports automatiques</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="analytics.li1">Dashboards interactifs temps réel</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="analytics.li2">Entrepôt de données Big Data</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="analytics.li3">ETL pipelines no-code</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="analytics.li4">Alertes et rapports automatiques</span></li>
           </ul>
           <div class="flex flex-wrap gap-2">
-            <span class="text-xs bg-white/5 text-slate-400 px-3 py-1 rounded-full">Big Data</span>
-            <span class="text-xs bg-white/5 text-slate-400 px-3 py-1 rounded-full">Dashboards</span>
-            <span class="text-xs bg-white/5 text-slate-400 px-3 py-1 rounded-full" data-i18n="analytics.tag">Temps réel</span>
+            <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">Big Data</span>
+            <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">Dashboards</span>
+            <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full" data-i18n="analytics.tag">Temps réel</span>
           </div>
         </div>
 
         <!-- Storage -->
-        <div class="service-card bg-[#111e35] border border-white/5 rounded-2xl p-8 group cursor-default">
-          <div class="w-12 h-12 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
-            <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>
+        <div class="card-light p-6 group cursor-default">
+          <div class="w-12 h-12 bg-[#F47B28]/10 rounded-xl flex items-center justify-center mb-4 text-2xl">
+            <svg class="w-6 h-6 text-[#F47B28]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>
           </div>
-          <h3 class="text-xl font-bold mb-3" data-i18n="storage.title">Stockage Objet S3</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6" data-i18n="storage.desc">Stockage distribué compatible S3 avec réplication géographique multi-zones, CDN mondial intégré et chiffrement AES-256 activé par défaut sur toutes les données.</p>
+          <h3 class="text-xl font-bold mb-3 text-[#0c1530]" data-i18n="storage.title">Stockage Objet S3</h3>
+          <p class="text-[#5a6a85] text-sm leading-relaxed mb-6" data-i18n="storage.desc">Stockage distribué compatible S3 avec réplication géographique multi-zones, CDN mondial intégré et chiffrement AES-256 activé par défaut sur toutes les données.</p>
           <ul class="space-y-2 mb-6">
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="storage.li1">API compatible AWS S3</span></li>
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="storage.li2">Réplication géographique 3 zones</span></li>
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="storage.li3">CDN mondial intégré</span></li>
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="storage.li4">Chiffrement AES-256 par défaut</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="storage.li1">API compatible AWS S3</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="storage.li2">Réplication géographique 3 zones</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="storage.li3">CDN mondial intégré</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="storage.li4">Chiffrement AES-256 par défaut</span></li>
           </ul>
           <div class="flex flex-wrap gap-2">
-            <span class="text-xs bg-white/5 text-slate-400 px-3 py-1 rounded-full">Compatible S3</span>
-            <span class="text-xs bg-white/5 text-slate-400 px-3 py-1 rounded-full">CDN</span>
-            <span class="text-xs bg-white/5 text-slate-400 px-3 py-1 rounded-full">AES-256</span>
+            <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">Compatible S3</span>
+            <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">CDN</span>
+            <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">AES-256</span>
           </div>
         </div>
 
         <!-- Security -->
-        <div class="service-card bg-[#111e35] border border-white/5 rounded-2xl p-8 group cursor-default">
-          <div class="w-12 h-12 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
-            <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <div class="card-light p-6 group cursor-default">
+          <div class="w-12 h-12 bg-[#F47B28]/10 rounded-xl flex items-center justify-center mb-4 text-2xl">
+            <svg class="w-6 h-6 text-[#F47B28]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
           </div>
-          <h3 class="text-xl font-bold mb-3" data-i18n="security.title">Sécurité & Conformité</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6" data-i18n="security.desc">Protection DDoS jusqu'à 10 Tbps, pare-feu applicatif intelligent, WAF managé et audits de sécurité automatisés en continu pour votre tranquillité d'esprit.</p>
+          <h3 class="text-xl font-bold mb-3 text-[#0c1530]" data-i18n="security.title">Sécurité & Conformité</h3>
+          <p class="text-[#5a6a85] text-sm leading-relaxed mb-6" data-i18n="security.desc">Protection DDoS jusqu'à 10 Tbps, pare-feu applicatif intelligent, WAF managé et audits de sécurité automatisés en continu pour votre tranquillité d'esprit.</p>
           <ul class="space-y-2 mb-6">
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="security.li1">Anti-DDoS jusqu'à 10 Tbps</span></li>
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="security.li2">Web Application Firewall</span></li>
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="security.li3">Conformité ISO 27001 & RGPD</span></li>
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="security.li4">Audits de sécurité automatisés</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="security.li1">Anti-DDoS jusqu'à 10 Tbps</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="security.li2">Web Application Firewall</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="security.li3">Conformité ISO 27001 & RGPD</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="security.li4">Audits de sécurité automatisés</span></li>
           </ul>
           <div class="flex flex-wrap gap-2">
-            <span class="text-xs bg-white/5 text-slate-400 px-3 py-1 rounded-full">Anti-DDoS</span>
-            <span class="text-xs bg-white/5 text-slate-400 px-3 py-1 rounded-full">WAF</span>
-            <span class="text-xs bg-white/5 text-slate-400 px-3 py-1 rounded-full">ISO 27001</span>
+            <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">Anti-DDoS</span>
+            <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">WAF</span>
+            <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">ISO 27001</span>
           </div>
         </div>
 
         <!-- Managed DB -->
-        <div class="service-card bg-[#111e35] border border-white/5 rounded-2xl p-8 group cursor-default">
-          <div class="w-12 h-12 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
-            <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg>
+        <div class="card-light p-6 group cursor-default">
+          <div class="w-12 h-12 bg-[#F47B28]/10 rounded-xl flex items-center justify-center mb-4 text-2xl">
+            <svg class="w-6 h-6 text-[#F47B28]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg>
           </div>
-          <h3 class="text-xl font-bold mb-3" data-i18n="db.title">Bases de Données Managées</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6" data-i18n="db.desc">PostgreSQL, MySQL, MongoDB et Redis entièrement managés. Sauvegardes automatiques, failover instantané et mises à jour sans interruption de service.</p>
+          <h3 class="text-xl font-bold mb-3 text-[#0c1530]" data-i18n="db.title">Bases de Données Managées</h3>
+          <p class="text-[#5a6a85] text-sm leading-relaxed mb-6" data-i18n="db.desc">PostgreSQL, MySQL, MongoDB et Redis entièrement managés. Sauvegardes automatiques, failover instantané et mises à jour sans interruption de service.</p>
           <ul class="space-y-2 mb-6">
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="db.li1">PostgreSQL, MySQL, MongoDB</span></li>
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="db.li2">Failover automatique &lt; 30s</span></li>
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="db.li3">Backups quotidiens chiffrés</span></li>
-            <li class="flex items-center gap-2 text-xs text-slate-400"><svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="db.li4">Read replicas incluses</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="db.li1">PostgreSQL, MySQL, MongoDB</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="db.li2">Failover automatique &lt; 30s</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="db.li3">Backups quotidiens chiffrés</span></li>
+            <li class="flex items-center gap-2 text-xs text-[#5a6a85]"><svg class="w-3.5 h-3.5 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span data-i18n="db.li4">Read replicas incluses</span></li>
           </ul>
           <div class="flex flex-wrap gap-2">
-            <span class="text-xs bg-white/5 text-slate-400 px-3 py-1 rounded-full">PostgreSQL</span>
-            <span class="text-xs bg-white/5 text-slate-400 px-3 py-1 rounded-full">MongoDB</span>
-            <span class="text-xs bg-white/5 text-slate-400 px-3 py-1 rounded-full">Redis</span>
+            <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">PostgreSQL</span>
+            <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">MongoDB</span>
+            <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">Redis</span>
           </div>
         </div>
 
       </div>
 
       <!-- CTA -->
-    
+      <div class="text-center mt-12">
+        <a href="../contact/index.html" class="bg-[#F47B28] text-white font-bold px-8 py-3 rounded hover:bg-[#D4601A] transition-colors uppercase tracking-wide text-sm inline-block">Nous Contacter</a>
+      </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="py-10 border-t border-white/5" style="background:#070f1e;">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <a href="../index.html"><img src="../img/logo.png" alt="SAH Cloud" class="h-10 w-auto rounded-md" loading="lazy" /></a>
-      <p class="text-xs text-slate-600"><span data-i18n="footer.copy">© 2025 SAH Analytics. Tous droits réservés.</span></p>
-      <div class="flex items-center gap-2 text-xs text-slate-600">
-        <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-        <span data-i18n="footer.status">Tous les systèmes opérationnels</span>
+  <footer style="background:#0a1128;" class="pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div>
+          <img src="../img/logo.png" alt="SAH Cloud" class="h-10 w-auto rounded-md mb-4" loading="lazy" />
+          <p class="text-[#94a3b8] text-sm leading-relaxed">Infrastructure cloud haute performance pour les entreprises en Afrique et au-delà.</p>
+        </div>
+        <div>
+          <h4 class="text-white font-bold text-sm uppercase tracking-widest mb-5">Navigation</h4>
+          <ul class="space-y-2">
+            <li><a href="../index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">Accueil</a></li>
+            <li><a href="../services/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">Services</a></li>
+            <li><a href="../solutions/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">Solutions</a></li>
+            <li><a href="../managed/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">Services Gérés</a></li>
+            <li><a href="../about/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">À propos</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold text-sm uppercase tracking-widest mb-5">Produits</h4>
+          <ul class="space-y-2">
+            <li><a href="../services/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">SaH Cloud HCI</a></li>
+            <li><a href="../solutions/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">SaH Cloud Platform</a></li>
+            <li><a href="../ske/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">Kubernetes Engine SKE</a></li>
+            <li><a href="../features/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">Cloud DMP</a></li>
+            <li><a href="../astor/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">Cloud aStor</a></li>
+            <li><a href="../managed/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">Cloud aDesk VDI</a></li>
+            <li><a href="../pricing/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">Tarifs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold text-sm uppercase tracking-widest mb-5">Contact</h4>
+          <p class="text-[#94a3b8] text-sm mb-1">contact@sahanalytics.com</p>
+          <p class="text-[#94a3b8] text-sm mb-1">+225 25 22 01 97 40</p>
+          <p class="text-[#94a3b8] text-sm mb-5">Abidjan, Côte d'Ivoire</p>
+          <div>
+            <p class="text-white text-xs font-bold uppercase tracking-wide mb-2">Newsletter</p>
+            <input type="email" placeholder="Votre email" class="w-full bg-white/10 text-white placeholder-[#64748b] text-sm px-3 py-2 rounded-lg border border-white/10 focus:outline-none focus:border-[#F47B28] mb-2" />
+            <button class="w-full bg-[#F47B28] text-white font-bold text-xs py-2 rounded-lg hover:bg-[#D4601A] transition-colors uppercase tracking-wide">Sign Up</button>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-[#94a3b8] text-xs"><span data-i18n="footer.copy">© 2025 SAH Analytics International. Tous droits réservés.</span></p>
+        <div class="flex items-center gap-2 text-xs text-[#94a3b8]">
+          <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+          <span data-i18n="footer.status">Tous les systèmes opérationnels</span>
+        </div>
       </div>
     </div>
   </footer>
@@ -319,56 +366,56 @@
       'mega.adesk': 'Cloud aDesk VDI', 'mega.adesk.sub': 'Postes de Travail Virtuels',
       'mega.vmware': 'Remplacement VMware', 'mega.vmware.sub': 'Migration simple et sécurisée',
       'mega.hybride': 'Cloud Hybride', 'mega.hybride.sub': 'Cloud Privé & Public Unifié',
-      'mega.dr': 'Reprise après Sinistre', 'mega.dr.sub': "DRM — Continuité d'activité",
+      'mega.dr': 'Reprise après Sinistre', 'mega.dr.sub': "DRM : Continuité d'activité",
       'mega.apps': 'Applications Critiques', 'mega.apps.sub': 'Haute performance & disponibilité',
       'mega.transfo': 'Transformation Cloud', 'mega.transfo.sub': 'Modernisation des Data Centers',
       'mega.managed': 'Services Gérés', 'mega.managed.sub': 'Infogérance Cloud complète',
       'mega.support': 'Support Cloud', 'mega.support.sub': 'Assistance technique dédiée',
       'mega.questionnaire': 'Questionnaire Prospect', 'mega.questionnaire.sub': 'Outil commercial interne',
-      'footer.copy': '© 2025 SAH Analytics. Tous droits réservés.',
+      'footer.copy': '© 2025 SAH Analytics International. Tous droits réservés.',
       'footer.status': 'Tous les systèmes opérationnels',
-      'page.title': 'Services — SAH Cloud',
+      'page.title': 'Services : SAH Cloud',
       'header.badge': 'Nos offres cloud',
-      'header.title': 'Solutions cloud complètes',
-      'header.subtitle': 'De l\'infrastructure bare-metal à l\'IA managée, SAH Cloud couvre tous vos besoins numériques avec une fiabilité de niveau entreprise.',
-      'vps.title': 'Serveurs Cloud VPS',
-      'vps.desc': 'Serveurs virtuels haute performance avec stockage NVMe SSD, réseau 10 Gbps et déploiement en moins d\'une minute. Configurez librement vos ressources à la demande.',
-      'vps.li1': 'Disques NVMe SSD haute vélocité',
-      'vps.li2': 'Réseau 10 Gbps dédié',
-      'vps.li3': 'Linux & Windows disponibles',
-      'vps.li4': 'Snapshots & sauvegardes auto',
-      'ia.badge': 'Phare',
-      'ia.title': 'Intelligence Artificielle',
-      'ia.desc': 'Déployez vos modèles IA et ML sur notre infrastructure GPU optimisée. APIs prêtes à l\'emploi pour l\'analyse prédictive, le traitement du langage naturel et la vision par ordinateur.',
-      'ia.li1': 'GPU NVIDIA A100 / H100',
-      'ia.li2': 'Pipeline MLOps intégré',
-      'ia.li3': 'APIs REST & gRPC prêtes',
-      'ia.li4': 'Monitoring des modèles inclus',
-      'analytics.title': 'Analyse de Données',
-      'analytics.desc': 'Tableaux de bord en temps réel, entrepôts de données Big Data et pipelines analytiques managés pour transformer vos données brutes en décisions stratégiques.',
-      'analytics.li1': 'Dashboards interactifs temps réel',
-      'analytics.li2': 'Entrepôt de données Big Data',
-      'analytics.li3': 'ETL pipelines no-code',
-      'analytics.li4': 'Alertes et rapports automatiques',
-      'analytics.tag': 'Temps réel',
-      'storage.title': 'Stockage Objet S3',
-      'storage.desc': 'Stockage distribué compatible S3 avec réplication géographique multi-zones, CDN mondial intégré et chiffrement AES-256 activé par défaut sur toutes les données.',
-      'storage.li1': 'API compatible AWS S3',
-      'storage.li2': 'Réplication géographique 3 zones',
-      'storage.li3': 'CDN mondial intégré',
-      'storage.li4': 'Chiffrement AES-256 par défaut',
-      'security.title': 'Sécurité & Conformité',
-      'security.desc': 'Protection DDoS jusqu\'à 10 Tbps, pare-feu applicatif intelligent, WAF managé et audits de sécurité automatisés en continu pour votre tranquillité d\'esprit.',
-      'security.li1': 'Anti-DDoS jusqu\'à 10 Tbps',
-      'security.li2': 'Web Application Firewall',
-      'security.li3': 'Conformité ISO 27001 & RGPD',
-      'security.li4': 'Audits de sécurité automatisés',
-      'db.title': 'Bases de Données Managées',
-      'db.desc': 'PostgreSQL, MySQL, MongoDB et Redis entièrement managés. Sauvegardes automatiques, failover instantané et mises à jour sans interruption de service.',
-      'db.li1': 'PostgreSQL, MySQL, MongoDB',
-      'db.li2': 'Failover automatique < 30s',
-      'db.li3': 'Backups quotidiens chiffrés',
-      'db.li4': 'Read replicas incluses'
+      'header.title': 'Services SAH Cloud',
+      'header.subtitle': 'Infrastructure Hyper-Convergée de 3ème génération et moteur Kubernetes natif pour vos workloads et applications critiques.',
+      'vps.title': 'SaH Cloud HCI',
+      'vps.desc': 'Infrastructure Hyper-Convergée de 3ème génération intégrant calcul, stockage, réseau et sécurité dans une architecture unifiée et scalable pour les entreprises modernes.',
+      'vps.li1': 'Calcul, stockage, réseau & sécurité unifiés',
+      'vps.li2': 'Disponibilité 99.99% : HA proactive',
+      'vps.li3': 'Performances IOPS supérieures de 50%',
+      'vps.li4': 'Déploiement simplifié, évolution nœud par nœud',
+      'ia.badge': 'Produit Phare',
+      'ia.title': 'Kubernetes Engine SKE',
+      'ia.desc': 'Plateforme unifiée pour conteneurs et machines virtuelles, native sur infrastructure HCI. Orchestrez vos workloads modernes avec haute fiabilité et sécurité avancée.',
+      'ia.li1': 'Kubernetes natif + gestion des VMs',
+      'ia.li2': 'Haute fiabilité sur infrastructure HCI',
+      'ia.li3': 'Politiques d\'admission et sécurité avancée',
+      'ia.li4': 'Gestion visuelle du cycle de vie',
+      'analytics.title': 'Stockage NVMe Distribué',
+      'analytics.desc': 'Pools de stockage NVMe hautes performances intégrés à l\'architecture HCI. Réplication automatique, snapshots instantanés et tiering intelligent.',
+      'analytics.li1': 'Pools NVMe SSD haute vélocité',
+      'analytics.li2': 'Réplication synchrone multi-nœuds',
+      'analytics.li3': 'Snapshots & clones instantanés',
+      'analytics.li4': 'Tiering automatique chaud/froid',
+      'analytics.tag': 'NVMe',
+      'storage.title': 'Réseau Software-Defined',
+      'storage.desc': 'Réseau entièrement virtualisé avec SDN intégré, micro-segmentation des workloads et VPC multi-tenant isolés. Connectivité haute performance entre nœuds.',
+      'storage.li1': 'SDN : réseau virtualisé intégral',
+      'storage.li2': 'Micro-segmentation des workloads',
+      'storage.li3': 'VPC multi-tenant isolés',
+      'storage.li4': 'Connectivité inter-nœuds 25 Gbps',
+      'security.title': 'Sécurité Intégrée',
+      'security.desc': 'Sécurité by design dans chaque couche : chiffrement des données au repos et en transit, politiques d\'admission Kubernetes et conformité enterprise.',
+      'security.li1': 'Chiffrement AES-256 données au repos',
+      'security.li2': 'TLS 1.3 toutes communications',
+      'security.li3': 'Politiques d\'admission Kubernetes',
+      'security.li4': 'Conformité ISO 27001 & RGPD',
+      'db.title': 'Virtualisation & Conteneurs',
+      'db.desc': 'Exécutez VMs et conteneurs sur la même plateforme SKE. Migrez progressivement vos workloads legacy tout en adoptant les architectures cloud-native.',
+      'db.li1': 'VMs KVM haute performance',
+      'db.li2': 'Pods Kubernetes co-localisés',
+      'db.li3': 'Migration VM → conteneur simplifiée',
+      'db.li4': 'Ressources partagées dynamiquement'
     },
     en: {
       'nav.services': 'Services',
@@ -389,56 +436,56 @@
       'mega.adesk': 'Cloud aDesk VDI', 'mega.adesk.sub': 'Virtual Desktop Infrastructure',
       'mega.vmware': 'VMware Replacement', 'mega.vmware.sub': 'Simple and secure migration',
       'mega.hybride': 'Hybrid Cloud', 'mega.hybride.sub': 'Unified Private & Public Cloud',
-      'mega.dr': 'Disaster Recovery', 'mega.dr.sub': 'DRM — Business continuity',
+      'mega.dr': 'Disaster Recovery', 'mega.dr.sub': 'DRM : Business continuity',
       'mega.apps': 'Critical Applications', 'mega.apps.sub': 'High performance & availability',
       'mega.transfo': 'Cloud Transformation', 'mega.transfo.sub': 'Data Center modernization',
       'mega.managed': 'Managed Services', 'mega.managed.sub': 'Complete Cloud management',
       'mega.support': 'Cloud Support', 'mega.support.sub': 'Dedicated technical assistance',
       'mega.questionnaire': 'Prospect Questionnaire', 'mega.questionnaire.sub': 'Internal sales tool',
-      'footer.copy': '© 2025 SAH Analytics. All rights reserved.',
+      'footer.copy': '© 2025 SAH Analytics International. All rights reserved.',
       'footer.status': 'All systems operational',
-      'page.title': 'Services — SAH Cloud',
+      'page.title': 'Services : SAH Cloud',
       'header.badge': 'Our cloud offerings',
-      'header.title': 'Complete cloud solutions',
-      'header.subtitle': 'From bare-metal infrastructure to managed AI, SAH Cloud covers all your digital needs with enterprise-grade reliability.',
-      'vps.title': 'VPS Cloud Servers',
-      'vps.desc': 'High-performance virtual servers with NVMe SSD storage, 10 Gbps network and deployment in under a minute. Freely configure your resources on demand.',
-      'vps.li1': 'High-speed NVMe SSD disks',
-      'vps.li2': 'Dedicated 10 Gbps network',
-      'vps.li3': 'Linux & Windows available',
-      'vps.li4': 'Snapshots & automatic backups',
-      'ia.badge': 'Featured',
-      'ia.title': 'Artificial Intelligence',
-      'ia.desc': 'Deploy your AI and ML models on our optimized GPU infrastructure. Ready-to-use APIs for predictive analytics, natural language processing and computer vision.',
-      'ia.li1': 'NVIDIA A100 / H100 GPUs',
-      'ia.li2': 'Integrated MLOps pipeline',
-      'ia.li3': 'REST & gRPC APIs ready',
-      'ia.li4': 'Model monitoring included',
-      'analytics.title': 'Data Analytics',
-      'analytics.desc': 'Real-time dashboards, Big Data warehouses and managed analytics pipelines to transform your raw data into strategic decisions.',
-      'analytics.li1': 'Interactive real-time dashboards',
-      'analytics.li2': 'Big Data warehouse',
-      'analytics.li3': 'No-code ETL pipelines',
-      'analytics.li4': 'Automated alerts and reports',
-      'analytics.tag': 'Real-time',
-      'storage.title': 'S3 Object Storage',
-      'storage.desc': 'S3-compatible distributed storage with multi-zone geographic replication, integrated global CDN and AES-256 encryption enabled by default on all data.',
-      'storage.li1': 'AWS S3-compatible API',
-      'storage.li2': 'Geographic replication across 3 zones',
-      'storage.li3': 'Integrated global CDN',
-      'storage.li4': 'AES-256 encryption by default',
-      'security.title': 'Security & Compliance',
-      'security.desc': 'DDoS protection up to 10 Tbps, intelligent application firewall, managed WAF and continuous automated security audits for your peace of mind.',
-      'security.li1': 'Anti-DDoS up to 10 Tbps',
-      'security.li2': 'Web Application Firewall',
-      'security.li3': 'ISO 27001 & GDPR compliant',
-      'security.li4': 'Automated security audits',
-      'db.title': 'Managed Databases',
-      'db.desc': 'PostgreSQL, MySQL, MongoDB and Redis fully managed. Automatic backups, instant failover and zero-downtime updates.',
-      'db.li1': 'PostgreSQL, MySQL, MongoDB',
-      'db.li2': 'Automatic failover < 30s',
-      'db.li3': 'Daily encrypted backups',
-      'db.li4': 'Read replicas included'
+      'header.title': 'SAH Cloud Services',
+      'header.subtitle': '3rd generation Hyper-Converged Infrastructure and native Kubernetes engine for your critical workloads and applications.',
+      'vps.title': 'SaH Cloud HCI',
+      'vps.desc': '3rd generation Hyper-Converged Infrastructure integrating compute, storage, network and security in a unified, scalable architecture for modern enterprises.',
+      'vps.li1': 'Unified compute, storage, network & security',
+      'vps.li2': '99.99% availability : proactive HA',
+      'vps.li3': '50% superior IOPS performance',
+      'vps.li4': 'Simple deployment, node-by-node scaling',
+      'ia.badge': 'Featured Product',
+      'ia.title': 'Kubernetes Engine SKE',
+      'ia.desc': 'Unified platform for containers and virtual machines, native on HCI infrastructure. Orchestrate your modern workloads with high reliability and advanced security.',
+      'ia.li1': 'Native Kubernetes + VM management',
+      'ia.li2': 'High reliability on SAH Cloud HCI',
+      'ia.li3': 'Admission policies and advanced security',
+      'ia.li4': 'Visual lifecycle management',
+      'analytics.title': 'Distributed NVMe Storage',
+      'analytics.desc': 'High-performance NVMe storage pools integrated into HCI architecture. Automatic replication, instant snapshots and intelligent tiering.',
+      'analytics.li1': 'High-speed NVMe SSD pools',
+      'analytics.li2': 'Synchronous multi-node replication',
+      'analytics.li3': 'Instant snapshots & clones',
+      'analytics.li4': 'Automatic hot/cold tiering',
+      'analytics.tag': 'NVMe',
+      'storage.title': 'Software-Defined Network',
+      'storage.desc': 'Fully virtualized network with integrated SDN, workload micro-segmentation and isolated multi-tenant VPCs. High-performance connectivity between nodes.',
+      'storage.li1': 'SDN : fully virtualized network',
+      'storage.li2': 'Workload micro-segmentation',
+      'storage.li3': 'Isolated multi-tenant VPCs',
+      'storage.li4': 'Inter-node connectivity 25 Gbps',
+      'security.title': 'Integrated Security',
+      'security.desc': 'Security by design at every layer: data encryption at rest and in transit, Kubernetes admission policies and enterprise compliance.',
+      'security.li1': 'AES-256 encryption at rest',
+      'security.li2': 'TLS 1.3 for all communications',
+      'security.li3': 'Kubernetes admission policies',
+      'security.li4': 'ISO 27001 & GDPR compliant',
+      'db.title': 'Virtualisation & Containers',
+      'db.desc': 'Run VMs and containers on the same SKE platform. Progressively migrate your legacy workloads while adopting cloud-native architectures.',
+      'db.li1': 'High-performance KVM VMs',
+      'db.li2': 'Co-located Kubernetes pods',
+      'db.li3': 'Simplified VM → container migration',
+      'db.li4': 'Dynamically shared resources'
     }
   };
   var lang = localStorage.getItem('sah-lang') || 'fr';
@@ -504,4 +551,3 @@
   })();
 </script></body>
 </html>
-

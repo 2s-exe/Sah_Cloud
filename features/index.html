@@ -8,77 +8,75 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: { DEFAULT: '#F47B28', light: '#FFA05A', dark: '#D4601A' },
-            navy:    { DEFAULT: '#1A3C6E', light: '#224e8a', dark: '#102647' },
-          },
-          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
-        }
-      }
+      theme: { extend: { colors: {
+        primary: { DEFAULT: '#F47B28', light: '#FFA05A', dark: '#D4601A' },
+        navy: { DEFAULT: '#0c1530', light: '#1a2545', dark: '#070e20' },
+        violet: { DEFAULT: '#6c35de' },
+      }, fontFamily: { sans: ['Montserrat', 'ui-sans-serif', 'system-ui', 'sans-serif'] } } }
     }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     html { scroll-behavior: smooth; }
-    .nav-link { position: relative; }
-    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#F47B28; transition:width .3s ease; }
-    .nav-link:hover::after, .nav-link.active::after { width:100%; }
-    .feature-card { transition: transform .3s ease, box-shadow .3s ease; }
-    .feature-card:hover { transform:translateY(-4px); box-shadow:0 16px 32px rgba(244,123,40,0.1); }
-  
-    /* ── MEGA MENU ── */
+    body { font-size: 15px; line-height: 1.7; }
+    .section-title { color: #0c1530; text-transform: uppercase; font-weight: 800; letter-spacing: 0.02em; position: relative; display: inline-block; padding-bottom: 12px; }
+    .section-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 48px; height: 3px; background: #F47B28; }
+    .section-title-center::after { left: 50%; transform: translateX(-50%); }
+    .card-light { background: #ffffff; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.3s ease; border-left: 3px solid transparent; }
+    .card-light:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.12); border-left-color: #F47B28; }
+    .nav-link-light { color: #0c1530; text-transform: uppercase; font-size: 13px; letter-spacing: 0.08em; font-weight: 600; text-decoration: none; transition: color 0.2s; }
+    .nav-link-light:hover { color: #F47B28; }
     .mega-item { display:flex; align-items:flex-start; gap:10px; padding:7px 8px; border-radius:8px; text-decoration:none; transition:background .15s; }
-    .mega-item:hover { background:rgba(255,255,255,0.06); }
+    .mega-item:hover { background:rgba(244,123,40,0.06); }
     .mega-icon { font-size:16px; flex-shrink:0; margin-top:2px; }
-    .mega-name { display:block; font-size:12.5px; font-weight:600; color:#E2E8F0; line-height:1.3; transition:color .15s; }
-    .mega-item:hover .mega-name { color:#fff; }
-    .mega-sub  { display:block; font-size:10.5px; color:#64748B; margin-top:1px; line-height:1.3; }
+    .mega-name { display:block; font-size:12.5px; font-weight:600; color:#0c1530; line-height:1.3; transition:color .15s; }
+    .mega-item:hover .mega-name { color:#F47B28; }
+    .mega-sub { display:block; font-size:10.5px; color:#94a3b8; margin-top:1px; line-height:1.3; }
+    .lang-btn { font-size:12px; font-weight:700; border-radius:8px; padding:4px 10px; cursor:pointer; transition:all .2s; letter-spacing:.05em; }
+    .img-blob-wrapper { position: relative; }
+    .img-blob-wrapper::before { content: ''; position: absolute; width: 200px; height: 200px; background: rgba(244,123,40,0.12); border-radius: 50% 30% 50% 30%; top: -20px; right: -20px; z-index: 0; }
+    .img-blob-wrapper::after { content: ''; position: absolute; width: 150px; height: 150px; background: rgba(108,53,222,0.08); border-radius: 30% 50% 30% 50%; bottom: -20px; left: -20px; z-index: 0; }
+    .img-blob-wrapper img { position: relative; z-index: 1; }
   </style>
 </head>
-<body class="bg-[#0d1f3c] font-sans text-white antialiased">
+<body class="bg-white font-sans text-[#5a6a85] antialiased">
 
-    <!-- NAVBAR -->
-  <header class="fixed top-0 left-0 right-0 z-50" style="background:rgba(13,31,60,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);">
+  <!-- NAVBAR -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white" style="box-shadow:0 2px 20px rgba(0,0,0,0.08);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <a href="../index.html" class="flex-shrink-0">
           <img src="../img/logo.png" alt="SAH Cloud" class="h-9 w-auto rounded-md" />
         </a>
-                        <nav class="hidden md:flex items-center gap-6">
-          <div class="relative" id="mega-wrap">
-            <button id="mega-btn" class="inline-flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-white transition-colors focus:outline-none">
+        <nav class="hidden md:flex items-center gap-6">
+          <div class="static" id="mega-wrap">
+            <button id="mega-btn" class="nav-link-light inline-flex items-center gap-2 focus:outline-none">
               <span>Cloud &amp; Infrastructure</span>
               <svg id="mega-chevron" class="w-4 h-4 transition-transform duration-200 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
             </button>
-            <!-- MEGA PANEL -->
-            <div id="mega-panel" class="hidden absolute top-full left-0 mt-2 rounded-2xl shadow-2xl z-[9999]" style="width:800px;background:rgba(8,18,46,0.99);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.09);">
+            <div id="mega-panel" class="hidden absolute top-full mt-2 rounded-2xl shadow-2xl z-[9999] bg-white" style="width:800px;border:1px solid rgba(0,0,0,0.08);left:50%;transform:translateX(-50%);">
               <div class="grid grid-cols-3 gap-0 p-5">
-                <!-- Col 1 — Produits -->
-                <div class="pr-5 border-r border-white/5">
-                  <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">Produits</p>
+                <div class="pr-5 border-r border-slate-100">
+                  <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest mb-3 border-b-2 border-[#F47B28] pb-1">Produits</p>
                   <a href="../services/index.html" class="mega-item"><span class="mega-icon">&#x1F5A5;&#xFE0F;</span><span><span class="mega-name">SaH Cloud HCI</span><span class="mega-sub">Infrastructure Hyper-Converg&eacute;e</span></span></a>
                   <a href="../solutions/index.html" class="mega-item"><span class="mega-icon">&#x2601;&#xFE0F;</span><span><span class="mega-name">SaH Cloud Platform</span><span class="mega-sub">Gestion Cloud Fullstack (SCP)</span></span></a>
-                  <a href="../solutions/index.html" class="mega-item"><span class="mega-icon">&#x1F433;</span><span><span class="mega-name">Kubernetes Engine SKE</span><span class="mega-sub">Conteneurs &amp; VM Unifi&eacute;s</span></span></a>
-                  <a href="../solutions/index.html" class="mega-item"><span class="mega-icon">&#x1F5C4;&#xFE0F;</span><span><span class="mega-name">Cloud DMP</span><span class="mega-sub">Gestion de Bases de Donn&eacute;es</span></span></a>
-                  <a href="../solutions/index.html" class="mega-item"><span class="mega-icon">&#x1F4BE;</span><span><span class="mega-name">Cloud aStor</span><span class="mega-sub">Stockage Distribu&eacute; d&rsquo;Entreprise</span></span></a>
-                  <a href="../solutions/index.html" class="mega-item"><span class="mega-icon">&#x1F5B1;&#xFE0F;</span><span><span class="mega-name">Cloud aDesk VDI</span><span class="mega-sub">Postes de Travail Virtuels</span></span></a>
+                  <a href="../ske/index.html" class="mega-item"><span class="mega-icon">&#x1F433;</span><span><span class="mega-name">Kubernetes Engine SKE</span><span class="mega-sub">Conteneurs &amp; VM Unifi&eacute;s</span></span></a>
+                  <a href="../features/index.html" class="mega-item"><span class="mega-icon">&#x1F5C4;&#xFE0F;</span><span><span class="mega-name">Cloud DMP</span><span class="mega-sub">Gestion de Bases de Donn&eacute;es</span></span></a>
+                  <a href="../astor/index.html" class="mega-item"><span class="mega-icon">&#x1F4BE;</span><span><span class="mega-name">Cloud aStor</span><span class="mega-sub">Stockage Distribu&eacute; d&rsquo;Entreprise</span></span></a>
+                  <a href="../managed/index.html" class="mega-item"><span class="mega-icon">&#x1F5B1;&#xFE0F;</span><span><span class="mega-name">Cloud aDesk VDI</span><span class="mega-sub">Postes de Travail Virtuels</span></span></a>
                 </div>
-                <!-- Col 2 — Solutions -->
-                <div class="px-5 border-r border-white/5">
-                  <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">Solutions</p>
+                <div class="px-5 border-r border-slate-100">
+                  <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest mb-3 border-b-2 border-[#F47B28] pb-1">Solutions</p>
                   <a href="../solutions/index.html" class="mega-item"><span class="mega-icon">&#x1F504;</span><span><span class="mega-name">Remplacement VMware</span><span class="mega-sub">Migration simple et s&eacute;curis&eacute;e</span></span></a>
                   <a href="../solutions/index.html" class="mega-item"><span class="mega-icon">&#x1F517;</span><span><span class="mega-name">Cloud Hybride</span><span class="mega-sub">Cloud Priv&eacute; &amp; Public Unifi&eacute;</span></span></a>
                   <a href="../managed/index.html" class="mega-item"><span class="mega-icon">&#x1F6E1;&#xFE0F;</span><span><span class="mega-name">Reprise apr&egrave;s Sinistre</span><span class="mega-sub">DRM &mdash; Continuit&eacute; d&rsquo;activit&eacute;</span></span></a>
                   <a href="../features/index.html" class="mega-item"><span class="mega-icon">&#x26A1;</span><span><span class="mega-name">Applications Critiques</span><span class="mega-sub">Haute performance &amp; disponibilit&eacute;</span></span></a>
                   <a href="../solutions/index.html" class="mega-item"><span class="mega-icon">&#x1F3D7;&#xFE0F;</span><span><span class="mega-name">Transformation Cloud</span><span class="mega-sub">Modernisation des Data Centers</span></span></a>
                 </div>
-                <!-- Col 3 — Services & Navigation -->
                 <div class="pl-5">
-                  <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">Services</p>
+                  <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest mb-3 border-b-2 border-[#F47B28] pb-1">Services</p>
                   <a href="../managed/index.html" class="mega-item"><span class="mega-icon">&#x2699;&#xFE0F;</span><span><span class="mega-name">Services G&eacute;r&eacute;s</span><span class="mega-sub">Infog&eacute;rance Cloud compl&egrave;te</span></span></a>
                   <a href="../contact/index.html" class="mega-item"><span class="mega-icon">&#x1F6DF;</span><span><span class="mega-name">Support Cloud</span><span class="mega-sub">Assistance technique d&eacute;di&eacute;e</span></span></a>
                   <a href="../questionnaire/index.html" class="mega-item"><span class="mega-icon">&#x1F4CB;</span><span><span class="mega-name">Questionnaire Prospect</span><span class="mega-sub">Outil commercial interne</span></span></a>
@@ -91,119 +89,122 @@
           </div>
         </nav>
         <div class="hidden md:flex items-center gap-3">
-          <button class="lang-btn text-white text-xs font-bold border border-white/20 rounded-lg px-3 py-1.5 hover:bg-white/10 transition-all">FR</button>
+          <button class="lang-btn text-[#0c1530] border border-slate-200 hover:bg-slate-50">FR</button>
+          <a href="../contact/index.html" class="bg-[#F47B28] text-white font-bold text-xs px-5 py-2 rounded-full hover:bg-[#D4601A] transition-colors uppercase tracking-wide">Nous Contacter</a>
         </div>
         <div class="flex md:hidden items-center gap-2">
-          <button class="lang-btn text-white text-xs font-bold border border-white/20 rounded-lg px-2.5 py-1 hover:bg-white/10 transition-all">FR</button>
-          <button id="menu-btn" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors">
+          <button class="lang-btn text-[#0c1530] border border-slate-200 hover:bg-slate-50 text-xs px-2.5 py-1">FR</button>
+          <button id="menu-btn" class="p-2 rounded-lg text-[#0c1530] hover:bg-slate-100 transition-colors">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
           </button>
         </div>
       </div>
     </div>
-            <div id="mobile-menu" class="hidden md:hidden border-t border-white/10">
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white">
       <div class="px-4 py-3 space-y-1">
-        <button id="mob-mega-btn" class="w-full flex items-center justify-between px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+        <button id="mob-mega-btn" class="w-full flex items-center justify-between px-3 py-2 text-sm text-[#0c1530] font-semibold hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">
           Cloud &amp; Infrastructure
           <svg id="mob-mega-chevron" class="w-4 h-4 transition-transform duration-200 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
         </button>
-        <div id="mob-mega-panel" class="hidden px-2 pb-2 border-l-2 border-primary/30 ml-2 mt-1">
-          <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-2 pt-3 pb-1.5">Produits</p>
-          <a href="../services/index.html"    class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">SaH Cloud HCI</a>
-          <a href="../solutions/index.html"   class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">SaH Cloud Platform</a>
-          <a href="../solutions/index.html"   class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Kubernetes Engine SKE</a>
-          <a href="../solutions/index.html"   class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Cloud DMP</a>
-          <a href="../solutions/index.html"   class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Cloud aStor</a>
-          <a href="../solutions/index.html"   class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Cloud aDesk VDI</a>
-          <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-2 pt-3 pb-1.5">Solutions</p>
-          <a href="../solutions/index.html"   class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Remplacement VMware</a>
-          <a href="../solutions/index.html"   class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Cloud Hybride</a>
-          <a href="../managed/index.html"     class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Reprise apr&egrave;s Sinistre</a>
-          <a href="../features/index.html"    class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Applications Critiques</a>
-          <a href="../solutions/index.html"   class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Transformation Cloud</a>
-          <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-2 pt-3 pb-1.5">Services</p>
-          <a href="../managed/index.html"       class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Services G&eacute;r&eacute;s</a>
-          <a href="../contact/index.html"       class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Support Cloud</a>
-          <a href="../questionnaire/index.html" class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Questionnaire Prospect</a>
-          <a href="../about/index.html"  class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">&Agrave; propos</a>
-          <a href="../contact/index.html"  class="block px-2 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">Contact</a>
-          <a href="../pricing/index.html" class="block px-2 py-1.5 text-sm font-semibold text-primary hover:bg-white/5 rounded-lg transition-colors">Tarifs</a>
+        <div id="mob-mega-panel" class="hidden px-2 pb-2 border-l-2 border-[#F47B28]/30 ml-2 mt-1">
+          <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest px-2 pt-3 pb-1.5">Produits</p>
+          <a href="../services/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">SaH Cloud HCI</a>
+          <a href="../solutions/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">SaH Cloud Platform</a>
+          <a href="../ske/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Kubernetes Engine SKE</a>
+          <a href="../features/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Cloud DMP</a>
+          <a href="../astor/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Cloud aStor</a>
+          <a href="../managed/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Cloud aDesk VDI</a>
+          <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest px-2 pt-3 pb-1.5">Solutions</p>
+          <a href="../solutions/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Remplacement VMware</a>
+          <a href="../solutions/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Cloud Hybride</a>
+          <a href="../managed/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Reprise apr&egrave;s Sinistre</a>
+          <a href="../features/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Applications Critiques</a>
+          <a href="../solutions/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Transformation Cloud</a>
+          <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest px-2 pt-3 pb-1.5">Services</p>
+          <a href="../managed/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Services G&eacute;r&eacute;s</a>
+          <a href="../contact/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Support Cloud</a>
+          <a href="../questionnaire/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Questionnaire Prospect</a>
+          <a href="../about/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">&Agrave; propos</a>
+          <a href="../contact/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Contact</a>
+          <a href="../pricing/index.html" class="block px-2 py-1.5 text-sm font-semibold text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Tarifs</a>
         </div>
+        <a href="../contact/index.html" class="block mt-3 text-center bg-[#F47B28] text-white font-bold text-sm py-2.5 rounded-full hover:bg-[#D4601A] transition-colors">Nous Contacter</a>
       </div>
     </div>
   </header>
 
-  <!-- PAGE HEADER -->
-  <section class="relative pt-28 pb-16 overflow-hidden">
-    <div class="absolute inset-0 opacity-10" style="background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:60px 60px;"></div>
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+  <!-- HERO -->
+  <section class="relative pt-28 pb-20 overflow-hidden" style="background:#0c1530;">
+    <div class="absolute inset-0 opacity-25" style="background:url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1400&q=80&auto=format&fit=crop') center/cover no-repeat;"></div>
+    <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(12,21,48,0.92) 0%,rgba(12,21,48,0.75) 100%);"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary text-xs font-semibold px-4 py-1.5 rounded-full mb-5">
-        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-        <span data-i18n="header.badge">Performance &amp; Fiabilité</span>
+      <p class="text-[#F47B28] font-semibold text-sm uppercase tracking-widest mb-4">Fonctionnalités</p>
+      <h1 class="text-4xl lg:text-5xl font-black text-white leading-tight mb-5" data-i18n="header.title">Fonctionnalités SAH Cloud</h1>
+      <p class="text-slate-300 text-lg max-w-2xl mx-auto mb-8" data-i18n="header.subtitle">Découvrez toutes les capacités de notre plateforme cloud de nouvelle génération.</p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="../contact/index.html" class="bg-[#F47B28] text-white font-bold px-8 py-3 rounded hover:bg-[#D4601A] transition-colors uppercase tracking-wide text-sm">Nous Contacter</a>
+        <a href="../pricing/index.html" class="border-2 border-white text-white font-bold px-8 py-3 rounded hover:bg-white/10 transition-colors uppercase tracking-wide text-sm">Voir les Tarifs</a>
       </div>
-      <h1 class="text-4xl lg:text-5xl font-black mb-4" data-i18n="header.title">Une infrastructure taillée pour la performance</h1>
-      <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-i18n="header.subtitle">Nous combinons les meilleures technologies cloud avec notre expertise IA pour vous donner un avantage compétitif durable.</p>
     </div>
   </section>
 
   <!-- METRICS -->
-  <section class="pb-16">
+  <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="bg-[#111e35] border border-white/5 rounded-2xl p-6 text-center">
-          <p class="text-4xl font-black text-white">99.9<span class="text-primary text-2xl">%</span></p>
-          <p class="text-slate-400 text-sm mt-2" data-i18n="metrics.uptime">Disponibilité SLA</p>
+      <div class="text-center mb-12">
+        <h2 class="section-title section-title-center text-3xl mb-2">Gestion de Données & Stockage</h2>
+        <p class="text-[#F47B28] italic font-semibold text-sm mt-4 mb-8">Cloud DMP et Cloud aStor : gestion de bases de données et stockage distribué d'entreprise.</p>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+        <div class="card-light p-6 text-center">
+          <p class="text-4xl font-black text-[#F47B28]">99.99<span class="text-2xl">%</span></p>
+          <p class="text-[#5a6a85] text-sm mt-2" data-i18n="metrics.uptime">Disponibilité SLA</p>
         </div>
-        <div class="bg-[#111e35] border border-white/5 rounded-2xl p-6 text-center">
-          <p class="text-4xl font-black text-white">1.2<span class="text-primary text-2xl">ms</span></p>
-          <p class="text-slate-400 text-sm mt-2" data-i18n="metrics.latency">Latence moyenne</p>
+        <div class="card-light p-6 text-center">
+          <p class="text-4xl font-black text-[#F47B28]">4<span class="text-2xl"> SGBD</span></p>
+          <p class="text-[#5a6a85] text-sm mt-2" data-i18n="metrics.latency">Latence moyenne</p>
         </div>
-        <div class="bg-[#111e35] border border-white/5 rounded-2xl p-6 text-center">
-          <p class="text-4xl font-black text-white">10<span class="text-primary text-2xl">Gbps</span></p>
-          <p class="text-slate-400 text-sm mt-2" data-i18n="metrics.network">Réseau garanti</p>
+        <div class="card-light p-6 text-center">
+          <p class="text-4xl font-black text-[#F47B28]">3<span class="text-2xl"> modes</span></p>
+          <p class="text-[#5a6a85] text-sm mt-2" data-i18n="metrics.network">Réseau garanti</p>
         </div>
-        <div class="bg-[#111e35] border border-white/5 rounded-2xl p-6 text-center">
-          <p class="text-4xl font-black text-white">15<span class="text-primary text-2xl">min</span></p>
-          <p class="text-slate-400 text-sm mt-2" data-i18n="metrics.support">Réponse support</p>
+        <div class="card-light p-6 text-center">
+          <p class="text-4xl font-black text-[#F47B28]">24<span class="text-2xl">/7</span></p>
+          <p class="text-[#5a6a85] text-sm mt-2" data-i18n="metrics.support">Réponse support</p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- FEATURES GRID -->
-  <section class="pb-24 lg:pb-32">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- FEATURES GRID -->
       <div class="grid md:grid-cols-2 gap-6 mb-8">
         <!-- Haute dispo -->
-        <div class="feature-card bg-[#111e35] border border-white/5 rounded-2xl p-8">
+        <div class="card-light p-8">
           <div class="flex items-start gap-5">
-            <div class="w-12 h-12 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
-              <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
+            <div class="w-12 h-12 bg-[#F47B28]/10 rounded-xl flex items-center justify-center flex-shrink-0 text-2xl">
+              <svg class="w-6 h-6 text-[#F47B28]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
             </div>
             <div>
-              <h3 class="text-lg font-bold mb-2" data-i18n="feat.ha.title">Haute disponibilité garantie</h3>
-              <p class="text-slate-400 text-sm leading-relaxed mb-4" data-i18n="feat.ha.desc">SLA de 99.9% avec infrastructure multi-zones et basculement automatique en moins de 30 secondes. Vos services ne s'arrêtent jamais.</p>
-              <div class="h-2 bg-white/5 rounded-full overflow-hidden mb-1">
-                <div class="h-full bg-gradient-to-r from-primary to-primary-light rounded-full" style="width:99.9%;"></div>
+              <h3 class="text-lg font-bold mb-2 text-[#0c1530]" data-i18n="feat.ha.title">Haute disponibilité garantie</h3>
+              <p class="text-[#5a6a85] text-sm leading-relaxed mb-4" data-i18n="feat.ha.desc">SLA de 99.9% avec infrastructure multi-zones et basculement automatique en moins de 30 secondes. Vos services ne s'arrêtent jamais.</p>
+              <div class="h-2 bg-slate-100 rounded-full overflow-hidden mb-1">
+                <div class="h-full bg-gradient-to-r from-[#F47B28] to-[#FFA05A] rounded-full" style="width:99.9%;"></div>
               </div>
-              <p class="text-xs text-slate-500" data-i18n="feat.ha.measured">99.97% mesuré sur 12 mois</p>
+              <p class="text-xs text-[#5a6a85]" data-i18n="feat.ha.measured">99.97% mesuré sur 12 mois</p>
             </div>
           </div>
         </div>
         <!-- Scalabilité -->
-        <div class="feature-card bg-[#111e35] border border-white/5 rounded-2xl p-8">
+        <div class="card-light p-8">
           <div class="flex items-start gap-5">
-            <div class="w-12 h-12 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
-              <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
+            <div class="w-12 h-12 bg-[#F47B28]/10 rounded-xl flex items-center justify-center flex-shrink-0 text-2xl">
+              <svg class="w-6 h-6 text-[#F47B28]" fill="currentColor" viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
             </div>
             <div>
-              <h3 class="text-lg font-bold mb-2" data-i18n="feat.scale.title">Scalabilité instantanée</h3>
-              <p class="text-slate-400 text-sm leading-relaxed mb-4" data-i18n="feat.scale.desc">Ajoutez des ressources CPU, RAM et stockage en quelques clics sans interruption de service. L'auto-scaling réagit à la charge en temps réel.</p>
+              <h3 class="text-lg font-bold mb-2 text-[#0c1530]" data-i18n="feat.scale.title">Scalabilité instantanée</h3>
+              <p class="text-[#5a6a85] text-sm leading-relaxed mb-4" data-i18n="feat.scale.desc">Ajoutez des ressources CPU, RAM et stockage en quelques clics sans interruption de service. L'auto-scaling réagit à la charge en temps réel.</p>
               <div class="flex flex-wrap gap-2">
-                <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-3 py-1 rounded-full">Auto-scaling</span>
-                <span class="text-xs bg-white/5 text-slate-400 px-3 py-1 rounded-full">0 downtime</span>
-                <span class="text-xs bg-white/5 text-slate-400 px-3 py-1 rounded-full" data-i18n="feat.scale.realtime">En temps réel</span>
+                <span class="text-xs bg-[#F47B28]/10 text-[#F47B28] border border-[#F47B28]/20 px-3 py-1 rounded-full">Block · Fichier · Objet</span>
+                <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">Scalable</span>
+                <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full" data-i18n="feat.scale.realtime">En temps réel</span>
               </div>
             </div>
           </div>
@@ -212,71 +213,112 @@
 
       <div class="grid md:grid-cols-3 gap-6 mb-8">
         <!-- Sécurité -->
-        <div class="feature-card bg-[#111e35] border border-white/5 rounded-2xl p-7">
-          <div class="w-11 h-11 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center mb-4">
-            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 8a6 6 0 01-7.743 5.743L10 14l-1 1-1 1H6v2H2v-4l4.257-4.257A6 6 0 1118 8zm-6-4a1 1 0 100 2 2 2 0 012 2 1 1 0 102 0 4 4 0 00-4-4z" clip-rule="evenodd"/></svg>
+        <div class="card-light p-7">
+          <div class="w-12 h-12 bg-[#F47B28]/10 rounded-xl flex items-center justify-center mb-4 text-2xl">
+            <svg class="w-5 h-5 text-[#F47B28]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 8a6 6 0 01-7.743 5.743L10 14l-1 1-1 1H6v2H2v-4l4.257-4.257A6 6 0 1118 8zm-6-4a1 1 0 100 2 2 2 0 012 2 1 1 0 102 0 4 4 0 00-4-4z" clip-rule="evenodd"/></svg>
           </div>
-          <h3 class="font-bold mb-2" data-i18n="feat.security.title">Sécurité by design</h3>
-          <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.security.desc">Chiffrement de bout en bout, isolation réseau, vaults de secrets et authentification multi-facteurs inclus dès le premier abonnement.</p>
+          <h3 class="font-bold mb-2 text-[#0c1530]" data-i18n="feat.security.title">Sécurité by design</h3>
+          <p class="text-[#5a6a85] text-sm leading-relaxed" data-i18n="feat.security.desc">Chiffrement de bout en bout, isolation réseau, vaults de secrets et authentification multi-facteurs inclus dès le premier abonnement.</p>
         </div>
         <!-- Support -->
-        <div class="feature-card bg-[#111e35] border border-white/5 rounded-2xl p-7">
-          <div class="w-11 h-11 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center mb-4">
-            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
+        <div class="card-light p-7">
+          <div class="w-12 h-12 bg-[#F47B28]/10 rounded-xl flex items-center justify-center mb-4 text-2xl">
+            <svg class="w-5 h-5 text-[#F47B28]" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
           </div>
-          <h3 class="font-bold mb-2" data-i18n="feat.support.title">Support expert dédié</h3>
-          <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.support.desc">Ingénieurs certifiés disponibles 24/7 via chat, téléphone et ticketing. SLA de réponse en 15 minutes garanti sur les offres Pro et Entreprise.</p>
+          <h3 class="font-bold mb-2 text-[#0c1530]" data-i18n="feat.support.title">Support expert dédié</h3>
+          <p class="text-[#5a6a85] text-sm leading-relaxed" data-i18n="feat.support.desc">Ingénieurs certifiés disponibles 24/7 via chat, téléphone et ticketing. SLA de réponse en 15 minutes garanti sur les offres Pro et Entreprise.</p>
         </div>
         <!-- Monitoring -->
-        <div class="feature-card bg-[#111e35] border border-white/5 rounded-2xl p-7">
-          <div class="w-11 h-11 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center mb-4">
-            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        <div class="card-light p-7">
+          <div class="w-12 h-12 bg-[#F47B28]/10 rounded-xl flex items-center justify-center mb-4 text-2xl">
+            <svg class="w-5 h-5 text-[#F47B28]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
           </div>
-          <h3 class="font-bold mb-2" data-i18n="feat.monitoring.title">Monitoring complet</h3>
-          <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.monitoring.desc">Tableaux de bord en temps réel, alertes intelligentes par email/SMS/Slack et historique d'incidents sur 12 mois glissants.</p>
+          <h3 class="font-bold mb-2 text-[#0c1530]" data-i18n="feat.monitoring.title">Monitoring complet</h3>
+          <p class="text-[#5a6a85] text-sm leading-relaxed" data-i18n="feat.monitoring.desc">Tableaux de bord en temps réel, alertes intelligentes par email/SMS/Slack et historique d'incidents sur 12 mois glissants.</p>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Certifications -->
-      <div class="bg-[#111e35] border border-primary/10 rounded-2xl p-8">
-        <div class="grid lg:grid-cols-2 gap-8 items-center">
-          <div>
-            <h3 class="text-xl font-bold mb-3" data-i18n="cert.title">Certifications &amp; Conformité</h3>
-            <p class="text-slate-400 text-sm leading-relaxed" data-i18n="cert.desc">SAH Cloud répond aux exigences réglementaires les plus strictes pour vous permettre d'opérer en toute confiance, quel que soit votre secteur d'activité.</p>
-          </div>
-          <div class="grid grid-cols-2 gap-3">
-            <div class="bg-white/5 rounded-xl p-4 flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span class="text-sm font-semibold">ISO 27001</span>
-            </div>
-            <div class="bg-white/5 rounded-xl p-4 flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span class="text-sm font-semibold">SOC 2 Type II</span>
-            </div>
-            <div class="bg-white/5 rounded-xl p-4 flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span class="text-sm font-semibold">RGPD</span>
-            </div>
-            <div class="bg-white/5 rounded-xl p-4 flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              <span class="text-sm font-semibold">PCI DSS</span>
-            </div>
-          </div>
+  <!-- CERTIFICATIONS -->
+  <section class="py-20 bg-[#f8f9fc]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="section-title section-title-center text-3xl mb-2" data-i18n="cert.title">Certifications & Conformité</h2>
+        <p class="text-[#F47B28] italic font-semibold text-sm mt-4 mb-8" data-i18n="cert.desc">SAH Cloud répond aux exigences réglementaires les plus strictes pour vous permettre d'opérer en toute confiance.</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+        <div class="bg-white rounded-xl p-5 flex flex-col items-center gap-3 shadow-sm border border-slate-100">
+          <svg class="w-6 h-6 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          <span class="text-sm font-bold text-[#0c1530]">ISO 27001</span>
+        </div>
+        <div class="bg-white rounded-xl p-5 flex flex-col items-center gap-3 shadow-sm border border-slate-100">
+          <svg class="w-6 h-6 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          <span class="text-sm font-bold text-[#0c1530]">SOC 2 Type II</span>
+        </div>
+        <div class="bg-white rounded-xl p-5 flex flex-col items-center gap-3 shadow-sm border border-slate-100">
+          <svg class="w-6 h-6 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          <span class="text-sm font-bold text-[#0c1530]">RGPD</span>
+        </div>
+        <div class="bg-white rounded-xl p-5 flex flex-col items-center gap-3 shadow-sm border border-slate-100">
+          <svg class="w-6 h-6 text-[#F47B28] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          <span class="text-sm font-bold text-[#0c1530]">PCI DSS</span>
         </div>
       </div>
-
-      
+      <div class="text-center mt-10">
+        <a href="../contact/index.html" class="bg-[#F47B28] text-white font-bold px-8 py-3 rounded hover:bg-[#D4601A] transition-colors uppercase tracking-wide text-sm inline-block">Nous Contacter</a>
+      </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="py-10 border-t border-white/5" style="background:#070f1e;">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <a href="../index.html"><img src="../img/logo.png" alt="SAH Cloud" class="h-10 w-auto rounded-md" loading="lazy" /></a>
-      <p class="text-xs text-slate-600"><span data-i18n="footer.copy">© 2025 SAH Analytics. Tous droits réservés.</span></p>
-      <div class="flex items-center gap-2 text-xs text-slate-600">
-        <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-        <span data-i18n="footer.status">Tous les systèmes opérationnels</span>
+  <footer style="background:#0a1128;" class="pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div>
+          <img src="../img/logo.png" alt="SAH Cloud" class="h-10 w-auto rounded-md mb-4" loading="lazy" />
+          <p class="text-[#94a3b8] text-sm leading-relaxed">Infrastructure cloud haute performance pour les entreprises en Afrique et au-delà.</p>
+        </div>
+        <div>
+          <h4 class="text-white font-bold text-sm uppercase tracking-widest mb-5">Navigation</h4>
+          <ul class="space-y-2">
+            <li><a href="../index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">Accueil</a></li>
+            <li><a href="../services/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">Services</a></li>
+            <li><a href="../solutions/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">Solutions</a></li>
+            <li><a href="../managed/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">Services Gérés</a></li>
+            <li><a href="../about/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">À propos</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold text-sm uppercase tracking-widest mb-5">Produits</h4>
+          <ul class="space-y-2">
+            <li><a href="../services/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">SaH Cloud HCI</a></li>
+            <li><a href="../solutions/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">SaH Cloud Platform</a></li>
+            <li><a href="../ske/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">Kubernetes Engine SKE</a></li>
+            <li><a href="../features/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">Cloud DMP</a></li>
+            <li><a href="../astor/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">Cloud aStor</a></li>
+            <li><a href="../managed/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">Cloud aDesk VDI</a></li>
+            <li><a href="../pricing/index.html" class="text-[#94a3b8] hover:text-[#F47B28] text-sm transition-colors">Tarifs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold text-sm uppercase tracking-widest mb-5">Contact</h4>
+          <p class="text-[#94a3b8] text-sm mb-1">contact@sahanalytics.com</p>
+          <p class="text-[#94a3b8] text-sm mb-1">+225 25 22 01 97 40</p>
+          <p class="text-[#94a3b8] text-sm mb-5">Abidjan, Côte d'Ivoire</p>
+          <div>
+            <p class="text-white text-xs font-bold uppercase tracking-wide mb-2">Newsletter</p>
+            <input type="email" placeholder="Votre email" class="w-full bg-white/10 text-white placeholder-[#64748b] text-sm px-3 py-2 rounded-lg border border-white/10 focus:outline-none focus:border-[#F47B28] mb-2" />
+            <button class="w-full bg-[#F47B28] text-white font-bold text-xs py-2 rounded-lg hover:bg-[#D4601A] transition-colors uppercase tracking-wide">Sign Up</button>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-[#94a3b8] text-xs"><span data-i18n="footer.copy">© 2025 SAH Analytics International. Tous droits réservés.</span></p>
+        <div class="flex items-center gap-2 text-xs text-[#94a3b8]">
+          <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+          <span data-i18n="footer.status">Tous les systèmes opérationnels</span>
+        </div>
       </div>
     </div>
   </footer>
@@ -308,36 +350,36 @@
       'mega.adesk': 'Cloud aDesk VDI', 'mega.adesk.sub': 'Postes de Travail Virtuels',
       'mega.vmware': 'Remplacement VMware', 'mega.vmware.sub': 'Migration simple et sécurisée',
       'mega.hybride': 'Cloud Hybride', 'mega.hybride.sub': 'Cloud Privé & Public Unifié',
-      'mega.dr': 'Reprise après Sinistre', 'mega.dr.sub': "DRM — Continuité d'activité",
+      'mega.dr': 'Reprise après Sinistre', 'mega.dr.sub': "DRM : Continuité d'activité",
       'mega.apps': 'Applications Critiques', 'mega.apps.sub': 'Haute performance & disponibilité',
       'mega.transfo': 'Transformation Cloud', 'mega.transfo.sub': 'Modernisation des Data Centers',
       'mega.managed': 'Services Gérés', 'mega.managed.sub': 'Infogérance Cloud complète',
       'mega.support': 'Support Cloud', 'mega.support.sub': 'Assistance technique dédiée',
       'mega.questionnaire': 'Questionnaire Prospect', 'mega.questionnaire.sub': 'Outil commercial interne',
-      'footer.copy': '© 2025 SAH Analytics. Tous droits réservés.',
+      'footer.copy': '© 2025 SAH Analytics International. Tous droits réservés.',
       'footer.status': 'Tous les systèmes opérationnels',
-      'page.title': 'Fonctionnalités — SAH Cloud',
+      'page.title': 'Fonctionnalités : SAH Cloud',
       'header.badge': 'Performance & Fiabilité',
-      'header.title': 'Une infrastructure taillée pour la performance',
-      'header.subtitle': 'Nous combinons les meilleures technologies cloud avec notre expertise IA pour vous donner un avantage compétitif durable.',
-      'metrics.uptime': 'Disponibilité SLA',
-      'metrics.latency': 'Latence moyenne',
-      'metrics.network': 'Réseau garanti',
-      'metrics.support': 'Réponse support',
-      'feat.ha.title': 'Haute disponibilité garantie',
-      'feat.ha.desc': 'SLA de 99.9% avec infrastructure multi-zones et basculement automatique en moins de 30 secondes. Vos services ne s\'arrêtent jamais.',
-      'feat.ha.measured': '99.97% mesuré sur 12 mois',
-      'feat.scale.title': 'Scalabilité instantanée',
-      'feat.scale.desc': 'Ajoutez des ressources CPU, RAM et stockage en quelques clics sans interruption de service. L\'auto-scaling réagit à la charge en temps réel.',
-      'feat.scale.realtime': 'En temps réel',
-      'feat.security.title': 'Sécurité by design',
-      'feat.security.desc': 'Chiffrement de bout en bout, isolation réseau, vaults de secrets et authentification multi-facteurs inclus dès le premier abonnement.',
-      'feat.support.title': 'Support expert dédié',
-      'feat.support.desc': 'Ingénieurs certifiés disponibles 24/7 via chat, téléphone et ticketing. SLA de réponse en 15 minutes garanti sur les offres Pro et Entreprise.',
-      'feat.monitoring.title': 'Monitoring complet',
-      'feat.monitoring.desc': 'Tableaux de bord en temps réel, alertes intelligentes par email/SMS/Slack et historique d\'incidents sur 12 mois glissants.',
+      'header.title': 'Fonctionnalités SAH Cloud',
+      'header.subtitle': 'Gestion de bases de données managée et stockage distribué d\'entreprise : Cloud DMP et Cloud aStor par SAH Cloud.',
+      'metrics.uptime': 'Haute disponibilité HA',
+      'metrics.latency': 'SGBD supportés',
+      'metrics.network': 'Types de stockage',
+      'metrics.support': 'Supervision continue',
+      'feat.ha.title': 'Cloud DMP : Gestion de Bases de Données',
+      'feat.ha.desc': 'Cycle de vie complet de vos bases de données : MySQL, SQL Server, Oracle et PostgreSQL. Déploiement automatisé, haute disponibilité et sauvegarde intégrée pour une gestion unifiée sans complexité opérationnelle.',
+      'feat.ha.measured': 'MySQL · SQL Server · Oracle · PostgreSQL',
+      'feat.scale.title': 'Cloud aStor : Stockage Distribué d\'Entreprise',
+      'feat.scale.desc': 'Architecture de stockage distribué enterprise supportant les modes block, fichier et objet. Scalabilité linéaire nœud par nœud avec moteur anti-ransomware basé sur l\'IA intégré nativement.',
+      'feat.scale.realtime': 'Anti-Ransomware IA',
+      'feat.security.title': 'Multi-SGBD & Cycle de Vie',
+      'feat.security.desc': 'Support natif de MySQL, SQL Server, Oracle et PostgreSQL. Automatisation complète : déploiement, mise à jour, sauvegarde et reprise sur incident gérés sans intervention manuelle.',
+      'feat.support.title': 'Protection Anti-Ransomware IA',
+      'feat.support.desc': 'Moteur d\'intelligence artificielle intégré dans Cloud aStor pour détecter et bloquer les attaques ransomware en temps réel, protégeant vos données critiques en permanence.',
+      'feat.monitoring.title': 'Scalabilité Linéaire',
+      'feat.monitoring.desc': 'Ajoutez des nœuds de stockage à la demande sans interruption de service. Cloud aStor scale linéairement en capacité et en performance pour accompagner la croissance de votre entreprise.',
       'cert.title': 'Certifications & Conformité',
-      'cert.desc': 'SAH Cloud répond aux exigences réglementaires les plus strictes pour vous permettre d\'opérer en toute confiance, quel que soit votre secteur d\'activité.'
+      'cert.desc': 'Cloud DMP et Cloud aStor répondent aux exigences réglementaires les plus strictes pour opérer en toute confiance dans tous les secteurs d\'activité.'
     },
     en: {
       'nav.services': 'Services',
@@ -358,36 +400,36 @@
       'mega.adesk': 'Cloud aDesk VDI', 'mega.adesk.sub': 'Virtual Desktop Infrastructure',
       'mega.vmware': 'VMware Replacement', 'mega.vmware.sub': 'Simple and secure migration',
       'mega.hybride': 'Hybrid Cloud', 'mega.hybride.sub': 'Unified Private & Public Cloud',
-      'mega.dr': 'Disaster Recovery', 'mega.dr.sub': 'DRM — Business continuity',
+      'mega.dr': 'Disaster Recovery', 'mega.dr.sub': 'DRM : Business continuity',
       'mega.apps': 'Critical Applications', 'mega.apps.sub': 'High performance & availability',
       'mega.transfo': 'Cloud Transformation', 'mega.transfo.sub': 'Data Center modernization',
       'mega.managed': 'Managed Services', 'mega.managed.sub': 'Complete Cloud management',
       'mega.support': 'Cloud Support', 'mega.support.sub': 'Dedicated technical assistance',
       'mega.questionnaire': 'Prospect Questionnaire', 'mega.questionnaire.sub': 'Internal sales tool',
-      'footer.copy': '© 2025 SAH Analytics. All rights reserved.',
+      'footer.copy': '© 2025 SAH Analytics International. All rights reserved.',
       'footer.status': 'All systems operational',
-      'page.title': 'Features — SAH Cloud',
+      'page.title': 'Features : SAH Cloud',
       'header.badge': 'Performance & Reliability',
-      'header.title': 'Infrastructure built for performance',
-      'header.subtitle': 'We combine the best cloud technologies with our AI expertise to give you a lasting competitive edge.',
-      'metrics.uptime': 'SLA Availability',
-      'metrics.latency': 'Average latency',
-      'metrics.network': 'Guaranteed network',
-      'metrics.support': 'Support response',
-      'feat.ha.title': 'Guaranteed high availability',
-      'feat.ha.desc': '99.9% SLA with multi-zone infrastructure and automatic failover in less than 30 seconds. Your services never go down.',
-      'feat.ha.measured': '99.97% measured over 12 months',
-      'feat.scale.title': 'Instant scalability',
-      'feat.scale.desc': 'Add CPU, RAM and storage resources in a few clicks without service interruption. Auto-scaling reacts to load in real time.',
-      'feat.scale.realtime': 'Real time',
-      'feat.security.title': 'Security by design',
-      'feat.security.desc': 'End-to-end encryption, network isolation, secrets vaults and multi-factor authentication included from your first subscription.',
-      'feat.support.title': 'Dedicated expert support',
-      'feat.support.desc': 'Certified engineers available 24/7 via chat, phone and ticketing. 15-minute response SLA guaranteed on Pro and Enterprise plans.',
-      'feat.monitoring.title': 'Comprehensive monitoring',
-      'feat.monitoring.desc': 'Real-time dashboards, intelligent alerts via email/SMS/Slack and a 12-month rolling incident history.',
+      'header.title': 'SAH Cloud Features',
+      'header.subtitle': 'Managed database lifecycle and enterprise distributed storage : Cloud DMP and Cloud aStor by SAH Cloud.',
+      'metrics.uptime': 'High availability HA',
+      'metrics.latency': 'Supported databases',
+      'metrics.network': 'Storage types',
+      'metrics.support': 'Continuous monitoring',
+      'feat.ha.title': 'Cloud DMP : Database Management',
+      'feat.ha.desc': 'Full lifecycle management for your databases : MySQL, SQL Server, Oracle and PostgreSQL. Automated deployment, high availability and integrated backup for unified, hassle-free operational management.',
+      'feat.ha.measured': 'MySQL · SQL Server · Oracle · PostgreSQL',
+      'feat.scale.title': 'Cloud aStor : Enterprise Distributed Storage',
+      'feat.scale.desc': 'Enterprise distributed storage architecture supporting block, file and object modes. Linear node-by-node scalability with a natively integrated AI-powered anti-ransomware engine.',
+      'feat.scale.realtime': 'AI Anti-Ransomware',
+      'feat.security.title': 'Multi-Database & Lifecycle',
+      'feat.security.desc': 'Native support for MySQL, SQL Server, Oracle and PostgreSQL. Full automation: deployment, updates, backup and disaster recovery managed without manual intervention.',
+      'feat.support.title': 'AI Anti-Ransomware Protection',
+      'feat.support.desc': 'Integrated artificial intelligence engine in Cloud aStor to detect and block ransomware attacks in real time, protecting your critical data around the clock.',
+      'feat.monitoring.title': 'Linear Scalability',
+      'feat.monitoring.desc': 'Add storage nodes on demand without service interruption. Cloud aStor scales linearly in capacity and performance to support your business growth.',
       'cert.title': 'Certifications & Compliance',
-      'cert.desc': 'SAH Cloud meets the strictest regulatory requirements so you can operate with confidence, whatever your industry.'
+      'cert.desc': 'Cloud DMP and Cloud aStor meet the strictest regulatory requirements so you can operate with confidence across all industries.'
     }
   };
   var lang = localStorage.getItem('sah-lang') || 'fr';
@@ -453,4 +495,3 @@
   })();
 </script></body>
 </html>
-

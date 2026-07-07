@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cloud aStor par SAH Cloud : stockage distribué d'entreprise multi-protocole (bloc, fichier, objet), protection IA anti-ransomware, scalabilité linéaire et haute disponibilité 99.99%." />
+  <title id="page-title">Cloud aStor — SAH Cloud</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#F47B28', light: '#FFA05A', dark: '#D4601A' },
+            navy:    { DEFAULT: '#0c1530', light: '#1a2545', dark: '#070e20' },
+            violet:  { DEFAULT: '#6c35de' },
+          },
+          fontFamily: { sans: ['Montserrat', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    .gradient-text { background:linear-gradient(90deg,#F47B28,#FFA05A); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .feature-card { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+    .feature-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(244,123,40,0.12); border-color: rgba(244,123,40,0.3); }
+    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    @keyframes dash   { to { stroke-dashoffset: -20; } }
+    .float-y   { animation: floatY 5s ease-in-out infinite; }
+    .dash-anim { animation: dash 1.8s linear infinite; }
+    .mega-item { display:flex; align-items:flex-start; gap:10px; padding:7px 8px; border-radius:8px; text-decoration:none; transition:background .15s; }
+    .mega-item:hover { background:rgba(244,123,40,0.06); }
+    .mega-icon { font-size:16px; flex-shrink:0; margin-top:2px; }
+    .mega-name { display:block; font-size:12.5px; font-weight:600; color:#0c1530; line-height:1.3; transition:color .15s; }
+    .mega-item:hover .mega-name { color:#F47B28; }
+    .mega-sub  { display:block; font-size:10.5px; color:#94a3b8; margin-top:1px; line-height:1.3; }
+    .nav-link-light { color:#0c1530; text-transform:uppercase; font-size:13px; letter-spacing:.08em; font-weight:600; text-decoration:none; transition:color .2s; }
+    .nav-link-light:hover { color:#F47B28; }
+    .lang-btn { font-size:12px; font-weight:700; border:1px solid #e2e8f0; border-radius:8px; padding:4px 10px; cursor:pointer; transition:all .2s; letter-spacing:.05em; color:#0c1530; background:none; }
+    .lang-btn:hover { background:#f1f5f9; }
+    .section-title { color:#0c1530; text-transform:uppercase; font-weight:800; letter-spacing:.02em; position:relative; display:inline-block; padding-bottom:12px; }
+    .section-title::after { content:''; position:absolute; bottom:0; left:0; width:48px; height:3px; background:#F47B28; }
+    h2, h3 { color:#0c1530; }
+    #mega-btn, #mob-mega-btn, #menu-btn { background: none; border: none; padding: 0; outline: none; box-shadow: none; cursor: pointer; font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
+    #mega-btn:focus, #mob-mega-btn:focus, #menu-btn:focus { outline: none; box-shadow: none; }
+    header a { text-decoration: none; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
+    header a:focus { outline: none; }
+  </style>
+</head>
+<body class="bg-white font-sans text-[#5a6a85] antialiased">
+
+  <!-- NAVBAR -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white" style="box-shadow:0 2px 20px rgba(0,0,0,0.08);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="../index.html" class="flex-shrink-0">
+          <img src="../img/logo.png" alt="SAH Cloud" class="h-9 w-auto rounded-md" />
+        </a>
+        <nav class="hidden md:flex items-center gap-6">
+          <div class="static" id="mega-wrap">
+            <button id="mega-btn" class="inline-flex items-center gap-2 nav-link-light focus:outline-none">
+              <span data-i18n="nav.mega">Cloud &amp; Infrastructure</span>
+              <svg id="mega-chevron" class="w-4 h-4 transition-transform duration-200 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+            <div id="mega-panel" class="hidden absolute top-full mt-2 rounded-2xl shadow-2xl z-[9999] bg-white" style="width:800px;border:1px solid rgba(0,0,0,0.08);left:50%;transform:translateX(-50%);">
+              <div class="grid grid-cols-3 gap-0 p-5">
+                <div class="pr-5 border-r border-slate-100">
+                  <p class="text-xs font-bold text-[#F47B28] uppercase tracking-widest mb-3 pb-2 border-b-2 border-[#F47B28]" data-i18n="mega.col1">Produits</p>
+                  <a href="../services/index.html" class="mega-item"><span class="mega-icon">&#x1F5A5;&#xFE0F;</span><span><span class="mega-name" data-i18n="mega.hci">SaH Cloud HCI</span><span class="mega-sub" data-i18n="mega.hci.sub">Infrastructure Hyper-Convergée</span></span></a>
+                  <a href="../solutions/index.html" class="mega-item"><span class="mega-icon">&#x2601;&#xFE0F;</span><span><span class="mega-name" data-i18n="mega.scp">SaH Cloud Platform</span><span class="mega-sub" data-i18n="mega.scp.sub">Gestion Cloud Fullstack (SCP)</span></span></a>
+                  <a href="../ske/index.html" class="mega-item"><span class="mega-icon">&#x1F433;</span><span><span class="mega-name" data-i18n="mega.ske">Kubernetes Engine SKE</span><span class="mega-sub" data-i18n="mega.ske.sub">Conteneurs &amp; VM Unifiés</span></span></a>
+                  <a href="../features/index.html" class="mega-item"><span class="mega-icon">&#x1F5C4;&#xFE0F;</span><span><span class="mega-name" data-i18n="mega.dmp">Cloud DMP</span><span class="mega-sub" data-i18n="mega.dmp.sub">Gestion de Bases de Données</span></span></a>
+                  <a href="index.html" class="mega-item"><span class="mega-icon">&#x1F4BE;</span><span><span class="mega-name" data-i18n="mega.astor">Cloud aStor</span><span class="mega-sub" data-i18n="mega.astor.sub">Stockage Distribué d'Entreprise</span></span></a>
+                  <a href="../managed/index.html" class="mega-item"><span class="mega-icon">&#x1F5B1;&#xFE0F;</span><span><span class="mega-name" data-i18n="mega.adesk">Cloud aDesk VDI</span><span class="mega-sub" data-i18n="mega.adesk.sub">Postes de Travail Virtuels</span></span></a>
+                </div>
+                <div class="px-5 border-r border-slate-100">
+                  <p class="text-xs font-bold text-[#F47B28] uppercase tracking-widest mb-3 pb-2 border-b-2 border-[#F47B28]" data-i18n="mega.col2">Solutions</p>
+                  <a href="../solutions/index.html" class="mega-item"><span class="mega-icon">&#x1F504;</span><span><span class="mega-name" data-i18n="mega.vmware">Remplacement VMware</span><span class="mega-sub" data-i18n="mega.vmware.sub">Migration simple et sécurisée</span></span></a>
+                  <a href="../solutions/index.html" class="mega-item"><span class="mega-icon">&#x1F517;</span><span><span class="mega-name" data-i18n="mega.hybride">Cloud Hybride</span><span class="mega-sub" data-i18n="mega.hybride.sub">Cloud Privé &amp; Public Unifié</span></span></a>
+                  <a href="../managed/index.html" class="mega-item"><span class="mega-icon">&#x1F6E1;&#xFE0F;</span><span><span class="mega-name" data-i18n="mega.dr">Reprise après Sinistre</span><span class="mega-sub" data-i18n="mega.dr.sub">DRM : Continuité d'activité</span></span></a>
+                  <a href="../features/index.html" class="mega-item"><span class="mega-icon">&#x26A1;</span><span><span class="mega-name" data-i18n="mega.apps">Applications Critiques</span><span class="mega-sub" data-i18n="mega.apps.sub">Haute performance &amp; disponibilité</span></span></a>
+                  <a href="../solutions/index.html" class="mega-item"><span class="mega-icon">&#x1F3D7;&#xFE0F;</span><span><span class="mega-name" data-i18n="mega.transfo">Transformation Cloud</span><span class="mega-sub" data-i18n="mega.transfo.sub">Modernisation des Data Centers</span></span></a>
+                </div>
+                <div class="pl-5">
+                  <p class="text-xs font-bold text-[#F47B28] uppercase tracking-widest mb-3 pb-2 border-b-2 border-[#F47B28]" data-i18n="mega.col3">Services</p>
+                  <a href="../managed/index.html" class="mega-item"><span class="mega-icon">&#x2699;&#xFE0F;</span><span><span class="mega-name" data-i18n="mega.managed">Services Gérés</span><span class="mega-sub" data-i18n="mega.managed.sub">Infogérance Cloud complète</span></span></a>
+                  <a href="../contact/index.html" class="mega-item"><span class="mega-icon">&#x1F6DF;</span><span><span class="mega-name" data-i18n="mega.support">Support Cloud</span><span class="mega-sub" data-i18n="mega.support.sub">Assistance technique dédiée</span></span></a>
+                  <a href="../questionnaire/index.html" class="mega-item"><span class="mega-icon">&#x1F4CB;</span><span><span class="mega-name" data-i18n="mega.questionnaire">Questionnaire Prospect</span><span class="mega-sub" data-i18n="mega.questionnaire.sub">Outil commercial interne</span></span></a>
+                  <a href="../about/index.html" class="mega-item"><span class="mega-icon">&#x1F4D6;</span><span><span class="mega-name">À propos</span><span class="mega-sub">Notre mission &amp; équipe</span></span></a>
+                  <a href="../contact/index.html" class="mega-item"><span class="mega-icon">&#x2709;&#xFE0F;</span><span><span class="mega-name">Contact</span><span class="mega-sub">Parlons de votre projet</span></span></a>
+                  <a href="../pricing/index.html" class="mega-item"><span class="mega-icon">&#x1F4B0;</span><span><span class="mega-name">Tarifs</span><span class="mega-sub">Configurateur de prix</span></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <div class="hidden md:flex items-center gap-3">
+          <button class="lang-btn">FR</button>
+          <a href="../contact/index.html" class="inline-flex items-center gap-2 bg-[#F47B28] hover:bg-[#D4601A] text-white text-sm font-bold px-5 py-2.5 rounded-full transition-all" data-i18n="nav.contact">NOUS CONTACTER</a>
+        </div>
+        <div class="flex md:hidden items-center gap-2">
+          <button class="lang-btn">FR</button>
+          <button id="menu-btn" class="p-2 rounded-lg text-[#0c1530] hover:bg-slate-100 transition-colors">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white">
+      <div class="px-4 py-3 space-y-1">
+        <button id="mob-mega-btn" class="w-full flex items-center justify-between px-3 py-2 text-sm text-[#0c1530] font-semibold hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">
+          <span data-i18n="nav.mega">Cloud &amp; Infrastructure</span>
+          <svg id="mob-mega-chevron" class="w-4 h-4 transition-transform duration-200 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+        </button>
+        <div id="mob-mega-panel" class="hidden px-2 pb-2 border-l-2 border-[#F47B28]/30 ml-2 mt-1">
+          <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 pt-3 pb-1.5" data-i18n="mega.col1">Produits</p>
+          <a href="../services/index.html"   class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">SaH Cloud HCI</a>
+          <a href="../solutions/index.html"  class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">SaH Cloud Platform</a>
+          <a href="../ske/index.html"        class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Kubernetes Engine SKE</a>
+          <a href="../features/index.html"   class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Cloud DMP</a>
+          <a href="index.html"              class="block px-2 py-1.5 text-sm text-[#F47B28] font-semibold hover:bg-slate-50 rounded-lg transition-colors">Cloud aStor</a>
+          <a href="../managed/index.html"    class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Cloud aDesk VDI</a>
+          <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 pt-3 pb-1.5" data-i18n="mega.col2">Solutions</p>
+          <a href="../solutions/index.html"  class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Remplacement VMware</a>
+          <a href="../solutions/index.html"  class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Cloud Hybride</a>
+          <a href="../managed/index.html"    class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Reprise après Sinistre</a>
+          <a href="../features/index.html"   class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Applications Critiques</a>
+          <a href="../solutions/index.html"  class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Transformation Cloud</a>
+          <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 pt-3 pb-1.5" data-i18n="mega.col3">Services</p>
+          <a href="../managed/index.html"       class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Services Gérés</a>
+          <a href="../contact/index.html"       class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Support Cloud</a>
+          <a href="../questionnaire/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Questionnaire Prospect</a>
+          <a href="../about/index.html"         class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">À propos</a>
+          <a href="../contact/index.html"       class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Contact</a>
+          <a href="../pricing/index.html"       class="block px-2 py-1.5 text-sm font-semibold text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Tarifs</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-28" style="background:#0c1530;">
+    <div class="absolute inset-0" style="background-image:url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1920&q=80&auto=format&fit=crop');background-size:cover;background-position:center;opacity:0.08;"></div>
+    <div class="absolute inset-0 opacity-10" style="background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:60px 60px;"></div>
+    <div class="absolute top-10 right-1/4 w-96 h-96 bg-primary/15 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 left-1/4 w-80 h-80 bg-navy-light/20 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary text-xs font-bold px-4 py-1.5 rounded-full mb-6">
+            <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+            <span data-i18n="hero.badge">Cloud aStor</span>
+          </div>
+          <h1 class="text-4xl lg:text-5xl font-black text-white leading-tight mb-2">
+            <span data-i18n="hero.title">Stockage Distribué</span>
+          </h1>
+          <h1 class="text-4xl lg:text-5xl font-black leading-tight mb-6">
+            <span class="gradient-text" data-i18n="hero.title2">d'Entreprise</span>
+          </h1>
+          <p class="text-[#94a3b8] text-lg leading-relaxed mb-8 max-w-lg" data-i18n="hero.desc">
+            Cloud aStor est la solution de stockage distribué multi-protocole de SAH Cloud. Bloc, fichier ou objet sur une seule plateforme, avec un moteur IA anti-ransomware, une scalabilité linéaire à la demande et une haute disponibilité 99.99% garantie par contrat.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="#features" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-bold px-7 py-3.5 rounded-xl transition-all hover:shadow-xl hover:shadow-primary/30" data-i18n="hero.cta1">
+              Découvrir aStor
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href="../contact/index.html" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-7 py-3.5 rounded-xl transition-all border border-white/20" data-i18n="hero.cta2">
+              Demander une démo
+            </a>
+          </div>
+        </div>
+
+        <div class="hidden lg:flex justify-center float-y">
+          <div class="relative w-full max-w-md">
+            <svg viewBox="0 0 440 360" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full">
+              <!-- Central storage hub -->
+              <rect x="155" y="140" width="130" height="80" rx="16" fill="#111e35" stroke="rgba(244,123,40,0.5)" stroke-width="2"/>
+              <text x="220" y="170" text-anchor="middle" fill="rgba(244,123,40,0.9)" font-size="11" font-weight="800" font-family="Inter,sans-serif">aStor</text>
+              <text x="220" y="187" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-family="Inter,sans-serif">DISTRIBUTED</text>
+              <text x="220" y="200" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-family="Inter,sans-serif">STORAGE ENGINE</text>
+              <!-- Orbit ring -->
+              <circle cx="220" cy="180" r="110" fill="none" stroke="rgba(244,123,40,0.1)" stroke-width="1" stroke-dasharray="6,4"/>
+              <!-- Block storage node -->
+              <rect x="38" y="55" width="80" height="55" rx="10" fill="#111e35" stroke="rgba(244,123,40,0.4)" stroke-width="1.5"/>
+              <text x="78" y="76" text-anchor="middle" fill="#F47B28" font-size="9" font-weight="700" font-family="Inter,sans-serif">BLOCK</text>
+              <rect x="48" y="82" width="60" height="6" rx="2" fill="rgba(244,123,40,0.3)"/>
+              <rect x="48" y="92" width="44" height="6" rx="2" fill="rgba(244,123,40,0.2)"/>
+              <line x1="118" y1="83" x2="155" y2="160" stroke="rgba(244,123,40,0.25)" stroke-width="1" stroke-dasharray="4,3"/>
+              <!-- File storage node -->
+              <rect x="38" y="250" width="80" height="55" rx="10" fill="#111e35" stroke="rgba(244,123,40,0.4)" stroke-width="1.5"/>
+              <text x="78" y="270" text-anchor="middle" fill="#F47B28" font-size="9" font-weight="700" font-family="Inter,sans-serif">FILE</text>
+              <rect x="48" y="276" width="60" height="6" rx="2" fill="rgba(244,123,40,0.3)"/>
+              <rect x="48" y="286" width="36" height="6" rx="2" fill="rgba(244,123,40,0.2)"/>
+              <line x1="118" y1="270" x2="155" y2="200" stroke="rgba(244,123,40,0.25)" stroke-width="1" stroke-dasharray="4,3"/>
+              <!-- Object storage node -->
+              <rect x="322" y="55" width="80" height="55" rx="10" fill="#111e35" stroke="rgba(244,123,40,0.4)" stroke-width="1.5"/>
+              <text x="362" y="76" text-anchor="middle" fill="#F47B28" font-size="9" font-weight="700" font-family="Inter,sans-serif">OBJECT</text>
+              <rect x="332" y="82" width="60" height="6" rx="2" fill="rgba(244,123,40,0.3)"/>
+              <rect x="332" y="92" width="50" height="6" rx="2" fill="rgba(244,123,40,0.2)"/>
+              <line x1="322" y1="83" x2="285" y2="160" stroke="rgba(244,123,40,0.25)" stroke-width="1" stroke-dasharray="4,3"/>
+              <!-- AI Shield node -->
+              <rect x="322" y="250" width="80" height="55" rx="10" fill="#111e35" stroke="rgba(108,53,222,0.4)" stroke-width="1.5"/>
+              <text x="362" y="270" text-anchor="middle" fill="rgba(108,53,222,0.9)" font-size="8" font-weight="700" font-family="Inter,sans-serif">AI SHIELD</text>
+              <text x="362" y="283" text-anchor="middle" fill="rgba(108,53,222,0.6)" font-size="7" font-family="Inter,sans-serif">Anti-ransomware</text>
+              <circle cx="362" cy="295" r="4" fill="rgba(34,197,94,0.8)"/>
+              <line x1="322" y1="270" x2="285" y2="200" stroke="rgba(108,53,222,0.25)" stroke-width="1" stroke-dasharray="4,3"/>
+              <!-- Stats badges -->
+              <rect x="165" y="25" width="110" height="36" rx="8" fill="#111e35" stroke="rgba(244,123,40,0.3)" stroke-width="1"/>
+              <text x="220" y="41" text-anchor="middle" fill="white" font-size="11" font-weight="800" font-family="Inter,sans-serif">99.99% HA</text>
+              <text x="220" y="54" text-anchor="middle" fill="rgba(244,123,40,0.7)" font-size="8" font-family="Inter,sans-serif">Disponibilité garantie</text>
+              <rect x="165" y="299" width="110" height="36" rx="8" fill="#111e35" stroke="rgba(244,123,40,0.3)" stroke-width="1"/>
+              <text x="220" y="315" text-anchor="middle" fill="white" font-size="11" font-weight="800" font-family="Inter,sans-serif">Scalable</text>
+              <text x="220" y="328" text-anchor="middle" fill="rgba(244,123,40,0.7)" font-size="8" font-family="Inter,sans-serif">Ajout nœuds à chaud</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="mt-16 grid grid-cols-3 gap-6 max-w-2xl">
+        <div class="text-center">
+          <div class="text-3xl font-black text-white" data-i18n="stats.ha">99.99%</div>
+          <div class="text-xs text-[#94a3b8] mt-1 uppercase tracking-wider" data-i18n="stats.ha.label">Haute Disponibilité</div>
+        </div>
+        <div class="text-center border-x border-white/10">
+          <div class="text-3xl font-black text-white" data-i18n="stats.modes">3-en-1</div>
+          <div class="text-xs text-[#94a3b8] mt-1 uppercase tracking-wider" data-i18n="stats.modes.label">Bloc / Fichier / Objet</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-black text-white" data-i18n="stats.ai">IA</div>
+          <div class="text-xs text-[#94a3b8] mt-1 uppercase tracking-wider" data-i18n="stats.ai.label">Anti-Ransomware</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="py-20 bg-[#f8f9fc]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 text-primary text-xs font-bold px-4 py-1.5 rounded-full mb-4" data-i18n="features.badge">6 capacités clés</div>
+        <h2 class="text-3xl lg:text-4xl font-black mb-3" data-i18n="features.title">Un stockage pour tous vos usages,<br/>une seule plateforme</h2>
+        <p class="text-[#5a6a85] max-w-2xl mx-auto" data-i18n="features.subtitle">aStor unifie bloc, fichier et objet sur une architecture distribuée résiliente, avec protection IA intégrée et capacité à grandir sans interruption de service.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card 1 : Block Storage -->
+        <div class="feature-card bg-white border border-slate-100 rounded-2xl p-7 cursor-default">
+          <div class="flex items-start gap-4 mb-5">
+            <div class="w-12 h-12 flex-shrink-0 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,rgba(244,123,40,0.2),rgba(244,123,40,0.04));border:1px solid rgba(244,123,40,0.35);">
+              <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
+            </div>
+            <div>
+              <span class="text-xs font-bold text-primary uppercase tracking-wide">01</span>
+              <h4 class="text-base font-bold mt-0.5" data-i18n="f1.title">Stockage Bloc (Block)</h4>
+            </div>
+          </div>
+          <div class="mb-5 rounded-xl overflow-hidden" style="background:rgba(244,123,40,0.04);border:1px solid rgba(244,123,40,0.1);">
+            <svg class="w-full" viewBox="0 0 280 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Server requesting -->
+              <rect x="10" y="28" width="55" height="44" rx="7" fill="#111e35" stroke="rgba(244,123,40,0.35)" stroke-width="1.5"/>
+              <rect x="18" y="36" width="38" height="5" rx="2" fill="rgba(244,123,40,0.4)"/>
+              <rect x="18" y="44" width="28" height="4" rx="2" fill="rgba(255,255,255,0.15)"/>
+              <rect x="18" y="51" width="32" height="4" rx="2" fill="rgba(255,255,255,0.1)"/>
+              <text x="38" y="66" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="7" font-family="Inter,sans-serif">iSCSI</text>
+              <!-- Arrow -->
+              <path d="M68 50 L100 50" stroke="rgba(244,123,40,0.5)" stroke-width="1.5" stroke-dasharray="4,3" class="dash-anim"/>
+              <polygon points="100,46 108,50 100,54" fill="#F47B28"/>
+              <!-- Block volumes -->
+              <rect x="112" y="15" width="50" height="22" rx="5" fill="#111e35" stroke="rgba(244,123,40,0.5)" stroke-width="1.5"/>
+              <text x="137" y="29" text-anchor="middle" fill="#F47B28" font-size="8" font-weight="700" font-family="Inter,sans-serif">VOL-01</text>
+              <rect x="112" y="42" width="50" height="22" rx="5" fill="#111e35" stroke="rgba(244,123,40,0.4)" stroke-width="1.5"/>
+              <text x="137" y="56" text-anchor="middle" fill="#F47B28" font-size="8" font-weight="700" font-family="Inter,sans-serif">VOL-02</text>
+              <rect x="112" y="69" width="50" height="16" rx="5" fill="#111e35" stroke="rgba(244,123,40,0.25)" stroke-width="1"/>
+              <text x="137" y="80" text-anchor="middle" fill="rgba(244,123,40,0.5)" font-size="7" font-family="Inter,sans-serif">VOL-03</text>
+              <!-- IOPS badge -->
+              <rect x="175" y="30" width="95" height="40" rx="8" fill="#111e35" stroke="rgba(244,123,40,0.3)" stroke-width="1"/>
+              <text x="222" y="47" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="Inter,sans-serif">500K</text>
+              <text x="222" y="61" text-anchor="middle" fill="rgba(244,123,40,0.7)" font-size="7" font-family="Inter,sans-serif">IOPS max</text>
+            </svg>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed" data-i18n="f1.desc">Volumes de stockage bloc haute performance pour bases de données, applications transactionnelles et workloads nécessitant une faible latence. Compatible iSCSI et NVMe-oF avec jusqu'à 500K IOPS.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-full">NVMe-oF</span>
+            <span class="text-xs bg-slate-50 text-[#5a6a85] px-2.5 py-1 rounded-full">iSCSI</span>
+            <span class="text-xs bg-slate-50 text-[#5a6a85] px-2.5 py-1 rounded-full">500K IOPS</span>
+          </div>
+        </div>
+
+        <!-- Card 2 : File Storage -->
+        <div class="feature-card bg-white border border-slate-100 rounded-2xl p-7 cursor-default">
+          <div class="flex items-start gap-4 mb-5">
+            <div class="w-12 h-12 flex-shrink-0 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,rgba(244,123,40,0.2),rgba(244,123,40,0.04));border:1px solid rgba(244,123,40,0.35);">
+              <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+            </div>
+            <div>
+              <span class="text-xs font-bold text-primary uppercase tracking-wide">02</span>
+              <h4 class="text-base font-bold mt-0.5" data-i18n="f2.title">Stockage Fichier (File)</h4>
+            </div>
+          </div>
+          <div class="mb-5 rounded-xl overflow-hidden" style="background:rgba(244,123,40,0.04);border:1px solid rgba(244,123,40,0.1);">
+            <svg class="w-full" viewBox="0 0 280 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Clients -->
+              <circle cx="28" cy="30" r="14" fill="#111e35" stroke="rgba(244,123,40,0.3)" stroke-width="1.5"/>
+              <text x="28" y="34" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="Inter,sans-serif">PC</text>
+              <circle cx="28" cy="70" r="14" fill="#111e35" stroke="rgba(244,123,40,0.3)" stroke-width="1.5"/>
+              <text x="28" y="74" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="Inter,sans-serif">SRV</text>
+              <!-- Protocol label -->
+              <rect x="55" y="40" width="60" height="20" rx="5" fill="rgba(244,123,40,0.15)" stroke="rgba(244,123,40,0.35)" stroke-width="1"/>
+              <text x="85" y="53" text-anchor="middle" fill="#F47B28" font-size="8" font-weight="700" font-family="Inter,sans-serif">NFS / SMB</text>
+              <line x1="42" y1="30" x2="55" y2="48" stroke="rgba(244,123,40,0.3)" stroke-width="1" stroke-dasharray="3,2"/>
+              <line x1="42" y1="70" x2="55" y2="52" stroke="rgba(244,123,40,0.3)" stroke-width="1" stroke-dasharray="3,2"/>
+              <path d="M118 50 L145 50" stroke="rgba(244,123,40,0.5)" stroke-width="1.5" stroke-dasharray="4,3" class="dash-anim"/>
+              <polygon points="145,46 153,50 145,54" fill="#F47B28"/>
+              <!-- File system -->
+              <rect x="157" y="10" width="110" height="80" rx="8" fill="#111e35" stroke="rgba(244,123,40,0.3)" stroke-width="1.5"/>
+              <text x="212" y="26" text-anchor="middle" fill="rgba(244,123,40,0.7)" font-size="8" font-weight="700" font-family="Inter,sans-serif">aStor FS</text>
+              <rect x="165" y="32" width="90" height="10" rx="3" fill="rgba(244,123,40,0.2)"/>
+              <rect x="165" y="46" width="70" height="10" rx="3" fill="rgba(255,255,255,0.08)"/>
+              <rect x="165" y="60" width="80" height="10" rx="3" fill="rgba(255,255,255,0.06)"/>
+              <rect x="165" y="74" width="55" height="10" rx="3" fill="rgba(255,255,255,0.04)"/>
+            </svg>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed" data-i18n="f2.desc">Partages de fichiers distribués accessibles via NFS v4.1 et SMB 3.0. Idéal pour les données non structurées, les répertoires partagés et les applications nécessitant un accès concurrent multi-clients.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-full">NFS v4.1</span>
+            <span class="text-xs bg-slate-50 text-[#5a6a85] px-2.5 py-1 rounded-full">SMB 3.0</span>
+            <span class="text-xs bg-slate-50 text-[#5a6a85] px-2.5 py-1 rounded-full">Multi-clients</span>
+          </div>
+        </div>
+
+        <!-- Card 3 : Object Storage -->
+        <div class="feature-card bg-white border border-slate-100 rounded-2xl p-7 cursor-default">
+          <div class="flex items-start gap-4 mb-5">
+            <div class="w-12 h-12 flex-shrink-0 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,rgba(244,123,40,0.2),rgba(244,123,40,0.04));border:1px solid rgba(244,123,40,0.35);">
+              <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+            </div>
+            <div>
+              <span class="text-xs font-bold text-primary uppercase tracking-wide">03</span>
+              <h4 class="text-base font-bold mt-0.5" data-i18n="f3.title">Stockage Objet (Object)</h4>
+            </div>
+          </div>
+          <div class="mb-5 rounded-xl overflow-hidden" style="background:rgba(244,123,40,0.04);border:1px solid rgba(244,123,40,0.1);">
+            <svg class="w-full" viewBox="0 0 280 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- S3 badge -->
+              <rect x="10" y="30" width="60" height="40" rx="8" fill="#111e35" stroke="rgba(244,123,40,0.4)" stroke-width="1.5"/>
+              <text x="40" y="48" text-anchor="middle" fill="#F47B28" font-size="11" font-weight="800" font-family="Inter,sans-serif">S3</text>
+              <text x="40" y="62" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="7" font-family="Inter,sans-serif">API</text>
+              <path d="M73 50 L103 50" stroke="rgba(244,123,40,0.5)" stroke-width="1.5" stroke-dasharray="4,3" class="dash-anim"/>
+              <polygon points="103,46 111,50 103,54" fill="#F47B28"/>
+              <!-- Buckets -->
+              <circle cx="135" cy="25" r="14" fill="#111e35" stroke="rgba(244,123,40,0.4)" stroke-width="1.5"/>
+              <text x="135" y="29" text-anchor="middle" fill="rgba(244,123,40,0.8)" font-size="7" font-family="Inter,sans-serif">bckt1</text>
+              <circle cx="165" cy="50" r="14" fill="#111e35" stroke="rgba(244,123,40,0.35)" stroke-width="1.5"/>
+              <text x="165" y="54" text-anchor="middle" fill="rgba(244,123,40,0.7)" font-size="7" font-family="Inter,sans-serif">bckt2</text>
+              <circle cx="135" cy="75" r="14" fill="#111e35" stroke="rgba(244,123,40,0.3)" stroke-width="1.5"/>
+              <text x="135" y="79" text-anchor="middle" fill="rgba(244,123,40,0.6)" font-size="7" font-family="Inter,sans-serif">bckt3</text>
+              <!-- Storage stats -->
+              <rect x="195" y="20" width="75" height="60" rx="8" fill="#111e35" stroke="rgba(244,123,40,0.25)" stroke-width="1"/>
+              <text x="232" y="40" text-anchor="middle" fill="white" font-size="13" font-weight="800" font-family="Inter,sans-serif">PB</text>
+              <text x="232" y="54" text-anchor="middle" fill="rgba(244,123,40,0.7)" font-size="7" font-family="Inter,sans-serif">Scale</text>
+              <text x="232" y="67" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="7" font-family="Inter,sans-serif">Illimité</text>
+            </svg>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed" data-i18n="f3.desc">Stockage objet compatible S3 pour archivage, sauvegarde, médias et données big data. Scalabilité jusqu'au pétaoctet, lifecycle policies automatiques et tiering intelligent pour optimiser les coûts.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-full">Compatible S3</span>
+            <span class="text-xs bg-slate-50 text-[#5a6a85] px-2.5 py-1 rounded-full">Lifecycle policies</span>
+            <span class="text-xs bg-slate-50 text-[#5a6a85] px-2.5 py-1 rounded-full">Tiering IA</span>
+          </div>
+        </div>
+
+        <!-- Card 4 : AI Anti-Ransomware -->
+        <div class="feature-card bg-white border border-slate-100 rounded-2xl p-7 cursor-default">
+          <div class="flex items-start gap-4 mb-5">
+            <div class="w-12 h-12 flex-shrink-0 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,rgba(108,53,222,0.2),rgba(108,53,222,0.04));border:1px solid rgba(108,53,222,0.35);">
+              <svg class="w-6 h-6 text-violet" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <div>
+              <span class="text-xs font-bold text-violet uppercase tracking-wide">04</span>
+              <h4 class="text-base font-bold mt-0.5" data-i18n="f4.title">Protection IA Anti-Ransomware</h4>
+            </div>
+          </div>
+          <div class="mb-5 rounded-xl overflow-hidden" style="background:rgba(108,53,222,0.04);border:1px solid rgba(108,53,222,0.1);">
+            <svg class="w-full" viewBox="0 0 280 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Threat -->
+              <rect x="10" y="30" width="55" height="40" rx="7" fill="#111e35" stroke="rgba(239,68,68,0.4)" stroke-width="1.5"/>
+              <text x="37" y="50" text-anchor="middle" fill="rgba(239,68,68,0.8)" font-size="8" font-weight="700" font-family="Inter,sans-serif">MALWARE</text>
+              <text x="37" y="62" text-anchor="middle" fill="rgba(239,68,68,0.5)" font-size="7" font-family="Inter,sans-serif">&#x26A0; Threat</text>
+              <path d="M68 50 L93 50" stroke="rgba(239,68,68,0.4)" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <polygon points="93,46 101,50 93,54" fill="rgba(239,68,68,0.7)"/>
+              <!-- AI Engine -->
+              <rect x="105" y="20" width="80" height="60" rx="10" fill="#111e35" stroke="rgba(108,53,222,0.5)" stroke-width="2"/>
+              <text x="145" y="44" text-anchor="middle" fill="rgba(108,53,222,0.9)" font-size="8" font-weight="700" font-family="Inter,sans-serif">AI ENGINE</text>
+              <text x="145" y="56" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="7" font-family="Inter,sans-serif">Behavioral</text>
+              <text x="145" y="67" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="7" font-family="Inter,sans-serif">Analysis</text>
+              <!-- Blocked -->
+              <path d="M188 38 L210 30" stroke="rgba(239,68,68,0.6)" stroke-width="1.5"/>
+              <rect x="210" y="18" width="62" height="24" rx="6" fill="#111e35" stroke="rgba(239,68,68,0.4)" stroke-width="1"/>
+              <text x="241" y="34" text-anchor="middle" fill="rgba(239,68,68,0.8)" font-size="8" font-family="Inter,sans-serif">&#x2717; BLOCKED</text>
+              <!-- Snapshot -->
+              <path d="M188 62 L210 70" stroke="rgba(34,197,94,0.5)" stroke-width="1.5"/>
+              <rect x="210" y="58" width="62" height="24" rx="6" fill="#111e35" stroke="rgba(34,197,94,0.4)" stroke-width="1"/>
+              <text x="241" y="74" text-anchor="middle" fill="rgba(34,197,94,0.8)" font-size="8" font-family="Inter,sans-serif">&#x2713; SNAPSHOT</text>
+            </svg>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed" data-i18n="f4.desc">Moteur IA d'analyse comportementale qui détecte et bloque les attaques ransomware avant chiffrement. Snapshot immuable automatique déclenchée à la détection d'anomalie pour garantir la restauration des données.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs bg-[#6c35de]/10 text-violet border border-[#6c35de]/20 px-2.5 py-1 rounded-full">IA comportementale</span>
+            <span class="text-xs bg-slate-50 text-[#5a6a85] px-2.5 py-1 rounded-full">Snapshot immuable</span>
+            <span class="text-xs bg-slate-50 text-[#5a6a85] px-2.5 py-1 rounded-full">WORM</span>
+          </div>
+        </div>
+
+        <!-- Card 5 : Scalabilité linéaire -->
+        <div class="feature-card bg-white border border-slate-100 rounded-2xl p-7 cursor-default">
+          <div class="flex items-start gap-4 mb-5">
+            <div class="w-12 h-12 flex-shrink-0 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,rgba(244,123,40,0.2),rgba(244,123,40,0.04));border:1px solid rgba(244,123,40,0.35);">
+              <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+            </div>
+            <div>
+              <span class="text-xs font-bold text-primary uppercase tracking-wide">05</span>
+              <h4 class="text-base font-bold mt-0.5" data-i18n="f5.title">Scalabilité Linéaire</h4>
+            </div>
+          </div>
+          <div class="mb-5 rounded-xl overflow-hidden" style="background:rgba(244,123,40,0.04);border:1px solid rgba(244,123,40,0.1);">
+            <svg class="w-full" viewBox="0 0 280 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Nodes growing -->
+              <rect x="10" y="55" width="35" height="35" rx="6" fill="#111e35" stroke="rgba(244,123,40,0.5)" stroke-width="1.5"/>
+              <text x="27" y="76" text-anchor="middle" fill="rgba(244,123,40,0.8)" font-size="7" font-family="Inter,sans-serif">N1</text>
+              <rect x="52" y="42" width="35" height="48" rx="6" fill="#111e35" stroke="rgba(244,123,40,0.5)" stroke-width="1.5"/>
+              <text x="69" y="69" text-anchor="middle" fill="rgba(244,123,40,0.8)" font-size="7" font-family="Inter,sans-serif">N2</text>
+              <rect x="94" y="30" width="35" height="60" rx="6" fill="#111e35" stroke="rgba(244,123,40,0.5)" stroke-width="1.5"/>
+              <text x="111" y="63" text-anchor="middle" fill="rgba(244,123,40,0.8)" font-size="7" font-family="Inter,sans-serif">N3</text>
+              <rect x="136" y="18" width="35" height="72" rx="6" fill="#111e35" stroke="rgba(244,123,40,0.4)" stroke-width="1.5"/>
+              <text x="153" y="57" text-anchor="middle" fill="rgba(244,123,40,0.8)" font-size="7" font-family="Inter,sans-serif">N4</text>
+              <!-- Plus button -->
+              <rect x="185" y="35" width="35" height="55" rx="6" fill="rgba(244,123,40,0.06)" stroke="rgba(244,123,40,0.25)" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <text x="202" y="66" text-anchor="middle" fill="rgba(244,123,40,0.5)" font-size="18" font-family="Inter,sans-serif">+</text>
+              <!-- Performance line -->
+              <polyline points="10,95 52,88 94,81 136,74 171,68" fill="none" stroke="rgba(34,197,94,0.6)" stroke-width="1.5" stroke-dasharray="4,2"/>
+              <!-- Labels -->
+              <text x="240" y="55" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="7" font-family="Inter,sans-serif">Capacité</text>
+              <text x="240" y="68" text-anchor="middle" fill="#F47B28" font-size="11" font-weight="800" font-family="Inter,sans-serif">+x</text>
+              <text x="240" y="80" text-anchor="middle" fill="rgba(34,197,94,0.7)" font-size="7" font-family="Inter,sans-serif">Performance</text>
+            </svg>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed" data-i18n="f5.desc">Ajoutez des nœuds de stockage à chaud sans interruption de service. La capacité et les performances augmentent linéairement avec chaque nouveau nœud, sans rééquilibrage manuel ni fenêtre de maintenance.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-full">Ajout à chaud</span>
+            <span class="text-xs bg-slate-50 text-[#5a6a85] px-2.5 py-1 rounded-full">Auto-rebalance</span>
+            <span class="text-xs bg-slate-50 text-[#5a6a85] px-2.5 py-1 rounded-full">Jusqu'au PB</span>
+          </div>
+        </div>
+
+        <!-- Card 6 : HA & Chiffrement -->
+        <div class="feature-card bg-white border border-slate-100 rounded-2xl p-7 cursor-default">
+          <div class="flex items-start gap-4 mb-5">
+            <div class="w-12 h-12 flex-shrink-0 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,rgba(244,123,40,0.2),rgba(244,123,40,0.04));border:1px solid rgba(244,123,40,0.35);">
+              <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            </div>
+            <div>
+              <span class="text-xs font-bold text-primary uppercase tracking-wide">06</span>
+              <h4 class="text-base font-bold mt-0.5" data-i18n="f6.title">HA 99.99% &amp; Chiffrement</h4>
+            </div>
+          </div>
+          <div class="mb-5 rounded-xl overflow-hidden" style="background:rgba(244,123,40,0.04);border:1px solid rgba(244,123,40,0.1);">
+            <svg class="w-full" viewBox="0 0 280 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- HA ring -->
+              <circle cx="80" cy="50" r="35" fill="none" stroke="rgba(34,197,94,0.2)" stroke-width="8"/>
+              <path d="M80 15 A35 35 0 1 1 45 85" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round"/>
+              <text x="80" y="46" text-anchor="middle" fill="white" font-size="10" font-weight="800" font-family="Inter,sans-serif">99.99%</text>
+              <text x="80" y="58" text-anchor="middle" fill="rgba(34,197,94,0.8)" font-size="7" font-family="Inter,sans-serif">HA SLA</text>
+              <!-- Encryption visual -->
+              <rect x="148" y="15" width="118" height="70" rx="8" fill="#111e35" stroke="rgba(244,123,40,0.25)" stroke-width="1"/>
+              <text x="207" y="30" text-anchor="middle" fill="rgba(244,123,40,0.7)" font-size="7" font-weight="700" font-family="Inter,sans-serif">AES-256 / TLS 1.3</text>
+              <rect x="158" y="36" width="96" height="8" rx="2" fill="rgba(244,123,40,0.25)"/>
+              <rect x="158" y="48" width="96" height="8" rx="2" fill="rgba(244,123,40,0.18)"/>
+              <rect x="158" y="60" width="96" height="8" rx="2" fill="rgba(244,123,40,0.12)"/>
+              <text x="207" y="79" text-anchor="middle" fill="rgba(34,197,94,0.7)" font-size="7" font-family="Inter,sans-serif">&#x2713; Data at rest  &#x2713; Data in transit</text>
+            </svg>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed" data-i18n="f6.desc">Réplication synchrone des données sur plusieurs nœuds pour atteindre 99.99% de disponibilité. Chiffrement AES-256 au repos et TLS 1.3 en transit, conforme RGPD et aux exigences de souveraineté des données africaines.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="text-xs bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-full">AES-256</span>
+            <span class="text-xs bg-slate-50 text-[#5a6a85] px-2.5 py-1 rounded-full">RGPD</span>
+            <span class="text-xs bg-slate-50 text-[#5a6a85] px-2.5 py-1 rounded-full">Réplication 3x</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CTA block -->
+      <div class="mt-16 relative bg-[#f8f9fc] border border-slate-100 rounded-3xl p-10 lg:p-16 text-center overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image:radial-gradient(circle at 80% 20%,#F47B28 0%,transparent 55%);"></div>
+        <div class="relative">
+          <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary text-xs font-bold px-4 py-1.5 rounded-full mb-5">
+            <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+            <span data-i18n="cta.badge">Évaluation gratuite disponible</span>
+          </div>
+          <h2 class="text-2xl lg:text-3xl font-black mb-3" data-i18n="cta.title">Prêt à moderniser votre stockage entreprise ?</h2>
+          <p class="text-slate-400 mb-8 max-w-xl mx-auto" data-i18n="cta.desc">Nos experts analysent vos besoins de stockage actuels et conçoivent une architecture aStor adaptée à votre volume de données et vos SLA.</p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a href="../contact/index.html" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-bold px-8 py-4 rounded-xl transition-all hover:shadow-xl hover:shadow-primary/30 text-base" data-i18n="cta.btn">
+              Demander une évaluation
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href="../questionnaire/index.html" class="inline-flex items-center gap-2 bg-white border border-slate-200 text-[#0c1530] hover:bg-slate-50 font-bold px-8 py-4 rounded-xl transition-all text-base" data-i18n="cta.btn2">
+              Questionnaire prospect
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#0a1128;" class="pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div>
+          <a href="../index.html" class="inline-block mb-4">
+            <img src="../img/logo.png" alt="SAH Cloud" class="h-10 w-auto rounded-md" />
+          </a>
+          <p class="text-sm text-[#94a3b8] leading-relaxed" data-i18n="footer.desc">Infrastructure cloud souveraine pour entreprises et institutions africaines.</p>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold text-white uppercase tracking-widest mb-4" data-i18n="footer.nav">Navigation</h4>
+          <ul class="space-y-2.5">
+            <li><a href="../index.html" class="text-sm text-[#94a3b8] hover:text-[#F47B28] transition-colors" data-i18n="footer.home">Accueil</a></li>
+            <li><a href="../solutions/index.html" class="text-sm text-[#94a3b8] hover:text-[#F47B28] transition-colors" data-i18n="footer.solutions">Solutions Cloud</a></li>
+            <li><a href="../managed/index.html" class="text-sm text-[#94a3b8] hover:text-[#F47B28] transition-colors" data-i18n="footer.managed">Services Gérés</a></li>
+            <li><a href="../features/index.html" class="text-sm text-[#94a3b8] hover:text-[#F47B28] transition-colors" data-i18n="footer.features">Fonctionnalités</a></li>
+            <li><a href="../pricing/index.html" class="text-sm text-[#94a3b8] hover:text-[#F47B28] transition-colors" data-i18n="footer.pricing">Tarifs</a></li>
+            <li><a href="../about/index.html" class="text-sm text-[#94a3b8] hover:text-[#F47B28] transition-colors" data-i18n="footer.about">À propos</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold text-white uppercase tracking-widest mb-4" data-i18n="footer.products">Produits</h4>
+          <ul class="space-y-2.5">
+            <li><a href="../services/index.html" class="text-sm text-[#94a3b8] hover:text-[#F47B28] transition-colors">SaH Cloud HCI</a></li>
+            <li><a href="../solutions/index.html" class="text-sm text-[#94a3b8] hover:text-[#F47B28] transition-colors">SaH Cloud Platform</a></li>
+            <li><a href="../ske/index.html" class="text-sm text-[#94a3b8] hover:text-[#F47B28] transition-colors">Kubernetes Engine SKE</a></li>
+            <li><a href="../features/index.html" class="text-sm text-[#94a3b8] hover:text-[#F47B28] transition-colors">Cloud DMP</a></li>
+            <li><a href="index.html" class="text-sm text-[#F47B28] font-semibold transition-colors">Cloud aStor</a></li>
+            <li><a href="../managed/index.html" class="text-sm text-[#94a3b8] hover:text-[#F47B28] transition-colors">Cloud aDesk VDI</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold text-white uppercase tracking-widest mb-4" data-i18n="footer.contact">Contact</h4>
+          <ul class="space-y-2.5 mb-5">
+            <li class="flex items-center gap-2 text-sm text-[#94a3b8]"><svg class="w-4 h-4 text-[#F47B28] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>contact@sahcloud.com</li>
+            <li class="flex items-center gap-2 text-sm text-[#94a3b8]"><svg class="w-4 h-4 text-[#F47B28] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>+225 27 22 23 00 00</li>
+          </ul>
+          <div class="flex gap-2">
+            <input type="email" placeholder="Votre email" class="flex-1 bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-[#94a3b8] focus:outline-none focus:border-[#F47B28]/50" />
+            <button class="bg-[#F47B28] hover:bg-[#D4601A] text-white font-bold px-4 py-2 rounded-xl transition-colors text-sm" data-i18n="footer.subscribe">OK</button>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-6">
+        <p class="text-xs text-[#94a3b8]" data-i18n="footer.copy">© 2025 SAH Analytics International. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')));
+  </script>
+  <script>
+  (function(){
+    var T = {
+      fr: {
+        'nav.mega': 'Cloud & Infrastructure',
+        'nav.contact': 'NOUS CONTACTER',
+        'mega.col1': 'Produits', 'mega.col2': 'Solutions', 'mega.col3': 'Services',
+        'mega.hci': 'SaH Cloud HCI', 'mega.hci.sub': 'Infrastructure Hyper-Convergée',
+        'mega.scp': 'SaH Cloud Platform', 'mega.scp.sub': 'Gestion Cloud Fullstack (SCP)',
+        'mega.ske': 'Kubernetes Engine SKE', 'mega.ske.sub': 'Conteneurs & VM Unifiés',
+        'mega.dmp': 'Cloud DMP', 'mega.dmp.sub': 'Gestion de Bases de Données',
+        'mega.astor': 'Cloud aStor', 'mega.astor.sub': "Stockage Distribué d'Entreprise",
+        'mega.adesk': 'Cloud aDesk VDI', 'mega.adesk.sub': 'Postes de Travail Virtuels',
+        'mega.vmware': 'Remplacement VMware', 'mega.vmware.sub': 'Migration simple et sécurisée',
+        'mega.hybride': 'Cloud Hybride', 'mega.hybride.sub': 'Cloud Privé & Public Unifié',
+        'mega.dr': 'Reprise après Sinistre', 'mega.dr.sub': "DRM : Continuité d'activité",
+        'mega.apps': 'Applications Critiques', 'mega.apps.sub': 'Haute performance & disponibilité',
+        'mega.transfo': 'Transformation Cloud', 'mega.transfo.sub': 'Modernisation des Data Centers',
+        'mega.managed': 'Services Gérés', 'mega.managed.sub': 'Infogérance Cloud complète',
+        'mega.support': 'Support Cloud', 'mega.support.sub': 'Assistance technique dédiée',
+        'mega.questionnaire': 'Questionnaire Prospect', 'mega.questionnaire.sub': 'Outil commercial interne',
+        'hero.badge': 'Cloud aStor',
+        'hero.title': 'Stockage Distribué',
+        'hero.title2': "d'Entreprise",
+        'hero.desc': "Cloud aStor est la solution de stockage distribué multi-protocole de SAH Cloud. Bloc, fichier ou objet sur une seule plateforme, avec un moteur IA anti-ransomware, une scalabilité linéaire à la demande et une haute disponibilité 99.99% garantie par contrat.",
+        'hero.cta1': 'Découvrir aStor', 'hero.cta2': 'Demander une démo',
+        'stats.ha': '99.99%', 'stats.ha.label': 'Haute Disponibilité',
+        'stats.modes': '3-en-1', 'stats.modes.label': 'Bloc / Fichier / Objet',
+        'stats.ai': 'IA', 'stats.ai.label': 'Anti-Ransomware',
+        'features.badge': '6 capacités clés',
+        'features.title': 'Un stockage pour tous vos usages, une seule plateforme',
+        'features.subtitle': "aStor unifie bloc, fichier et objet sur une architecture distribuée résiliente, avec protection IA intégrée et capacité à grandir sans interruption de service.",
+        'f1.title': 'Stockage Bloc (Block)', 'f1.desc': "Volumes de stockage bloc haute performance pour bases de données et applications transactionnelles. Compatible iSCSI et NVMe-oF avec jusqu'à 500K IOPS.",
+        'f2.title': 'Stockage Fichier (File)', 'f2.desc': "Partages de fichiers distribués accessibles via NFS v4.1 et SMB 3.0. Idéal pour les données non structurées et les répertoires partagés multi-clients.",
+        'f3.title': 'Stockage Objet (Object)', 'f3.desc': "Stockage objet compatible S3 pour archivage, sauvegarde et big data. Scalabilité jusqu'au pétaoctet avec lifecycle policies automatiques.",
+        'f4.title': 'Protection IA Anti-Ransomware', 'f4.desc': "Moteur IA d'analyse comportementale qui détecte et bloque les attaques ransomware avant chiffrement, avec snapshot immuable automatique.",
+        'f5.title': 'Scalabilité Linéaire', 'f5.desc': "Ajoutez des nœuds de stockage à chaud sans interruption. La capacité et les performances augmentent linéairement avec chaque nouveau nœud.",
+        'f6.title': 'HA 99.99% & Chiffrement', 'f6.desc': "Réplication synchrone sur plusieurs nœuds pour 99.99% de disponibilité. Chiffrement AES-256 au repos et TLS 1.3 en transit, conforme RGPD.",
+        'cta.badge': 'Évaluation gratuite disponible',
+        'cta.title': 'Prêt à moderniser votre stockage entreprise ?',
+        'cta.desc': "Nos experts analysent vos besoins de stockage et conçoivent une architecture aStor adaptée à votre volume de données et vos SLA.",
+        'cta.btn': 'Demander une évaluation', 'cta.btn2': 'Questionnaire prospect',
+        'footer.desc': 'Infrastructure cloud souveraine pour entreprises et institutions africaines.',
+        'footer.nav': 'Navigation', 'footer.home': 'Accueil', 'footer.solutions': 'Solutions Cloud',
+        'footer.managed': 'Services Gérés', 'footer.features': 'Fonctionnalités',
+        'footer.pricing': 'Tarifs', 'footer.about': 'À propos',
+        'footer.products': 'Produits', 'footer.contact': 'Contact',
+        'footer.subscribe': 'OK',
+        'footer.copy': '© 2025 SAH Analytics International. Tous droits réservés.'
+      },
+      en: {
+        'nav.mega': 'Cloud & Infrastructure',
+        'nav.contact': 'CONTACT US',
+        'mega.col1': 'Products', 'mega.col2': 'Solutions', 'mega.col3': 'Services',
+        'mega.hci': 'SaH Cloud HCI', 'mega.hci.sub': 'Hyper-Converged Infrastructure',
+        'mega.scp': 'SaH Cloud Platform', 'mega.scp.sub': 'Fullstack Cloud Management (SCP)',
+        'mega.ske': 'Kubernetes Engine SKE', 'mega.ske.sub': 'Unified Containers & VMs',
+        'mega.dmp': 'Cloud DMP', 'mega.dmp.sub': 'Database Management Platform',
+        'mega.astor': 'Cloud aStor', 'mega.astor.sub': 'Enterprise Distributed Storage',
+        'mega.adesk': 'Cloud aDesk VDI', 'mega.adesk.sub': 'Virtual Desktop Infrastructure',
+        'mega.vmware': 'VMware Replacement', 'mega.vmware.sub': 'Simple and secure migration',
+        'mega.hybride': 'Hybrid Cloud', 'mega.hybride.sub': 'Unified Private & Public Cloud',
+        'mega.dr': 'Disaster Recovery', 'mega.dr.sub': 'DRM: Business continuity',
+        'mega.apps': 'Critical Applications', 'mega.apps.sub': 'High performance & availability',
+        'mega.transfo': 'Cloud Transformation', 'mega.transfo.sub': 'Data Center modernization',
+        'mega.managed': 'Managed Services', 'mega.managed.sub': 'Complete Cloud management',
+        'mega.support': 'Cloud Support', 'mega.support.sub': 'Dedicated technical support',
+        'mega.questionnaire': 'Prospect Questionnaire', 'mega.questionnaire.sub': 'Internal sales tool',
+        'hero.badge': 'Cloud aStor',
+        'hero.title': 'Enterprise Distributed',
+        'hero.title2': 'Storage',
+        'hero.desc': 'Cloud aStor is SAH Cloud\'s multi-protocol distributed storage solution. Block, file or object on a single platform, with an AI anti-ransomware engine, on-demand linear scalability and 99.99% high availability guaranteed by SLA.',
+        'hero.cta1': 'Discover aStor', 'hero.cta2': 'Request a demo',
+        'stats.ha': '99.99%', 'stats.ha.label': 'High Availability',
+        'stats.modes': '3-in-1', 'stats.modes.label': 'Block / File / Object',
+        'stats.ai': 'AI', 'stats.ai.label': 'Anti-Ransomware',
+        'features.badge': '6 key capabilities',
+        'features.title': 'Storage for all your needs, one platform',
+        'features.subtitle': 'aStor unifies block, file and object on a resilient distributed architecture, with built-in AI protection and the ability to grow without service interruption.',
+        'f1.title': 'Block Storage', 'f1.desc': 'High-performance block storage volumes for databases and transactional applications. Compatible with iSCSI and NVMe-oF with up to 500K IOPS.',
+        'f2.title': 'File Storage', 'f2.desc': 'Distributed file shares accessible via NFS v4.1 and SMB 3.0. Ideal for unstructured data and shared directories with concurrent multi-client access.',
+        'f3.title': 'Object Storage', 'f3.desc': 'S3-compatible object storage for archiving, backup and big data. Scalability up to petabytes with automatic lifecycle policies.',
+        'f4.title': 'AI Anti-Ransomware Protection', 'f4.desc': 'AI behavioral analysis engine that detects and blocks ransomware attacks before encryption, with automatic immutable snapshot.',
+        'f5.title': 'Linear Scalability', 'f5.desc': 'Add storage nodes hot without service interruption. Capacity and performance grow linearly with each new node.',
+        'f6.title': '99.99% HA & Encryption', 'f6.desc': 'Synchronous replication across multiple nodes for 99.99% availability. AES-256 encryption at rest and TLS 1.3 in transit, GDPR compliant.',
+        'cta.badge': 'Free assessment available',
+        'cta.title': 'Ready to modernize your enterprise storage?',
+        'cta.desc': 'Our experts analyze your storage needs and design an aStor architecture suited to your data volume and SLA requirements.',
+        'cta.btn': 'Request an assessment', 'cta.btn2': 'Prospect questionnaire',
+        'footer.desc': 'Sovereign cloud infrastructure for African enterprises and institutions.',
+        'footer.nav': 'Navigation', 'footer.home': 'Home', 'footer.solutions': 'Cloud Solutions',
+        'footer.managed': 'Managed Services', 'footer.features': 'Features',
+        'footer.pricing': 'Pricing', 'footer.about': 'About',
+        'footer.products': 'Products', 'footer.contact': 'Contact',
+        'footer.subscribe': 'OK',
+        'footer.copy': '© 2025 SAH Analytics International. All rights reserved.'
+      }
+    };
+    var lang = localStorage.getItem('sah-lang') || 'fr';
+    function apply() {
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var k = el.getAttribute('data-i18n');
+        if (T[lang] && T[lang][k]) el.textContent = T[lang][k];
+      });
+      document.querySelectorAll('.lang-btn').forEach(function(b) { b.textContent = lang === 'fr' ? 'EN' : 'FR'; });
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.lang-btn').forEach(function(b) {
+        b.addEventListener('click', function() {
+          lang = lang === 'fr' ? 'en' : 'fr';
+          localStorage.setItem('sah-lang', lang);
+          apply();
+        });
+      });
+      apply();
+    });
+  })();
+  </script>
+  <script>
+  (function(){
+    var btn    = document.getElementById('mega-btn');
+    var panel  = document.getElementById('mega-panel');
+    var chev   = document.getElementById('mega-chevron');
+    var mBtn   = document.getElementById('mob-mega-btn');
+    var mPanel = document.getElementById('mob-mega-panel');
+    var mChev  = document.getElementById('mob-mega-chevron');
+    function closePanel() {
+      if (!panel) return;
+      panel.classList.add('hidden');
+      if (chev) chev.style.transform = '';
+    }
+    if (btn && panel) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var isOpen = !panel.classList.contains('hidden');
+        if (isOpen) { closePanel(); }
+        else {
+          panel.classList.remove('hidden');
+          if (chev) chev.style.transform = 'rotate(180deg)';
+        }
+      });
+      panel.addEventListener('click', function(e) { e.stopPropagation(); });
+      document.addEventListener('click', closePanel);
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closePanel(); });
+    }
+    if (mBtn && mPanel) {
+      mBtn.addEventListener('click', function() {
+        var isOpen = !mPanel.classList.contains('hidden');
+        mPanel.classList.toggle('hidden');
+        if (mChev) mChev.style.transform = isOpen ? '' : 'rotate(180deg)';
+      });
+    }
+  })();
+  </script>
+</body>
+</html>
