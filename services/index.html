@@ -26,14 +26,14 @@
     .section-title-center::after { left: 50%; transform: translateX(-50%); }
     .card-light { background: #ffffff; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.3s ease; border-left: 3px solid transparent; }
     .card-light:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.12); border-left-color: #F47B28; }
-    .nav-link-light { color: #0c1530; text-transform: uppercase; font-size: 13px; letter-spacing: 0.08em; font-weight: 600; text-decoration: none; transition: color 0.2s; }
+    .nav-link-light { color: #0c1530; text-transform: uppercase; font-size: 15px; letter-spacing: 0.08em; font-weight: 600; text-decoration: none; transition: color 0.2s; }
     .nav-link-light:hover { color: #F47B28; }
     .mega-item { display:flex; align-items:flex-start; gap:10px; padding:7px 8px; border-radius:8px; text-decoration:none; transition:background .15s; }
     .mega-item:hover { background:rgba(244,123,40,0.06); }
     .mega-icon { font-size:16px; flex-shrink:0; margin-top:2px; }
-    .mega-name { display:block; font-size:12.5px; font-weight:600; color:#0c1530; line-height:1.3; transition:color .15s; }
+    .mega-name { display:block; font-size:14px; font-weight:600; color:#0c1530; line-height:1.3; transition:color .15s; }
     .mega-item:hover .mega-name { color:#F47B28; }
-    .mega-sub { display:block; font-size:10.5px; color:#94a3b8; margin-top:1px; line-height:1.3; }
+    .mega-sub { display:block; font-size:13px; color:#94a3b8; margin-top:1px; line-height:1.3; }
     .lang-btn { font-size:12px; font-weight:700; border-radius:8px; padding:4px 10px; cursor:pointer; transition:all .2s; letter-spacing:.05em; }
     .img-blob-wrapper { position: relative; }
     .img-blob-wrapper::before { content: ''; position: absolute; width: 200px; height: 200px; background: rgba(244,123,40,0.12); border-radius: 50% 30% 50% 30%; top: -20px; right: -20px; z-index: 0; }
@@ -59,7 +59,7 @@
             <div id="mega-panel" class="hidden absolute top-full mt-2 rounded-2xl shadow-2xl z-[9999] bg-white" style="width:800px;border:1px solid rgba(0,0,0,0.08);left:50%;transform:translateX(-50%);">
               <div class="grid grid-cols-3 gap-0 p-5">
                 <div class="pr-5 border-r border-slate-100">
-                  <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest mb-3 border-b-2 border-[#F47B28] pb-1">Produits</p>
+                  <p class="text-xs font-bold text-[#F47B28] uppercase tracking-widest mb-3 border-b-2 border-[#F47B28] pb-1">Produits</p>
                   <a href="../produits/hci/index.html" class="mega-item"><span class="mega-icon">&#x1F5A5;&#xFE0F;</span><span><span class="mega-name">HCI</span><span class="mega-sub">Infrastructure Hyper-Converg&eacute;e</span></span></a>
                   <a href="../produits/scp/index.html" class="mega-item"><span class="mega-icon">&#x2601;&#xFE0F;</span><span><span class="mega-name">SaH Cloud Platform</span><span class="mega-sub">Gestion Cloud Fullstack (SCP)</span></span></a>
                   <a href="../produits/ske/index.html" class="mega-item"><span class="mega-icon">&#x1F433;</span><span><span class="mega-name">Kubernetes Engine SKE</span><span class="mega-sub">Conteneurs &amp; VM Unifi&eacute;s</span></span></a>
@@ -68,7 +68,7 @@
                   <a href="../produits/adesk/index.html" class="mega-item"><span class="mega-icon">&#x1F5B1;&#xFE0F;</span><span><span class="mega-name">aDesk VDI</span><span class="mega-sub">Postes de Travail Virtuels</span></span></a>
                 </div>
                 <div class="px-5 border-r border-slate-100">
-                  <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest mb-3 border-b-2 border-[#F47B28] pb-1">Solutions</p>
+                  <p class="text-xs font-bold text-[#F47B28] uppercase tracking-widest mb-3 border-b-2 border-[#F47B28] pb-1">Solutions</p>
                   <a href="../solutions/vmware/index.html" class="mega-item"><span class="mega-icon">&#x1F504;</span><span><span class="mega-name">Remplacement VMware</span><span class="mega-sub">Migration simple et s&eacute;curis&eacute;e</span></span></a>
                   <a href="../solutions/hybride/index.html" class="mega-item"><span class="mega-icon">&#x1F517;</span><span><span class="mega-name">Cloud Hybride</span><span class="mega-sub">Cloud Priv&eacute; &amp; Public Unifi&eacute;</span></span></a>
                   <a href="../solutions/sinistre/index.html" class="mega-item"><span class="mega-icon">&#x1F6E1;&#xFE0F;</span><span><span class="mega-name">Reprise apr&egrave;s Sinistre</span><span class="mega-sub">DRM &mdash; Continuit&eacute; d&rsquo;activit&eacute;</span></span></a>
@@ -76,7 +76,7 @@
                   <a href="../solutions/transfo/index.html" class="mega-item"><span class="mega-icon">&#x1F3D7;&#xFE0F;</span><span><span class="mega-name">Transformation Cloud</span><span class="mega-sub">Modernisation des Data Centers</span></span></a>
                 </div>
                 <div class="pl-5">
-                  <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest mb-3 border-b-2 border-[#F47B28] pb-1">Services</p>
+                  <p class="text-xs font-bold text-[#F47B28] uppercase tracking-widest mb-3 border-b-2 border-[#F47B28] pb-1">Services</p>
                   <a href="../services/managed/index.html" class="mega-item"><span class="mega-icon">&#x2699;&#xFE0F;</span><span><span class="mega-name">Services G&eacute;r&eacute;s</span><span class="mega-sub">Infog&eacute;rance Cloud compl&egrave;te</span></span></a>
                   <a href="../services/support/index.html" class="mega-item"><span class="mega-icon">&#x1F6DF;</span><span><span class="mega-name">Support Cloud</span><span class="mega-sub">Assistance technique d&eacute;di&eacute;e</span></span></a>
                   <a href="../services/questionnaire/index.html" class="mega-item"><span class="mega-icon">&#x1F4CB;</span><span><span class="mega-name">Questionnaire Prospect</span><span class="mega-sub">Outil commercial interne</span></span></a>
@@ -90,7 +90,7 @@
         </nav>
         <div class="hidden md:flex items-center gap-3">
           <button class="lang-btn text-[#0c1530] border border-slate-200 hover:bg-slate-50">FR</button>
-          <a href="../services/contact/index.html" class="bg-[#F47B28] text-white font-bold text-xs px-5 py-2 rounded-full hover:bg-[#D4601A] transition-colors uppercase tracking-wide">Nous Contacter</a>
+          <a href="../services/contact/index.html" class="bg-[#F47B28] text-white font-bold text-sm px-5 py-2 rounded-full hover:bg-[#D4601A] transition-colors uppercase tracking-wide">Nous Contacter</a>
         </div>
         <div class="flex md:hidden items-center gap-2">
           <button class="lang-btn text-[#0c1530] border border-slate-200 hover:bg-slate-50 text-xs px-2.5 py-1">FR</button>
@@ -107,26 +107,26 @@
           <svg id="mob-mega-chevron" class="w-4 h-4 transition-transform duration-200 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
         </button>
         <div id="mob-mega-panel" class="hidden px-2 pb-2 border-l-2 border-[#F47B28]/30 ml-2 mt-1">
-          <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest px-2 pt-3 pb-1.5">Produits</p>
-          <a href="../produits/hci/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">HCI</a>
-          <a href="../produits/scp/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">SaH Cloud Platform</a>
-          <a href="../produits/ske/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Kubernetes Engine SKE</a>
-          <a href="../produits/dmp/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">DMP</a>
-          <a href="../produits/astor/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">aStor</a>
-          <a href="../produits/adesk/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">aDesk VDI</a>
-          <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest px-2 pt-3 pb-1.5">Solutions</p>
-          <a href="../solutions/vmware/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Remplacement VMware</a>
-          <a href="../solutions/hybride/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Cloud Hybride</a>
-          <a href="../solutions/sinistre/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Reprise après Sinistre</a>
-          <a href="../solutions/critique/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Applications Critiques</a>
-          <a href="../solutions/transfo/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Transformation Cloud</a>
-          <p class="text-[10px] font-bold text-[#F47B28] uppercase tracking-widest px-2 pt-3 pb-1.5">Services</p>
-          <a href="../services/managed/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Services Gérés</a>
-          <a href="../services/support/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Support Cloud</a>
-          <a href="../services/questionnaire/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Questionnaire Prospect</a>
-          <a href="../services/about/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">&Agrave; propos</a>
-          <a href="../services/contact/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Contact</a>
-          <a href="../services/pricing/index.html" class="block px-2 py-1.5 text-sm text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Tarifs</a>
+          <p class="text-xs font-bold text-[#F47B28] uppercase tracking-widest px-2 pt-3 pb-1.5">Produits</p>
+          <a href="../produits/hci/index.html" class="block px-2 py-1.5 text-base text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">HCI</a>
+          <a href="../produits/scp/index.html" class="block px-2 py-1.5 text-base text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">SaH Cloud Platform</a>
+          <a href="../produits/ske/index.html" class="block px-2 py-1.5 text-base text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">Kubernetes Engine SKE</a>
+          <a href="../produits/dmp/index.html" class="block px-2 py-1.5 text-base text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">DMP</a>
+          <a href="../produits/astor/index.html" class="block px-2 py-1.5 text-base text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">aStor</a>
+          <a href="../produits/adesk/index.html" class="block px-2 py-1.5 text-base text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg transition-colors">aDesk VDI</a>
+          <p class="text-xs font-bold text-[#F47B28] uppercase tracking-widest px-2 pt-3 pb-1.5">Solutions</p>
+          <a href="../solutions/vmware/index.html" class="block px-2 py-1.5 text-base text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Remplacement VMware</a>
+          <a href="../solutions/hybride/index.html" class="block px-2 py-1.5 text-base text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Cloud Hybride</a>
+          <a href="../solutions/sinistre/index.html" class="block px-2 py-1.5 text-base text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Reprise après Sinistre</a>
+          <a href="../solutions/critique/index.html" class="block px-2 py-1.5 text-base text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Applications Critiques</a>
+          <a href="../solutions/transfo/index.html" class="block px-2 py-1.5 text-base text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Transformation Cloud</a>
+          <p class="text-xs font-bold text-[#F47B28] uppercase tracking-widest px-2 pt-3 pb-1.5">Services</p>
+          <a href="../services/managed/index.html" class="block px-2 py-1.5 text-base text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Services Gérés</a>
+          <a href="../services/support/index.html" class="block px-2 py-1.5 text-base text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Support Cloud</a>
+          <a href="../services/questionnaire/index.html" class="block px-2 py-1.5 text-base text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Questionnaire Prospect</a>
+          <a href="../services/about/index.html" class="block px-2 py-1.5 text-base text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">&Agrave; propos</a>
+          <a href="../services/contact/index.html" class="block px-2 py-1.5 text-base text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Contact</a>
+          <a href="../services/pricing/index.html" class="block px-2 py-1.5 text-base text-[#5a6a85] hover:text-[#F47B28] hover:bg-slate-50 rounded-lg">Tarifs</a>
         </div>
         <a href="../services/contact/index.html" class="block mt-3 text-center bg-[#F47B28] text-white font-bold text-sm py-2.5 rounded-full hover:bg-[#D4601A] transition-colors">Nous Contacter</a>
       </div>
@@ -138,7 +138,7 @@
     <div class="absolute inset-0 opacity-10" style="background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:60px 60px;"></div>
     <div class="absolute top-10 left-1/4 w-96 h-96 bg-primary/15 rounded-full blur-3xl pointer-events-none"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary text-xs font-bold px-4 py-1.5 rounded-full mb-6">
+      <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary text-sm font-bold px-4 py-1.5 rounded-full mb-6">
         <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
         <span>Services</span>
       </div>
@@ -156,7 +156,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="section-title section-title-center text-3xl mb-2">Nos 6 services</h2>
-        <p class="text-[#5a6a85] text-sm mt-6 mb-8 max-w-xl mx-auto">De l'infogérance complète au support technique réactif, en passant par la tarification transparente et l'accompagnement commercial.</p>
+        <p class="text-[#5a6a85] text-base mt-6 mb-8 max-w-xl mx-auto">De l'infogérance complète au support technique réactif, en passant par la tarification transparente et l'accompagnement commercial.</p>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
@@ -166,7 +166,7 @@
             <span class="text-2xl">⚙️</span>
           </div>
           <h3 class="text-xl font-bold mb-3 text-[#0c1530] group-hover:text-[#F47B28] transition-colors">Services Gérés</h3>
-          <p class="text-[#5a6a85] text-sm leading-relaxed mb-5 flex-1">Infogérance cloud complète : serveurs, réseau, sécurité, sauvegardes, DRP et bases de données. Nos ingénieurs pilotent votre infrastructure 24/7 pour que vous puissiez vous concentrer sur votre métier.</p>
+          <p class="text-[#5a6a85] text-base leading-relaxed mb-5 flex-1">Infogérance cloud complète : serveurs, réseau, sécurité, sauvegardes, DRP et bases de données. Nos ingénieurs pilotent votre infrastructure 24/7 pour que vous puissiez vous concentrer sur votre métier.</p>
           <div class="flex flex-wrap gap-2 mb-4">
             <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">Infogérance</span>
             <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">24/7</span>
@@ -182,7 +182,7 @@
             <span class="text-2xl">🛟</span>
           </div>
           <h3 class="text-xl font-bold mb-3 text-[#0c1530] group-hover:text-[#F47B28] transition-colors">Support Cloud</h3>
-          <p class="text-[#5a6a85] text-sm leading-relaxed mb-5 flex-1">Assistance technique dédiée avec des ingénieurs certifiés N1/N2/N3. Tickets prioritaires P1/P2/P3, base de connaissances et formations incluses. Réponse P1 en moins d'une heure.</p>
+          <p class="text-[#5a6a85] text-base leading-relaxed mb-5 flex-1">Assistance technique dédiée avec des ingénieurs certifiés N1/N2/N3. Tickets prioritaires P1/P2/P3, base de connaissances et formations incluses. Réponse P1 en moins d'une heure.</p>
           <div class="flex flex-wrap gap-2 mb-4">
             <span class="text-xs bg-[#F47B28]/10 text-[#F47B28] border border-[#F47B28]/20 px-3 py-1 rounded-full">24/7</span>
             <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">&lt; 1h P1</span>
@@ -197,7 +197,7 @@
             <span class="text-2xl">📋</span>
           </div>
           <h3 class="text-xl font-bold mb-3 text-[#0c1530] group-hover:text-[#F47B28] transition-colors">Questionnaire Prospect</h3>
-          <p class="text-[#5a6a85] text-sm leading-relaxed mb-5 flex-1">Outil commercial interne pour qualifier rapidement les besoins d'un prospect : taille, secteur, infrastructure actuelle, objectifs cloud et contraintes budgétaires.</p>
+          <p class="text-[#5a6a85] text-base leading-relaxed mb-5 flex-1">Outil commercial interne pour qualifier rapidement les besoins d'un prospect : taille, secteur, infrastructure actuelle, objectifs cloud et contraintes budgétaires.</p>
           <div class="flex flex-wrap gap-2 mb-4">
             <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">Qualification</span>
             <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">Commercial</span>
@@ -212,7 +212,7 @@
             <span class="text-2xl">📖</span>
           </div>
           <h3 class="text-xl font-bold mb-3 text-[#0c1530] group-hover:text-[#F47B28] transition-colors">À propos</h3>
-          <p class="text-[#5a6a85] text-sm leading-relaxed mb-5 flex-1">Notre mission, nos valeurs et l'équipe derrière SaH Cloud. Découvrez les ingénieurs cloud qui opèrent votre infrastructure et notre engagement envers l'excellence technique.</p>
+          <p class="text-[#5a6a85] text-base leading-relaxed mb-5 flex-1">Notre mission, nos valeurs et l'équipe derrière SaH Cloud. Découvrez les ingénieurs cloud qui opèrent votre infrastructure et notre engagement envers l'excellence technique.</p>
           <div class="flex flex-wrap gap-2 mb-4">
             <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">Mission</span>
             <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">Équipe</span>
@@ -227,7 +227,7 @@
             <span class="text-2xl">✉️</span>
           </div>
           <h3 class="text-xl font-bold mb-3 text-[#0c1530] group-hover:text-[#F47B28] transition-colors">Contact</h3>
-          <p class="text-[#5a6a85] text-sm leading-relaxed mb-5 flex-1">Parlons de votre projet cloud. Remplissez notre formulaire de contact pour décrire vos besoins et un expert SaH Cloud vous rappelle sous 24 heures ouvrées.</p>
+          <p class="text-[#5a6a85] text-base leading-relaxed mb-5 flex-1">Parlons de votre projet cloud. Remplissez notre formulaire de contact pour décrire vos besoins et un expert SaH Cloud vous rappelle sous 24 heures ouvrées.</p>
           <div class="flex flex-wrap gap-2 mb-4">
             <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">Formulaire</span>
             <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">Rappel 24h</span>
@@ -242,7 +242,7 @@
             <span class="text-2xl">💰</span>
           </div>
           <h3 class="text-xl font-bold mb-3 text-[#0c1530] group-hover:text-[#F47B28] transition-colors">Tarifs</h3>
-          <p class="text-[#5a6a85] text-sm leading-relaxed mb-5 flex-1">Configurateur de prix transparent pour estimer le coût de votre infrastructure cloud managée. Trois formules (Starter, Business, Enterprise) sans frais cachés.</p>
+          <p class="text-[#5a6a85] text-base leading-relaxed mb-5 flex-1">Configurateur de prix transparent pour estimer le coût de votre infrastructure cloud managée. Trois formules (Starter, Business, Enterprise) sans frais cachés.</p>
           <div class="flex flex-wrap gap-2 mb-4">
             <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">Configurateur</span>
             <span class="text-xs bg-slate-100 text-[#5a6a85] px-3 py-1 rounded-full">Transparent</span>
@@ -255,7 +255,7 @@
 
       <!-- CTA -->
       <div class="text-center mt-12">
-        <p class="text-[#5a6a85] text-sm mb-4">Besoin d'un accompagnement personnalisé ?</p>
+        <p class="text-[#5a6a85] text-base mb-4">Besoin d'un accompagnement personnalisé ?</p>
         <a href="contact/index.html" class="bg-[#F47B28] text-white font-bold px-8 py-3 rounded-xl hover:bg-[#D4601A] transition-colors text-sm inline-block">Parlons de votre projet</a>
       </div>
     </div>
@@ -305,7 +305,7 @@
       </div>
       <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
         <p class="text-[#94a3b8] text-xs"><span data-i18n="footer.copy">© 2025 SAH Analytics International. Tous droits réservés.</span></p>
-        <div class="flex items-center gap-2 text-xs text-[#94a3b8]">
+        <div class="flex items-center gap-2 text-sm text-[#94a3b8]">
           <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
           <span data-i18n="footer.status">Tous les systèmes opérationnels</span>
         </div>
