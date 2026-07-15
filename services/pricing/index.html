@@ -469,10 +469,10 @@
                     <div class="flex items-center gap-2 flex-wrap">
                       <span class="text-sm font-semibold" data-i18n="soc.title">SOC Managé</span>
                       <span class="text-sm text-slate-500 font-normal" data-i18n="soc.desc">Security Operations Center</span>
-                      <span class="tag-badge bg-emerald-100 text-emerald-700">Inclus</span>
+                      <span class="tag-badge bg-emerald-100 text-emerald-700" data-i18n="tag.included">Inclus</span>
                     </div>
                     <p class="text-sm text-[#5a6a85] mt-1" data-i18n="soc.hint">Surveillance 24/7, détection des menaces et réponse aux incidents.</p>
-                    <p class="text-sm font-semibold text-[#F47B28] mt-1">Service intégré gratuitement pour renforcer votre sécurité.</p>
+                    <p class="text-sm font-semibold text-[#F47B28] mt-1" data-i18n="soc.free">Service intégré gratuitement pour renforcer votre sécurité.</p>
                   </div>
                 </label>
 
@@ -645,11 +645,13 @@
       'cdp.hint':'Protection continue des données en temps réel avec RPO quasi nul.',
       'soc.title':'SOC Managé','soc.desc':'Security Operations Center',
       'soc.hint':'Surveillance 24/7, détection des menaces et réponse aux incidents.',
-      'tag.quote':'Sur devis','tag.notsel':'Non sélectionné','tag.sel':'Inclus (devis)',
+      'soc.free':'Service intégré gratuitement pour renforcer votre sécurité.',
+      'tag.quote':'Sur devis','tag.notsel':'Non sélectionné','tag.sel':'Inclus (devis)','tag.included':'Inclus','tag.included.free':'Inclus gratuitement',
       'qty.label':'Quantité de VM',
       'sum.title':'Récapitulatif','sum.col.res':'Ressource','sum.col.price':'USD/mois',
       'sum.sub':'Sous-total / VM','sum.total':'Total / mois',
       'sum.cta':'Demander un devis','sum.note':'Prix indicatifs en USD hors taxes. Facturation mensuelle.',
+      'sum.vm.on':'VM allumée','sum.vm.off':'VM éteinte','sum.mem.label':'Mémoire RAM','sum.storage.label':'Stockage','sum.object.label':'Object Storage','sum.file.label':'File Storage','sum.eip.label':'EIP IPv4','sum.ipv6.label':'IPv6','sum.bandwidth.label':'Bande passante','sum.images.label':'Images VM','sum.dr.label':'Reprise sinistre',
       'footer.copy':'© 2025 SAH Analytics. Tous droits réservés.',
       'footer.status':'Tous les systèmes opérationnels',
       'footer.desc':'Infrastructure cloud souveraine pour entreprises et institutions africaines.',
@@ -700,11 +702,13 @@
       'cdp.hint':'Real-time continuous data protection with near-zero RPO.',
       'soc.title':'Managed SOC','soc.desc':'Security Operations Center',
       'soc.hint':'24/7 monitoring, threat detection and incident response.',
-      'tag.quote':'Quote required','tag.notsel':'Not selected','tag.sel':'Included (quote)',
+      'soc.free':'Built-in service included free of charge to strengthen your security.',
+      'tag.quote':'Quote required','tag.notsel':'Not selected','tag.sel':'Included (quote)','tag.included':'Included','tag.included.free':'Included for free',
       'qty.label':'Number of VMs',
       'sum.title':'Summary','sum.col.res':'Resource','sum.col.price':'USD/month',
       'sum.sub':'Subtotal / VM','sum.total':'Total / month',
       'sum.cta':'Request a quote','sum.note':'Indicative prices in USD excl. taxes. Monthly billing.',
+      'sum.vm.on':'VM powered on','sum.vm.off':'VM powered off','sum.mem.label':'RAM Memory','sum.storage.label':'Storage','sum.object.label':'Object Storage','sum.file.label':'File Storage','sum.eip.label':'EIP IPv4','sum.ipv6.label':'IPv6','sum.bandwidth.label':'Bandwidth','sum.images.label':'VM Images','sum.dr.label':'Disaster recovery',
       'footer.copy':'© 2025 SAH Analytics. All rights reserved.',
       'footer.status':'All systems operational',
       'footer.desc':'Sovereign cloud infrastructure for African businesses and institutions.',
@@ -866,25 +870,25 @@
 
     // Summary rows
     document.getElementById('sum-cpu').textContent      = `${cpu} core(s)`;
-    document.getElementById('sum-cpu-sub').textContent  = vmOn ? 'VM allumée' : 'VM éteinte';
+    document.getElementById('sum-cpu-sub').textContent  = vmOn ? (t['sum.vm.on'] || 'VM allumée') : (t['sum.vm.off'] || 'VM éteinte');
     document.getElementById('sum-mem').textContent      = `${mem} GB`;
-    document.getElementById('sum-mem-sub').textContent  = 'Mémoire RAM';
+    document.getElementById('sum-mem-sub').textContent  = t['sum.mem.label'] || t['vm.mem'] || 'Mémoire RAM';
     document.getElementById('sum-stor').textContent     = `${stor} GB`;
-    document.getElementById('sum-stor-sub').textContent = 'Stockage';
+    document.getElementById('sum-stor-sub').textContent = t['sum.storage.label'] || t['s.storage'] || 'Stockage';
     document.getElementById('sum-obj').textContent      = `${obj} GB`;
-    document.getElementById('sum-obj-sub').textContent  = 'Object Storage';
+    document.getElementById('sum-obj-sub').textContent  = t['sum.object.label'] || t['bk.obj'] || 'Object Storage';
     document.getElementById('sum-file').textContent     = `${file} GB`;
-    document.getElementById('sum-file-sub').textContent = 'File Storage';
+    document.getElementById('sum-file-sub').textContent = t['sum.file.label'] || t['bk.file'] || 'File Storage';
     document.getElementById('sum-eip').textContent      = `${eip} IP`;
-    document.getElementById('sum-eip-sub').textContent  = 'EIP IPv4';
+    document.getElementById('sum-eip-sub').textContent  = t['sum.eip.label'] || 'EIP IPv4';
     document.getElementById('sum-ipv6').textContent     = `${ipv6} seg`;
-    document.getElementById('sum-ipv6-sub').textContent = 'IPv6';
+    document.getElementById('sum-ipv6-sub').textContent = t['sum.ipv6.label'] || 'IPv6';
     document.getElementById('sum-bw').textContent       = `${bw} Mbps`;
-    document.getElementById('sum-bw-sub').textContent   = 'Bande passante';
+    document.getElementById('sum-bw-sub').textContent   = t['sum.bandwidth.label'] || t['net.bw'] || 'Bande passante';
     document.getElementById('sum-img').textContent      = `${img} image(s)`;
-    document.getElementById('sum-img-sub').textContent  = 'Images VM';
+    document.getElementById('sum-img-sub').textContent  = t['sum.images.label'] || 'Images VM';
     document.getElementById('sum-dr').textContent       = `${dr} VM`;
-    document.getElementById('sum-dr-sub').textContent   = 'Reprise sinistre';
+    document.getElementById('sum-dr-sub').textContent   = t['sum.dr.label'] || 'Reprise sinistre';
     document.getElementById('sum-adc').textContent      = adcCost > 0 ? selText('adc') : '';
     document.getElementById('sum-ngaf').textContent     = ngafCost > 0 ? selText('ngaf') : '';
     document.getElementById('sum-sslvpn').textContent   = vpnCost > 0 ? selText('sslvpn') : '';
@@ -907,7 +911,7 @@
     const socChecked = document.getElementById('soc').checked;
     cdpEl.textContent = cdpChecked ? (t['tag.sel']||'Inclus (devis)') : (t['tag.notsel']||'Non sélectionné');
     cdpEl.className   = cdpChecked ? 'text-xs text-[#F47B28] font-semibold' : 'text-xs text-[#5a6a85] italic';
-    socEl.textContent = socChecked ? 'Inclus gratuitement' : (t['tag.notsel']||'Non sélectionné');
+    socEl.textContent = socChecked ? (t['tag.included.free']||'Inclus gratuitement') : (t['tag.notsel']||'Non sélectionné');
     socEl.className   = socChecked ? 'text-xs text-[#F47B28] font-semibold' : 'text-xs text-[#5a6a85] italic';
     // Card highlight
     document.getElementById('cdp-card').classList.toggle('border-[#F47B28]', cdpChecked);
