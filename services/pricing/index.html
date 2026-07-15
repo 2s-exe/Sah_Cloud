@@ -464,14 +464,15 @@
 
                 <!-- SOC Managé -->
                 <label class="flex items-start gap-3 p-3 border-2 border-slate-100 rounded-xl cursor-pointer hover:border-[#F47B28] hover:bg-orange-50 transition-all" id="soc-card">
-                  <input type="checkbox" id="soc" class="custom-check mt-0.5" />
+                  <input type="checkbox" id="soc" class="custom-check mt-0.5" checked />
                   <div class="flex-1">
                     <div class="flex items-center gap-2 flex-wrap">
                       <span class="text-sm font-semibold" data-i18n="soc.title">SOC Managé</span>
                       <span class="text-sm text-slate-500 font-normal" data-i18n="soc.desc">Security Operations Center</span>
-                      <span class="tag-badge" data-i18n="tag.quote">Sur devis</span>
+                      <span class="tag-badge bg-emerald-100 text-emerald-700">Inclus</span>
                     </div>
                     <p class="text-sm text-[#5a6a85] mt-1" data-i18n="soc.hint">Surveillance 24/7, détection des menaces et réponse aux incidents.</p>
+                    <p class="text-sm font-semibold text-[#F47B28] mt-1">Service intégré gratuitement pour renforcer votre sécurité.</p>
                   </div>
                 </label>
 
@@ -505,7 +506,7 @@
             <div id="summary-body">
               <div class="flex justify-between items-center px-5 py-2 bg-slate-50 border-b border-slate-100">
                 <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide" data-i18n="sum.col.res">Ressource</span>
-                <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide" data-i18n="sum.col.price">USD/mois</span>
+                <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide"></span>
               </div>
               <div class="px-5 py-2 text-sm text-slate-700">
 
@@ -531,11 +532,11 @@
               <div class="px-5 pt-3 pb-5 border-t-2 border-slate-100">
                 <div class="flex justify-between items-center mb-1">
                   <span class="text-xs text-[#5a6a85]" data-i18n="sum.sub">Sous-total / VM</span>
-                  <span class="text-sm font-semibold text-slate-600 tabular-nums" id="sum-subtotal">0.00 USD</span>
+                  <span class="text-sm font-semibold text-slate-600" id="sum-subtotal"></span>
                 </div>
                 <div class="flex justify-between items-center mt-2">
-                  <span class="text-base font-bold text-[#1A3C6E]" data-i18n="sum.total">Total / mois</span>
-                  <span class="text-xl font-black text-[#F47B28] tabular-nums" id="sum-total">0.00 USD</span>
+                  <span class="text-base font-bold text-[#1A3C6E]" data-i18n="sum.total">Total / devis</span>
+                  <span class="text-xl font-black text-[#F47B28]" id="sum-total"></span>
                 </div>
                 <button onclick="goToQuote()" class="mt-4 w-full inline-flex items-center justify-center gap-2 bg-[#F47B28] hover:bg-[#D4601A] text-white font-semibold px-5 py-3 rounded-xl transition-colors text-sm" data-i18n="sum.cta">
                   Demander un devis
@@ -544,7 +545,7 @@
               </div>
             </div>
           </div>
-          <p class="text-sm text-slate-500 text-center mt-3 px-2" data-i18n="sum.note">Prix indicatifs en USD hors taxes. Facturation mensuelle.</p>
+          <p class="text-sm text-slate-500 text-center mt-3 px-2" data-i18n="sum.note"></p>
         </div>
 
       </div>
@@ -864,35 +865,36 @@
     document.getElementById('bw-rate-lbl').textContent   = `${bwRate.toFixed(4)} USD/Mbps/${lang==='en'?'month':'mois'}`;
 
     // Summary rows
-    document.getElementById('sum-cpu').textContent      = fmt(cpuCost);
-    document.getElementById('sum-cpu-sub').textContent  = `${cpu} core(s) × ${cpuRate.toFixed(4)}`;
-    document.getElementById('sum-mem').textContent      = fmt(memCost);
-    document.getElementById('sum-mem-sub').textContent  = `${mem} GB × ${memRate.toFixed(4)}`;
-    document.getElementById('sum-stor').textContent     = fmt(storCost);
-    document.getElementById('sum-stor-sub').textContent = `${stor} GB × ${storRate.toFixed(4)}`;
-    document.getElementById('sum-obj').textContent      = fmt(objCost);
-    document.getElementById('sum-obj-sub').textContent  = `${obj} GB × 0.3600`;
-    document.getElementById('sum-file').textContent     = fmt(fileCost);
-    document.getElementById('sum-file-sub').textContent = `${file} GB × 0.3600`;
-    document.getElementById('sum-eip').textContent      = fmt(eipCost);
-    document.getElementById('sum-eip-sub').textContent  = `${eip} IP × ${netT.eip.toFixed(4)}`;
-    document.getElementById('sum-ipv6').textContent     = fmt(ipv6Cost);
-    document.getElementById('sum-ipv6-sub').textContent = `${ipv6} seg × ${netT.ipv6.toFixed(4)}`;
-    document.getElementById('sum-bw').textContent       = fmt(bwCost);
-    document.getElementById('sum-bw-sub').textContent   = `${bw} Mbps × ${bwRate.toFixed(4)}`;
-    document.getElementById('sum-img').textContent      = fmt(imgCost);
-    document.getElementById('sum-img-sub').textContent  = `${img} × 0.0277`;
-    document.getElementById('sum-dr').textContent       = fmt(drCost);
-    document.getElementById('sum-dr-sub').textContent   = `${dr} VM × 27.7400`;
-    document.getElementById('sum-adc').textContent      = fmt(adcCost);
-    document.getElementById('sum-ngaf').textContent     = fmt(ngafCost);
-    document.getElementById('sum-sslvpn').textContent   = fmt(vpnCost);
-    document.getElementById('sum-iag').textContent      = fmt(iagCost);
+    document.getElementById('sum-cpu').textContent      = `${cpu} core(s)`;
+    document.getElementById('sum-cpu-sub').textContent  = vmOn ? 'VM allumée' : 'VM éteinte';
+    document.getElementById('sum-mem').textContent      = `${mem} GB`;
+    document.getElementById('sum-mem-sub').textContent  = 'Mémoire RAM';
+    document.getElementById('sum-stor').textContent     = `${stor} GB`;
+    document.getElementById('sum-stor-sub').textContent = 'Stockage';
+    document.getElementById('sum-obj').textContent      = `${obj} GB`;
+    document.getElementById('sum-obj-sub').textContent  = 'Object Storage';
+    document.getElementById('sum-file').textContent     = `${file} GB`;
+    document.getElementById('sum-file-sub').textContent = 'File Storage';
+    document.getElementById('sum-eip').textContent      = `${eip} IP`;
+    document.getElementById('sum-eip-sub').textContent  = 'EIP IPv4';
+    document.getElementById('sum-ipv6').textContent     = `${ipv6} seg`;
+    document.getElementById('sum-ipv6-sub').textContent = 'IPv6';
+    document.getElementById('sum-bw').textContent       = `${bw} Mbps`;
+    document.getElementById('sum-bw-sub').textContent   = 'Bande passante';
+    document.getElementById('sum-img').textContent      = `${img} image(s)`;
+    document.getElementById('sum-img-sub').textContent  = 'Images VM';
+    document.getElementById('sum-dr').textContent       = `${dr} VM`;
+    document.getElementById('sum-dr-sub').textContent   = 'Reprise sinistre';
+    document.getElementById('sum-adc').textContent      = adcCost > 0 ? selText('adc') : '';
+    document.getElementById('sum-ngaf').textContent     = ngafCost > 0 ? selText('ngaf') : '';
+    document.getElementById('sum-sslvpn').textContent   = vpnCost > 0 ? selText('sslvpn') : '';
+    document.getElementById('sum-iag').textContent      = iagCost > 0 ? selText('iag') : '';
     document.getElementById('sum-qty').textContent      = qty;
 
     const subtotal = cpuCost+memCost+storCost+objCost+fileCost+eipCost+ipv6Cost+bwCost+imgCost+drCost+adcCost+ngafCost+vpnCost+iagCost;
-    document.getElementById('sum-subtotal').textContent = fmt(subtotal) + ' USD';
-    document.getElementById('sum-total').textContent    = fmt(subtotal * qty) + ' USD';
+    document.getElementById('sum-subtotal').textContent = '';
+    document.getElementById('sum-total').textContent    = '';
+
 
     updateSecStatus();
   }
@@ -901,13 +903,15 @@
     const t = T[lang];
     const cdpEl = document.getElementById('sum-cdp');
     const socEl = document.getElementById('sum-soc');
-    cdpEl.textContent = document.getElementById('cdp').checked ? (t['tag.sel']||'Inclus (devis)') : (t['tag.notsel']||'Non sélectionné');
-    cdpEl.className   = document.getElementById('cdp').checked ? 'text-xs text-[#F47B28] font-semibold' : 'text-xs text-[#5a6a85] italic';
-    socEl.textContent = document.getElementById('soc').checked ? (t['tag.sel']||'Inclus (devis)') : (t['tag.notsel']||'Non sélectionné');
-    socEl.className   = document.getElementById('soc').checked ? 'text-xs text-[#F47B28] font-semibold' : 'text-xs text-[#5a6a85] italic';
+    const cdpChecked = document.getElementById('cdp').checked;
+    const socChecked = document.getElementById('soc').checked;
+    cdpEl.textContent = cdpChecked ? (t['tag.sel']||'Inclus (devis)') : (t['tag.notsel']||'Non sélectionné');
+    cdpEl.className   = cdpChecked ? 'text-xs text-[#F47B28] font-semibold' : 'text-xs text-[#5a6a85] italic';
+    socEl.textContent = socChecked ? 'Inclus gratuitement' : (t['tag.notsel']||'Non sélectionné');
+    socEl.className   = socChecked ? 'text-xs text-[#F47B28] font-semibold' : 'text-xs text-[#5a6a85] italic';
     // Card highlight
-    document.getElementById('cdp-card').classList.toggle('border-[#F47B28]', document.getElementById('cdp').checked);
-    document.getElementById('soc-card').classList.toggle('border-[#F47B28]', document.getElementById('soc').checked);
+    document.getElementById('cdp-card').classList.toggle('border-[#F47B28]', cdpChecked);
+    document.getElementById('soc-card').classList.toggle('border-[#F47B28]', socChecked);
   }
 
   // ===================== EVENT LISTENERS =====================
@@ -1011,22 +1015,22 @@
     }
 
     if (cdp || soc) {
-      lines.push('', 'Options sur devis (tarification à confirmer) :');
+      lines.push('', 'Options inclus / sur devis :');
       if (cdp) lines.push('  ✓ CDP : Continuous Data Protection');
-      if (soc) lines.push('  ✓ SOC Managé : Security Operations Center');
+      if (soc) lines.push('  ✓ SOC Managé : Security Operations Center (service intégré gratuitement)');
     }
 
     lines.push('', sep,
-      `Sous-total / VM  : ${subtotal.toFixed(2)} USD/mois`,
+      'Sous-total / VM  : Sur devis',
       `Quantité de VMs  : ${qty}`,
-      `TOTAL ESTIMÉ     : ${total.toFixed(2)} USD/mois`,
+      'TOTAL ESTIMÉ     : Sur devis',
       sep
     );
 
     return {
-      subject: `[Devis SAH Cloud] Infrastructure Cloud - ${total.toFixed(2)} USD/mois (×${qty} VM)`,
+      subject: `[Devis SAH Cloud] Infrastructure Cloud - Demande de devis (×${qty} VM)`,
       message: lines.join('\n'),
-      total: total.toFixed(2),
+      total: 'Sur devis',
       qty
     };
   }
